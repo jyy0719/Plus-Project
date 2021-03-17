@@ -1,9 +1,19 @@
-package com.project.plus.domain;
+ package com.project.plus.domain;
 
-//import java.sql.Date;//sql date말고 자바로 했는뒈
 import java.util.Date;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+
+@XmlRootElement(name="selectNotReview")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class ReviewVO {
+	@XmlElement(name="review")
+	@XmlAttribute
 	private int reviewNum;
 	private int memberNum;
 	private int clubNum;
@@ -13,8 +23,15 @@ public class ReviewVO {
 	private Date reviewRegDate;
 	
 	/*필요한 VO*/
+	@XmlTransient
 	private String clubThumbPic;
+	@XmlTransient
 	private String clubName;
+	private Date startDate;
+	private Date endDate;
+	
+	
+
 	public int getReviewNum() {
 		return reviewNum;
 	}
@@ -69,13 +86,23 @@ public class ReviewVO {
 	public void setClubName(String clubName) {
 		this.clubName = clubName;
 	}
+	public Date getStartDate() {
+		return startDate;
+	}
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+	public Date getEndDate() {
+		return endDate;
+	}
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
 	@Override
 	public String toString() {
 		return "ReviewVO [reviewNum=" + reviewNum + ", memberNum=" + memberNum + ", clubNum=" + clubNum
 				+ ", reviewContent=" + reviewContent + ", reviewPic=" + reviewPic + ", reviewRate=" + reviewRate
 				+ ", reviewRegDate=" + reviewRegDate + ", clubThumbPic=" + clubThumbPic + ", clubName=" + clubName
-				+ "]";
+				+ ", startDate=" + startDate + ", endDate=" + endDate + "]";
 	}
-
-	
 }
