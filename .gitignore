@@ -66,10 +66,10 @@ local.properties
 
 ### Eclipse Patch ###
 # Eclipse Core
-#.project
+.project
 
 # JDT-specific (Eclipse Java Development Tools)
-#.classpath
+.classpath
 
 # Spring Boot Tooling
 .sts4-cache/
@@ -153,6 +153,8 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+target/
 
 # End of https://www.toptal.com/developers/gitignore/api/windows,macos,eclipse,java
 
