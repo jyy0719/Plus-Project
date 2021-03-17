@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.project.plus.domain.ClubVO;
 import com.project.plus.service.ClubService;
-
+//테스트
 @Controller
 public class ClubController {
-	// 되는지 테스트 
+	
 	
 	@Autowired
 	private ClubService clubService;	

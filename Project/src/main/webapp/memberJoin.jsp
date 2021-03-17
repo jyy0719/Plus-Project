@@ -154,7 +154,7 @@
             <div>
                 <h3 class="join_title"><label for="phoneNo">휴대전화</label></h3>
                 <span class="box int_mobile">
-                    <input type="tel" name="memeberPhone" id="mobile" class="int1" maxlength="16" placeholder="전화번호 입력">
+                    <input type="tel" name="memberPhone" id="mobile" class="int1" maxlength="16" placeholder="전화번호 입력">
                     <input type="button" onclick="isMobile()" class="check" value="인증하기">
                 </span>
                 <span class="error_next_box"></span>
