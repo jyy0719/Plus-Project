@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.plus.mapper.ClubMapper">
+	<resultMap id="clubResult" type="club">
+		<id property="clubNum" column="club_num" />
+		<result property="clubName" column="club_name" />
+		<result property="clubLeader" column="club_leader" />
+		<result property="clubTown" column="club_town" />
+		<result property="clubKind" column="club_kind" />
+		<result property="clubCategory" column="club_category" />
+		<result property="clubOnOff" column="club_onoff" />
+		<result property="clubMax" column="club_max" />
+		<result property="clubFreq" column="club_freq" />
+		<result property="clubContent1" column="club_content1" />
+		<result property="clubContent1_pic" column="club_content1_pic" />
+		<result property="clubContent2" column="club_content2" />
+		<result property="clubContent2_pic" column="club_content2_pic" />
+		<result property="clubStartDate" column="club_startdate" />
+		<result property="clubEndDate" column="club_enddate" />
+		<result property="clubMakeDate" column="club_makedate" />
+		<result property="clubShutDate" column="club_shutdate" />
+		<result property="clubFee" column="club_fee" />
+		<result property="clubCurnum" column="club_curnum" />
+		<result property="clubHashtag" column="club_hashtag" />
+	</resultMap>
+
+	<select id="getClubInfo" resultMap="clubResult">
+		SELECT * FROM CLUB WHERE
+		club_num = 35
+	</select>
+	<select id="getClubHashtag" resultType="string">
+		SELECT
+		SUBSTRING_INDEX (SUBSTRING_INDEX(Club.club_hashtag,',',numbers.n),',',-1)
+		club_hashtag
+
+		FROM
+		(select 1 n union all select 2
+		union all select 3 union all select 4
+		union all select 5 union all select 6
+		union all select 7 union all select 8
+		union all select 9 union all select 10) numbers INNER JOIN club
+		on CHAR_LENGTH ( Club.club_hashtag )
+		- CHAR_LENGTH ( REPLACE ( Club.club_hashtag , ',' , '' ))>= numbers .
+		n-1
+		WHERE SUBSTRING_INDEX ( SUBSTRING_INDEX ( Club.club_hashtag , ' ' , numbers
+		. n ), ' ' , -1 ) != ' ' AND club_num=35
+	</select>
+	<select id="getMyClubInfo" resultMap="clubResult">
+		SELECT * FROM CLUB WHERE club_leader = '블루베리' AND club_num = 35
+	</select>
+
+	<insert id="insertClub">
+	<![CDATA[
+		INSERT INTO CLUB(club_name, club_leader, club_town, club_kind,
+		club_category, club_onoff, club_max, club_freq, club_content1, club_content1_pic, club_content2, club_content2_pic,
+		club_makedate, club_shutdate, club_startdate, club_enddate, club_fee, club_hashtag, club_curnum)
+		VALUES(#{clubName}, '블루베리', '마포구', #{clubKind}, #{clubCategory}, 
+		#{clubOnOff}, #{clubMax}, #{clubFreq}, #{clubContent1}, '123', #{clubContent2}, '456',
+		NOW(), #{clubShutDate}, #{clubStartDate}, #{clubEndDate}, #{clubFee}, #{clubHashtag}, #{clubCurnum})
+	]]>
+	</insert>
+	<update id="updateClub">
+		UPDATE CLUB SET club_town='마포구', club_category=#{clubCategory}, club_max=#{clubMax}, club_freq=#{clubFreq}, club_content1=#{clubContent1},
+		club_content1_pic=#{clubContent1_pic}, club_content2=#{clubContent2}, club_content2_pic=#{clubContent2_pic},
+		club_makedate=#{clubMakeDate}, club_shutdate=#{clubShutDate}, club_startdate=#{clubStartDate}, club_enddate=#{clubEndDate}, club_fee=#{clubFee}, 
+		club_hashtag=#{clubHashtag}, club_curnum=#{clubCurnum}
+		WHERE club_num = 35
+	</update>
+
+</mapper>
