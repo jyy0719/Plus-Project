@@ -1,0 +1,119 @@
+
+    * {
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+      font-family: 'NanumSquare';
+    }
+
+    .jumbotron {
+      width: 80%;
+      height: 250px;
+      background-color: rgba(217, 223, 226, 0.575);
+      position: relative;
+      left: 50%;
+      transform: translate(-50%, 10%);
+      
+
+    }
+
+    #sort {
+      width: 1200px;
+      display: flex;
+      justify-content: flex-start;
+      margin: 0 auto 30px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 10px;
+    }
+
+    #sort ul {
+      margin-top: 50px;
+    }
+
+    #sort ul a {
+      color: #000;
+      border-right: 1px solid #ddd;
+      padding: 0 20px;
+    }
+
+    #sort ul a:first-child {
+      color: rgb(0, 30, 250);
+      padding-left: 0px;
+    }
+
+    #sort ul a:last-child {
+      border: none;
+    }
+
+    #sort ul a .active {
+      color: rgb(0, 30, 250);
+    }
+
+    .page-item active {
+      color: rgb(0, 30, 250);
+    }
+
+    #favorite {
+      float: left;
+      padding-right: 30px;
+
+    }
+
+    .search {
+      padding-top: 10px;
+    }
+
+    .label {
+      font-size: 13px;
+    }
+
+    .gallery-container {
+      width: 1200px;
+      height: auto;
+      margin: auto;
+      padding-top: 40px;
+    }
+
+    .card-body {
+      position: relative;
+      left: -15px;
+
+    }
+
+    .card-body b {
+      color: rgb(0, 0, 0);
+    }
+
+    .searchform-title {
+      margin: 0;
+      padding: 0;
+    }
+
+    .gallerytitle {
+      padding-bottom: 15px;
+    }
+
+    .spanspace {
+      padding-bottom: 10px;
+
+    }
+
+    .card-img-top {
+      height: 190px;
+      border-radius: 10px;
+    }
+
+    .page-navigation {
+      position: absolute;
+      left: 50%;
+      transform: translate(-50%, 0);
+    }
+
+    #favorite {
+      font-size: 15px;
+    }
+
+    #onoff {
+      font-size: 15px;
+    }
+    
