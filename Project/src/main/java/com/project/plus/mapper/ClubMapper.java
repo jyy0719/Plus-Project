@@ -10,4 +10,5 @@ public interface ClubMapper {
 	public List<String> getClubHashtag();
 	public ClubVO getMyClubInfo(ClubVO vo);
 	public int updateClub(ClubVO vo);
+	public void deleteClub();
 }

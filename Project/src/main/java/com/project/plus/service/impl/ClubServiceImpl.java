@@ -31,4 +31,7 @@ public class ClubServiceImpl implements ClubService {
 	public int updateClub(ClubVO vo) {
 		return mapper.updateClub(vo);
 	}
+	public void deleteClub() {
+		mapper.deleteClub();
+	}
 }

@@ -275,7 +275,7 @@ $(document).ready(function () {
 <header></header>
 <section>
 <input name="seq" type="hidden" value="${club.clubNum}"/>
-  <img id="mainImg" src="${path}/resources/img/img1.jpg">
+  <img id="mainImg" src="${path}/resources/img/img1.jpg">${club.clubThumb_pic}
   <div class="stickyWrap">
     <div class="stickyTab">
         <div id="moreInfoTab">

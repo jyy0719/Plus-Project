@@ -48,8 +48,6 @@
 		<property name="defaultEncoding" value="UTF-8" />
 	</bean>
 
-
-
 	<!-- mapper 인터페이스 사용을 위한 패키지 지정 / 아래 둘 중 하나만 지정해야 하는듯.. -->
 	<mybatis-spring:scan base-package="com.project.plus.mapper" />
 

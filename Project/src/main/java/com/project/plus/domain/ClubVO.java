@@ -2,6 +2,8 @@ package com.project.plus.domain;
 
 import java.sql.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class ClubVO {
 	private int clubNum;
 	private String clubThumb_pic;
@@ -26,7 +28,6 @@ public class ClubVO {
 	
 
 	private int clubCurnum;
-	
 	private int clubHeart;
 	private String clubLatitude;
 	private String clubLongitude;
