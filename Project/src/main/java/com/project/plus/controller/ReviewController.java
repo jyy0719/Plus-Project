@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import com.project.plus.domain.ReviewVO;
 import com.project.plus.service.ReviewService;
 
-
+//주석입니다 , 나중에 지우세요 
 @Controller
 @SessionAttributes("review") // 값 변동이 없어도 review라는 이름에 같이 담겨서 나올 수 있도록.
 public class ReviewController {
