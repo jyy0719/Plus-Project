@@ -158,3 +158,11 @@ target/
 
 # End of https://www.toptal.com/developers/gitignore/api/windows,macos,eclipse,java
 
+Project/Servers/VMware tc Server Developer Edition v4.1-config/catalina.policy
+Project/Servers/VMware tc Server Developer Edition v4.1-config/catalina.properties
+Project/Servers/VMware tc Server Developer Edition v4.1-config/context.xml
+Project/Servers/VMware tc Server Developer Edition v4.1-config/jmxremote.access
+Project/Servers/VMware tc Server Developer Edition v4.1-config/jmxremote.password
+Project/Servers/VMware tc Server Developer Edition v4.1-config/server.xml
+Project/Servers/VMware tc Server Developer Edition v4.1-config/tomcat-users.xml
+Project/Servers/VMware tc Server Developer Edition v4.1-config/web.xml
