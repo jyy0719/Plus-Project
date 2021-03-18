@@ -74,29 +74,29 @@ public class ClubController {
 
 	@RequestMapping("/getClub.do")
 	public String getClubInfo(ClubVO vo, Model model) {
-		System.out.println("모임 상세정보 보기");
 		model.addAttribute("club", clubService.getClubInfo(vo));
+		System.out.println("모임 상세정보 보기");
 		return "clubInfo";
 	}
 
 	@RequestMapping("/getMyClubInfo.do")
 	public String getMyClubInfo(ClubVO vo, Model model) {
-		System.out.println("수정할 모임의 폼 보여주기");
 		model.addAttribute("club", clubService.getMyClubInfo(vo));
+		System.out.println("수정할 모임의 폼 보여주기");
 		return "/myClubInfo";
 	}
 
 	@RequestMapping("/updateClub.do")
 	public String updateClub(ClubVO vo) {
-		System.out.println("모임 수정하기 완료");
 		clubService.updateClub(vo);
+		System.out.println("모임 수정하기 완료");
 		return "index";
 	}
 	
 	@RequestMapping("/deleteClub.do")
 	public String deleteClub(ClubVO vo) {
-		System.out.println("모임 삭제 완료");
 		clubService.deleteClub();
+		System.out.println("모임 삭제 완료");
 		return "index";
 	}
 }

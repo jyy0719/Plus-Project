@@ -26,6 +26,7 @@
 					<option value="2">도움더하기</option>
 				</select>
 			</div> -->
+						
 			<div class="select-onoff">
 				<label for="exampleFormControlSelect2">온라인/오프라인</label> <select
 					class="form-control" name="clubOnOff">
@@ -141,7 +142,8 @@
 			<input name="clubNum" type="hidden" value="${club.clubNum}"/>
 			<input name="clubMakeDate" type="hidden" value="${club.clubMakeDate}"/>
 			<input name="clubCurnum" type="hidden" value="${club.clubCurnum}"/>
-		<button type="button" class="btn" id="applyBtn" onclick="goSubmit()">신청하기</button>
+			<input name="clubKind" type="hidden" value="${club.clubKind}"/>
+		<button type="button" class="btn" id="applyBtn" onclick="goSubmit()">수정하기</button>
 	</div>
 	</form>
 </aside>

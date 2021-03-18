@@ -28,7 +28,7 @@
 
 	<select id="getClubInfo" resultMap="clubResult">
 		SELECT * FROM CLUB WHERE
-		club_num = 35
+		club_num = 33
 	</select>
 	
 	<select id="getClubHashtag" resultType="string">
@@ -46,11 +46,11 @@
 		- CHAR_LENGTH ( REPLACE ( Club.club_hashtag , ',' , '' ))>= numbers .
 		n-1
 		WHERE SUBSTRING_INDEX ( SUBSTRING_INDEX ( Club.club_hashtag , ' ' , numbers
-		. n ), ' ' , -1 ) != ' ' AND club_num=35
+		. n ), ' ' , -1 ) != ' ' AND club_num=33
 	</select>
 	
 	<select id="getMyClubInfo" resultMap="clubResult">
-		SELECT * FROM CLUB WHERE club_leader = '블루베리' AND club_num = 35
+		SELECT * FROM CLUB WHERE club_leader = '블루베리' AND club_num = 5
 	</select>
 
 	<insert id="insertClub">
@@ -69,7 +69,7 @@
 		club_content1_pic=#{clubContent1_pic}, club_content2=#{clubContent2}, club_content2_pic=#{clubContent2_pic},
 		club_makedate=#{clubMakeDate}, club_shutdate=#{clubShutDate}, club_startdate=#{clubStartDate}, club_enddate=#{clubEndDate}, club_fee=#{clubFee}, 
 		club_hashtag=#{clubHashtag}, club_curnum=#{clubCurnum}
-		WHERE club_num = 35
+		WHERE club_num = 5
 	</update>
 	
 	<delete id="deleteClub">
