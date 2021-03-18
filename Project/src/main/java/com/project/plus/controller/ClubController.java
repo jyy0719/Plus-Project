@@ -26,44 +26,55 @@ public class ClubController {
 	private ClubService clubService;
 
 	@RequestMapping(value = "/insertClub.do", method = RequestMethod.POST)
-	public String insertClub(ClubVO vo, @RequestParam("upload") MultipartFile file, HttpServletRequest request) {
+	public String insertClub(ClubVO vo, @RequestParam("upload") MultipartFile[] file, HttpServletRequest request) {
 
 		// 파일을 저장할 절대 경로 지정
 		String uploadPath = request.getSession().getServletContext().getRealPath("/resources/uploadImg");
 
-		// 넘어온 파일이 있다면
-		if (!file.getOriginalFilename().isEmpty() && !file.isEmpty()) {
-			// 파일의 원본 이름을 얻고
-			String orgFileName = file.getOriginalFilename();
-			
-			// 겹쳐지지 않는 파일명을 위한 유니크한 값 생성
-			UUID uid = UUID.randomUUID();
-
-			// 원본파일 이름과 UUID 결합
-			String newFileName = uid.toString() + "_" + orgFileName;
-
-			// 파일을 저장할 폴더 생성(년 월 일 기준)
-			String datePath = FileUtils.calcPath(uploadPath);
-
-			try {
-				// 지정해준 경로로 파일을 저장한다
-				file.transferTo(new File(uploadPath + datePath + File.separator + newFileName));
-				vo.setClubThumb_Pic(File.separator + "uploadImg" + datePath + File.separator + newFileName);
+		for (int i=0; i<file.length; i++) {
+			// 넘어온 파일이 있다면
+			if (!file[i].getOriginalFilename().isEmpty() && !file[i].isEmpty()) {
 				
-			} catch (Exception e) {
-				e.printStackTrace();
-				System.out.println("파일 업로드 오류");
-			}
-			
-			
+				// 파일의 원본 이름을 얻고
+				String orgFileName = file[i].getOriginalFilename();
 
-		} else {
-			System.out.println("파일이 없습니다");
+				// 겹쳐지지 않는 파일명을 위한 유니크한 값 생성
+				UUID uid = UUID.randomUUID();
+
+				// 원본파일 이름과 UUID 결합
+				String newFileName = uid.toString() + "_" + orgFileName;
+
+				// 파일을 저장할 폴더 생성(년 월 일 기준)
+				String datePath = FileUtils.calcPath(uploadPath);
+
+				try {
+					// 지정해준 경로로 파일을 저장한다
+					file[i].transferTo(new File(uploadPath + datePath + File.separator + newFileName));
+					
+					if(i==0) {
+						vo.setClubMain_pic(File.separator + "uploadImg" + datePath + File.separator + newFileName);
+						String tPath = FileUtils.makeThumbnail(uploadPath, datePath, newFileName);
+						vo.setClubThumb_Pic(File.separator + "uploadImg" + tPath);
+						
+						System.out.println(File.separator + "uploadImg" + tPath);
+					} else if (i==1) {
+						vo.setClubContent1_Pic(File.separator + "uploadImg" + datePath + File.separator + newFileName);
+					} else {
+						vo.setClubContent2_Pic(File.separator + "uploadImg" + datePath + File.separator + newFileName);
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+					System.out.println("파일 업로드 오류");
+				}
+
+			} else {
+				System.out.println("업로드 파일이 없습니다");
+			}
 		}
 
+			clubService.insertClub(vo); // DB에 저장
+			return "index";
 		
-		clubService.insertClub(vo); // DB에 저장
-		return "index";
 	}
 
 	// 컬럼에 저장된 해시태그 list 가져와서 model에 저장
@@ -73,17 +84,17 @@ public class ClubController {
 	}
 
 	@RequestMapping("/getClub.do")
-	public String getClubInfo(ClubVO vo, Model model) {
-		model.addAttribute("club", clubService.getClubInfo(vo));
+	public String getClub(ClubVO vo, Model model) {
+		model.addAttribute("club", clubService.getClub(vo));
 		System.out.println("모임 상세정보 보기");
-		return "clubInfo";
+		return "getClub";
 	}
 
 	@RequestMapping("/getMyClubInfo.do")
 	public String getMyClubInfo(ClubVO vo, Model model) {
 		model.addAttribute("club", clubService.getMyClubInfo(vo));
 		System.out.println("수정할 모임의 폼 보여주기");
-		return "/myClubInfo";
+		return "myClubInfo";
 	}
 
 	@RequestMapping("/updateClub.do")
@@ -92,11 +103,12 @@ public class ClubController {
 		System.out.println("모임 수정하기 완료");
 		return "index";
 	}
-	
+
 	@RequestMapping("/deleteClub.do")
 	public String deleteClub(ClubVO vo) {
 		clubService.deleteClub();
 		System.out.println("모임 삭제 완료");
 		return "index";
 	}
+
 }

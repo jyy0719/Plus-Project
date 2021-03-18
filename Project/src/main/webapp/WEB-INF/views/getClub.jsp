@@ -19,13 +19,17 @@
 header{
     height:50px;
 }
-
+.images{
+  		width: 750px;
+        height: 433px;
+}
 #mainImg{
             position: absolute;
-            width: 713px;
+            width: 750px;
             height: 433px;
             left: 120px;
-            top: 50px;     
+            top: 50px;   
+            
 }
 
 aside{
@@ -36,6 +40,7 @@ aside{
     height:2000px;
     display: flex;
     flex-direction: column;
+    margin-left:50px;
 }
 
 
@@ -128,6 +133,7 @@ a:link {text-decoration: none;}
     padding-right: 50px;
     cursor: pointer;
 }
+
 #reviewTab{
     float:left;
     padding-right: 50px;
@@ -135,28 +141,37 @@ a:link {text-decoration: none;}
 }
 
 article{
-    position: absolute;
-    width: 720px;
+    position: absolute; 
+    width: 750px;
     left: 120px;
     top: 691px;
+
 }
 
 #moreInfo{
-    border:1px solid black;
-    height: 300px;
+	
+   /*  border:1px solid black; */
+/*     height: 300px; */
     padding-top:40px;
     margin-bottom:30px;
+
 }
+ #moreInfo img{
+	
+}
+ 
 #leaderInfo{
-    border:1px solid black;
-    height: 300px;
+   /*  border:1px solid black; */
+/*     height: 300px; */
     padding-top:40px;
     margin-bottom:30px;
 }
 #review{
-    border:1px solid black;
-    height: 300px;
+   /*  border:1px solid ; */
+	height: 300px; 
     margin-bottom:50px;
+    margin-top:50px;
+
 }
 #infoLabel{
     padding-top: 10px;
@@ -225,12 +240,12 @@ article{
 
 section{
     position:relative;
-    width: 713px;
+    width: 750px;
 }
 .stickyWrap{
     position:absolute;
     height:1500px;
-    width: 713px;
+    width: 750px;
     left: 120px;
     top: 550px;
 
@@ -241,7 +256,7 @@ section{
     z-index: 500;
     top:0;
     color: #6e7c7c;
-    width: 720px;
+    width: 750px;
     height: 50px;
     padding-top:20px;
     border-bottom: 1px solid #dddddd;
@@ -253,6 +268,10 @@ section{
 }
 #freq{
     background-color: #ffb26b;
+}
+
+h3{
+	margin-top:50px;
 }
 </style>
 <script>
@@ -275,7 +294,7 @@ $(document).ready(function () {
 <header></header>
 <section>
 <input name="seq" type="hidden" value="${club.clubNum}"/>
-  <img id="mainImg" src="${path}/resources/img/img1.jpg">
+  <img id="mainImg" src="${path}/resources${club.clubMain_pic}" onerror="this.onerror=null; this.src='${path}/resources/img/img1.jpg'" />
   <div class="stickyWrap">
     <div class="stickyTab">
         <div id="moreInfoTab">
@@ -290,14 +309,21 @@ $(document).ready(function () {
     </div>
   </div>
   <article>
+  
   <div id="moreInfo">
+  <img class="images" src="${path}/resources${club.clubContent1_pic}" onerror="this.onerror=null; this.style.display='none'"></img> 
      ${club.clubContent1}
   </div>
+  <hr>
+    <h3>리더 소개</h3>
   <div id="leaderInfo">
+  	<img class="images" src="${path}/resources${club.clubContent2_pic}" onerror="this.onerror=null; this.style.display='none'"></img> 
       ${club.clubContent2}
   </div>
+  <hr>
+  <h3>후기</h3>
 <div id="review">
-      여기는 리뷰 쓰는 곳 
+      여기는 리뷰 보여주기
 </div>
 </article>
 </section>
@@ -306,6 +332,7 @@ $(document).ready(function () {
         <div id="leaderId">${club.clubLeader} <span class="badge" id="onoff">${club.clubOnOff}</span> <span class="badge" id="freq">${club.clubFreq}</span> </div>
         <div class="titleInfo">
             <div id="clubname">${club.clubName}</div>
+            <!-- 해시태그 출력부분  -->
             <c:forEach items="${tags}" var="tag">
             	<span class="label label-info"># ${tag}</span>
             </c:forEach>

@@ -62,14 +62,14 @@
 				<label for="exampleFormControlFile1">개설하고자 하는 모임의 성격을
 					설명해주세요!</label>
 				<textarea name="clubContent1"></textarea>
-		<!-- 		<input type="file" class="form-control-file" name="upload"
-					id="exampleFormControlFile1"> -->
+				<input type="file" class="form-control-file" name="upload"
+					id="exampleFormControlFile1">
 			</div>
 			<div id="write-checkinfo">
 				<label for="exampleFormControlFile1" id="intro">모임의 인증방법을 설명해주세요!</label>
 				<textarea name="clubContent2"></textarea>
-				<!-- <input type="file" class="form-control-file" name="upload"
-					id="exampleFormControlFile1"> -->
+				<input type="file" class="form-control-file" name="upload"
+					id="exampleFormControlFile1">
 			</div>
 			<div class="hashtag-wrap">
 				
