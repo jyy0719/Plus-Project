@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
@@ -9,296 +10,17 @@
    <title>모임상세보기</title>
     <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <%-- <link rel='stylesheet' type='text/css' href='${path}/resources/css/clubInfo.css'> --%>
+   	<link rel='stylesheet' type='text/css' href='${path}/resources/css/getClub.css'> 
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script> 
-<style>
-@charset "UTF-8";
-*{
-    font-family: 'NanumSquare', sans-serif !important;
-}
-header{
-    height:50px;
-}
-.images{
-  		width: 750px;
-        height: 433px;
-}
-#mainImg{
-            position: absolute;
-            width: 750px;
-            height: 433px;
-            left: 120px;
-            top: 50px;   
-            
-}
-
-aside{
-    position: relative;
-    top: 50px;
-    left: 900px;
-    width: 350px;
-    height:2000px;
-    display: flex;
-    flex-direction: column;
-    margin-left:50px;
-}
-
-
-#tilde{
-	font-size: 2em;
-}
-
-
-.stickybox{
-    position:sticky;
-    top:0;
-    width: 350px;
-    height: 650px;
-    padding: 24px;
-    border-radius: 3px;
-    box-shadow: rgb(41 42 43 / 16%) 0px 2px 6px -2px;
-    border: 1px solid rgb(255, 255, 255);
-  
-}
-
-
-#leaderId{
-    position: absolute;
-    top:0px;
-
-}
-
-.titleInfo{
-    width:300px;
-    height: 200px;
-}
-
-#clubname{
-    width: 300px;
-    font-size: 30px;
-    font-weight: 700;
-    padding-top:20px;
-    padding-bottom: 10px;
-}
-.clubInfoTable{
-    position:absolute;
-    width: 487px;
-    height: 531px;
-    top: 230px;
-    padding-top: 20px;
-    padding-bottom: 5px;
-}
-
-
-#location{
-
-    display:flex;
-    margin-top:20px;
-    width:300px;
-    height: 30px;
-    
-}
-#location img{
-
-    width:15px;
-    height: 15px;
-}
-#locationText{
-    /* position: absolute; */
-    width:300;
-    height: 20px;
-    margin-left:5px;
-}
-
-.selected {
-    color:#000;
-    font-weight: 600;
- }
-
-a{
-    color:#6e7c7c;
-}
-
-a:link {text-decoration: none;}
-
-#moreInfoTab{
-    float:left;
-    padding-right: 50px;
-    cursor: pointer;
- 
-}
-
-#introTab{
-    float:left;
-    padding-right: 50px;
-    cursor: pointer;
-}
-
-#reviewTab{
-    float:left;
-    padding-right: 50px;
-    cursor: pointer;
-}
-
-article{
-    position: absolute; 
-    width: 750px;
-    left: 120px;
-    top: 691px;
-
-}
-
-#moreInfo{
-	
-   /*  border:1px solid black; */
-/*     height: 300px; */
-    padding-top:40px;
-    margin-bottom:30px;
-
-}
- #moreInfo img{
-	
-}
- 
-#leaderInfo{
-   /*  border:1px solid black; */
-/*     height: 300px; */
-    padding-top:40px;
-    margin-bottom:30px;
-}
-#review{
-   /*  border:1px solid ; */
-	height: 300px; 
-    margin-bottom:50px;
-    margin-top:50px;
-
-}
-#infoLabel{
-    padding-top: 10px;
-    padding-bottom: 5px;
-}
-
-.fstyle{
-    font-size: 20px;
-    font-weight: 700;
-    padding-bottom:10px;
-}
-#makeDate{
-    float:left;
-}
-
-
-
-#applyBtn{
-    position: absolute;
-    width: 200px;
-    height: 50px;
-    left:-5px;
-    top: 350px;
-    border: 0;
-    outline:0;
-    color:white;
-    background-color: #001eff;
-}
-
-#heartBtn{
-    position:absolute;
-    width:50px;
-    height: 50px;
-    top:350px;
-    left:200px;
-    border: 0;
-    outline:0;
-}
-
-#heartBtn img{
-  
-    position: absolute;
-    width:24px;
-    height: 24px;
-    left: 25%;
-    top:25%;
-}
-#shareBtn{
-    position:absolute;
-    width:50px;
-    height:50px;
-    top:350px;
-    left:250px;
-    margin-left: 5px;
-    border: 0;
-    outline:0;
-}
-#shareBtn img{
-  
-    position: absolute;
-    width:24px;
-    height: 24px;
-    left: 25%;
-    top:25%;
-}
-
-section{
-    position:relative;
-    width: 750px;
-}
-.stickyWrap{
-    position:absolute;
-    height:1500px;
-    width: 750px;
-    left: 120px;
-    top: 550px;
-
-}
-.stickyTab{
-    position:sticky;
-    background-color: white;
-    z-index: 500;
-    top:0;
-    color: #6e7c7c;
-    width: 750px;
-    height: 50px;
-    padding-top:20px;
-    border-bottom: 1px solid #dddddd;
-    font-size: 20px;
-    font-weight: 500;
-}
-#onoff{
-    background-color: #00af91;
-}
-#freq{
-    background-color: #ffb26b;
-}
-
-h3{
-	margin-top:50px;
-}
-</style>
-<script>
-
-$(document).ready(function () {
-
-    var $selectMenu = null;
-    $(".tabMenu").click(function(){
-          
-                if ($selectMenu != null){
-                    $selectMenu.removeClass("selected");
-                }
-
-                $selectMenu = $(this);
-                $selectMenu.addClass("selected");
-            })
-    })
-</script>
 </head>
 <header></header>
 <section>
-<input name="seq" type="hidden" value="${club.clubNum}"/>
+<input type="hidden" value="${club.clubNum}" name="clubNum"/>
   <img id="mainImg" src="${path}/resources${club.clubMain_pic}" onerror="this.onerror=null; this.src='${path}/resources/img/img1.jpg'" />
   <div class="stickyWrap">
     <div class="stickyTab">
         <div id="moreInfoTab">
-            <a href="#moreInfo" class="tabMenu">상세정보</a>
+            <a href="#moreInfo" class="tabMenu">상세정보</a> 
         </div>
         <div id="introTab">
             <a href="#leaderInfo" class="tabMenu">리더소개</a>
@@ -311,20 +33,39 @@ $(document).ready(function () {
   <article>
   
   <div id="moreInfo">
-  <img class="images" src="${path}/resources${club.clubContent1_pic}" onerror="this.onerror=null; this.style.display='none'"></img> 
+  <img class="images" src="${path}/resources${club.clubContent1_pic}"></img> 
      ${club.clubContent1}
   </div>
   <hr>
     <h3>리더 소개</h3>
   <div id="leaderInfo">
-  	<img class="images" src="${path}/resources${club.clubContent2_pic}" onerror="this.onerror=null; this.style.display='none'"></img> 
+  	<img class="images" src="${path}/resources${club.clubContent2_pic}"></img> 
       ${club.clubContent2}
   </div>
   <hr>
-  <h3>후기</h3>
+  <div class="reviewTitle"><h3>후기<small>(총 ${reviewCount}개)</small></h3></div>
 <div id="review">
-      여기는 리뷰 보여주기
+		<!-- 리뷰 출력 부분  -->
+		<c:forEach items="${reviews}" var="review">
+		     <div class="userReview">
+		        <strong>블루베리</strong>     
+		        <div class="reviewRate">
+		           ${review.reviewRate}
+		        </div>
+		        <div id="reviewRegDate">
+		       		<fmt:formatDate value="${review.reviewRegDate}" var="changedDate" pattern="yyyy. MM. dd"/>
+		       			${changedDate}
+		        </div>
+		        <div id="reviewText">
+		            ${review.reviewContent}
+		        </div>
+		     </div>
+		</c:forEach>
 </div>
+<div class="newList">
+
+</div>
+<button type="button" class="btn" id="moreReviewBtn">더보기</button>
 </article>
 </section>
 <aside>
@@ -359,4 +100,108 @@ $(document).ready(function () {
     </div>
 </aside>
 <footer></footer>
+
+<script>
+
+$(document).ready(function () {
+	
+	/* 탭메뉴  */
+    var $selectMenu = null;
+    $(".tabMenu").click(function(){
+          
+                if ($selectMenu != null){
+                    $selectMenu.removeClass("selected");
+                }
+
+                $selectMenu = $(this);
+                $selectMenu.addClass("selected");
+            })
+
+	
+	
+    let count = $("#review").find(".reviewRate").length;
+    
+	for(var i=0; i<count; i++){
+    let rating =  $(".reviewRate").contents()[i].textContent;
+    	
+         if(rating==1){
+        	 rating = "★☆☆☆☆"
+         } else if (rating==2){
+        	 rating = "★★☆☆☆"
+         } else if (rating==3){
+        	 rating = "★★★☆☆"
+         } else if (rating==4){
+        	 rating ="★★★★☆"
+         } else {
+        	 rating = "★★★★★"
+         }
+         
+         $(".reviewRate").contents()[i].textContent= rating;
+	} 
+	 
+	 
+	 let reviewCnt = '${reviewCount}'   
+	 console.log(reviewCnt)
+				// limit으로 넣어줄 값 
+				let startIndex = 0;	
+	 			// 5개씩 로딩 
+				let step = 5;	
+		  	
+			    //더보기 버튼 클릭시
+			    $('#moreReviewBtn').click(function(){
+					startIndex += step;
+					console.log(startIndex)
+					getMoreReview(startIndex);
+				});
+			    
+			    // 더보기
+				function getMoreReview(startIndex){
+					$.ajax({
+						type: "post",
+						async: "true",
+						dataType: "json",
+						data: JSON.stringify({
+							clubNum:'${club.clubNum}',
+							startIndex:startIndex
+						}),
+						contentType: "application/json",
+						url: "/plus/getMoreReview.do",
+			            success: function (data, textStatus) {
+			            	console.log(data);
+			            	let reviewList = "";
+		                    for(i = 0; i < data.length; i++){
+								//let newList = '<div id="review">';
+		                        let  newList = '<div class="userReview">';
+		                            // nickname 아직 안받아와서 
+		                        newList += '<strong>블루베리</strong>';
+		                        if(data[i].reviewRate == 1){
+		                            newList += '<div class="reviewRate">★☆☆☆☆</div>';
+		                        } else if (data[i].reviewRate == 2){
+		                            newList += '<div class="reviewRate">★★☆☆☆</div>';
+		                        
+		                        } else if (data[i].reviewRate == 3){
+		                            newList += '<div class="reviewRate">★★★☆☆</div>';
+		                
+		                        } else if (data[i].reviewRate == 4){
+		                            newList += '<div class="reviewRate">★★★★☆</div>';
+		                        
+		                        } else if (data[i].reviewRate == 5){
+		                            newList += '<div class="reviewRate">★★★★★</div>';
+		                        }
+		                        newList += '<div id="reviewRegDate">' + data[i].reviewRegDate + '</div>';
+		                        newList += '<div id="reviewText">' + data[i].reviewContent + '</div></div>';
+		                        reviewList += newList;
+					
+								}
+				            	$(reviewList).appendTo($(".newList")).slideDown();
+				        		// 더보기 버튼 삭제
+				            	if(startIndex + step > reviewCnt){
+				        			$('#moreReviewBtn').remove();
+				        		}
+			            	}
+						});
+					}
+})
+
+</script>
 </html>

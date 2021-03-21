@@ -4,39 +4,66 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.text.DecimalFormat;
 import java.util.Calendar;
+import java.util.UUID;
 
 import javax.imageio.ImageIO;
 
 import org.imgscalr.Scalr;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.project.plus.domain.ClubVO;
 
 public class FileUtils {
 
-//	public static String uploadFile(String uploadPath, String orgFileName, byte[] fileSize) throws Exception {
-//
-//		// 겹쳐지지 않는 파일명을 위한 유니크한 값 생성
-//		UUID uid = UUID.randomUUID();
-//
-//		// 원본파일 이름과 UUID 결합
-//		String newFileName = uid.toString() + "_" + orgFileName;
-//
-//		// 파일을 저장할 폴더 생성(년 월 일 기준)
-//		String datePath = calcPath(uploadPath);
-//
-//		// 저장할 파일준비
-////		File target = new File(uploadPath + datePath, newFileName);
-//
-////		// 파일을 저장
-////		FileCopyUtils.copy(fileSize, target);
-////
-////		String formatName = orgFileName.substring(orgFileName.lastIndexOf(".") + 1);
-////
-////		String uploadedFileName = null;
-//
-//		// uploadedFileName는 썸네일명으로 화면에 전달된다.
-//		return newFileName;
-//	}//
+	public static ClubVO uploadFile(ClubVO vo, String uploadPath, MultipartFile[] file) throws Exception {
 
-	public static String calcPath(String uploadPath) {
+		for (int i=0; i<file.length; i++) {
+			// 넘어온 파일이 있다면
+			if (!file[i].getOriginalFilename().isEmpty() && !file[i].isEmpty()) {
+				
+				// 파일의 원본 이름을 얻고
+				String orgFileName = file[i].getOriginalFilename();
+
+				// 파일명 중복을 피하기 위해 고유한 id 생성 
+				UUID uid = UUID.randomUUID();
+
+				// 원본파일과 UUID 결합
+				String newFileName = uid.toString() + "_" + orgFileName;
+
+				// 파일을 저장할 폴더 생성(년 월 일 기준)
+				String datePath = FileUtils.calcPath(uploadPath);
+
+				try {
+					// 지정해준 경로로 파일을 저장한다
+					file[i].transferTo(new File(uploadPath + datePath + File.separator + newFileName));
+					
+					if(i==0) {	// 프로필 사진 = 메인사진 
+						vo.setClubMain_pic(File.separator + "uploadImg" + datePath + File.separator + newFileName);
+						String tPath = FileUtils.makeThumbnail(uploadPath, datePath, newFileName);
+						vo.setClubThumb_Pic(File.separator + "uploadImg" + tPath);
+						
+					} else if (i==1) {	// 상세정보 사진 
+						vo.setClubContent1_Pic(File.separator + "uploadImg" + datePath + File.separator + newFileName);
+					} else {	// 리더소개 사진 
+						vo.setClubContent2_Pic(File.separator + "uploadImg" + datePath + File.separator + newFileName);
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+					System.out.println("파일 업로드 오류");
+				}
+
+			} else {
+				if(i==0) {
+					// 사진 수정시 main pic을 삭제했을 때 썸네일 컬럼을 null로 update
+					vo.setClubThumb_Pic("");
+					}
+			}
+			System.out.println("업로드 파일이 없습니다");
+		}
+		return vo;
+	}//
+
+	private static String calcPath(String uploadPath) {
 
 		Calendar cal = Calendar.getInstance();
 		String yearPath = File.separator + cal.get(Calendar.YEAR);
@@ -77,8 +104,8 @@ public class FileUtils {
 		BufferedImage sourceImg = ImageIO.read(new File(uploadPath + path, fileName));
 		
 		// Scalr.Method.AUTOMATIC : 이미지 가로, 세로 비율 유지 
-		//  Scalr.Mode.FIT_TO_HEIGHT, 100 : 이미지 높이를 100px로 맞춤.
-		BufferedImage destImg = Scalr.resize(sourceImg, Scalr.Method.AUTOMATIC, Scalr.Mode.FIT_TO_HEIGHT, 150);
+		//  Scalr.Mode.FIT_TO_HEIGHT, 190 : 이미지 높이를 190px로 맞춤.
+		BufferedImage destImg = Scalr.resize(sourceImg, Scalr.Method.AUTOMATIC, Scalr.Mode.FIT_TO_HEIGHT, 190);
 		
 		String thumbnailName = uploadPath + path + File.separator + "s_" + fileName;
 		

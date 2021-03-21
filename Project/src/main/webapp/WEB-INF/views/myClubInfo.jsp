@@ -16,7 +16,7 @@
 </head>
 <header></header>
 <section>
-<form action="updateClub.do" method="post" id="frm">
+<form action="updateClub.do" method="post" enctype="multipart/form-data" id="frm">
 
 		<div class="selection">
 	<!-- 		<div class="select-kind">
@@ -57,21 +57,42 @@
 			<!-- <div class="img-form">
                   
               </div> -->
-			<input type="file" class="form-control-file" id="exampleFormControlFile1">
+              <div class="uploadBox">
+              <label class="btn btn-info btn-sm uploadBtn">
+					  파일 선택
+					  <input type="file" style="display: none;" name="upload" onchange="getFileName(0)" />
+					</label>
+					  <span id="spanFileName[0]">${club.clubMain_pic}</span>
+			<button type="button" class="removeBtn" onclick="deleteFile(0)">x</button>
+			</div>
 		</div>
 		<article>
 			<div id="write-clubinfo">
 				<label for="exampleFormControlFile1">개설하고자 하는 모임의 성격을
 					설명해주세요!</label>
 				<textarea name="clubContent1">${club.clubContent1}</textarea>
-				<input type="file" class="form-control-file"
-					id="exampleFormControlFile1">
+				 <div class="uploadBox">
+				<label class="btn btn-info btn-sm uploadBtn">
+					  파일 선택
+					  <input type="file" style="display: none;" name="upload" onchange="getFileName(1)" />
+					</label>
+					  <span id="spanFileName[1]">${club.clubContent1_pic}</span>
+					<button type="button" class="removeBtn" onclick="deleteFile(1)">x</button>
+				</div>
 			</div>
 			<div id="write-checkinfo">
 				<label for="exampleFormControlFile1" id="intro">모임의 인증방법을 설명해주세요!</label>
 				<textarea name="clubContent2">${club.clubContent2}</textarea>
-				<input type="file" class="form-control-file"
-					id="exampleFormControlFile1">
+				 <div class="uploadBox">
+				<!-- <input type="file" class="form-control-file"
+					id="exampleFormControlFile1"> -->
+					<label class="btn btn-info btn-sm uploadBtn">
+					  파일 선택
+					  <input type="file" style="display: none;" name="upload" onchange="getFileName(2)" />
+					</label>
+					  <span id="spanFileName[2]">${club.clubContent2_pic}</span>
+					<button type="button" class="removeBtn" onclick="deleteFile(2)">x</button>
+				</div>
 			</div>
 			<div class="hashtag-wrap">
 				
@@ -151,6 +172,25 @@
 <script src="${path}/resources/js/bootstrap-datepicker.js"></script>
 <script src="${path}/resources/js/bootstrap-datepicker.ko.js"></script>
 <script>
+
+//파일 
+
+//파일 선택시 파일이름 변경 
+function getFileName(index){
+  let fileNameSpan = document.getElementById('spanFileName['+index+']')
+  let name = $('input[type=file]')[index].files[0].name 
+  fileNameSpan.innerText = ""
+      $(fileNameSpan).append(name); 
+}
+
+//파일 삭제
+function deleteFile(index){
+  let fileNameSpan = document.getElementById('spanFileName['+index+']')
+  let nameArr = document.getElementsByName('upload');
+  fileNameSpan.innerText = ""
+  nameArr[index].value = "";
+
+}
 
 
 

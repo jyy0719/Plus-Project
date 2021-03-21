@@ -130,3 +130,23 @@ background-color: #001eff;
 margin-top:30px;
 
 }
+
+.removeBtn{
+    width: 20px;
+    height: 20px;
+    padding: 0 3px 3px 3px;
+    border: none;
+    border-radius: 10px;
+}
+
+.uploadBox{
+	display:flex;
+}
+
+.uploadBtn{
+	background-color:grey;
+	width:60px;
+	height:20px;
+	padding: 0 3px 3px 3px;
+	margin-bottom:30px;
+}
