@@ -51,7 +51,7 @@
 	</select>
 	
 	<select id="getMyClubInfo" resultMap="clubResult">
-		SELECT * FROM CLUB WHERE club_leader = '블루베리' AND club_num = 31
+		SELECT * FROM CLUB WHERE club_leader = '블루베리' AND club_num = 35
 	</select>
 
 	<insert id="insertClub">
@@ -62,7 +62,7 @@
 		VALUES(#{clubName}, '블루베리', '마포구', #{clubKind}, #{clubCategory}, #{clubMain_pic}, #{clubThumb_pic},
 		#{clubOnOff}, #{clubMax}, #{clubFreq}, #{clubContent1}, #{clubContent1_pic}, #{clubContent2}, #{clubContent2_pic},
 		NOW(), #{clubShutDate}, #{clubStartDate}, #{clubEndDate}, #{clubFee}, #{clubHashtag}, #{clubCurnum})
-	]]>
+	]]> 
 	</insert>
 	
 	<update id="updateClub">
@@ -70,7 +70,7 @@
 		club_thumb_pic=#{clubThumb_pic}, club_content1=#{clubContent1},club_content1_pic=#{clubContent1_pic}, club_content2=#{clubContent2}, 
 		club_content2_pic=#{clubContent2_pic}, club_makedate=#{clubMakeDate}, club_shutdate=#{clubShutDate}, club_startdate=#{clubStartDate}, 
 		club_enddate=#{clubEndDate}, club_fee=#{clubFee}, club_hashtag=#{clubHashtag}, club_curnum=#{clubCurnum}
-		WHERE club_num = 31
+		WHERE club_num = 35
 	</update>
 	
 	<delete id="deleteClub">

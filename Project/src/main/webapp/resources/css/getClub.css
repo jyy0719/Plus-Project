@@ -2,9 +2,7 @@
 *{
     font-family: 'NanumSquare', sans-serif !important;
 }
-header{
-    height:50px;
-}
+
 
 #mainImg{
             position: absolute;
@@ -22,6 +20,7 @@ aside{
     height:2000px;
     display: flex;
     flex-direction: column;
+    margin-bottom: 70px;
 }
 
 
@@ -128,22 +127,19 @@ article{
 }
 
 #moreInfo{
-    /* border:1px solid black; */
     height: 300px;
     padding-top:40px;
     margin-bottom:30px;
 }
 #leaderInfo{
-    /* border:1px solid black; */
     height: 300px;
     padding-top:40px;
     margin-bottom:30px;
 }
-#review{
-   /*  border:1px solid black; */
-    height: 300px;
+/* #review{
+    height: 300px; 
     margin-bottom:50px;
-}
+} */
 #infoLabel{
     padding-top: 10px;
     padding-bottom: 5px;

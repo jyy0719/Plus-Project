@@ -2,7 +2,6 @@ package com.project.plus.domain;
 
 import java.sql.Date;
 
-import org.springframework.web.multipart.MultipartFile;
 
 public class ClubVO {
 	private int clubNum;

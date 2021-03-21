@@ -54,7 +54,7 @@
 
 
         <!-- 본문영역시작 -->
-        <section>
+<!--         <section>
             <br /><br /><br />
             <div style="width: auto; height: 300px; background-color:lightgray; 
                 font-size:80px; color:blue; text-align: center;">
@@ -63,7 +63,7 @@
             </div>
             본문영역입니다<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
 
-        </section>
+        </section> -->
 
 
 

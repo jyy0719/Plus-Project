@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
    	<link rel='stylesheet' type='text/css' href='${path}/resources/css/getClub.css'> 
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script> 
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+
 </head>
 <header></header>
 <section>
@@ -33,13 +35,13 @@
   <article>
   
   <div id="moreInfo">
-  <img class="images" src="${path}/resources${club.clubContent1_pic}"></img> 
+  <img class="images" src="${path}/resources${club.clubContent1_pic}" onerror="this.onerror=null;" ></img> 
      ${club.clubContent1}
   </div>
   <hr>
     <h3>리더 소개</h3>
   <div id="leaderInfo">
-  	<img class="images" src="${path}/resources${club.clubContent2_pic}"></img> 
+  	<img class="images" src="${path}/resources${club.clubContent2_pic}" onerror="this.onerror=null;"></img> 
       ${club.clubContent2}
   </div>
   <hr>
@@ -95,12 +97,52 @@
             <div class="fstyle" id="amount">${club.clubFee}P</div>
                 <button type="button" class="btn" id="applyBtn">신청하기</button>
                 <button type="button" class="btn" id="heartBtn"><img src="${path}/resources/img/heart.png"></button>
-                <button type="button" class="btn" id="shareBtn"><img src="${path}/resources/img/share.png"></button>
+                <!-- 공유 버튼  -->
+                <button type="button" class="btn" id="shareBtn" onclick="sendLink()"><img id="file" src="${path}/resources/img/share.png"></button>
+                
         </div>
     </div>
 </aside>
-<footer></footer>
+  <script type="text/javascript">
+  Kakao.init('c727ac6af8f4ea892e4524df5eed6359');
+  Kakao.isInitialized();
 
+    function sendLink() {
+      Kakao.Link.sendDefault({
+        objectType: 'feed',
+        content: {
+          title: 'PLUS 모임!',
+          description: '"${club.clubName}" 모임에 지금 바로 참여해보세요~',
+          imageUrl:
+            'https://postfiles.pstatic.net/MjAyMTAzMjFfMTYy/MDAxNjE2MzMxNjMzMTQy.AqxK620MPDQyOyUWo0DQaD2gX7k63f360KEStS_8LhUg.2HGpYONTIq7XJd6uKdSkvOCEsJu70nUTujm9HSGnXG8g.PNG.jk940816/logo.png?type=w966',
+          link: {
+            mobileWebUrl: 'http://localhost:8080/plus/getClub.do',
+            webUrl: 'http://localhost:8080/plus/getClub.do',
+          },
+        },
+        social: {
+          likeCount: 286,
+          commentCount: ${reviewCount},
+        },
+        buttons: [
+          {
+            title: '웹으로 보기',
+            link: {
+              mobileWebUrl: 'http://localhost:8080/plus/getClub.do',
+              webUrl: 'http://localhost:8080/plus/getClub.do',
+            },
+          },
+          {
+            title: '앱으로 보기',
+            link: {
+              mobileWebUrl: 'http://localhost:8080/plus/getClub.do',
+              webUrl: 'http://localhost:8080/plus/getClub.do',
+            },
+          },
+        ],
+      })
+    }
+  </script>
 <script>
 
 $(document).ready(function () {
@@ -204,4 +246,5 @@ $(document).ready(function () {
 })
 
 </script>
+
 </html>

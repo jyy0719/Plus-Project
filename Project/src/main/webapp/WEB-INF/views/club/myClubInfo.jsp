@@ -48,9 +48,9 @@
 					src="${path}/resources/img/mapicon.png"> 위치를 선택해주세요
 			</div>
 		</div>
-		<label for="exampleFormControlFile1">모임의 제목을 입력해주세요</label>
+		<label for="exampleFormControlFile1">모임 이름</label>
 		<input type="text" maxlength='16' class="form-control"
-			id="club-title" placeholder="최대 16글자로 입력해주세요" name="clubName" value="${club.clubName}">
+			id="club-title" placeholder="최대 16글자로 입력해주세요" value="${club.clubName}" readonly>
 
 		<div class="form-group">
 			<label for="exampleFormControlFile1">모임 프로필 사진 업로드</label>
@@ -113,7 +113,7 @@
 		<label for="exampleFormControlSelect2">모집 종료일 </label>
 		<div class="clubdate">
 			<img class="calanderimg" src="${path}/resources/img/calendar.png" />
-			<input type="text" class="form-control c-date" id="shut-date"
+		<input type="text" class="form-control c-date" id="shut-date"
 				name="clubShutDate" value="${club.clubShutDate}" />
 		</div>
 		<label for="exampleFormControlSelect2">모임 진행 기간 </label>
@@ -193,14 +193,13 @@ function deleteFile(index){
 }
 
 
-
 //버튼 클릭시 유효성 검사 후 제출 
 function goSubmit(){
  //제목 유효성 체크 
  if (checkInput()){
      if(isNumber()){
          document.getElementById('frm').submit();
-         alert("모임 등록이 완료되었습니다!")
+         alert("모임 수정이 완료되었습니다!")
      } 
  }
  
@@ -387,23 +386,26 @@ function changeDetail(){
 }
 
 $(function(){
+	
 
  $('#shut-date').datepicker({
      calendarWeeks: false,
      todayHighlight: true,
      autoclose: true,
      format: "yyyy-mm-dd",
-     startDate: '0d',
+     startDate: '1d',
      endDate:'+1y',
      language: "ko"
  });
+ 
+
 
  $('#start-date').datepicker({
      calendarWeeks: false,
      todayHighlight: true,
      autoclose: true,
      format: "yyyy-mm-dd",
-     startDate: '0d',
+     startDate: '1d',
      endDate:'+1y',
      language: "ko"
  }).on('changeDate', function(selectedDate){
@@ -418,7 +420,7 @@ $(function(){
          todayHighlight: true,
          autoclose: true,
          format: "yyyy-mm-dd",
-         startDate: '0d',
+         startDate: '1d',
          endDate:'+1y',
          language: "ko"
      }).on('changeDate', function(selectedDate){

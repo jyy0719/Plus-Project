@@ -34,7 +34,7 @@
 
 <body>
     <!-- 사실상 헤더가 없어요  -->
-    <header></header>
+
     <!-- 본문 너비 정하는 용으로 wrapper 아이디 설정 -->
     <div id="wrapper">
         <!-- navi bar가 사실상 저희 헤더입니다 -->
@@ -54,10 +54,10 @@
 
 
         <!-- 본문영역시작 -->
-        <section>
+<!--         <section>
            
         </section>
-
+ -->
 
 
 

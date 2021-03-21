@@ -8,6 +8,8 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,6 +31,9 @@ import com.project.plus.utils.FileUtils;
 
 @Controller
 public class ClubController {
+	
+	private static final Logger logger = LoggerFactory.getLogger(ClubController.class);
+
 
 	@Autowired
 	private ClubService clubService;
@@ -45,6 +50,7 @@ public class ClubController {
 		String uploadPath = request.getSession().getServletContext().getRealPath("/resources/uploadImg");
 		vo = FileUtils.uploadFile(vo, uploadPath, file);
 		clubService.insertClub(vo); // DB에 저장
+		logger.info("모임 번호 : " + vo.getClubNum() + " 등록 완료 ");
 		return "index";
 
 	}
@@ -53,11 +59,11 @@ public class ClubController {
 	@RequestMapping("/updateClub.do")
 	public String updateClub(ClubVO vo, @RequestParam("upload") MultipartFile[] file, HttpServletRequest request)
 			throws Exception {
-		
+		System.out.println(vo.getClubShutDate());
 		String uploadPath = request.getSession().getServletContext().getRealPath("/resources/uploadImg");
 		vo = FileUtils.uploadFile(vo, uploadPath, file);
 		clubService.updateClub(vo);
-		System.out.println("모임 수정하기 완료");
+		logger.info("모임 번호 : " + vo.getClubNum() + " 수정 완료 ");
 		return "index";
 	}
 
@@ -67,6 +73,7 @@ public class ClubController {
 		return clubService.getClubHashtag();
 	}
 
+	
 	// 미리 보여줄 5개의 리뷰 데이터
 	public void getReviews(Model model) {
 		// club_num과 member_num을 이용하여 닉네임 가져오기
@@ -76,9 +83,10 @@ public class ClubController {
 		review.setClubNum(11);
 		model.addAttribute("reviews", reviewService.getReviews(review));
 		model.addAttribute("reviewCount", reviewService.getReviewCount());
-		System.out.println("리뷰 5개 가져오기");
+		logger.info("리뷰 5개 가져오기");
 	}
 
+	
 	// json을 이용하여 더보기 리뷰 리스트 가져오기
 	// produces : response의 content-type을 utf-8로 인코딩하여 보내기
 	@RequestMapping(value = "/getMoreReview.do", produces = "application/text;charset=UTF-8", method = RequestMethod.POST)
@@ -102,15 +110,17 @@ public class ClubController {
 
 	}
 
+	// 모임 상세정보 
 	@RequestMapping("/getClub.do")
 	public String getClub(ClubVO vo, Model model) {
 
 		getReviews(model);
 		model.addAttribute("club", clubService.getClub(vo));
-		System.out.println("모임 상세정보 보기");
-		return "getClub";
+		logger.info("모임 번호 : " + vo.getClubNum() + " 상세 정보 ");
+		return "getClub.page";
 	}
 
+	// 회원 모임 수정 폼 
 	@RequestMapping("/getMyClubInfo.do")
 	public String getMyClubInfo(ClubVO vo, Model model) {
 		vo = clubService.getMyClubInfo(vo);
@@ -132,14 +142,14 @@ public class ClubController {
 		}
 
 		model.addAttribute("club", vo);
-		System.out.println("수정할 모임의 폼 보여주기");
-		return "myClubInfo";
+		logger.info("모임 수정 폼 : " + vo.getClubNum());
+		return "myClubInfo.page";
 	}
 
 	@RequestMapping("/deleteClub.do")
 	public String deleteClub(ClubVO vo) {
 		clubService.deleteClub();
-		System.out.println("모임 삭제 완료");
+		logger.info("모임 번호 : " + vo.getClubNum() + " 삭제 완료 ");
 		return "index";
 	}
 
