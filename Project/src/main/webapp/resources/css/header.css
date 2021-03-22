@@ -16,7 +16,7 @@
 
 nav {
     height: 64px;
-    /* border-bottom: thistle 1px solid; */
+    border-bottom: thistle 1px solid; 
 }
 
 nav li {

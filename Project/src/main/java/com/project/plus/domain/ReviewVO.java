@@ -9,6 +9,8 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @XmlRootElement(name="selectNotReview")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class ReviewVO {
@@ -20,6 +22,8 @@ public class ReviewVO {
 	private String reviewContent;
 	private String reviewPic;
 	private int reviewRate;
+	
+	@JsonFormat(pattern="yyyy. MM. dd")
 	private Date reviewRegDate;
 	
 	/*필요한 VO*/

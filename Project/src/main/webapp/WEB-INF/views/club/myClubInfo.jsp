@@ -16,7 +16,7 @@
 </head>
 <header></header>
 <section>
-<form action="updateClub.do" method="post" id="frm">
+<form action="updateClub.do" method="post" enctype="multipart/form-data" id="frm">
 
 		<div class="selection">
 	<!-- 		<div class="select-kind">
@@ -48,30 +48,51 @@
 					src="${path}/resources/img/mapicon.png"> 위치를 선택해주세요
 			</div>
 		</div>
-		<label for="exampleFormControlFile1">모임의 제목을 입력해주세요</label>
+		<label for="exampleFormControlFile1">모임 이름</label>
 		<input type="text" maxlength='16' class="form-control"
-			id="club-title" placeholder="최대 16글자로 입력해주세요" name="clubName" value="${club.clubName}">
+			id="club-title" placeholder="최대 16글자로 입력해주세요" value="${club.clubName}" readonly>
 
 		<div class="form-group">
 			<label for="exampleFormControlFile1">모임 프로필 사진 업로드</label>
 			<!-- <div class="img-form">
                   
               </div> -->
-			<input type="file" class="form-control-file" id="exampleFormControlFile1">
+              <div class="uploadBox">
+              <label class="btn btn-info btn-sm uploadBtn">
+					  파일 선택
+					  <input type="file" style="display: none;" name="upload" onchange="getFileName(0)" />
+					</label>
+					  <span id="spanFileName[0]">${club.clubMain_pic}</span>
+			<button type="button" class="removeBtn" onclick="deleteFile(0)">x</button>
+			</div>
 		</div>
 		<article>
 			<div id="write-clubinfo">
 				<label for="exampleFormControlFile1">개설하고자 하는 모임의 성격을
 					설명해주세요!</label>
 				<textarea name="clubContent1">${club.clubContent1}</textarea>
-				<input type="file" class="form-control-file"
-					id="exampleFormControlFile1">
+				 <div class="uploadBox">
+				<label class="btn btn-info btn-sm uploadBtn">
+					  파일 선택
+					  <input type="file" style="display: none;" name="upload" onchange="getFileName(1)" />
+					</label>
+					  <span id="spanFileName[1]">${club.clubContent1_pic}</span>
+					<button type="button" class="removeBtn" onclick="deleteFile(1)">x</button>
+				</div>
 			</div>
 			<div id="write-checkinfo">
 				<label for="exampleFormControlFile1" id="intro">모임의 인증방법을 설명해주세요!</label>
 				<textarea name="clubContent2">${club.clubContent2}</textarea>
-				<input type="file" class="form-control-file"
-					id="exampleFormControlFile1">
+				 <div class="uploadBox">
+				<!-- <input type="file" class="form-control-file"
+					id="exampleFormControlFile1"> -->
+					<label class="btn btn-info btn-sm uploadBtn">
+					  파일 선택
+					  <input type="file" style="display: none;" name="upload" onchange="getFileName(2)" />
+					</label>
+					  <span id="spanFileName[2]">${club.clubContent2_pic}</span>
+					<button type="button" class="removeBtn" onclick="deleteFile(2)">x</button>
+				</div>
 			</div>
 			<div class="hashtag-wrap">
 				
@@ -92,7 +113,7 @@
 		<label for="exampleFormControlSelect2">모집 종료일 </label>
 		<div class="clubdate">
 			<img class="calanderimg" src="${path}/resources/img/calendar.png" />
-			<input type="text" class="form-control c-date" id="shut-date"
+		<input type="text" class="form-control c-date" id="shut-date"
 				name="clubShutDate" value="${club.clubShutDate}" />
 		</div>
 		<label for="exampleFormControlSelect2">모임 진행 기간 </label>
@@ -152,6 +173,24 @@
 <script src="${path}/resources/js/bootstrap-datepicker.ko.js"></script>
 <script>
 
+//파일 
+
+//파일 선택시 파일이름 변경 
+function getFileName(index){
+  let fileNameSpan = document.getElementById('spanFileName['+index+']')
+  let name = $('input[type=file]')[index].files[0].name 
+  fileNameSpan.innerText = ""
+      $(fileNameSpan).append(name); 
+}
+
+//파일 삭제
+function deleteFile(index){
+  let fileNameSpan = document.getElementById('spanFileName['+index+']')
+  let nameArr = document.getElementsByName('upload');
+  fileNameSpan.innerText = ""
+  nameArr[index].value = "";
+
+}
 
 
 //버튼 클릭시 유효성 검사 후 제출 
@@ -160,7 +199,7 @@ function goSubmit(){
  if (checkInput()){
      if(isNumber()){
          document.getElementById('frm').submit();
-         alert("모임 등록이 완료되었습니다!")
+         alert("모임 수정이 완료되었습니다!")
      } 
  }
  
@@ -347,23 +386,26 @@ function changeDetail(){
 }
 
 $(function(){
+	
 
  $('#shut-date').datepicker({
      calendarWeeks: false,
      todayHighlight: true,
      autoclose: true,
      format: "yyyy-mm-dd",
-     startDate: '0d',
+     startDate: '1d',
      endDate:'+1y',
      language: "ko"
  });
+ 
+
 
  $('#start-date').datepicker({
      calendarWeeks: false,
      todayHighlight: true,
      autoclose: true,
      format: "yyyy-mm-dd",
-     startDate: '0d',
+     startDate: '1d',
      endDate:'+1y',
      language: "ko"
  }).on('changeDate', function(selectedDate){
@@ -378,7 +420,7 @@ $(function(){
          todayHighlight: true,
          autoclose: true,
          format: "yyyy-mm-dd",
-         startDate: '0d',
+         startDate: '1d',
          endDate:'+1y',
          language: "ko"
      }).on('changeDate', function(selectedDate){
