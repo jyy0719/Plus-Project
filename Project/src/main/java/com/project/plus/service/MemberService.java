@@ -3,7 +3,9 @@ package com.project.plus.service;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.ui.Model;
 
+import com.project.plus.domain.InquiryVO;
 import com.project.plus.domain.MemberVO;
 
 public interface MemberService {
@@ -16,4 +18,7 @@ public interface MemberService {
 	public void logout(HttpSession session);
 		
 	void updateMember(MemberVO vo);
+	
+	public MemberVO selectMember(MemberVO vo);
+
 }

@@ -22,7 +22,7 @@
 
     <script type="text/javascript" src="${path}/resources/js/jquery-1.12.4.min.js"></script>
     <script>
-        $(document).ready(function () {
+        $(documt).ready(function () {
 
             $('.hovereffect').on("click", function () {
 
@@ -82,22 +82,27 @@
         <!-- navi bar가 사실상 저희 헤더입니다 -->
         <nav>
             <ul class="menu-left">
-                <li id="logo_a"><a href="index.html"><img id="logo_img" src="${path}/resources/img/images/logo.png"></a></li>
-                <li class="hovereffect nav-left"><a href="#">HOME</a></li>
+                <li id="logo_a"><a href="index.jsp"><img id="logo_img" src="${path}/resources/img/images/logo.png"></a></li>
+                <li class="hovereffect nav-left li-selected"><a href="#">HOME</a></li>
                 <li class="hovereffect nav-left"><a href="#">가치더하기</a></li>
                	<li class="hovereffect nav-left"><a href="#">도움더하기</a></li>
  
  
  <!-- 로그인정보 없을 때는 로그인버튼 보이게 , 로그인 후에는 채팅, 알람, 드롭다운 버튼 보이게 했습니다   -->
            <c:choose>
-            <c:when test = "${sessionScope.userEmail != null }"> <!-- 로그인 정보가 있으면 -->
+            <c:when test = "${user.memberEmail != null }"> <!-- 로그인 정보가 있으면 -->
              	<li class="nav-right btncolor">
                     <div class="dropdown">
-                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" id="btncolor">${user.memberNickname }님, 환영합니다
+                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" id="btncolor"><b>${user.memberNickname }</b>님, 환영합니다
                         <span class="caret"></span></button>
                         <ul class="dropdown-menu">
-                        <li class="dropli"><a href="#">My Profile</a></li>
-                        <li class="dropli api-btn" onclick="kakaoLogout()"><a href="#">LogOut</a></li>
+                        <form>
+                        <li class="dropli"><a href="memberUpdate.jsp">My Profile</a></li>
+                        </form>
+                      <form action="logout.do" method="get">
+                      <!--  onclick="kakaoLogout()" -->
+                        <li class="dropli api-btn"><a href="logout.jsp">LogOut</a></li>
+                      </form>
                         </ul>
                     </div>
                 </li>

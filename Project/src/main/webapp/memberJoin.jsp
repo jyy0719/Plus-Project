@@ -11,9 +11,8 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css">
 <link rel="stylesheet" href="${path}/resources/css/memberJoin2.css">
 <script type="text/javascript" src="${path}/resources/js/jquery-1.12.4.min.js"></script>
-<!-- iamport.payment.js -->
-<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
-    <script>
+<script>
+ 
     verifyEmail = function () {
         var emailVal = $("#email").val();
         var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
@@ -26,13 +25,14 @@
 
     isMobile = function(){
         var phoneVal = $("#mobile").val();
-        var regExp = /^\d{3}-\d{3,4}-\d{4}$/;
+        var regExp = /^\d{11}$/;
+      /*  var regExp = /^\d{3}-\d{3,4}-\d{4}$/; */
         if(phoneVal.match(regExp) != null){
             alert('good')
         }else{
             alert('bad')
         }
-    };
+    }; 
 
 
 
@@ -42,21 +42,24 @@
                                        //특수문자 / 문자 / 숫자 포함 형태의 8~15자리 이내의 암호 정규식
          var regExp = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
         if(pwVal.match(regExp) != null){
-           
             document.getElementById('alertTxt').innerHTML = "적합한 비밀번호입니다.";
         }else{
-        	alert("영문 대 소문자, 숫자, 특수문자를 조합한 8~16자의 비밀번호를 사용하세요.")
+        	alert("영문과 숫자, 특수문자를 조합한 8~16자의 비밀번호를 사용하세요.")
+        	  $('#pswd1').focus();
+//		    document.getElementById('pswd1').autofocus;
         	document.getElementById('alertTxt').innerHTML = "";
             document.getElementById('alertTxt').style.display = 'block';
+
         }
     };
-    
+     
     
     checkPw = function() {
         var p1 = document.getElementById('pswd1').value;
         var p2 = document.getElementById('pswd2').value;
         if( p1 != p2 ) {
         	alert("비밀번호가 일치하지 않습니다")
+        	        	  $('#pswd2').focus();
         	document.getElementById('alertTxt1').innerHTML = "";
 
           return false;
@@ -67,7 +70,7 @@
           return true;
         }
 
-      }
+    }
 
 
 
@@ -92,47 +95,134 @@
         chk_all()
         //3번 선택동의항목 y , n 에 대해 value값 주는 함수
         chk3_yn()
+        
+        //이메일 인증코드 보내는 함수
+        emailsend()
+        
+        //이메일 인증코드 확인 함수
+        emailcode()
+        
+ 
+			   
     });
+       
+    var code = "";
 
+    /* 인증번호 이메일 전송 */
+    function emailsend(){
+        $(".mail_check_button").click(function(){
+            alert("입력하신 주소로 인증번호가 발송되었습니다.")
+            var email = $(".mail_input").val();        // 입력한 이메일
+            var cehckBox = $(".mail_check_input");        // 인증번호 입력란
+             var boxWrap = $(".mail_check_input_box"); 
+                                $.ajax({
+                                    
+                                    type:"GET",
+                                    url:"mailCheck.do?email=" + email,
+                                    success:function(num){
+                                            console.log("data : " + num);
+                                            /* cehckBox.attr("disabled",false); */
+                                            boxWrap.attr("class", "mail_check_input_box_true int1"); 
+                                            code = num;
+                                            
+                                    }
+                                });
+        });
+    };
 
-        function chk_ess(){
-        $("#btnJoin").click(function(){
+    
+   //인증번호 일치 여부 검사
+    function emailcode(){
+            $(".mail_check_input").click(function(){
+                var inputCode = $("#mail_check_input").val();        // 입력코드    
                 
-                // 첫번째 체크박스가 체크되어 있는경우
-                if($("#chk1").is(":checked")){
-                    // alert("첫번째 통과");
-                } else { // 첫번째 체크박스가 체크 되어있지 않은 있는경우
-                    alert("더하기 이용 약관에 동의해주세요.")
+                if(inputCode == code){                            // 일치할 경우
+                    alert("코드가 일치합니다")
+                	return true;
+                } else {                                            // 일치하지 않을 경우
+                    alert("코드가 일치하지 않습니다 ")
                     return false;
-                }
-                // 두번째 체크박스가 체크되어 있는경우
-                if($("#chk2").is(":checked")){
-                    // alert("두번째 통과");
-                } else { // 두번째 체크박스가 체크 되어있지 않은 있는경우
-                    alert("위치 정보 이용 약관에 동의해주세요.");
-                    return false;
-                }
-            });
-        }
+                }    
 
-        function chk_all(){
-            $("#chk_all").click(function(){
-               if($("#chk_all").is(":checked")){
-                    $(".chk").prop("checked", true);
-                }
-                else{
-                    $(".chk").prop("checked", false);
-                }
-            });       
-        }
+            })
+    }
+   
+   //코드 불일치하면 가입 안되게 하고싶은데...
+/*    function emailCodeCheck(){
+	   if($("#mail_check_input").is(":true")){
+		   return true;
+	   }else
+		   return false;
+   } */
+   
+    function changeAttr() {
+	   alert("양식 제출")
+		if (emailcode()==true){
+			   alert("버튼타입 submit으로 변경")
+			   
+			   document.getElementById('btnJoin').setAttribute('type','submit');
 
-        //마케팅정보 수신동의항목 value값 전달 함수
-        function chk3_yn(){
+		}
+		else{
+			   alert("false")
+	
+		}
+	} 
+  
+   
+
+
+   //submit 버튼타입을 button으로 고치고 true일때 type을 submit으로 바꾸게
+    
+    function chk_ess(){
+    $("#btnJoin").click(function(){
+            
+            // 첫번째 체크박스가 체크되어 있는경우
+            if($("#chk1").is(":checked")){
+                // alert("첫번째 통과");
+            } else { // 첫번째 체크박스가 체크 되어있지 않은 있는경우
+                alert("더하기 이용 약관에 동의해주세요.")
+                return false;
+            }
+            // 두번째 체크박스가 체크되어 있는경우
+            if($("#chk2").is(":checked")){
+                // alert("두번째 통과");
+            } else { // 두번째 체크박스가 체크 되어있지 않은 있는경우
+                alert("위치 정보 이용 약관에 동의해주세요.");
+                return false;
+            }
+        });
+    }
+
+    function chk_all(){
+        $("#chk_all").click(function(){
+            if($("#chk_all").is(":checked")){
+                $(".chk").prop("checked", true);
+            }
+            else{
+                $(".chk").prop("checked", false);
+            }
+        });       
+    };
+
+    //마케팅정보 수신동의항목 value값 전달 함수
+    /*  function chk3_yn(){
             $('#chk3').click(function(){
-             $(this).val(this.checked ? 1 : 0);
+             $(this).val(this.checked ? "y" : "n");
               });
-        }
-     </script>
+    } */
+
+    //마케팅정보 수신동의항목 value값 전달 함수
+    function chk3_yn(){
+        $('#chk3').click(function(){
+            $(this).val(this.checked ? + "y" : "n");
+            });
+    }
+
+
+</script>
+
+
 </head>
 <body>
 <!-- header -->
@@ -154,8 +244,8 @@
             <div>
                 <h3 class="join_title"><label for="phoneNo">휴대전화</label></h3>
                 <span class="box int_mobile">
-                    <input type="tel" name="memberPhone" id="mobile" class="int1" maxlength="16" placeholder="전화번호 입력">
-                    <input type="button" onclick="isMobile()" class="check" value="인증하기">
+                    <input type="tel" name="memberPhone" id="mobile" class="int1" maxlength="16" placeholder=" 하이픈 없이 입력해주세요" ${user.memberPhone } required>
+                    <input type="button" onclick="isMobile()" class="check" value="중복검사하기">
                 </span>
                 <span class="error_next_box"></span>
             </div>
@@ -166,19 +256,30 @@
                     <label for="email">이메일(ID)</label>
                 </h3>
                 <span class="box int_email">
-                    <input type="text" name="memberEmail" id="email" class="int1" maxlength="50" value="${user.memberEmail }">
-                    <input type="button" onclick="verifyEmail()" class="check" value="중복체크하기">
+                    <input name="memberEmail" id="email" class="int1 mail_input" maxlength="50" value="${user.memberEmail }" required>
+                    <input type="button" class="check mail_check_button" value="인증번호발송"/> 
                 </span>
                 <span class="error_next_box"></span>
             </div>
     
+                <!-- ID(Email) -->
+            <div>
+                <h3 class="join_title">
+                    <label for="email">이메일 인증코드 확인</label>
+                </h3>
+                <span class="box int_email mail_check_warp">
+                    <input  name="memberEmailcode" id="mail_check_input" class="int1 mail_check_input_box" maxlength="50" required>
+                    <input type="button" class="check mail_check_input" value="인증코드확인"> <!-- onclick="emailcode()" -->
+                </span>
+                <span class="error_next_box"></span>
+            </div>
     
     
             <!-- PW1 -->
             <div>
                 <h3 class="join_title"><label for="pswd1">비밀번호</label></h3>
                 <span class="box int_pass">
-                    <input type="password" name="memberPassword"  id="pswd1" onchange="isPw1()" class="int psscolor" maxlength="20" value="${user.memberPassword }">
+                    <input type="password" name="memberPassword"  id="pswd1" onchange="isPw1()" class="int psscolor" maxlength="20" value="${user.memberPassword }" required>
                     <span id="alertTxt"></span>
     
                 </span>
@@ -189,7 +290,7 @@
             <div>
                 <h3 class="join_title"><label for="pswd2">비밀번호 재확인</label></h3>
                 <span class="box int_pass_check">
-                    <input type="password" id="pswd2" onchange="checkPw()" class="int psscolor" maxlength="20">
+                    <input type="password" id="pswd2" onchange="checkPw()" class="int psscolor" maxlength="20" required>
                     <span id="alertTxt1"></span>
                 </span>
                 <span class="error_next_box"></span>
@@ -200,7 +301,7 @@
             <div>
                 <h3 class="join_title"><label for="name">이름</label></h3>
                 <span class="box int_name">
-                    <input type="text" name="memberName" id="name" class="int1" maxlength="20" value="${user.memberName }">
+                    <input type="text" name="memberName" id="name" class="int1" maxlength="20" value="${user.memberName }" required>
                     <!-- <input type="button" class="check" value="중복체크하기"> -->
                 </span>
                 <span class="error_next_box"></span>
@@ -210,7 +311,7 @@
             <div>
                 <h3 class="join_title"><label for="nickname">닉네임</label></h3>
                 <span class="box int_name">
-                    <input type="text" name="memberNickname" id="nickname" class="int1" maxlength="20" value="${user.memberNickname }">
+                    <input type="text" name="memberNickname" id="nickname" class="int1" maxlength="20" value="${user.memberNickname }" required>
                     <input type="button" class="check" value="중복체크하기">
                 </span>
                 <span class="error_next_box"></span>
@@ -294,7 +395,7 @@ NAVER 내의 개별 서비스 이용, 이벤트 응모 및 경품 신청 과정�
             </div>
 
             <div class="term3">
-                <label><input id="chk3" type="checkbox" name="chk3" class="chk"><span class="agree"> 마케팅 정보 수신 동의<span class="ess">(선택)</span></span></label>
+                <label><input id="chk3" type="checkbox" name="memberMarketing" class="chk" value="y"><span class="agree"> 마케팅 정보 수신 동의<span class="ess">(선택)</span></span></label>
 
                 <textarea readonly>
 더하기에서 제공하는 이벤트/혜택 등 다양한 정보를 휴대전화(더하기 사이트 알림 또는 문자), 이메일로 받아보실 수 있습니다. 
@@ -314,7 +415,7 @@ NAVER 내의 개별 서비스 이용, 이벤트 응모 및 경품 신청 과정�
 
             <!-- JOIN BTN-->
             <div class="btn_area">
-                <button type="submit" id="btnJoin">
+                <button type="button" id="btnJoin" onclick="changeAttr()">
                     <span>가입하기</span>
                 </button>
                 

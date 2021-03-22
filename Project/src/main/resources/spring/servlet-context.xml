@@ -17,6 +17,8 @@
 	<resources location="/img/, classpath=/img/" mapping="/img/**" />
 	<resources location="/css/, classpath=/css/" mapping="/css/**" />
 	<resources location="/script/, classpath=/script/" mapping="/script/**" />
+	<resources location="/js/, classpath=/js/" mapping="/js/**"/>
+
 
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
