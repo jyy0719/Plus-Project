@@ -67,6 +67,7 @@ public class ClubController {
 		return "index";
 	}
 
+	
 	// 컬럼에 저장된 해시태그 list 가져와서 model에 저장
 	@ModelAttribute("tags")
 	public List<String> getTags() {

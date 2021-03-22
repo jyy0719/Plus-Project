@@ -6,14 +6,13 @@
 <head>
 <meta charset="UTF-8">
 <title></title>
+    <style>
+    footer{
+    	margin-top:200px;
+    }
+    </style>
 </head>
-<body>
-	<!--  header 부분 -->
 	<tiles:insertAttribute name="header" />
-	
-	<!-- body 부분  -->
 	<tiles:insertAttribute name="body"/>
-	<!--  footer 부분 -->
-	<tiles:insertAttribute name="footer"/>
-</body>
+	<tiles:insertAttribute name="footer"/> 
 </html>

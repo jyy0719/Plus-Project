@@ -36,7 +36,7 @@
   </definition> -->
   
   <definition name="*.page" extends="base"> 
-  	<put-attribute name="body" value="/WEB-INF/views/{1}/{2}.jsp" /> 
+  	<put-attribute name="body" value="/WEB-INF/views/club/{1}.jsp" /> 
   </definition> 
   
 <!--   
