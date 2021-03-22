@@ -30,13 +30,13 @@ public class MainController {
 
 	@RequestMapping("/main.do")
 	// 모델을 통해서 뷰에 데이터 전달하기
-	public String mainList(Model model) {
-		log.info("main");
+	public String mainList(Model model, ClubVO vo) {
+	log.info("main");
 		System.out.println("여기 나오니?");
 		// service.getListBest(인기더하기)를 main이라는 이름을 통해 뷰에 보내준다.
-		model.addAttribute("main", service.getListBest());
+		model.addAttribute("main", service.getListBest(vo));
 		// service.getListDeadline(마감임박 더하기)를 main2이라는 이름을 통해 뷰에 보내준다.
-		model.addAttribute("main2", service.getListDeadline());
+		model.addAttribute("main2", service.getListDeadline(vo));
 		System.out.println("여기 나오니222?");
 
 		return "index";

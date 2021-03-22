@@ -3,10 +3,10 @@
 
 <mapper namespace="com.project.plus.mapper.MainMapper">
 
-<resultMap id="clubResult" type="club">
+	<resultMap id="clubResult" type="club">
 		<id property="clubNum" column="club_num" />
 		<result property="clubName" column="club_name" />
-	<result property="clubLeader" column="club_leader" />
+		<result property="clubLeader" column="club_leader" />
 		<result property="clubTown" column="club_town" />
 		<result property="clubKind" column="club_kind" />
 		<result property="clubCategory" column="club_category" />
@@ -26,8 +26,8 @@
 		<result property="clubCurnum" column="club_curnum" />
 		<result property="clubHashtag" column="club_hashtag" />
 	</resultMap>
-	
-	
+
+
 	<!-- 더하기 등록 -->
 	<insert id="insertClub">
 <![CDATA[
@@ -43,10 +43,10 @@
 	<!-- 인기 더하기 -->
 	<select id="getListBest" resultMap="clubResult">
 <![CDATA[
-		SELECT * FROM club 
-		WHERE club_shutdate > NOW()
-		AND club_max > club_curnum
-		ORDER BY club_heart DESC 
+	SELECT * FROM club 
+	<!-- WHERE club_shutdate > NOW()
+	AND club_max > club_curnum
+	ORDER BY club_heart DESC  -->
 	]]>
 	</select>
 
