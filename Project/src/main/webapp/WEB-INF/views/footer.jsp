@@ -34,7 +34,7 @@
 
 <body>
     <!-- 사실상 헤더가 없어요  -->
-    <header></header>
+
     <!-- 본문 너비 정하는 용으로 wrapper 아이디 설정 -->
     <div id="wrapper">
         <!-- navi bar가 사실상 저희 헤더입니다 -->
@@ -54,10 +54,10 @@
 
 
         <!-- 본문영역시작 -->
-        <section>
+<!--         <section>
            
         </section>
-
+ -->
 
 
 
@@ -67,7 +67,7 @@
             <ul>
                 <li><a href="#">개인정보처리방침</a></li>
                 <li><a href="#">이용약관</a></li>
-                <li><a href="#">문의사항</a></li>
+                <li><a href="#">고객지원</a></li>
 
             </ul>
             <ul>
@@ -75,7 +75,8 @@
                     <br />
                     <b>더하기+</b> | 서울특별시 마포구 백범로 23 구프라자 지하 1층 <br />
                     <b>대표:</b> 유정연 | <b>함께하는사람들 :</b> 배진경 이현정 천혜미 황순근<br />
-                    Copyright 2021 . All rights reserved.<br /><br />
+                   <b>문의:</b> plusprojectofficial@gmail.com<br /><br />
+                     Copyright 2021 . All rights reserved.<br /><br />
                 </li>
                 <li></li>
             </ul>

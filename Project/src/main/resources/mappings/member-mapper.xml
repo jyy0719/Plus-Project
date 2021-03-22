@@ -33,10 +33,25 @@
    <select id="login" parameterType="Int" resultType="com.project.plus.domain.MemberVO">
    -->
    <select id="login" resultMap="memberResult">
-        SELECT COUNT(*)
-          FROM USER
-         WHERE ID = #{memberEmail}
-           AND PASSWORD = #{memberPassword}
+        SELECT *
+          FROM MEMBER
+         WHERE member_email = #{memberEmail}
+           AND member_password = #{memberPassword}
     </select>
+    
+    
+   	<select id="selectMember" resultMap="memberResult">
+		SELECT * FROM member WHERE
+		member_email = #{memberEmail}
+	</select>
 	
+    
+		<!--  닉네임 휴대전화 비밀번호 -->
+ 	<update id="updateMember">
+		update member set 
+				member_nickname = #{memberNickname}, 
+				member_phone = #{memberPhone}, 
+				member_password = #{memberPassword} 
+		where member_email = #{memberEmail}
+	</update> 
 </mapper>

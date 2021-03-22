@@ -1,6 +1,7 @@
 package com.project.plus.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,9 +35,32 @@ public class ReviewServiceImpl implements ReviewService {
 		
 	}
 	
+	
 	@Override
 	public String reviewList() {
 		return "넘어간다!vo";
 	}
+
+	@Override
+	public List<ReviewVO> getReviews(ReviewVO vo) {
+		return reviewMapper.getReviews(vo);
+		
+	}
+	@Override
+	public List<ReviewVO> getMoreReviews(Map<String,Integer> map) {
+		return reviewMapper.getMoreReviews(map);
+		
+	}
+
+	@Override
+	public int getReviewCount() {
+		return reviewMapper.getReviewCount();
+		
+	}
+	
+	
+	
+
+	
 
 }

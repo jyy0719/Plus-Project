@@ -2,6 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.project.plus.mapper.ReviewMapper"> <!-- 풀펰키지 명 ㅇ  -->
+	<resultMap id="reviewResult" type="review">
+		<id property="reviewNum" column="reivew_num" />
+		<result property="memberNum" column="member_num" />
+		<result property="clubNum" column="club_num" />
+		<result property="reviewContent" column="review_content" />
+		<result property="reviewRate" column="review_rate" />
+		<result property="reviewRegDate" column="review_regdate" />
+	</resultMap>
+
 
 <!--========유저가 리뷰 작성 안한 모임=========  -->
 	<select id="selectNotReview" resultType="com.project.plus.domain.ReviewVO">
@@ -47,9 +56,17 @@
 	</insert>
 	-->
 	
-	<!-- 서버 테스트를 위한 쿼리 -->
-	<select id="reviewList" resultType="String">
-        SELECT NOW()
+	<!-- 모임별 최근 날짜 순으로 리뷰 출력 -->
+	<select id="getReviews" resultMap="reviewResult">
+        SELECT * FROM review WHERE club_num = #{clubNum} ORDER BY review_regdate DESC LIMIT 0, 5
+    </select>
+    
+	<select id="getMoreReviews" resultMap="reviewResult" parameterType="java.util.HashMap">
+        SELECT * FROM review WHERE club_num = #{clubNum} LIMIT #{startIndex}, 5
+    </select>
+    
+    <select id="getReviewCount" resultType="int">
+    	SELECT count(*) FROM review WHERE club_num = 11 
     </select>
 </mapper>
 

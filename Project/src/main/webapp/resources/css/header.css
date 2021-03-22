@@ -16,11 +16,11 @@
 
 nav {
     height: 64px;
-    /* border-bottom: thistle 1px solid; */
+    border-bottom: thistle 1px solid; 
 }
 
 nav li {
-    display: inline;
+    display: inline-block;
     font-weight: 800;
     font-size: 20px;
     position: relative;
@@ -29,10 +29,9 @@ nav li {
     /* color: #333333; */
     float: left;
     margin-right: 10px;
-
 }
 
-nav li:hover {
+nav li.nav-left:hover {
     background-color: #1e00ff;
     padding: 5px 20px;
     border-radius: 30px;
@@ -44,18 +43,26 @@ nav li a {
     text-decoration: none;
 }
 
-nav li a:hover {
+nav li.nav-left a:hover {
     color: white;
+    text-decoration: none;
+}
+
+nav li.nav-left a:focus {
+    color: white;
+    text-decoration: none;
+
 }
 
 /* 메뉴 선택된거 파란색 버튼으로 남아있게 설정 (제이쿼리 관련) */
-ul.menu li.li-selected {
+ul.menu-left li.li-selected {
     background-color: #1e00ff;
     padding: 5px 20px;
     border-radius: 30px;
     color: white !important;
 
 }
+
 
 a, a:visited, a:hover, a:active {
     color: inherit;
@@ -87,10 +94,46 @@ nav li #selected {
     color: white;
 }
 
-
-
-#login {
+.nav-right{
     float: right;
 }
 
+.icon{
+    padding-right: 0;
+    padding-left: 10px;
+}
+.icon:hover{
+    padding-top: 2px;
+}
+#icon{
+    width: 25px;
+    height: 25px;
+}
 
+/* 
+.hello-user{
+    padding-top: 0;
+}
+.hello-user:hover{
+    text-decoration: underline;
+    padding-top: 0;
+} */
+
+#btncolor{
+    background-color: white;
+    color: #333;
+    border: none;
+    padding-top: 0;
+    font-size: 18px;
+   
+}
+
+.btncolor{
+    padding-left: 0;
+}
+
+.dropli{
+    font-size: small;
+    position: relative;
+    top: -1px;
+}

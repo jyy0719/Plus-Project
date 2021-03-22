@@ -1,6 +1,7 @@
 package com.project.plus.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.project.plus.domain.ReviewVO;
 
@@ -11,6 +12,7 @@ public interface ReviewService {
 	List<ReviewVO> selectOkayReview(ReviewVO vo); 
 	void insertReview(ReviewVO vo);
 	String reviewList();
-
-	
+	public List<ReviewVO> getReviews(ReviewVO vo);
+	public List<ReviewVO> getMoreReviews(Map<String,Integer> map);
+	public int getReviewCount();
 }

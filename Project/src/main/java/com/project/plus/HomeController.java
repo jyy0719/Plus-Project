@@ -20,6 +20,8 @@ import com.project.plus.service.FaqService;
 @Controller
 public class HomeController {
 	
+	String msg = "Hello Java";
+	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
 	@Autowired
@@ -45,6 +47,8 @@ public class HomeController {
 	@RequestMapping(value = "/selectNow.do", method = RequestMethod.GET)
 	public void selectNow() {
 		String result = service.selectNow();
+		Date now = new Date();
+		System.out.println(now);
 		System.out.println(result);
 	}
 	

@@ -178,7 +178,7 @@
       }
 
       .naver-login{
-        background-color: #2DB400;
+        /*background-color: none !importnat;*/
         border:none;
       }
       .join-member{
@@ -194,7 +194,7 @@
       }
 
       #find-id:hover{
-          text-decoration: underline;
+          text-decoration: none;
       }
 
       .Easy-sgin-in-wrap span{
@@ -214,29 +214,34 @@
           margin-bottom: 10px;
       }
 
-        .Easy-sgin-in-wrap .sign-button-list li button span{
+        .Easy-sign-in-wrap .sign-button-list li button span{
             /* padding-left: 20px; */
             font-size: 18px;
         }
-        .Easy-sgin-in-wrap .joinMsg{
+        .Easy-sign-in-wrap .joinMsg{
             /* color:var(--font-color); */
             font-size: 18px;
             font-weight: 600;
             padding-top: 10px;
-            text-decoration: none;
-        
+            text-decoration: none !important;
         }
         /* .joinMsg {
             text-decoration: none;
         } */
         
+       .Easy-sign-in-wrap .joinMsg:hover{
+            /* color:var(--font-color); */
+     
+            text-decoration: underline;
+        }
         
-        .Easy-sgin-in-wrap a:-webkit-any-link{
+        
+        .Easy-sign-in-wrap a:-webkit-any-link{
             text-decoration: none;
             font-weight: bold;
 
         }
-        .Easy-sgin-in-wrap a:-webkit-any-link:hover{
+        .Easy-sign-in-wrap a:-webkit-any-link:hover{
             text-decoration: underline;
             font-weight: bold;
         }

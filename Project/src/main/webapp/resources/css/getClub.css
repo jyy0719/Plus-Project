@@ -2,24 +2,39 @@
 *{
     font-family: 'NanumSquare', sans-serif !important;
 }
+.clearfix:after { /*날아갈경우 높이 지정*/
+    content:"";
+    display:block;
+    clear:both;
+}
+
 header{
     height:50px;
 }
 
 #mainImg{
-            position: absolute;
-            width: 713px;
+            /* position: absolute;
+            width: 750px;
             height: 433px;
             left: 120px;
-            top: 50px;     
+            top: 50px;      */
+            width: 100%;
+            height: 433px;
+            margin-top: 50px;
+            display: inline-block;
+}
+
+#right_con {
+    position: relative;
+    /* width: 450px; */
 }
 
 aside{
-    position: relative;
+    position: fixed;
     top: 50px;
     left: 900px;
     width: 350px;
-    height:2000px;
+    /* height:2000px; */
     display: flex;
     flex-direction: column;
 }
@@ -39,7 +54,7 @@ aside{
     border-radius: 3px;
     box-shadow: rgb(41 42 43 / 16%) 0px 2px 6px -2px;
     border: 1px solid rgb(255, 255, 255);
-  
+    margin-left:20px;
 }
 
 
@@ -121,26 +136,27 @@ a:link {text-decoration: none;}
 }
 
 article{
-    position: absolute;
-    width: 720px;
+    /* position: absolute;
+    width: 750px;*/
     left: 120px;
+    top: 691px; 
     top: 691px;
 }
 
 #moreInfo{
-    border:1px solid black;
+    /* border:1px solid black; */
     height: 300px;
     padding-top:40px;
     margin-bottom:30px;
 }
 #leaderInfo{
-    border:1px solid black;
+    /* border:1px solid black; */
     height: 300px;
     padding-top:40px;
     margin-bottom:30px;
 }
 #review{
-    border:1px solid black;
+   /*  border:1px solid black; */
     height: 300px;
     margin-bottom:50px;
 }
@@ -210,15 +226,19 @@ article{
 }
 
 section{
-    position:relative;
-    width: 713px;
+    width: 750px;
+    float: left;
+   	margin-left:120px;
 }
 .stickyWrap{
-    position:absolute;
-    height:1500px;
-    width: 713px;
-    left: 120px;
-    top: 550px;
+    /* position:absolute; */
+    /* height:1500px; */
+    /* width: 750px; */
+    /* left: 120px; */
+    /* top: 550px;
+     */
+     margin-top: 550px;
+
 
 }
 .stickyTab{
@@ -227,7 +247,7 @@ section{
     z-index: 500;
     top:0;
     color: #6e7c7c;
-    width: 720px;
+    width: 750px;
     height: 50px;
     padding-top:20px;
     border-bottom: 1px solid #dddddd;
@@ -239,4 +259,79 @@ section{
 }
 #freq{
     background-color: #ffb26b;
+}
+
+h3{
+	margin-bottom:50px;
+}
+
+
+.userReview{
+    width:750px;
+    margin-bottom:20px;
+}
+strong{
+    float:left;
+     margin-bottom:10px;
+}
+
+.reviewRate{
+    float:left;
+    margin-left:10px;
+    color: #001eff;
+}
+
+#reviewRegDate{
+    color: #6e7c7c;
+    font-size:8px;
+    float:left;
+    margin-left:10px;
+    margin-top:4px;
+}
+
+#reviewText{
+    clear:both;
+	margin-bottom:20px;
+}
+#moreReviewBtn{
+    /* position:absolute; */
+    margin : 0px auto;
+    width: 750px;
+    height: 40px;
+    border: 0;
+    outline:0;
+    /* color:white; */
+    /* background-color: #001eff; */
+}
+
+
+/* 푸터 스타일 시작 */
+
+
+footer {
+    border-top: thistle 1px solid;
+  	/* height: 80px;  */
+    text-align: center;
+}
+
+footer li {
+    display: inline;
+    font-weight: 400;
+    font-size: 18px;
+    position: relative;
+    top: 24px;
+    margin: 10px;
+
+}
+
+footer li a {
+    text-decoration: none;
+}
+
+footer li a:hover {
+    color: #1e00ff
+}
+
+#footerAddress {
+    font-size: 15px;
 }
