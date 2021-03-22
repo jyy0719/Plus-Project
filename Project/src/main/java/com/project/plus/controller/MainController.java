@@ -22,17 +22,24 @@ import com.project.plus.service.MainService;
 
 
 @Controller
+@RequestMapping("/main")
 public class MainController {
 
 	@Autowired
 	private MainService service;
 
-	//@RequestMapping(method = RequestMethod.GET ...)와 동일한 기능
-	@GetMapping(value="/main.do")
+
+	@RequestMapping("/main")
 	// 뷰에 데이터를 전달한다.
 	public void mainList(Model model) {
 		model.addAttribute("main1", service.getListBest()); // key=main1, value=인기 더하기 리스트 
 		model.addAttribute("main2", service.getListDeadline()); // key=main2, value=마감임박 더하기 리스트
+	}
+	// 리스트를 가져온다.
+	@GetMapping("/index.")
+	public String list() {
+		System.out.println("MainController.list()");
+		return "index";
 	}
 
 	// 전체보기
@@ -48,7 +55,7 @@ public class MainController {
 	public void list(Criteria cri, Model model) {
 
 		//한 페이지에 최대 20개 데이터가 보인다.
-		cri.setAmount(20);
+		cri.setPerPageNum(20);
 		model.addAttribute("cri", cri);
 
 		//검색 결과 리스트를 보여준다.

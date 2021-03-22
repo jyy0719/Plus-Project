@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <c:set var="path" value="${pageContext.request.contextPath}" />
 
 <!DOCTYPE html>
@@ -24,20 +26,7 @@
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css">
 
-<!--어썸폰트 아이콘 -->
-<script src="https://kit.fontawesome.com/831a4ab0db.js"
-	crossorigin="anonymous"></script>
-<!--부트스트랩-->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-	crossorigin="anonymous"></script>
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-	crossorigin="anonymous"></script>
-<!--구글맵 api-->
-<script async defer
-	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA14FclHyP6uY1AXC81jP9ZEsnWKEn-nYE"></script>
+
 
 <title>더하기+ 같이해서 더 가치있는 모임</title>
 </head>
@@ -147,9 +136,7 @@
 				<div class="row">
 					<div class="col-md-6 col-lg-3">
 						<div class="card border-0 transform-on-hover">
-							<a class="lightbox"
-								href="#">
-								<!--  ${pageContext.request.contextPath}/../list.do?club_num=${club.club_num}"-->
+							<a class="lightbox" href="#"> <!--  ${pageContext.request.contextPath}/../list.do?club_num=${club.club_num}"-->
 								<img src="${club.clubThumb_pic}" alt="bestplus1"
 								class="card-img">
 							</a>
@@ -160,15 +147,24 @@
 									<a class="badge badge-primary">${club.clubOnOff}</a> <a
 										class="badge badge-danger">${club.clubFreq}</a>
 								</div>
+								<!-- 더하기 상세정보 -->
 								<a class="text-title" href="#"><b>${club.clubName}</b></a>
 								<p class="text-muted card-text">
-								<p id=clubHashtag>${club.clubHashtag}</p>
-								<p id=clubperiod>"모임 기간 : " ${club.clubStartDate} +" ~ "+
-									$${club.clubShutDate}</p>
-								<fmt:formatDate  var="period" value="${club.clubStartDate}" type="DATE" pattern="yyyy-MM-dd"/>
-${date2}
-								<p id=clubperson>${club.clubCurnum} + " / " +
-									${club.clubMax}</p>
+								<p id=clubHashtag>${club.clubHashtag}
+
+									<!-- 날짜 데이터를 원하는 포맷으로 맞춰줌 -->
+									<fmt:formatDate var="startDay" value='${club.clubStartDate}'
+										pattern="yyyy-MM-dd" />
+									<fmt:formatDate var="endDay" value='${club.clubEndDate}'
+										pattern="yyyy-MM-dd" />
+
+									<span class="period"> '${club.clubStartDate} + " ~ " +
+										${club.clubEndDate} </span> </br>
+									<span class="period">
+									${club.clubCurrum} + "/" + ${club.clubMax} +"명""
+									</span>
+	
+								</p>
 							</div>
 						</div>
 					</div>
@@ -288,15 +284,30 @@ ${date2}
 				d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z" />
       </svg>
 	</button>
+
+
 	</div>
 	</div>
 
 
-
-
+<!--어썸폰트 아이콘 -->
+<script src="https://kit.fontawesome.com/831a4ab0db.js"
+	crossorigin="anonymous"></script>
+<!--부트스트랩-->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+	crossorigin="anonymous"></script>
+<script>
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+	crossorigin="anonymous"></script>
+<!--구글맵 api-->
+<script async defer
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA14FclHyP6uY1AXC81jP9ZEsnWKEn-nYE"></script>
+<script>
 
 	<!--메인 carousel 2초-->
-	<script>$('.carousel').carousel({ interval: 2000 })</script>
+	$('.carousel').carousel({ interval: 2000 })
 
 
 
@@ -337,8 +348,7 @@ ${date2}
             alert(error.message);
         }
 
-    </script>
-	<script>
+        <!------------------스크롤 위로 올리기----------------->
         var backToTop = () => {
             // Scroll | button show/hide
             window.addEventListener('scroll', () => {
@@ -360,7 +370,6 @@ ${date2}
         backToTop();
     </script>
 </body>
-
 
 <footer></footer>
 </html>

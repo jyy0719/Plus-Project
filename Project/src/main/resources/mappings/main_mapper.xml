@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.plus.mapper.MainMapper">
+
+	<!-- 더하기 등록 -->
+	<insert id="insertClub">
+
+<![CDATA[
+		INSERT INTO CLUB(club_name, club_leader, club_town, club_kind,
+		club_category, club_onoff, club_max, club_freq, club_content1, club_content1_pic, club_content2, club_content2_pic,
+		club_makedate, club_shutdate, club_startdate, club_enddate, club_fee, club_hashtag, club_curnum)
+		VALUES(#{clubName}, '블루베리', '마포구', #{clubKind}, #{clubCategory}, 
+		#{clubOnOff}, #{clubMax}, #{clubFreq}, #{clubContent1}, '123', #{clubContent2}, '456',
+		NOW(), #{clubShutDate}, #{clubStartDate}, #{clubEndDate}, #{clubFee}, #{clubHashtag}, #{clubCurnum})
+	]]>
+	</insert>
+
+	<!-- 인기 더하기 리스트 -->
+	<select id="getListBest"
+		resultType="com.project.plus.domain.ClubVO">
+
+<![CDATA[
+SELECT * FROM club 
+			WHERE club_shutdate > NOW()
+			AND club_max > club_curnum
+			ORDER BY club_heart DESC 
+		]]>
+	</select>
+
+	<!-- 마감 임박 리스트 -->
+	<select id="getListDeadline"
+		resultType="com.project.plus.domain.ClubVO">
+
+<![CDATA[
+			SELECT * FROM club 
+			WHERE club_shutdate > NOW()
+			AND club_max > club_curnum
+			ORDER BY club_shutdate - NOW() ASC 
+	]]>
+	</select>
+
+	<!-- 검색 리스트 동적 쿼리 -->
+	<select id="getListSearch"
+		resultType="com.project.plus.domain.ClubVO">
+
+<![CDATA[
+		SELECT * FROM club 	
+	    WHERE (club_category like '%'||#{searchKeyword}||'%' or clbu_hashtag like '%'||#{searchKeyword}||'%') 
+	    AND AND club_max > club_curnum AND AND club_max > club_curnum 
+	    ORDER BY club_num DESC
+	]]>
+	</select>
+</mapper>

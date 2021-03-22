@@ -11,16 +11,18 @@
 	href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<link rel="stylesheet" href="${path}/resources/css/bootstrap-datepicker.css">
-<link rel="stylesheet" href="${path}/resources/css/clubform.css?ver=1">
+<link rel="stylesheet"
+	href="${path}/resources/css/bootstrap-datepicker.css">
+<link rel="stylesheet" href="${path}/resources/css/clubform.css">
 </head>
 <header></header>
 <section>
-<form action="insertClub.do" enctype="multipart/form-data" method="post" id="frm">
+	<form action="insertClub.do" enctype="multipart/form-data" method="post" id="frm">
 		<div class="selection">
 			<div class="select-kind">
-				<label for="exampleFormControlSelect2">더하기 종류</label> 
-				<select class="form-control" id="select-kindbox" name="clubKind" onchange="changeDetail()">
+				<label for="exampleFormControlSelect2">더하기 종류</label> <select
+					class="form-control" id="select-kindbox" name="clubKind"
+					onchange="changeDetail()">
 					<option value="1">가치더하기</option>
 					<option value="2">도움더하기</option>
 				</select>
@@ -46,37 +48,51 @@
 					src="${path}/resources/img/mapicon.png"> 위치를 선택해주세요
 			</div>
 		</div>
-		<label for="exampleFormControlFile1">모임의 제목을 입력해주세요</label>
-		<input type="text" maxlength='16' class="form-control"
-			id="club-title" placeholder="최대 16글자로 입력해주세요" name="clubName">
+		<label for="exampleFormControlFile1">모임의 제목을 입력해주세요</label> <input
+			type="text" maxlength='16' class="form-control" id="club-title"
+			placeholder="최대 16글자로 입력해주세요" name="clubName">
 
 		<div class="form-group">
 			<label for="exampleFormControlFile1">모임 프로필 사진 업로드</label>
-			<!-- <div class="img-form">
-                  
-              </div> -->
-			<input type="file" name="upload" class="form-control-file" id="exampleFormControlFile1">
+			<div class="uploadBox">
+				<label class="btn btn-info btn-sm uploadBtn"> 파일 선택 
+				<input type="file" style="display: none;" name="upload"
+					onchange="getFileName(0)" />
+				</label> <span id="spanFileName[0]"></span>
+				<button type="button" class="removeBtn" onclick="deleteFile(0)">x</button>
+			</div>
 		</div>
 		<article>
 			<div id="write-clubinfo">
 				<label for="exampleFormControlFile1">개설하고자 하는 모임의 성격을
 					설명해주세요!</label>
 				<textarea name="clubContent1"></textarea>
-		<!-- 		<input type="file" class="form-control-file" name="upload"
-					id="exampleFormControlFile1"> -->
+				<div class="uploadBox">
+					<label class="btn btn-info btn-sm uploadBtn"> 파일 선택 
+					<input type="file" style="display: none;" name="upload"
+						onchange="getFileName(1)" />
+					</label> <span id="spanFileName[1]"></span>
+					<button type="button" class="removeBtn" onclick="deleteFile(1)">x</button>
+				</div>
 			</div>
 			<div id="write-checkinfo">
-				<label for="exampleFormControlFile1" id="intro">모임의 인증방법을 설명해주세요!</label>
+				<label for="exampleFormControlFile1" id="intro">모임의 인증방법을
+					설명해주세요!</label>
 				<textarea name="clubContent2"></textarea>
-				<!-- <input type="file" class="form-control-file" name="upload"
-					id="exampleFormControlFile1"> -->
+				<div class="uploadBox">
+					<label class="btn btn-info btn-sm uploadBtn"> 파일 선택 
+					<input type="file" style="display: none;" name="upload"
+						onchange="getFileName(2)" />
+					</label> <span id="spanFileName[2]"></span>
+					<button type="button" class="removeBtn" onclick="deleteFile(2)">x</button>
+				</div>
 			</div>
 			<div class="hashtag-wrap">
-				
+
 				<input type="text" class="form-control" id="write-hashtag"
 					onkeypress="onKeyDown()" maxlength='10'
-					placeholder="해쉬태그를 입력해주세요! (최대 5개)">
-				<input type="text" style="display:none" id="add-hashtag" name="clubHashtag"/>
+					placeholder="해쉬태그를 입력해주세요! (최대 5개)"> 
+				<input type="text" style="display:none" id="add-hashtag" name="clubHashtag" />
 				<!-- append hashtag -->
 
 			</div>
@@ -110,7 +126,8 @@
 		</div>
 		<div class="people">
 			<label for="exampleFormControlSelect2">참가인원</label> <input
-				type="text" class="form-control" maxlength="2" placeholder="최대 50명" id="club-max" name="clubMax">
+				type="text" class="form-control" maxlength="2" placeholder="최대 50명"
+				id="club-max" name="clubMax">
 		</div>
 
 
@@ -127,271 +144,296 @@
 			</select>
 		</div>
 		<div class="radioBtn">
-            <label class="radio-inline"><input type="radio" name="optradio" value="free" onclick="radioEvent()">무료</label>
-            <label class="radio-inline"><input type="radio" name="optradio" value="pay" onclick="radioEvent()">유료</label>
-        </div>
+			<label class="radio-inline"><input type="radio"
+				name="optradio" value="free" onclick="radioEvent()">무료</label> <label
+				class="radio-inline"><input type="radio" name="optradio"
+				value="pay" onclick="radioEvent()">유료</label>
+		</div>
 		<div class="clubfeeBox">
 			<label for="exampleFormControlSelect2">참가비용</label> <input
-				type="text" class="form-control" id="club-fee" name="clubFee" maxlength="6">
+				type="text" class="form-control" id="club-fee" name="clubFee"
+				maxlength="6">
 		</div>
 		<button type="button" class="btn" id="applyBtn" onclick="goSubmit()">신청하기</button>
 	</div>
 	</form>
 </aside>
+<footer></footer>
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 <script src="${path}/resources/js/bootstrap-datepicker.js"></script>
 <script src="${path}/resources/js/bootstrap-datepicker.ko.js"></script>
 <script>
+	//파일 
 
-
-//버튼 클릭시 유효성 검사 후 제출 
-function goSubmit(){
- //제목 유효성 체크 
- if (checkInput()){
-     if(isNumber()){
-         if(compareDate()){
-             document.getElementById('frm').submit();
-             alert("모임 등록이 완료되었습니다!")
-         }
-     } 
- }
- 
-}
-
-//필수 입력란 검사 
-function checkInput(){
-	let fee = document.getElementById("club-fee");
-	let max = document.getElementById("club-max");
-	let title = document.getElementById("club-title");
-	let date = document.querySelectorAll(".c-date");
-
-/* 
-	if(title && fee && max){
-		console.log("존재 ") */
-     if(title.value == "" || fee.value == "" || max.value == "" || 
-         date[0].value == "" || date[1].value == "" || date[2].value == "" ){
-    	 
-         // return은 코드를 더이상 실행하지 않고 돌려보내기 위한 구문.
-         if(title.value == "" ){
-             alert("제목을 입력해주세요!")
-             return title.focus();
-         } 
-
-         if(fee.value == ""){
-             alert("참가비를 입력해주세요!")
-             return fee.focus();
-         } 
-         
-         if(max.value == ""){
-             alert("참가인원을 입력해주세요!")
-             return max.focus()
-
-         }
-
-         for(var i=0; i<date.length; i++){
-             if(date[i].value == ""){
-                 alert("날짜를 입력해주세요!")
-                 return date[i].focus()
-
-             }
-         }
-     
+	//파일 선택시 파일이름 변경 
+	function getFileName(index) {
+		let fileNameSpan = document.getElementById('spanFileName[' + index
+				+ ']')
+		let name = $('input[type=file]')[index].files[0].name
+		fileNameSpan.innerText = ""
+		$(fileNameSpan).append(name);
 	}
- return true;
- 	
-}
 
-function compareDate(){
-    let shutDate = new Date($('#shut-date').val());
-    let startDate = new Date($('#start-date').val());
-    console.log(shutDate<startDate);
+	//파일 삭제
+	function deleteFile(index) {
+		let fileNameSpan = document.getElementById('spanFileName[' + index
+				+ ']')
+		let nameArr = document.getElementsByName('upload');
+		fileNameSpan.innerText = ""
+		nameArr[index].value = "";
 
-    if(shutDate>startDate){
-        alert("모집 날짜와 모임 날짜를 다시 확인해주세요!");
-        return false;
-    }
-    return true;
-   }
+	}
 
+	//버튼 클릭시 유효성 검사 후 제출 
+	function goSubmit() {
+		//제목 유효성 체크 
+		if (checkInput()) {
+			if (isNumber()) {
+				if (compareDate()) {
+					document.getElementById('frm').submit();
+					alert("모임 등록이 완료되었습니다!")
+				}
+			}
+		}
 
-//참가비, 참가인원 숫자만 입력하도록 검사 
-function isNumber(){
- let fee = document.getElementById("club-fee");
- let max = document.getElementById("club-max");
+	}
 
- var regexp1= /^[0-9]\d{0,2}/g;
- var regexp2= /^[0-9]\d{0,6}/g;
+	//필수 입력란 검사 
+	function checkInput() {
+		let fee = document.getElementById("club-fee");
+		let max = document.getElementById("club-max");
+		let title = document.getElementById("club-title");
+		let date = document.querySelectorAll(".c-date");
 
-	 if(!regexp2.test(fee.value)){
-	     alert("숫자만 입력 가능합니다!")
-	     return fee.focus();
-	 } 
- 
-	 if(!regexp1.test(max.value)){
-	     alert("숫자만 입력 가능합니다!")
-	     return max.focus();
-	 }
- 
- return true;
-}
+		/* 
+		 if(title && fee && max){
+		 console.log("존재 ") */
+		if (title.value == "" || fee.value == "" || max.value == ""
+				|| date[0].value == "" || date[1].value == ""
+				|| date[2].value == "") {
 
-function radioEvent(){
-	 let feeBox = document.querySelector(".clubfeeBox");
- 	 let fee = document.getElementById("club-fee"); 
-	 let radioButtons = document.getElementsByName("optradio");
-	 console.log(radioButtons[0].value)
-	 console.log(radioButtons[1].value)
-	 
+			// return은 코드를 더이상 실행하지 않고 돌려보내기 위한 구문.
+			if (title.value == "") {
+				alert("제목을 입력해주세요!")
+				return title.focus();
+			}
 
-	 if(radioButtons[0].checked){
-	    //무료 체크시 hide input 
-	     fee.value = 0;
-	     feeBox.style.display = 'none';
-	     
-	 } else if(radioButtons[1].checked){
-	     //유료 체크시 input 박스 보이기 
-	     fee.value="";
-	     feeBox.style.display = 'block';
-	 }
-	
-}
-	
+			if (fee.value == "") {
+				alert("참가비를 입력해주세요!")
+				return fee.focus();
+			}
 
-let valArray = new Array();
+			if (max.value == "") {
+				alert("참가인원을 입력해주세요!")
+				return max.focus()
 
-// 해시태그 스페이스바 / 엔터 입력시 등록 
-function onKeyDown(){
-    event.stopPropagation();
-    if(event.keyCode == 32 || event.keyCode == 13)
-    {       
-        let hashtagBox = document.querySelector(".hashtag-wrap");
-        let span = document.createElement('span');
-        span.classList.add("label");
-        span.classList.add("label-info");
-        span.classList.add("hashbadge");
-        hashtagBox.append(span);
-        let input = document.querySelector("#write-hashtag");
-        let value = checkValue(input)
-        valArray.push(value);
-        $(("#add-hashtag")).val(valArray);
-        console.log(valArray)
+			}
 
-        // delete를 위한 span 추가 
-        let delSpan = document.createElement('span');
-        // 띄어쓰기와 x 표시 
-        delSpan.innerHTML = ' x';
-        // id 부여 
-        delSpan.id = "delTag";
-        delSpan.style.cursor = "pointer";
-        // #+태그값 형태로 text 추가 
-        span.innerHTML = "# " + value;
-        span.append(delSpan);
+			for (var i = 0; i < date.length; i++) {
+				if (date[i].value == "") {
+					alert("날짜를 입력해주세요!")
+					return date[i].focus()
 
-        input.value = null;
-        checkQty();
+				}
+			}
 
-     }
-}
+		}
+		return true;
 
-// hastag 지우기 위한 click event 추가 
-document.addEventListener('click', function (e) {
-    if (e.target && e.target.id == 'delTag') {
-        let targetSpan = e.target.parentNode;
-        targetSpan.parentNode.removeChild(e.target.parentNode);
-        
-        //삭제하려는 해쉬태그 span의 text 가져오기 
-        let text = targetSpan.innerText;
-        text = text.split(' ')
-        console.log(text[1])
-       
-        // 해쉬태그 단어의 index를 찾아서 제거 
-        valArray.splice(valArray.indexOf(text[1]),1);
-        // 제거 후 array 다시 input에 넣기 
-        $(("#add-hashtag")).val(valArray);
-        
-    }
-});
+	}
 
+	function compareDate() {
+		let shutDate = new Date($('#shut-date').val());
+		let startDate = new Date($('#start-date').val());
+		console.log(shutDate < startDate);
 
-//해시태그 개수 검사 
-function checkQty(){
- let hashtagBox = document.querySelector(".hashtag-wrap");
- let cnt = hashtagBox.querySelectorAll(".hashbadge").length;
- if(cnt > 5){
-     alert('hashtag는 5개까지 입력 가능합니다!');
-     hashtagBox.removeChild(hashtagBox.children[cnt]);   
- }
- console.log(cnt);
-}
+		if (shutDate > startDate) {
+			alert("모집 날짜와 모임 날짜를 다시 확인해주세요!");
+			return false;
+		}
+		return true;
+	}
 
-//해시태그 입력값 유효성 검사 
-function checkValue(input){
- let regexp = /[\{\}\[\]\/?.,;:|\)*~`!^\-+<>#@\$%&\\\=\(\'\"\s]/gi;
- let value = input.value
-     if(regexp.test(value)){
-         value = value.replace(regexp, "");
-     }
- return value;
-}
+	//참가비, 참가인원 숫자만 입력하도록 검사 
+	function isNumber() {
+		let fee = document.getElementById("club-fee");
+		let max = document.getElementById("club-max");
 
-function changeDetail(){
- // let detail = document.getElementById('write-checkinfo');
- let selected = document.getElementById('select-kindbox');
- let intro = document.getElementById('intro');
- console.log(selected.value)
- console.log(intro.innerText)
- 
- if(selected.value == 1 ){
-     intro.innerText = "모임의 인증방법을 설명해주세요!";
- } else if (selected.value == 2 ){
-     intro.innerText = "모임의 리더가 되고싶은 회원님은 어떤사람인가요?";
- }
+		var regexp1 = /^[0-9]\d{0,2}/g;
+		var regexp2 = /^[0-9]\d{0,6}/g;
 
-}
+		if (!regexp2.test(fee.value)) {
+			alert("숫자만 입력 가능합니다!")
+			return fee.focus();
+		}
 
-$(function(){
+		if (!regexp1.test(max.value)) {
+			alert("숫자만 입력 가능합니다!")
+			return max.focus();
+		}
 
- $('#shut-date').datepicker({
-     calendarWeeks: false,
-     todayHighlight: true,
-     autoclose: true,
-     format: "yyyy-mm-dd",
-     startDate: '0d',
-     endDate:'+1y',
-     language: "ko"
- });
+		return true;
+	}
 
- $('#start-date').datepicker({
-     calendarWeeks: false,
-     todayHighlight: true,
-     autoclose: true,
-     format: "yyyy-mm-dd",
-     startDate: '0d',
-     endDate:'+1y',
-     language: "ko"
- }).on('changeDate', function(selectedDate){
-     if($('#start-date').val() < $('#shut-date').val()){
-         $('#start-date').datepicker('setDate', new Date($('#shut-date').val()));
-     }
- });
+	function radioEvent() {
+		let feeBox = document.querySelector(".clubfeeBox");
+		let fee = document.getElementById("club-fee");
+		let radioButtons = document.getElementsByName("optradio");
+		console.log(radioButtons[0].value)
+		console.log(radioButtons[1].value)
 
+		if (radioButtons[0].checked) {
+			//무료 체크시 hide input 
+			fee.value = 0;
+			feeBox.style.display = 'none';
 
-     $('#end-date').datepicker({
-         calendarWeeks: false,
-         todayHighlight: true,
-         autoclose: true,
-         format: "yyyy-mm-dd",
-         startDate: '0d',
-         endDate:'+1y',
-         language: "ko"
-     }).on('changeDate', function(selectedDate){
-         if($('#end-date').val() < $('#start-date').val()){
-             $('#end-date').datepicker('setDate', new Date($('#start-date').val()));
-	        }
-	    });
-});
+		} else if (radioButtons[1].checked) {
+			//유료 체크시 input 박스 보이기 
+			fee.value = "";
+			feeBox.style.display = 'block';
+		}
 
+	}
+
+	let valArray = new Array();
+
+	// 해시태그 스페이스바 / 엔터 입력시 등록 
+	function onKeyDown() {
+		event.stopPropagation();
+		if (event.keyCode == 32 || event.keyCode == 13) {
+			let hashtagBox = document.querySelector(".hashtag-wrap");
+			let span = document.createElement('span');
+			span.classList.add("label");
+			span.classList.add("label-info");
+			span.classList.add("hashbadge");
+			hashtagBox.append(span);
+			let input = document.querySelector("#write-hashtag");
+			let value = checkValue(input)
+			valArray.push(value);
+			$(("#add-hashtag")).val(valArray);
+			console.log(valArray)
+
+			// delete를 위한 span 추가 
+			let delSpan = document.createElement('span');
+			// 띄어쓰기와 x 표시 
+			delSpan.innerHTML = ' x';
+			// id 부여 
+			delSpan.id = "delTag";
+			delSpan.style.cursor = "pointer";
+			// #+태그값 형태로 text 추가 
+			span.innerHTML = "# " + value;
+			span.append(delSpan);
+
+			input.value = null;
+			checkQty();
+
+		}
+	}
+
+	// hastag 지우기 위한 click event 추가 
+	document.addEventListener('click', function(e) {
+		if (e.target && e.target.id == 'delTag') {
+			let targetSpan = e.target.parentNode;
+			targetSpan.parentNode.removeChild(e.target.parentNode);
+
+			//삭제하려는 해쉬태그 span의 text 가져오기 
+			let text = targetSpan.innerText;
+			text = text.split(' ')
+			console.log(text[1])
+
+			// 해쉬태그 단어의 index를 찾아서 제거 
+			valArray.splice(valArray.indexOf(text[1]), 1);
+			// 제거 후 array 다시 input에 넣기 
+			$(("#add-hashtag")).val(valArray);
+
+		}
+	});
+
+	//해시태그 개수 검사 
+	function checkQty() {
+		let hashtagBox = document.querySelector(".hashtag-wrap");
+		let cnt = hashtagBox.querySelectorAll(".hashbadge").length;
+		if (cnt > 5) {
+			alert('hashtag는 5개까지 입력 가능합니다!');
+			hashtagBox.removeChild(hashtagBox.children[cnt]);
+		}
+		console.log(cnt);
+	}
+
+	//해시태그 입력값 유효성 검사 
+	function checkValue(input) {
+		let regexp = /[\{\}\[\]\/?.,;:|\)*~`!^\-+<>#@\$%&\\\=\(\'\"\s]/gi;
+		let value = input.value
+		if (regexp.test(value)) {
+			value = value.replace(regexp, "");
+		}
+		return value;
+	}
+
+	function checkFileSize() {
+
+	}
+
+	function changeDetail() {
+		// let detail = document.getElementById('write-checkinfo');
+		let selected = document.getElementById('select-kindbox');
+		let intro = document.getElementById('intro');
+		console.log(selected.value)
+		console.log(intro.innerText)
+
+		if (selected.value == 1) {
+			intro.innerText = "모임의 인증방법을 설명해주세요!";
+		} else if (selected.value == 2) {
+			intro.innerText = "모임의 리더가 되고싶은 회원님은 어떤사람인가요?";
+		}
+
+	}
+
+	$(function() {
+
+		$('#shut-date').datepicker({
+			calendarWeeks : false,
+			todayHighlight : true,
+			autoclose : true,
+			format : "yyyy-mm-dd",
+			startDate : '0d',
+			endDate : '+1y',
+			language : "ko"
+		});
+
+		$('#start-date').datepicker({
+			calendarWeeks : false,
+			todayHighlight : true,
+			autoclose : true,
+			format : "yyyy-mm-dd",
+			startDate : '0d',
+			endDate : '+1y',
+			language : "ko"
+		}).on(
+				'changeDate',
+				function(selectedDate) {
+					if ($('#start-date').val() < $('#shut-date').val()) {
+						$('#start-date').datepicker('setDate',
+								new Date($('#shut-date').val()));
+					}
+				});
+
+		$('#end-date').datepicker({
+			calendarWeeks : false,
+			todayHighlight : true,
+			autoclose : true,
+			format : "yyyy-mm-dd",
+			startDate : '0d',
+			endDate : '+1y',
+			language : "ko"
+		}).on(
+				'changeDate',
+				function(selectedDate) {
+					if ($('#end-date').val() < $('#start-date').val()) {
+						$('#end-date').datepicker('setDate',
+								new Date($('#start-date').val()));
+					}
+				});
+	});
 </script>
-
-<footer></footer>
 </html>
