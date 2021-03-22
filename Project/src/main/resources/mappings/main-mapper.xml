@@ -6,7 +6,7 @@
 <resultMap id="clubResult" type="club">
 		<id property="clubNum" column="club_num" />
 		<result property="clubName" column="club_name" />
-	<result property="clubLeader" column="club_leader" />
+		<result property="clubLeader" column="club_leader" />
 		<result property="clubTown" column="club_town" />
 		<result property="clubKind" column="club_kind" />
 		<result property="clubCategory" column="club_category" />
@@ -61,7 +61,7 @@
 	]]>
 	</select>
 
-	<!-- 검색 리스트 동적 쿼리 -->
+	<!-- 검색 리스트 동적 쿼리 -->   
 	<select id="getListSearch" resultMap="clubResult">
 
 <![CDATA[
