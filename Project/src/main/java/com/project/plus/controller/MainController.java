@@ -17,8 +17,11 @@ import com.project.plus.domain.ClubVO;
 import com.project.plus.domain.Criteria;
 import com.project.plus.service.MainService;
 
-import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
+
+
+
+
 
 @Controller
 @Log4j

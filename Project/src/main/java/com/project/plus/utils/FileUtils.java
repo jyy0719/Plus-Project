@@ -13,6 +13,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.project.plus.domain.ClubVO;
 
+import lombok.extern.log4j.Log4j;
+
+@Log4j
 public class FileUtils {
 
 	public static ClubVO uploadFile(ClubVO vo, String uploadPath, MultipartFile[] file) throws Exception {

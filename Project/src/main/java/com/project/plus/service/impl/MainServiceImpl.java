@@ -13,7 +13,6 @@ import com.project.plus.service.FaqService;
 import com.project.plus.service.MainService;
 
 import lombok.AllArgsConstructor;
-import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
 @Log4j
