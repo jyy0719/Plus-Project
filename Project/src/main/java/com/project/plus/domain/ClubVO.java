@@ -2,8 +2,11 @@ package com.project.plus.domain;
 
 import java.sql.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class ClubVO {
 	private int clubNum;
+	private String clubMain_pic;
 	private String clubThumb_pic;
 	private String clubName;
 	private String clubLeader;
@@ -26,7 +29,6 @@ public class ClubVO {
 	
 
 	private int clubCurnum;
-	
 	private int clubHeart;
 	private String clubLatitude;
 	private String clubLongitude;
@@ -177,7 +179,14 @@ public class ClubVO {
 	public void setClubHashtag(String clubHashtag) {
 		this.clubHashtag = clubHashtag;
 	}
-
+	
+	
+	public String getClubMain_pic() {
+		return clubMain_pic;
+	}
+	public void setClubMain_pic(String clubMain_pic) {
+		this.clubMain_pic = clubMain_pic;
+	}
 	
 	@Override
 	public String toString() {

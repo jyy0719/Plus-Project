@@ -18,8 +18,8 @@ public class ClubServiceImpl implements ClubService {
 	public void insertClub(ClubVO vo) {
 		mapper.insertClub(vo);
 	}
-	public ClubVO getClubInfo(ClubVO vo) {
-		return mapper.getClubInfo(vo);
+	public ClubVO getClub(ClubVO vo) {
+		return mapper.getClub(vo);
 		
 	}
 	public List<String> getClubHashtag() {
@@ -30,5 +30,8 @@ public class ClubServiceImpl implements ClubService {
 	}
 	public int updateClub(ClubVO vo) {
 		return mapper.updateClub(vo);
+	}
+	public void deleteClub() {
+		mapper.deleteClub();
 	}
 }

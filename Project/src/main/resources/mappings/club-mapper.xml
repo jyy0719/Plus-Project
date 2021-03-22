@@ -10,6 +10,8 @@
 		<result property="clubKind" column="club_kind" />
 		<result property="clubCategory" column="club_category" />
 		<result property="clubOnOff" column="club_onoff" />
+		<result property="clubThumb_pic" column="club_thumb_pic" />
+		<result property="clubMain_pic" column="club_main_pic" />
 		<result property="clubMax" column="club_max" />
 		<result property="clubFreq" column="club_freq" />
 		<result property="clubContent1" column="club_content1" />
@@ -25,10 +27,11 @@
 		<result property="clubHashtag" column="club_hashtag" />
 	</resultMap>
 
-	<select id="getClubInfo" resultMap="clubResult">
+	<select id="getClub" resultMap="clubResult">
 		SELECT * FROM CLUB WHERE
 		club_num = 35
 	</select>
+	
 	<select id="getClubHashtag" resultType="string">
 		SELECT
 		SUBSTRING_INDEX (SUBSTRING_INDEX(Club.club_hashtag,',',numbers.n),',',-1)
@@ -44,28 +47,33 @@
 		- CHAR_LENGTH ( REPLACE ( Club.club_hashtag , ',' , '' ))>= numbers .
 		n-1
 		WHERE SUBSTRING_INDEX ( SUBSTRING_INDEX ( Club.club_hashtag , ' ' , numbers
-		. n ), ' ' , -1 ) != ' ' AND club_num=35
+		. n ), ' ' , -1 ) != ' ' AND club_num=33
 	</select>
+	
 	<select id="getMyClubInfo" resultMap="clubResult">
-		SELECT * FROM CLUB WHERE club_leader = '블루베리' AND club_num = 35
+		SELECT * FROM CLUB WHERE club_leader = '블루베리' AND club_num = 5
 	</select>
 
 	<insert id="insertClub">
 	<![CDATA[
-		INSERT INTO CLUB(club_name, club_leader, club_town, club_kind,
-		club_category, club_onoff, club_max, club_freq, club_content1, club_content1_pic, club_content2, club_content2_pic,
+		INSERT INTO CLUB(club_name, club_leader, club_town, club_kind, club_category, club_main_pic, club_thumb_pic,
+		club_onoff, club_max, club_freq, club_content1, club_content1_pic, club_content2, club_content2_pic,
 		club_makedate, club_shutdate, club_startdate, club_enddate, club_fee, club_hashtag, club_curnum)
-		VALUES(#{clubName}, '블루베리', '마포구', #{clubKind}, #{clubCategory}, 
-		#{clubOnOff}, #{clubMax}, #{clubFreq}, #{clubContent1}, '123', #{clubContent2}, '456',
+		VALUES(#{clubName}, '블루베리', '마포구', #{clubKind}, #{clubCategory}, #{clubMain_pic}, #{clubThumb_pic},
+		#{clubOnOff}, #{clubMax}, #{clubFreq}, #{clubContent1}, #{clubContent1_pic}, #{clubContent2}, #{clubContent2_pic},
 		NOW(), #{clubShutDate}, #{clubStartDate}, #{clubEndDate}, #{clubFee}, #{clubHashtag}, #{clubCurnum})
 	]]>
 	</insert>
+	
 	<update id="updateClub">
-		UPDATE CLUB SET club_town='마포구', club_category=#{clubCategory}, club_max=#{clubMax}, club_freq=#{clubFreq}, club_content1=#{clubContent1},
+		UPDATE CLUB SET club_town='마포구', club_category=#{clubCategory}, club_max=#{clubMax}, club_freq=#{clubFreq}, club_main_pic=#{clubMain_pic}, club_content1=#{clubContent1},
 		club_content1_pic=#{clubContent1_pic}, club_content2=#{clubContent2}, club_content2_pic=#{clubContent2_pic},
 		club_makedate=#{clubMakeDate}, club_shutdate=#{clubShutDate}, club_startdate=#{clubStartDate}, club_enddate=#{clubEndDate}, club_fee=#{clubFee}, 
 		club_hashtag=#{clubHashtag}, club_curnum=#{clubCurnum}
-		WHERE club_num = 35
+		WHERE club_num = 5
 	</update>
-
+	
+	<delete id="deleteClub">
+		DELETE FROM CLUB WHERE CLUB_NUM = 1
+	</delete>
 </mapper>
