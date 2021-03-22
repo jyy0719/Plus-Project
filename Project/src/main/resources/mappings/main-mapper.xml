@@ -61,7 +61,7 @@
 	]]>
 	</select>
 
-	<!-- 검색 리스트 동적 쿼리 -->
+	<!-- 검색 리스트 동적 쿼리 -->   
 	<select id="getListSearch" resultMap="clubResult">
 
 <![CDATA[
