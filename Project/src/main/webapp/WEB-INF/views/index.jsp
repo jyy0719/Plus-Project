@@ -27,7 +27,6 @@
 	href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css">
 
 
-
 <title>더하기+ 같이해서 더 가치있는 모임</title>
 </head>
 
@@ -130,7 +129,7 @@
 				<h4 id="viewtitle">
 					<b> 💙BEST 인기 더하기</b>
 				</h4>
-				<a href="./totalList.jsp" id="viewtotal"> 전체 보기 > </a>
+				<a href="/totalList" id="viewtotal"> 전체 보기 > </a>
 			</div>
 			<c:forEach items="${main1}" var="club" begin="0" end="7">
 				<div class="row">
@@ -159,11 +158,9 @@
 										pattern="yyyy-MM-dd" />
 
 									<span class="period"> '${club.clubStartDate} + " ~ " +
-										${club.clubEndDate} </span> </br>
-									<span class="period">
-									${club.clubCurrum} + "/" + ${club.clubMax} +"명""
-									</span>
-	
+										${club.clubEndDate} </span> </br> <span class="period">
+										${club.clubCurrum} + "/" + ${club.clubMax} +"명"" </span>
+
 								</p>
 							</div>
 						</div>
@@ -289,6 +286,7 @@
 	</div>
 	</div>
 
+</body>
 
 <!--어썸폰트 아이콘 -->
 <script src="https://kit.fontawesome.com/831a4ab0db.js"
@@ -297,22 +295,29 @@
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 	crossorigin="anonymous"></script>
-<script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+	integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+	crossorigin="anonymous"></script>
+<script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
 	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 	crossorigin="anonymous"></script>
+
+
 <!--구글맵 api-->
 <script async defer
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA14FclHyP6uY1AXC81jP9ZEsnWKEn-nYE"></script>
-<script>
 
+
+
+<script>
 	<!--메인 carousel 2초-->
 	$('.carousel').carousel({ interval: 2000 })
 
 
-
-	<!------------------현재 위치 가져오기----------------->
-	<script type="text/javascript">
+<!------------------현재 위치 가져오기----------------->
+<script type="text/javascript">
         if (!!navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
             document.getElementById("current-location").innerHTML = "잠깐! 현재 위치를 찾고 있습니다.";
@@ -335,7 +340,7 @@
                     // console.log(results);
                     var totaladdress = (results[3].formatted_address);  // 국가,시,구,동까지 나오는 주소
                     const arr = totaladdress.split(" ");                // address를 공백 기준으로 자름
-                    var address=(arr[1] + " "+ arr[2] +" "+ arr[3]);             // 대한민국 제외하고 담기
+                    var address=(arr[1] + " "+ arr[2] +" "+ arr[3]);      //대한민국 제외하고 담기
                     console.log(arr[1] + arr[2] + arr[3]);
               
                 }
@@ -369,7 +374,6 @@
         };
         backToTop();
     </script>
-</body>
 
 <footer></footer>
 </html>

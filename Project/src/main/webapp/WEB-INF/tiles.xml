@@ -15,13 +15,22 @@
   </definition>
   
   <!-- 관리자페이지 -->
-  <definition name="admin.*" template="/WEB-INF/views/admin/inc/layout.jsp">
+  <definition name="main" template="/WEB-INF/views/admin/inc/layout.jsp">
     <put-attribute name="title" value="관리자 페이지" />
     <put-attribute name="header" value="/WEB-INF/views/include/header.jsp" />
     <put-attribute name="aside" value="/WEB-INF/views/admin/aside.jsp" />
   <!--  <put-attribute name="body" value="/WEB-INF/views/admin/chart/{1}.jsp" /> -->
     <put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" />
   </definition>
+  
+  <!-- 메인 페이지 -->
+   <definition name="view.*" template="/WEB-INF/views/index.jsp"> 		
+    <put-attribute name="header" value="/WEB-INF/views/include/header.jsp" />	
+    <put-attribute name="header" value="/WEB-INF/views/index.jsp" />	
+    <put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" />	
+  </definition>	
+  
+  
   
   <!-- 그 외 필요한 페이지들마다, 속성마다 필요한 부분을  복사해서 사용하시면 됩니다   
    <definition name="페이지.*" template="/WEB-INF/views/admin/inc/layout.jsp"> 	//골격
