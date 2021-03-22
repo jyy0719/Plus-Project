@@ -20,6 +20,8 @@ import com.project.plus.service.FaqService;
 @Controller
 public class HomeController {
 	
+	String msg = "Hello Java";
+	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
 	@Autowired
