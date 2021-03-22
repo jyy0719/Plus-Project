@@ -1,4 +1,4 @@
-package com.project.plus.controller;
+package com.project.plus.domain;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.AbstractApplicationContext;

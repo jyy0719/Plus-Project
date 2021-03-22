@@ -3,9 +3,33 @@
 
 <mapper namespace="com.project.plus.mapper.MainMapper">
 
+<resultMap id="clubResult" type="club">
+		<id property="clubNum" column="club_num" />
+		<result property="clubName" column="club_name" />
+	<result property="clubLeader" column="club_leader" />
+		<result property="clubTown" column="club_town" />
+		<result property="clubKind" column="club_kind" />
+		<result property="clubCategory" column="club_category" />
+		<result property="clubOnOff" column="club_onoff" />
+		<result property="clubThumb_pic" column="club_thumb_pic" />
+		<result property="clubMax" column="club_max" />
+		<result property="clubFreq" column="club_freq" />
+		<result property="clubContent1" column="club_content1" />
+		<result property="clubContent1_pic" column="club_content1_pic" />
+		<result property="clubContent2" column="club_content2" />
+		<result property="clubContent2_pic" column="club_content2_pic" />
+		<result property="clubStartDate" column="club_startdate" />
+		<result property="clubEndDate" column="club_enddate" />
+		<result property="clubMakeDate" column="club_makedate" />
+		<result property="clubShutDate" column="club_shutdate" />
+		<result property="clubFee" column="club_fee" />
+		<result property="clubCurnum" column="club_curnum" />
+		<result property="clubHashtag" column="club_hashtag" />
+	</resultMap>
+	
+	
 	<!-- 더하기 등록 -->
 	<insert id="insertClub">
-
 <![CDATA[
 		INSERT INTO CLUB(club_name, club_leader, club_town, club_kind,
 		club_category, club_onoff, club_max, club_freq, club_content1, club_content1_pic, club_content2, club_content2_pic,
@@ -16,38 +40,34 @@
 	]]>
 	</insert>
 
-	<!-- 인기 더하기 리스트 -->
-	<select id="getListBest"
-		resultType="com.project.plus.domain.ClubVO">
-
+	<!-- 인기 더하기 -->
+	<select id="getListBest" resultMap="clubResult">
 <![CDATA[
-SELECT * FROM club 
-			WHERE club_shutdate > NOW()
-			AND club_max > club_curnum
-			ORDER BY club_heart DESC 
-		]]>
+		SELECT * FROM club 
+		WHERE club_shutdate > NOW()
+		AND club_max > club_curnum
+		ORDER BY club_heart DESC 
+	]]>
 	</select>
 
 	<!-- 마감 임박 리스트 -->
-	<select id="getListDeadline"
-		resultType="com.project.plus.domain.ClubVO">
+	<select id="getListDeadline" resultMap="clubResult">
 
 <![CDATA[
-			SELECT * FROM club 
-			WHERE club_shutdate > NOW()
-			AND club_max > club_curnum
-			ORDER BY club_shutdate - NOW() ASC 
+		SELECT * FROM club 
+		WHERE club_shutdate > NOW()
+		AND club_max > club_curnum
+		ORDER BY club_shutdate - NOW() ASC 
 	]]>
 	</select>
 
 	<!-- 검색 리스트 동적 쿼리 -->
-	<select id="getListSearch"
-		resultType="com.project.plus.domain.ClubVO">
+	<select id="getListSearch" resultMap="clubResult">
 
 <![CDATA[
 		SELECT * FROM club 	
-	    WHERE (club_category like '%'||#{searchKeyword}||'%' or clbu_hashtag like '%'||#{searchKeyword}||'%') 
-	    AND AND club_max > club_curnum AND AND club_max > club_curnum 
+	    WHERE (club_category like '%'||#{headerKeyword}||'%' or club_hashtag like '%'||#{headerKeyword}||'%') 
+	    AND club_max > club_curnum AND club_shutdate > NOW()
 	    ORDER BY club_num DESC
 	]]>
 	</select>

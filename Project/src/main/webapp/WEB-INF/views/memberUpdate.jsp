@@ -88,7 +88,11 @@ checkPw = function() {
 
     <!-- wrapper -->
     <div id="wrapper">
+<<<<<<< HEAD
+
+=======
 <input type="hidden" name="memberEmail"  value="${user.memberNum }">
+>>>>>>> 0013c97aec50c3409a8d08f0a8436ccb3b5c1880
         <!-- content1-->
         <div class="content1">      
                 <!-- profile pic -->

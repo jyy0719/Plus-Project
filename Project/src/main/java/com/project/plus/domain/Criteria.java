@@ -73,4 +73,9 @@ public class Criteria {
 	public String toString() {
 		return "Criteria [page=" + page + ", perPageNum=" + perPageNum + "]";
 	}
+
+	public void setAmount(int i) {
+		// TODO Auto-generated method stub
+		
+	}
 }

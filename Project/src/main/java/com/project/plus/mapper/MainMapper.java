@@ -11,8 +11,6 @@ public interface MainMapper {
 		public List<ClubVO> getListBest();
 		//마감임박 더하기 리스트
 		public List<ClubVO> getListDeadline();
-		//전체보기
-		public ClubVO getPlusListInfo(ClubVO vo);
 		//모임 검색
 		public List<ClubVO> getListSearch(String keyword);
 

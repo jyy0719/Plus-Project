@@ -30,7 +30,7 @@
   <!--------------상세검색 영역--------------->
   <div class="jumbotron">
     <div id="searchform">
-      <h5><b>가치 더하기 상세검색</b></h5>
+      <h5><b>더하기 상세검색</b></h5>
       <hr class="my-4">
       <div id="favorite">
         <label>관심분야</label>
