@@ -13,6 +13,7 @@
 		<typeAlias alias="club" type="com.project.plus.domain.ClubVO"/>
 		<typeAlias alias="user" type="com.project.plus.domain.MemberVO"/>
 		<typeAlias alias="review" type="com.project.plus.domain.ReviewVO"/>
+		<typeAlias alias="announce" type="com.project.plus.domain.AnnounceVO"/>
 	
 </typeAliases>
 

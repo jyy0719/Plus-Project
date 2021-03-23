@@ -27,7 +27,13 @@ public class LoginController {
     @Autowired
 	private MemberService memberService;
 
-	
+    @RequestMapping(value="login.do", method=RequestMethod.GET) 
+    public String loginpage(MemberVO vo, HttpSession session, HttpServletResponse response) throws Exception {
+    
+       return "login";
+
+    }
+    
 	@RequestMapping(value="login.do", method=RequestMethod.POST) 
 	public String login(MemberVO vo, HttpSession session, HttpServletResponse response) throws Exception {
 	System.out.println("로그인 컨트롤러 접속");
