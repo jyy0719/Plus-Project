@@ -43,12 +43,12 @@ public class FileUtils {
 					if(i==0) {	// 프로필 사진 = 메인사진 
 						vo.setClubMain_pic(File.separator + "uploadImg" + datePath + File.separator + newFileName);
 						String tPath = FileUtils.makeThumbnail(uploadPath, datePath, newFileName);
-						vo.setClubThumb_Pic(File.separator + "uploadImg" + tPath);
+						vo.setClubThumb_pic(File.separator + "uploadImg" + tPath);
 						
 					} else if (i==1) {	// 상세정보 사진 
-						vo.setClubContent1_Pic(File.separator + "uploadImg" + datePath + File.separator + newFileName);
+						vo.setClubContent1_pic(File.separator + "uploadImg" + datePath + File.separator + newFileName);
 					} else {	// 리더소개 사진 
-						vo.setClubContent2_Pic(File.separator + "uploadImg" + datePath + File.separator + newFileName);
+						vo.setClubContent2_pic(File.separator + "uploadImg" + datePath + File.separator + newFileName);
 					}
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -58,7 +58,7 @@ public class FileUtils {
 			} else {
 				if(i==0) {
 					// 사진 수정시 main pic을 삭제했을 때 썸네일 컬럼을 null로 update
-					vo.setClubThumb_Pic("");
+					vo.setClubThumb_pic("");
 					}
 			}
 			System.out.println("업로드 파일이 없습니다");

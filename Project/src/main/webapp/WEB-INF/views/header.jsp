@@ -9,25 +9,10 @@
 <meta charset="UTF-8">
  <title>LoginHeader</title>
     <!-- css코드삽입 -->
-<<<<<<< HEAD
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css">
     <link rel="stylesheet" type="text/css" href="${path}/resources/css/header.css">
-    <style>
-
-    </style>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
-
-
-    <script type="text/javascript" src="${path}/resources/js/jquery-1.12.4.min.js"></script>
-=======
-    <link rel="stylesheet" type="text/css" href="${path}/resources/css/header.css">
-        <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
->>>>>>> 170baa291e8511c0350858cb9578227bcf00169e
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
     <script>
-        $(documt).ready(function () {
+        $(document).ready(function () {
 
             $('.hovereffect').on("click", function () {
 
@@ -43,11 +28,7 @@
 
 
         //로그인 정보 받아오는 함수 같긴 한데 .. 
-<<<<<<< HEAD
         Kakao.init("9ce759cfc8b480d36084d93d5b5d195f")
-=======
- /*        Kakao.init("9ce759cfc8b480d36084d93d5b5d195f")
->>>>>>> 170baa291e8511c0350858cb9578227bcf00169e
 
         Kakao.Auth.login({
             url:'v2/user/me',
@@ -75,11 +56,7 @@
     Kakao.Auth.logout(function() {
       alert('logout ok\naccess token -> ' + Kakao.Auth.getAccessToken())
     })
-<<<<<<< HEAD
   }
-=======
-  } */
->>>>>>> 170baa291e8511c0350858cb9578227bcf00169e
 
 
 
@@ -89,22 +66,14 @@
 
 <body>
     <!-- 사실상 헤더가 없어요  -->
-<<<<<<< HEAD
     <header></header>
     <!-- 본문 너비 정하는 용으로 wrapper 아이디 설정 -->
     <div id="wrapper">
-=======
-    <!-- 본문 너비 정하는 용으로 wrapper 아이디 설정 -->
->>>>>>> 170baa291e8511c0350858cb9578227bcf00169e
         <!-- navi bar가 사실상 저희 헤더입니다 -->
         <nav>
             <ul class="menu-left">
                 <li id="logo_a"><a href="index.jsp"><img id="logo_img" src="${path}/resources/img/images/logo.png"></a></li>
-<<<<<<< HEAD
-                <li class="hovereffect nav-left"><a href="#">HOME</a></li>
-=======
                 <li class="hovereffect nav-left li-selected"><a href="#">HOME</a></li>
->>>>>>> 170baa291e8511c0350858cb9578227bcf00169e
                 <li class="hovereffect nav-left"><a href="#">가치더하기</a></li>
                	<li class="hovereffect nav-left"><a href="#">도움더하기</a></li>
  
@@ -131,27 +100,53 @@
                 <li class="nav-right icon"><a href="#"><img src="${path}/resources/img/images/bell1.png" id="icon"></a></li>
              </c:when>
              <c:otherwise><!-- 로그인 정보가 없으면  -->
-<<<<<<< HEAD
                 <li class="nav-right nav-left hovereffect" id="login"><a href="login.jsp">로그인</a></li>
-=======
-                <li class="nav-right nav-left hovereffect" id="login"><a href="loginPage.do">로그인</a></li>
->>>>>>> 170baa291e8511c0350858cb9578227bcf00169e
              
              </c:otherwise>
           </c:choose>
             </ul>          
         </nav>
-<<<<<<< HEAD
 
 
 
 
 
+        <!-- 본문영역시작 -->
+        <section>
+            <br /><br /><br />
+            <div style="width: auto; height: 300px; background-color:lightgray; 
+                font-size:80px; color:blue; text-align: center;">
+                <br />picture
 
-      
+            </div>
+            본문영역입니다<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+
+        </section>
+
+
+
+
+
+        <!-- 푸터 시작 -->
+        <footer>
+<!--             <ul>
+                <li><a href="#">개인정보처리방침</a></li>
+                <li><a href="#">이용약관</a></li>
+                <li><a href="#">문의사항</a></li>
+
+            </ul>
+            <ul>
+                <li id="footerAddress">
+                    <br />
+                    <b>더하기+</b> | 서울특별시 마포구 백범로 23 구프라자 지하 1층 <br />
+                    <b>대표:</b> 유정연 | <b>함께하는사람들 :</b> 배진경 이현정 천혜미 황순근<br />
+                    Copyright 2021 . All rights reserved.<br /><br />
+                </li>
+                <li></li>
+            </ul> -->
+
+        </footer>
     </div> <!-- id="wrapper" -->
-=======
->>>>>>> 170baa291e8511c0350858cb9578227bcf00169e
 
 </body>
 
