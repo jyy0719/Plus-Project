@@ -20,6 +20,8 @@
             alert('good')
         } else {
             alert('tryagain')
+      	  $('#email').focus();
+
         }        
     };
 
@@ -103,7 +105,10 @@
         emailcode()
         
  
-			   
+       // submitCheck()
+
+
+
     });
        
     var code = "";
@@ -138,15 +143,28 @@
                 
                 if(inputCode == code){                            // 일치할 경우
                     alert("코드가 일치합니다")
-                	return true;
+                    isCertification = true;
                 } else {                                            // 일치하지 않을 경우
                     alert("코드가 일치하지 않습니다 ")
-                    return false;
+              	  $('#mail_check_input').focus();
+
+                    isCertification = false;
                 }    
 
             })
     }
    
+/*    function submitCheck(){
+	   if (isCertification==false){
+		   alert("메일 인증이 완료되지 않았습니다.");
+			return false;
+		}else
+			true;
+	   } */
+  
+   
+   
+ 
    //코드 불일치하면 가입 안되게 하고싶은데...
 /*    function emailCodeCheck(){
 	   if($("#mail_check_input").is(":true")){
@@ -155,7 +173,7 @@
 		   return false;
    } */
    
-    function changeAttr() {
+   /*  function changeAttr() {
 	   alert("양식 제출")
 		if (emailcode()==true){
 			   alert("버튼타입 submit으로 변경")
@@ -167,7 +185,7 @@
 			   alert("false")
 	
 		}
-	} 
+	}  */
   
    
 
@@ -227,10 +245,10 @@
 <body>
 <!-- header -->
     <div id="header">
-        <img src="${path}/resources/img/images/logo.png" id="logo">
+       <%--  <img src="${path}/resources/img/images/logo.png" id="logo"> --%>
     </div>
-
-  <form action="memberJoin.do" method="POST" enctype="multipart/form-data">
+<!--onsubmit="return submitCheck();"  -->
+  <form action="memberJoin.do" method="POST" enctype="multipart/form-data" >
 
     <!-- wrapper -->
     <div id="wrapper">
@@ -244,7 +262,7 @@
             <div>
                 <h3 class="join_title"><label for="phoneNo">휴대전화</label></h3>
                 <span class="box int_mobile">
-                    <input type="tel" name="memberPhone" id="mobile" class="int1" maxlength="16" placeholder=" 하이픈 없이 입력해주세요" ${user.memberPhone } required>
+                    <input type="tel" name="memberPhone" id="mobile" class="int1" maxlength="16" placeholder=" 하이픈 없이 입력해주세요" value="${user.memberPhone }" required>
                     <input type="button" onclick="isMobile()" class="check" value="중복검사하기">
                 </span>
                 <span class="error_next_box"></span>
@@ -415,7 +433,7 @@ NAVER 내의 개별 서비스 이용, 이벤트 응모 및 경품 신청 과정�
 
             <!-- JOIN BTN-->
             <div class="btn_area">
-                <button type="button" id="btnJoin" onclick="changeAttr()">
+                <button type="submit" id="btnJoin"><!--bitcamp@gmail.com2  -->
                     <span>가입하기</span>
                 </button>
                 

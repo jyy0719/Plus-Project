@@ -31,7 +31,7 @@
 
 	<select id="getClub" resultMap="clubResult">
 		SELECT * FROM CLUB WHERE
-		club_num = 11
+		club_num = 17
 	</select>
 	
 	<select id="getClubHashtag" resultType="string">
@@ -53,7 +53,7 @@
 	</select>
 	
 	<select id="getMyClubInfo" resultMap="clubResult">
-		SELECT * FROM CLUB WHERE club_leader = '블루베리' AND club_num = 35
+		SELECT * FROM CLUB WHERE club_leader = '블루베리' AND club_num = 17
 	</select>
 
 	<insert id="insertClub">
