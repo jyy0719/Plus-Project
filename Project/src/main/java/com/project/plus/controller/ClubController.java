@@ -63,6 +63,7 @@ public class ClubController {
 			throws Exception {
 		System.out.println(vo.getClubShutDate());
 		String uploadPath = request.getSession().getServletContext().getRealPath("/resources/uploadImg");
+		log.info(uploadPath);
 		vo = FileUtils.uploadFile(vo, uploadPath, file);
 		clubService.updateClub(vo);
 		log.info("모임 번호 : " + vo.getClubNum() + " 수정 완료 ");
