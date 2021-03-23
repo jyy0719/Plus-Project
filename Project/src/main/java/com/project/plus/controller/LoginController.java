@@ -27,6 +27,21 @@ public class LoginController {
     @Autowired
 	private MemberService memberService;
 
+    
+	@RequestMapping(value="login.do", method=RequestMethod.GET) 
+	public String loginpage(MemberVO vo, HttpSession session, HttpServletResponse response) throws Exception {
+	
+		return "login";
+
+	}
+	
+<<<<<<< HEAD
+    @GetMapping("/loginPage.do")
+	public void login() {
+		log.info("/로그인 화면 접속");
+	}
+=======
+>>>>>>> a81e2f39fa7755a39c42fca95b40ef207c94d9ab
 	
 	@RequestMapping(value="login.do", method=RequestMethod.POST) 
 	public String login(MemberVO vo, HttpSession session, HttpServletResponse response) throws Exception {
@@ -40,7 +55,7 @@ public class LoginController {
 			System.out.println(user.getMemberNum());
 			System.out.println(user.getMemberNum());
 			System.out.println(user);
-			return "redirect:header.jsp";
+			return "login";
 			
 		} catch(Exception e) {
 			e.printStackTrace();

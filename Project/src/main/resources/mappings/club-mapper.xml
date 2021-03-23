@@ -26,10 +26,12 @@
 		<result property="clubCurnum" column="club_curnum" />
 		<result property="clubHashtag" column="club_hashtag" />
 	</resultMap>
+	
+
 
 	<select id="getClub" resultMap="clubResult">
 		SELECT * FROM CLUB WHERE
-		club_num = 11
+		club_num = 17
 	</select>
 	
 	<select id="getClubHashtag" resultType="string">
@@ -51,7 +53,11 @@
 	</select>
 	
 	<select id="getMyClubInfo" resultMap="clubResult">
+<<<<<<< HEAD
 		SELECT * FROM CLUB WHERE club_leader = '의지박약'  AND club_num = 6
+=======
+		SELECT * FROM CLUB WHERE club_leader = '블루베리' AND club_num = 17
+>>>>>>> 8ae3d18c91f5de7c0125fb3250d1ac96316173f7
 	</select>
 
 	<insert id="insertClub">
@@ -76,4 +82,14 @@
 	<delete id="deleteClub">
 		DELETE FROM CLUB WHERE CLUB_NUM = 1
 	</delete>
+	
+	<!-- 방장 x , 참여중인 모임 목록 가져오기 -->
+<!-- <select id="getAttendClubList" resultMap="club">
+		SELECT * FROM CLUB WHERE club_leader != #{clubLeader} AND club_num IN (SELECT club_num FROM APPLY WHERE member_num = #{memberNum})
+	</select> -->
+	
+		<!-- 방장 o, 개설한 모임 가져오기 -->
+<!-- <select id="getOpenClubList" resultMap="club">
+		SELECT * FROM CLUB WHERE club_leader = #{clubLeader}
+	</select> -->
 </mapper>

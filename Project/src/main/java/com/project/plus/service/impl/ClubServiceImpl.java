@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.project.plus.domain.ApplyVO;
 import com.project.plus.domain.ClubVO;
 import com.project.plus.mapper.ClubMapper;
 import com.project.plus.service.ClubService;
@@ -34,4 +35,5 @@ public class ClubServiceImpl implements ClubService {
 	public void deleteClub() {
 		mapper.deleteClub();
 	}
+	
 }

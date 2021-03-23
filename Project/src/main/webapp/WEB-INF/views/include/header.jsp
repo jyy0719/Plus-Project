@@ -7,21 +7,38 @@
 <html>
 <head>
 <meta charset="UTF-8">
- <title>Header</title>
+ <title>LoginHeader</title>
     <!-- css코드삽입 -->
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> a81e2f39fa7755a39c42fca95b40ef207c94d9ab
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css">
     <link rel="stylesheet" type="text/css" href="${path}/resources/css/header.css">
     <style>
 
     </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+
+
     <script type="text/javascript" src="${path}/resources/js/jquery-1.12.4.min.js"></script>
+<<<<<<< HEAD
+=======
+    <link rel="stylesheet" type="text/css" href="${path}/resources/css/header.css">
+        <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+>>>>>>> 170baa291e8511c0350858cb9578227bcf00169e
+=======
+>>>>>>> a81e2f39fa7755a39c42fca95b40ef207c94d9ab
     <script>
         $(document).ready(function () {
 
             $('.hovereffect').on("click", function () {
 
-                if ($("ul.menu li.hovereffect").hasClass("li-selected")) {
-                    $("ul.menu li.hovereffect").removeClass("li-selected");
+                if ($("ul.menu-left li.hovereffect").hasClass("li-selected")) {
+                    $("ul.menu-left li.hovereffect").removeClass("li-selected");
                 }
 
                 $(this).addClass("li-selected");
@@ -29,82 +46,147 @@
             });
 
         });
+
+
+        //로그인 정보 받아오는 함수 같긴 한데 .. 
+<<<<<<< HEAD
+<<<<<<< HEAD
+        Kakao.init("9ce759cfc8b480d36084d93d5b5d195f")
+=======
+ /*        Kakao.init("9ce759cfc8b480d36084d93d5b5d195f")
+>>>>>>> 170baa291e8511c0350858cb9578227bcf00169e
+=======
+        Kakao.init("9ce759cfc8b480d36084d93d5b5d195f")
+>>>>>>> a81e2f39fa7755a39c42fca95b40ef207c94d9ab
+
+        Kakao.Auth.login({
+            url:'v2/user/me',
+            success: function(res){
+                console.log(res);
+                
+                var nickname = res.properties.nickname;
+                var email = res.kakao_acount.email;
+                var html = '<BR>' + nickname + '<BR>' + email;
+
+            $('body').append(html);
+
+                 
+            }
+
+        })
+
+
+        //카카오 로그아웃시키는 함수 ... ? 
+        function kakaoLogout() {
+    if (!Kakao.Auth.getAccessToken()) {
+      alert('Not logged in.')
+      return
+    }
+    Kakao.Auth.logout(function() {
+      alert('logout ok\naccess token -> ' + Kakao.Auth.getAccessToken())
+    })
+<<<<<<< HEAD
+<<<<<<< HEAD
+  }
+=======
+  } */
+>>>>>>> 170baa291e8511c0350858cb9578227bcf00169e
+=======
+  }
+>>>>>>> a81e2f39fa7755a39c42fca95b40ef207c94d9ab
+
+
+
+
     </script>
 </head>
 
 <body>
     <!-- 사실상 헤더가 없어요  -->
+<<<<<<< HEAD
+<<<<<<< HEAD
+    <header></header>
     <!-- 본문 너비 정하는 용으로 wrapper 아이디 설정 -->
-<!--     <div id="wrapper">
- -->        <!-- navi bar가 사실상 저희 헤더입니다 -->
-        <!-- id="selected" 나중에 자바스크립트로 수정할 부분 -->
+    <div id="wrapper">
+=======
+    <!-- 본문 너비 정하는 용으로 wrapper 아이디 설정 -->
+>>>>>>> 170baa291e8511c0350858cb9578227bcf00169e
+=======
+    <header></header>
+    <!-- 본문 너비 정하는 용으로 wrapper 아이디 설정 -->
+    <div id="wrapper">
+>>>>>>> a81e2f39fa7755a39c42fca95b40ef207c94d9ab
+        <!-- navi bar가 사실상 저희 헤더입니다 -->
         <nav>
-            <ul class="menu">
-                <li id="logo_a"><a href="#"><img id="logo_img" src="${path}/resources/img/images/logo.png"></a></li>
-                <li class="hovereffect"><a href="#">HOME</a></li>
-                <li class="hovereffect"><a href="#">가치더하기</a></li>
-                <li class="hovereffect"><a href="#">도움더하기</a></li>
-                <li class="hovereffect" id="login"><a href="login.jsp">로그인</a></li>
-            </ul>
-        </nav>
-
-
-
-
-
-        <!-- 본문영역시작 -->
+            <ul class="menu-left">
+                <li id="logo_a"><a href="index.jsp"><img id="logo_img" src="${path}/resources/img/images/logo.png"></a></li>
 <<<<<<< HEAD
-        <!-- <section>
-=======
-<!--         <section>
->>>>>>> 628b3d32efa791469cd6c30bec1c111ab579807d
-            <br /><br /><br />
-            <div style="width: auto; height: 300px; background-color:lightgray; 
-                font-size:80px; color:blue; text-align: center;">
-                <br />picture
-
-            </div>
-            본문영역입니다<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-
-        </section> -->
-
-
-
 <<<<<<< HEAD
-
-
-        <!-- 푸터 시작 -->
-        <!--  
-        <footer>
-        -->
+                <li class="hovereffect nav-left"><a href="#">HOME</a></li>
 =======
->>>>>>> 628b3d32efa791469cd6c30bec1c111ab579807d
-           <!--  <ul>
-                <li><a href="#">개인정보처리방침</a></li>
-                <li><a href="#">이용약관</a></li>
-                <li><a href="#">문의사항</a></li>
-
-            </ul>
-            <ul>
-                <li id="footerAddress">
-                    <br />
-                    <b>더하기+</b> | 서울특별시 마포구 백범로 23 구프라자 지하 1층 <br />
-                    <b>대표:</b> 유정연 | <b>함께하는사람들 :</b> 배진경 이현정 천혜미 황순근<br />
-                    Copyright 2021 . All rights reserved.<br /><br />
+                <li class="hovereffect nav-left li-selected"><a href="#">HOME</a></li>
+>>>>>>> 170baa291e8511c0350858cb9578227bcf00169e
+=======
+                <li class="hovereffect nav-left"><a href="#">HOME</a></li>
+>>>>>>> a81e2f39fa7755a39c42fca95b40ef207c94d9ab
+                <li class="hovereffect nav-left"><a href="#">가치더하기</a></li>
+               	<li class="hovereffect nav-left"><a href="#">도움더하기</a></li>
+ 
+ 
+ <!-- 로그인정보 없을 때는 로그인버튼 보이게 , 로그인 후에는 채팅, 알람, 드롭다운 버튼 보이게 했습니다   -->
+           <c:choose>
+            <c:when test = "${user.memberEmail != null }"> <!-- 로그인 정보가 있으면 -->
+             	<li class="nav-right btncolor">
+                    <div class="dropdown">
+                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" id="btncolor"><b>${user.memberNickname }</b>님, 환영합니다
+                        <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                        <form>
+                        <li class="dropli"><a href="memberUpdate.jsp">My Profile</a></li>
+                        </form>
+                      <form action="logout.do" method="get">
+                      <!--  onclick="kakaoLogout()" -->
+                        <li class="dropli api-btn"><a href="logout.jsp">LogOut</a></li>
+                      </form>
+                        </ul>
+                    </div>
                 </li>
-                <li></li>
-            </ul> -->
- <!--    </div>  --><!-- id="wrapper" -->
-
+                <li class="nav-right icon"><a href="#"><img src="${path}/resources/img/images/chat.png" id="icon"></a></li>
+                <li class="nav-right icon"><a href="#"><img src="${path}/resources/img/images/bell1.png" id="icon"></a></li>
+             </c:when>
+             <c:otherwise><!-- 로그인 정보가 없으면  -->
 <<<<<<< HEAD
-        <!--  
-        </footer>
-        -->
-    </div> <!-- id="wrapper" -->
+<<<<<<< HEAD
+                <li class="nav-right nav-left hovereffect" id="login"><a href="login.jsp">로그인</a></li>
 =======
->>>>>>> 628b3d32efa791469cd6c30bec1c111ab579807d
+                <li class="nav-right nav-left hovereffect" id="login"><a href="loginPage.do">로그인</a></li>
+>>>>>>> 170baa291e8511c0350858cb9578227bcf00169e
+=======
+                <li class="nav-right nav-left hovereffect" id="login"><a href="login.do">로그인</a></li>
+>>>>>>> a81e2f39fa7755a39c42fca95b40ef207c94d9ab
+             
+             </c:otherwise>
+          </c:choose>
+            </ul>          
+        </nav>
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> a81e2f39fa7755a39c42fca95b40ef207c94d9ab
+
+
+
+
+
+
+      
+    </div> <!-- id="wrapper" -->
+<<<<<<< HEAD
+=======
+>>>>>>> 170baa291e8511c0350858cb9578227bcf00169e
+=======
+>>>>>>> a81e2f39fa7755a39c42fca95b40ef207c94d9ab
 
 </body>
-
 
 </html>

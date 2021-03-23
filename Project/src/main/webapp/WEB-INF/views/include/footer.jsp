@@ -33,9 +33,14 @@
 </head>
 
 <body>
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> a81e2f39fa7755a39c42fca95b40ef207c94d9ab
     <!-- 사실상 헤더가 없어요  -->
+
     <!-- 본문 너비 정하는 용으로 wrapper 아이디 설정 -->
-   <!--  <div id="wrapper"> -->
+    <div id="wrapper">
         <!-- navi bar가 사실상 저희 헤더입니다 -->
         <!-- id="selected" 나중에 자바스크립트로 수정할 부분 -->
       <!--   <nav>
@@ -53,18 +58,26 @@
 
 
         <!-- 본문영역시작 -->
- <!--        <section>
+<!--         <section>
            
         </section>
  -->
 
 
+
+
         <!-- 푸터 시작 -->
+<<<<<<< HEAD
+=======
+   
+>>>>>>> 170baa291e8511c0350858cb9578227bcf00169e
+=======
+>>>>>>> a81e2f39fa7755a39c42fca95b40ef207c94d9ab
         <footer>
             <ul>
                 <li><a href="#">개인정보처리방침</a></li>
                 <li><a href="#">이용약관</a></li>
-                <li><a href="#">문의사항</a></li>
+                <li><a href="#">고객지원</a></li>
 
             </ul>
             <ul>
@@ -72,14 +85,22 @@
                     <br />
                     <b>더하기+</b> | 서울특별시 마포구 백범로 23 구프라자 지하 1층 <br />
                     <b>대표:</b> 유정연 | <b>함께하는사람들 :</b> 배진경 이현정 천혜미 황순근<br />
-                    Copyright 2021 . All rights reserved.<br /><br />
+                   <b>문의:</b> plusprojectofficial@gmail.com<br /><br />
+                     Copyright 2021 . All rights reserved.<br /><br />
                 </li>
                 <li></li>
             </ul>
 
         </footer>
- <!--    </div> --> <!-- id="wrapper" -->
+<<<<<<< HEAD
+<<<<<<< HEAD
+    </div> <!-- id="wrapper" -->
+=======
 
+>>>>>>> 170baa291e8511c0350858cb9578227bcf00169e
+=======
+    </div> <!-- id="wrapper" -->
+>>>>>>> a81e2f39fa7755a39c42fca95b40ef207c94d9ab
 
 </body>
 

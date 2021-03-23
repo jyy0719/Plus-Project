@@ -23,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.project.plus.domain.ApplyVO;
 import com.project.plus.domain.ClubVO;
 import com.project.plus.domain.ReviewVO;
 import com.project.plus.service.ClubService;
@@ -155,5 +156,5 @@ public class ClubController {
 		log.info("모임 번호 : " + vo.getClubNum() + " 삭제 완료 ");
 		return "index";
 	}
-
+	
 }

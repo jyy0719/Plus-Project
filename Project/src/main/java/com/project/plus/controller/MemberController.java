@@ -44,9 +44,16 @@ public class MemberController {
 		
 		
 		memberService.joinMember(vo);
-		return "redirect:/index.jsp";
+		return "index";
 			
 	}
+	
+	@RequestMapping(value="memberJoin.do", method=RequestMethod.GET)
+	public String memberUpdatepage(MemberVO vo, HttpSession session, Model model) throws Exception {
+	return "memberJoin";
+	}
+	
+	
 	
 
 	@RequestMapping(value="memberUpdate.do", method=RequestMethod.POST)
