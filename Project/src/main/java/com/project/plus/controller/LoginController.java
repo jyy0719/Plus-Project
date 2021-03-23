@@ -31,7 +31,6 @@ public class LoginController {
     @Autowired
 	private MemberService memberService;
 
-<<<<<<< HEAD
     
 	@RequestMapping(value="login.do", method=RequestMethod.GET) 
 	public String loginpage(MemberVO vo, HttpSession session, HttpServletResponse response) throws Exception {
@@ -40,12 +39,10 @@ public class LoginController {
 
 	}
 	
-=======
     @GetMapping("/loginPage.do")
 	public void login() {
 		log.info("/로그인 화면 접속");
 	}
->>>>>>> 170baa291e8511c0350858cb9578227bcf00169e
 	
 	@RequestMapping(value="login.do", method=RequestMethod.POST) 
 	public String login(MemberVO vo, HttpSession session, HttpServletResponse response) throws Exception {
