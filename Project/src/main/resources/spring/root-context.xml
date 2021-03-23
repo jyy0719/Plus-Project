@@ -73,6 +73,8 @@
 </bean>
 
 
+
+
 	<!-- <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"> <property 
 		name="basePackage" value="com.project.plus.mapper" /> </bean> -->
 </beans>

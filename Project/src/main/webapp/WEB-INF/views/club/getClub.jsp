@@ -8,14 +8,8 @@
 <head>
 <meta charset="UTF-8">
    <title>모임상세보기</title>
-    <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
    	<link rel='stylesheet' type='text/css' href='${path}/resources/css/getClub.css'> 
-    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script> 
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-   	<style>
-
-   	</style>
 </head>
 <wrap class="clearfix">
     <section>

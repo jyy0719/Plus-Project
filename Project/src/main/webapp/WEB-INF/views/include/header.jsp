@@ -7,159 +7,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
- <title>Header</title>
+ <title>LoginHeader</title>
     <!-- css코드삽입 -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css">
     <link rel="stylesheet" type="text/css" href="${path}/resources/css/header.css">
-    <style>
-  /* 전체 */
-  * {
-    margin: 0;
-    padding: 0;
-    color: #333;
-    font-family: 'NanumSquare', sans-serif !important;
-}
-/* 본문영역 너비 조정 */
-
-/* #wrapper {
-    width: 1200px;
-    height: auto;
-    margin: 0 auto;
-
-} */
-
-nav {
-    height: 64px;
-    border-bottom: thistle 1px solid; 
-}
-
-nav li {
-    display: inline-block;
-    font-weight: 800;
-    font-size: 20px;
-    position: relative;
-    top: 24px;
-    padding: 5px 20px;
-    /* color: #333333; */
-   /*  float: left; */
-    margin-right: 10px;
-}
-
-nav li.nav-left:hover {
-    background-color: #1e00ff;
-    padding: 5px 20px;
-    border-radius: 30px;
-    color: white;
-
-}
-
-nav li a {
-    text-decoration: none;
-}
-
-nav li.nav-left a:hover {
-    color: white;
-    text-decoration: none;
-}
-
-nav li.nav-left a:focus {
-    color: white;
-    text-decoration: none;
-
-}
-
-/* 메뉴 선택된거 파란색 버튼으로 남아있게 설정 (제이쿼리 관련) */
-ul.menu-left li.li-selected {
-    background-color: #1e00ff;
-    padding: 5px 20px;
-    border-radius: 30px;
-    color: white !important;
-
-}
-
-
-a, a:visited, a:hover, a:active {
-    color: inherit;
-}
-
-/* 로고 관련 */
-
-#logo_img {
-    position: relative;
-    top: -7px;
-    width: auto;
-    height: 50px;
-
-}
-
-#logo_a:hover {
-    background-color: white;
-}
-
-#logo_img:hover {
-    background-color: white;
-}
-
-
-nav li #selected {
-    background-color: #1e00ff;
-    padding: 5px 10px;
-    border-radius: 30px;
-    color: white;
-}
-
-.nav-right{
-    float: right;
-}
-
-.icon{
-    padding-right: 0;
-    padding-left: 10px;
-}
-.icon:hover{
-    padding-top: 2px;
-}
-#icon{
-    width: 25px;
-    height: 25px;
-}
-
-/* 
-.hello-user{
-    padding-top: 0;
-}
-.hello-user:hover{
-    text-decoration: underline;
-    padding-top: 0;
-} */
-
-#btncolor{
-    background-color: white;
-    color: #333;
-    border: none;
-    padding-top: 0;
-    font-size: 18px;
-   
-}
-
-.btncolor{
-    padding-left: 0;
-}
-
-.dropli{
-    font-size: small;
-    position: relative;
-    top: -1px;
-}
-    </style>
-    <script type="text/javascript" src="${path}/resources/js/jquery-1.12.4.min.js"></script>
+        <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
     <script>
         $(document).ready(function () {
 
             $('.hovereffect').on("click", function () {
 
-                if ($("ul.menu li.hovereffect").hasClass("li-selected")) {
-                    $("ul.menu li.hovereffect").removeClass("li-selected");
+                if ($("ul.menu-left li.hovereffect").hasClass("li-selected")) {
+                    $("ul.menu-left li.hovereffect").removeClass("li-selected");
                 }
 
                 $(this).addClass("li-selected");
@@ -167,21 +25,86 @@ nav li #selected {
             });
 
         });
+
+
+        //로그인 정보 받아오는 함수 같긴 한데 .. 
+ /*        Kakao.init("9ce759cfc8b480d36084d93d5b5d195f")
+
+        Kakao.Auth.login({
+            url:'v2/user/me',
+            success: function(res){
+                console.log(res);
+                
+                var nickname = res.properties.nickname;
+                var email = res.kakao_acount.email;
+                var html = '<BR>' + nickname + '<BR>' + email;
+
+            $('body').append(html);
+
+                 
+            }
+
+        })
+
+
+        //카카오 로그아웃시키는 함수 ... ? 
+        function kakaoLogout() {
+    if (!Kakao.Auth.getAccessToken()) {
+      alert('Not logged in.')
+      return
+    }
+    Kakao.Auth.logout(function() {
+      alert('logout ok\naccess token -> ' + Kakao.Auth.getAccessToken())
+    })
+  } */
+
+
+
+
     </script>
 </head>
 
 <body>
+    <!-- 사실상 헤더가 없어요  -->
+    <!-- 본문 너비 정하는 용으로 wrapper 아이디 설정 -->
+        <!-- navi bar가 사실상 저희 헤더입니다 -->
         <nav>
-            <ul class="menu">
-                <li id="logo_a"><a href="#"><img id="logo_img" src="${path}/resources/img/images/logo.png"></a></li>
-                <li class="hovereffect"><a href="#">HOME</a></li>
-                <li class="hovereffect"><a href="#">가치더하기</a></li>
-                <li class="hovereffect"><a href="#">도움더하기</a></li>
-                <li class="hovereffect" id="login"><a href="login.jsp">로그인</a></li>
-            </ul>
+            <ul class="menu-left">
+                <li id="logo_a"><a href="index.jsp"><img id="logo_img" src="${path}/resources/img/images/logo.png"></a></li>
+                <li class="hovereffect nav-left li-selected"><a href="#">HOME</a></li>
+                <li class="hovereffect nav-left"><a href="#">가치더하기</a></li>
+               	<li class="hovereffect nav-left"><a href="#">도움더하기</a></li>
+ 
+ 
+ <!-- 로그인정보 없을 때는 로그인버튼 보이게 , 로그인 후에는 채팅, 알람, 드롭다운 버튼 보이게 했습니다   -->
+           <c:choose>
+            <c:when test = "${user.memberEmail != null }"> <!-- 로그인 정보가 있으면 -->
+             	<li class="nav-right btncolor">
+                    <div class="dropdown">
+                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" id="btncolor"><b>${user.memberNickname }</b>님, 환영합니다
+                        <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                        <form>
+                        <li class="dropli"><a href="memberUpdate.jsp">My Profile</a></li>
+                        </form>
+                      <form action="logout.do" method="get">
+                      <!--  onclick="kakaoLogout()" -->
+                        <li class="dropli api-btn"><a href="logout.jsp">LogOut</a></li>
+                      </form>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-right icon"><a href="#"><img src="${path}/resources/img/images/chat.png" id="icon"></a></li>
+                <li class="nav-right icon"><a href="#"><img src="${path}/resources/img/images/bell1.png" id="icon"></a></li>
+             </c:when>
+             <c:otherwise><!-- 로그인 정보가 없으면  -->
+                <li class="nav-right nav-left hovereffect" id="login"><a href="loginPage.do">로그인</a></li>
+             
+             </c:otherwise>
+          </c:choose>
+            </ul>          
         </nav>
 
 </body>
-
 
 </html>
