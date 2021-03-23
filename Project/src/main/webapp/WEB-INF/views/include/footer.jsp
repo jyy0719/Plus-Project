@@ -1,20 +1,20 @@
- <%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
      <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:set var="path" value="${pageContext.request.contextPath}"/> 
-<%--     
+<c:set var="path" value="${pageContext.request.contextPath}"/>
+    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-  <title>Header and Footer</title> --%>
+  <title>Header and Footer</title>
     <!-- css코드삽입 -->
     <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css">
     <link rel="stylesheet" type="text/css" href="${path}/resources/css/footer.css">
     <style>
 
     </style>
-   <%--  <script type="text/javascript" src="${path}/resources/js/jquery-1.12.4.min.js"></script> --%>
+    <script type="text/javascript" src="${path}/resources/js/jquery-1.12.4.min.js"></script>
     <script>
         $(document).ready(function () {
 
@@ -34,6 +34,9 @@
 
 <body>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> a81e2f39fa7755a39c42fca95b40ef207c94d9ab
     <!-- 사실상 헤더가 없어요  -->
 
     <!-- 본문 너비 정하는 용으로 wrapper 아이디 설정 -->
@@ -64,9 +67,12 @@
 
 
         <!-- 푸터 시작 -->
+<<<<<<< HEAD
 =======
    
 >>>>>>> 170baa291e8511c0350858cb9578227bcf00169e
+=======
+>>>>>>> a81e2f39fa7755a39c42fca95b40ef207c94d9ab
         <footer>
             <ul>
                 <li><a href="#">개인정보처리방침</a></li>
@@ -87,10 +93,14 @@
 
         </footer>
 <<<<<<< HEAD
+<<<<<<< HEAD
     </div> <!-- id="wrapper" -->
 =======
 
 >>>>>>> 170baa291e8511c0350858cb9578227bcf00169e
+=======
+    </div> <!-- id="wrapper" -->
+>>>>>>> a81e2f39fa7755a39c42fca95b40ef207c94d9ab
 
 </body>
 
