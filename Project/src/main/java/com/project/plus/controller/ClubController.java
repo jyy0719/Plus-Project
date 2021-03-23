@@ -23,18 +23,20 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.project.plus.domain.ApplyVO;
 import com.project.plus.domain.ClubVO;
 import com.project.plus.domain.ReviewVO;
 import com.project.plus.service.ClubService;
 import com.project.plus.service.ReviewService;
 import com.project.plus.utils.FileUtils;
 
+import lombok.extern.log4j.Log4j;
+
+
+@Log4j
 @Controller
 public class ClubController {
 	
-	private static final Logger logger = LoggerFactory.getLogger(ClubController.class);
-
-
 	@Autowired
 	private ClubService clubService;
 
@@ -50,7 +52,7 @@ public class ClubController {
 		String uploadPath = request.getSession().getServletContext().getRealPath("/resources/uploadImg");
 		vo = FileUtils.uploadFile(vo, uploadPath, file);
 		clubService.insertClub(vo); // DB에 저장
-		logger.info("모임 번호 : " + vo.getClubNum() + " 등록 완료 ");
+		log.info("모임 번호 : " + vo.getClubNum() + " 등록 완료 ");
 		return "index";
 
 	}
@@ -63,7 +65,7 @@ public class ClubController {
 		String uploadPath = request.getSession().getServletContext().getRealPath("/resources/uploadImg");
 		vo = FileUtils.uploadFile(vo, uploadPath, file);
 		clubService.updateClub(vo);
-		logger.info("모임 번호 : " + vo.getClubNum() + " 수정 완료 ");
+		log.info("모임 번호 : " + vo.getClubNum() + " 수정 완료 ");
 		return "index";
 	}
 
@@ -84,7 +86,7 @@ public class ClubController {
 		review.setClubNum(11);
 		model.addAttribute("reviews", reviewService.getReviews(review));
 		model.addAttribute("reviewCount", reviewService.getReviewCount());
-		logger.info("리뷰 5개 가져오기");
+		log.info("리뷰 5개 가져오기");
 	}
 
 	
@@ -117,7 +119,7 @@ public class ClubController {
 
 		getReviews(model);
 		model.addAttribute("club", clubService.getClub(vo));
-		logger.info("모임 번호 : " + vo.getClubNum() + " 상세 정보 ");
+		log.info("모임 번호 : " + vo.getClubNum() + " 상세 정보 ");
 		return "getClub.page";
 	}
 
@@ -143,15 +145,15 @@ public class ClubController {
 		}
 
 		model.addAttribute("club", vo);
-		logger.info("모임 수정 폼 : " + vo.getClubNum());
+		log.info("모임 수정 폼 : " + vo.getClubNum());
 		return "myClubInfo.page";
 	}
 
 	@RequestMapping("/deleteClub.do")
 	public String deleteClub(ClubVO vo) {
 		clubService.deleteClub();
-		logger.info("모임 번호 : " + vo.getClubNum() + " 삭제 완료 ");
+		log.info("모임 번호 : " + vo.getClubNum() + " 삭제 완료 ");
 		return "index";
 	}
-
+	
 }

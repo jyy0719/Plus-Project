@@ -40,7 +40,6 @@
   
   
   
-
   <!-- club -->
 <!--    <definition name="club.*" template="/WEB-INF/views/club/layout.jsp">
     <put-attribute name="body" value="" />

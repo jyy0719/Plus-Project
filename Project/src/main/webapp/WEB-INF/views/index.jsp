@@ -131,44 +131,50 @@
 				</h4>
 				<a href="/totalList" id="viewtotal"> 전체 보기 > </a>
 			</div>
-			<c:forEach items="${main1}" var="club" begin="0" end="7">
-				<div class="row">
-					<div class="col-md-6 col-lg-3">
-						<div class="card border-0 transform-on-hover">
-							<a class="lightbox" href="#"> <!--  ${pageContext.request.contextPath}/../list.do?club_num=${club.club_num}"-->
-								<img src="${club.clubThumb_pic}" alt="bestplus1"
-								class="card-img">
-							</a>
+			<c:forEach items="${main}" var="club" varStatus="status"
+                           begin="0" end="7">
+                  <a class="lightbox"
+                     href='/club/info?club_num=<c:out value="${club.clubNum}" />'>
+                     <img src='<c:out value="${club.clubThumb_pic}" />' alt="">
 
-							<div class="card-content">
-								<!--딱지-->
-								<div class=spanspace>
-									<a class="badge badge-primary">${club.clubOnOff}</a> <a
-										class="badge badge-danger">${club.clubFreq}</a>
-								</div>
-								<!-- 더하기 상세정보 -->
-								<a class="text-title" href="#"><b>${club.clubName}</b></a>
-								<p class="text-muted card-text">
-								<p id=clubHashtag>${club.clubHashtag}
+                     <div class="card-body">
+                  
+                           <p class="topinfo">#${club.clubOnOff} #${club.clubFreq}
+                           </br>${club.clubHashtag}</p>
 
-									<!-- 날짜 데이터를 원하는 포맷으로 맞춰줌 -->
-									<fmt:formatDate var="startDay" value='${club.clubStartDate}'
-										pattern="yyyy-MM-dd" />
-									<fmt:formatDate var="endDay" value='${club.clubEndDate}'
-										pattern="yyyy-MM-dd" />
+                           <p class="text-title">
+                              <b>${club.clubName}</b>
+                              
+                           </p>
 
-									<span class="period"> '${club.clubStartDate} + " ~ " +
-										${club.clubEndDate} </span> </br> <span class="period">
-										${club.clubCurrum} + "/" + ${club.clubMax} +"명"" </span>
+                           <!-- 더하기 상세 정보 -->
+                           <p class="text-muted card-text">
+                           
+                           <c:set var="today" value="<%=new java.util.Date()%>" />
+                           <fmt:formatDate var="today" value="${today}" pattern="yyyyMMdd"/>
+                           <fmt:formatDate var="shutDay" value="${club.clubShutDate}" pattern="yyyyMMdd"/>
+                           <fmt:formatDate var="startDay" value='${club.clubStartDate}'
+                              pattern="yyyy-MM-dd" />
+                           <fmt:formatDate var="endDay" value='${club.clubEndDate}'
+                              pattern="yyyy-MM-dd" />
 
-								</p>
-							</div>
-						</div>
-					</div>
-			</c:forEach>
-		</div>
-		</div>
-	</section>
+
+                           <p class="period"> ${club.clubStartDate} ~
+                              ${club.clubEndDate} </p>
+                           <p class="shutdown">D-<c:out value="${shutDay-today}"/></p>
+                           
+                           <p class="person"> ${club.clubCurnum} /
+                              ${club.clubMax}명이 모였습니다. </p>
+
+                           </p>
+                     </div>
+                  </a>
+                  </c:forEach>
+               </div>
+            </div>
+         </div>
+      
+   </section>
 
 
 	<!--내 위치에서 가까운 더하기 -->

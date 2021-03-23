@@ -13,6 +13,31 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="${path}/resources/css/bootstrap-datepicker.css">
 <link rel="stylesheet" href="${path}/resources/css/clubform.css">
+<!-- <script src="https://code.jquery.com/jquery-3.2.1.js"></script> -->
+<script src="${path}/resources/js/bootstrap-datepicker.js"></script>
+<script src="${path}/resources/js/bootstrap-datepicker.ko.js"></script>
+<style>
+	/* body, html{ height: 100%;} */
+#modifyBtn{
+	width: 180px;
+	height: 50px;
+	top: 350px;
+	border: 0;
+	outline:0;
+	color:white;
+	background-color: #001eff;
+	margin-top:30px;
+}
+
+#applyBtn{
+	width: 180px;
+}
+
+#delTag{
+	color:white;
+}
+
+</style>
 </head>
 <header></header>
 <section>
@@ -165,12 +190,10 @@
 			<input name="clubCurnum" type="hidden" value="${club.clubCurnum}"/>
 			<input name="clubKind" type="hidden" value="${club.clubKind}"/>
 		<button type="button" class="btn" id="applyBtn" onclick="goSubmit()">수정하기</button>
+		<button type="button" class="btn" id="modifyBtn" onclick="">삭제하기</button>
 	</div>
 	</form>
 </aside>
-<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
-<script src="${path}/resources/js/bootstrap-datepicker.js"></script>
-<script src="${path}/resources/js/bootstrap-datepicker.ko.js"></script>
 <script>
 
 //파일 
@@ -431,6 +454,4 @@ $(function(){
 });
 
 </script>
-
-<footer></footer>
 </html>

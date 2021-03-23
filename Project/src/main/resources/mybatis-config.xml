@@ -14,6 +14,7 @@
 		<typeAlias alias="user" type="com.project.plus.domain.MemberVO"/>
 		<typeAlias alias="review" type="com.project.plus.domain.ReviewVO"/>
 		<typeAlias alias="announce" type="com.project.plus.domain.AnnounceVO"/>
+		<typeAlias alias="apply" type="com.project.plus.domain.ApplyVO"/>
 	
 </typeAliases>
 
