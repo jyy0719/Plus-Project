@@ -10,7 +10,7 @@
    <title>모임상세보기</title>
     <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-   	<link rel='stylesheet' type='text/css' href='${path}/resources/css/getClub.css?ver=1'> 
+   	<link rel='stylesheet' type='text/css' href='${path}/resources/css/getClub.css'> 
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script> 
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
    	<style>
@@ -72,7 +72,7 @@
     </div>
     </article>
     </section>
-    <section id="right_con" class="clearfix">
+    <section id="right_con">
         <aside>
             <div class="stickybox">
                 <div id="leaderId">${club.clubLeader} <span class="badge" id="onoff">${club.clubOnOff}</span> <span class="badge" id="freq">${club.clubFreq}</span> </div>
@@ -218,7 +218,6 @@ $(document).ready(function () {
 			            	console.log(data);
 			            	let reviewList = "";
 		                    for(i = 0; i < data.length; i++){
-								//let newList = '<div id="review">';
 		                        let  newList = '<div class="userReview">';
 		                            // nickname 아직 안받아와서 
 		                        newList += '<strong>블루베리</strong>';
@@ -249,6 +248,29 @@ $(document).ready(function () {
 			            	}
 						});
 					}
+			    
+			    $("#applyBtn").click(function(){
+			    	$.ajax({
+						type: "post",
+						data: {
+							clubNum:'${club.clubNum}',
+							memberNum:"3"
+						},
+						url: "/plus/apply.do",
+			            success: function (data) {
+			            	console.log(data);
+				            	if(data==1){
+				            		alert("모임 신청이 완료되었습니다!");
+				            	} else if(data==0){
+				            		alert("이미 신청한 모임입니다!");
+				            	}
+			            	},
+			            error: function() {
+			            	  alert("error");
+			            	}
+						});
+			    	
+			    })
 })
 
 </script>

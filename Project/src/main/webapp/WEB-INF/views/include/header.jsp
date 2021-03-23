@@ -12,7 +12,145 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css">
     <link rel="stylesheet" type="text/css" href="${path}/resources/css/header.css">
     <style>
+  /* 전체 */
+  * {
+    margin: 0;
+    padding: 0;
+    color: #333;
+    font-family: 'NanumSquare', sans-serif !important;
+}
+/* 본문영역 너비 조정 */
 
+/* #wrapper {
+    width: 1200px;
+    height: auto;
+    margin: 0 auto;
+
+} */
+
+nav {
+    height: 64px;
+    border-bottom: thistle 1px solid; 
+}
+
+nav li {
+    display: inline-block;
+    font-weight: 800;
+    font-size: 20px;
+    position: relative;
+    top: 24px;
+    padding: 5px 20px;
+    /* color: #333333; */
+   /*  float: left; */
+    margin-right: 10px;
+}
+
+nav li.nav-left:hover {
+    background-color: #1e00ff;
+    padding: 5px 20px;
+    border-radius: 30px;
+    color: white;
+
+}
+
+nav li a {
+    text-decoration: none;
+}
+
+nav li.nav-left a:hover {
+    color: white;
+    text-decoration: none;
+}
+
+nav li.nav-left a:focus {
+    color: white;
+    text-decoration: none;
+
+}
+
+/* 메뉴 선택된거 파란색 버튼으로 남아있게 설정 (제이쿼리 관련) */
+ul.menu-left li.li-selected {
+    background-color: #1e00ff;
+    padding: 5px 20px;
+    border-radius: 30px;
+    color: white !important;
+
+}
+
+
+a, a:visited, a:hover, a:active {
+    color: inherit;
+}
+
+/* 로고 관련 */
+
+#logo_img {
+    position: relative;
+    top: -7px;
+    width: auto;
+    height: 50px;
+
+}
+
+#logo_a:hover {
+    background-color: white;
+}
+
+#logo_img:hover {
+    background-color: white;
+}
+
+
+nav li #selected {
+    background-color: #1e00ff;
+    padding: 5px 10px;
+    border-radius: 30px;
+    color: white;
+}
+
+.nav-right{
+    float: right;
+}
+
+.icon{
+    padding-right: 0;
+    padding-left: 10px;
+}
+.icon:hover{
+    padding-top: 2px;
+}
+#icon{
+    width: 25px;
+    height: 25px;
+}
+
+/* 
+.hello-user{
+    padding-top: 0;
+}
+.hello-user:hover{
+    text-decoration: underline;
+    padding-top: 0;
+} */
+
+#btncolor{
+    background-color: white;
+    color: #333;
+    border: none;
+    padding-top: 0;
+    font-size: 18px;
+   
+}
+
+.btncolor{
+    padding-left: 0;
+}
+
+.dropli{
+    font-size: small;
+    position: relative;
+    top: -1px;
+}
     </style>
     <script type="text/javascript" src="${path}/resources/js/jquery-1.12.4.min.js"></script>
     <script>
@@ -33,11 +171,6 @@
 </head>
 
 <body>
-    <!-- 사실상 헤더가 없어요  -->
-    <!-- 본문 너비 정하는 용으로 wrapper 아이디 설정 -->
-<!--     <div id="wrapper">
- -->        <!-- navi bar가 사실상 저희 헤더입니다 -->
-        <!-- id="selected" 나중에 자바스크립트로 수정할 부분 -->
         <nav>
             <ul class="menu">
                 <li id="logo_a"><a href="#"><img id="logo_img" src="${path}/resources/img/images/logo.png"></a></li>
@@ -47,62 +180,6 @@
                 <li class="hovereffect" id="login"><a href="login.jsp">로그인</a></li>
             </ul>
         </nav>
-
-
-
-
-
-        <!-- 본문영역시작 -->
-<<<<<<< HEAD
-        <!-- <section>
-=======
-<!--         <section>
->>>>>>> 628b3d32efa791469cd6c30bec1c111ab579807d
-            <br /><br /><br />
-            <div style="width: auto; height: 300px; background-color:lightgray; 
-                font-size:80px; color:blue; text-align: center;">
-                <br />picture
-
-            </div>
-            본문영역입니다<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-
-        </section> -->
-
-
-
-<<<<<<< HEAD
-
-
-        <!-- 푸터 시작 -->
-        <!--  
-        <footer>
-        -->
-=======
->>>>>>> 628b3d32efa791469cd6c30bec1c111ab579807d
-           <!--  <ul>
-                <li><a href="#">개인정보처리방침</a></li>
-                <li><a href="#">이용약관</a></li>
-                <li><a href="#">문의사항</a></li>
-
-            </ul>
-            <ul>
-                <li id="footerAddress">
-                    <br />
-                    <b>더하기+</b> | 서울특별시 마포구 백범로 23 구프라자 지하 1층 <br />
-                    <b>대표:</b> 유정연 | <b>함께하는사람들 :</b> 배진경 이현정 천혜미 황순근<br />
-                    Copyright 2021 . All rights reserved.<br /><br />
-                </li>
-                <li></li>
-            </ul> -->
- <!--    </div>  --><!-- id="wrapper" -->
-
-<<<<<<< HEAD
-        <!--  
-        </footer>
-        -->
-    </div> <!-- id="wrapper" -->
-=======
->>>>>>> 628b3d32efa791469cd6c30bec1c111ab579807d
 
 </body>
 

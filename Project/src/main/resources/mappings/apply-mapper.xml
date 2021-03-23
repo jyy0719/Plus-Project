@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.plus.mapper.ApplyMapper">
+
+	<resultMap id="applyResult" type="apply">
+		<id property="applyNum" column="apply_num" />
+		<result property="clubNum" column="club_num" />
+		<result property="memberNum" column="member_num" />
+		<result property="applyDate" column="apply_date" />
+	</resultMap>
+
+	<!-- 신청내역 insert  -->
+	<insert id="apply">
+		INSERT INTO APPLY(club_num, member_num, apply_date) VALUES (#{clubNum}, #{memberNum}, NOW())
+	</insert>
+	
+	<!-- 신청내역 중복검사를 위해 정보 가져오기 -->
+	<select id="getOneApply" resultType="Integer">
+		SELECT count(*) FROM APPLY WHERE club_num = #{clubNum} AND member_num = #{memberNum}
+	</select>
+
+
+</mapper>
