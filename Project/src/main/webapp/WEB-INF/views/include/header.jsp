@@ -22,7 +22,7 @@
 
     <script type="text/javascript" src="${path}/resources/js/jquery-1.12.4.min.js"></script>
     <script>
-        $(documt).ready(function () {
+        $(document).ready(function () {
 
             $('.hovereffect').on("click", function () {
 
@@ -110,7 +110,7 @@
                 <li class="nav-right icon"><a href="#"><img src="${path}/resources/img/images/bell1.png" id="icon"></a></li>
              </c:when>
              <c:otherwise><!-- 로그인 정보가 없으면  -->
-                <li class="nav-right nav-left hovereffect" id="login"><a href="login.jsp">로그인</a></li>
+                <li class="nav-right nav-left hovereffect" id="login"><a href="login.do">로그인</a></li>
              
              </c:otherwise>
           </c:choose>

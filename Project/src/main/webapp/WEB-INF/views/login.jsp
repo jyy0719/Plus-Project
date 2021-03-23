@@ -25,8 +25,8 @@
         function kakaoLogin(){
             window.Kakao.Auth.login({
                 scope:'profile, account_email',
-                success: function(authObj) {
-                    console.log(authObj);
+                success: function(user) {
+                    console.log(user);
                  window.Kakao.API.request({
                     url:'/v2/user/me',
                     success: res => {
@@ -37,6 +37,19 @@
                     
                 }
             })
+        }
+        
+        function kakaoLogout(){
+            //Kakao.init();
+            //Kakao.isInitialized();
+            
+            if(!Kakao.Auth.getAccessToken()){
+                console.log('Not logged in.');
+                return;
+            }
+            Kakao.Auth.logout(function(){
+                console.log(Kakao.Auth.getAccessToken());
+            });
         }
   </script>
 
@@ -51,7 +64,7 @@
 
         <%
         String clientId = "h_yaNKHsI9qSzo9ZPDD8";//애플리케이션 클라이언트 아이디값";
-        String redirectURI = URLEncoder.encode("http://localhost:9999/plus/header.jsp", "UTF-8");
+        String redirectURI = URLEncoder.encode("http://localhost:9999/plus/memberJoin.do", "UTF-8");
         SecureRandom random = new SecureRandom();
         String state = new BigInteger(130, random).toString();
         String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code";
@@ -60,6 +73,7 @@
         apiURL += "&state=" + state;
         session.setAttribute("state", state);
         System.out.println(state);
+        System.out.println("네이버 로그인 시도");
      %>
 
         <!-- 본문영역시작 -->
@@ -69,7 +83,10 @@
                 <header>
  
                     <div class="logo-wrap">
-                        <img src="${path}/resources/img/images/logo.png">
+<%--                         <img src="${path}/resources/img/images/logo.png">
+--%>                         <a href="http://developers.kakao.com/logout" style="font-size:30px;"><b>로그인</b></a> 
+<!--                     <div class="hr-2"></div>
+ -->
                     </div>
                 </header>
            <form action="login.do" method="post">
