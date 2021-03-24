@@ -53,6 +53,18 @@
 	</nav>
  <title>LoginHeader</title>
     <!-- css코드삽입 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css">
+    <link rel="stylesheet" type="text/css" href="${path}/resources/css/header.css">
+    <style>
+
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+
+
+    <script type="text/javascript" src="${path}/resources/js/jquery-1.12.4.min.js"></script>
     <link rel="stylesheet" type="text/css" href="${path}/resources/css/header.css">
         <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
     <script>
@@ -72,7 +84,12 @@
 
 
         //로그인 정보 받아오는 함수 같긴 한데 .. 
+        Kakao.init("9ce759cfc8b480d36084d93d5b5d195f")
  /*        Kakao.init("9ce759cfc8b480d36084d93d5b5d195f")
+>>>>>>> 170baa291e8511c0350858cb9578227bcf00169e
+=======
+        Kakao.init("9ce759cfc8b480d36084d93d5b5d195f")
+>>>>>>> a81e2f39fa7755a39c42fca95b40ef207c94d9ab
 
         Kakao.Auth.login({
             url:'v2/user/me',
@@ -113,9 +130,14 @@
     Kakao.Auth.logout(function() {
       alert('logout ok\naccess token -> ' + Kakao.Auth.getAccessToken())
     })
+<<<<<<< HEAD
+<<<<<<< HEAD
+  }
+=======
   } */
 
 
+<<<<<<< HEAD
 	<!-- 푸터 시작 -->
 	<!--  
         <footer>
@@ -127,17 +149,18 @@
                 <li><a href="#">문의사항</a></li>-->
 
 
+=======
+>>>>>>> 9361fad3b5e1eae668240a56f07a4a37ae27127a
     </script>
 </head>
 
 <body>
-    <!-- 사실상 헤더가 없어요  -->
-    <!-- 본문 너비 정하는 용으로 wrapper 아이디 설정 -->
-        <!-- navi bar가 사실상 저희 헤더입니다 -->
         <nav>
             <ul class="menu-left">
                 <li id="logo_a"><a href="index.jsp"><img id="logo_img" src="${path}/resources/img/images/logo.png"></a></li>
+                <li class="hovereffect nav-left"><a href="#">HOME</a></li>
                 <li class="hovereffect nav-left li-selected"><a href="#">HOME</a></li>
+                <li class="hovereffect nav-left"><a href="#">HOME</a></li>
                 <li class="hovereffect nav-left"><a href="#">가치더하기</a></li>
                	<li class="hovereffect nav-left"><a href="#">도움더하기</a></li>
  
@@ -177,12 +200,15 @@
                 <li class="nav-right icon"><a href="#"><img src="${path}/resources/img/images/bell1.png" id="icon"></a></li>
              </c:when>
              <c:otherwise><!-- 로그인 정보가 없으면  -->
+                <li class="nav-right nav-left hovereffect" id="login"><a href="login.jsp">로그인</a></li>
                 <li class="nav-right nav-left hovereffect" id="login"><a href="loginPage.do">로그인</a></li>
+                <li class="nav-right nav-left hovereffect" id="login"><a href="login.do">로그인</a></li>
              
              </c:otherwise>
           </c:choose>
             </ul>          
         </nav>
+
 
 </body>
 

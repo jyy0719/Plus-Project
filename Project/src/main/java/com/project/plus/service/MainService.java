@@ -7,10 +7,10 @@ public interface MainService {
 	//더하기 만들기
 	public void insertClub(ClubVO vo);
 	//인기 더하기 리스트
-	public List<ClubVO> getListBest();
+	public List<ClubVO> getListBest(ClubVO vo);
 	//마감임박 더하기 리스트
-	public List<ClubVO> getListDeadline();
+	public List<ClubVO> getListDeadline(ClubVO vo);
 	//모임 검색
 	public List<ClubVO> getListSearch(String keyword);
-
+	
 }

@@ -12,6 +12,7 @@ public interface ClubService {
 	public List<String> getClubHashtag();
 	public ClubVO getMyClubInfo(ClubVO vo);
 	public int updateClub(ClubVO vo);
-	public void deleteClub();
-
+	public void deleteClub(ClubVO vo);
+	public int apply(ApplyVO apply);
+	public Integer getOneApply(ApplyVO apply);
 }

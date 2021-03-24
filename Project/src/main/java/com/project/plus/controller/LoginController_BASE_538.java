@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -18,38 +19,23 @@ import com.project.plus.domain.MemberVO;
 import com.project.plus.service.MemberService;
 import com.project.plus.service.impl.MemberServiceImpl;
 
+import lombok.extern.log4j.Log4j;
+
 
 
 @Controller
 @SessionAttributes("user")
+@Log4j
 public class LoginController {
 
     @Autowired
 	private MemberService memberService;
 
-<<<<<<< HEAD
-=======
-    
-	@RequestMapping(value="login.do", method=RequestMethod.GET) 
-	public String loginpage(MemberVO vo, HttpSession session, HttpServletResponse response) throws Exception {
-	
-		return "login";
-
+    @GetMapping("/loginPage.do")
+	public void login() {
+		log.info("/로그인 화면 접속");
 	}
->>>>>>> 9361fad3b5e1eae668240a56f07a4a37ae27127a
 	
-	  @RequestMapping(value="login.do", method=RequestMethod.GET) public String
-	  loginpage(MemberVO vo, HttpSession session, HttpServletResponse response)
-	  throws Exception {
-	  
-	  return "login";
-	  
-	  }
-	 
-
-	/*
-	 * @GetMapping("/loginPage.do") public void login() { log.info("/로그인 화면 접속"); }
-	 */
 	@RequestMapping(value="login.do", method=RequestMethod.POST) 
 	public String login(MemberVO vo, HttpSession session, HttpServletResponse response) throws Exception {
 	System.out.println("로그인 컨트롤러 접속");
@@ -62,7 +48,7 @@ public class LoginController {
 			System.out.println(user.getMemberNum());
 			System.out.println(user.getMemberNum());
 			System.out.println(user);
-			return "index";
+			return "redirect:header.jsp";
 			
 		} catch(Exception e) {
 			e.printStackTrace();

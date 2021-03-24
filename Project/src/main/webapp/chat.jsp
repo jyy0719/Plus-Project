@@ -27,6 +27,7 @@
             font-weight: 500;
             padding-top: 10px;
             text-align: center;
+            margin-bottom: 10px;
         }
 
         .message-wrap {
@@ -69,7 +70,7 @@
 
         #receive-date {
             height: 20px;
-            margin-bottom: 40px;
+            margin-bottom: 10px;
 
         }
 
@@ -95,7 +96,7 @@
         #send-date {
             /* position:absolute; */
             height: 20px;
-            /* margin-top:40px; */
+            margin-bottom:10px; 
 
         }
 
@@ -104,13 +105,14 @@
             display: flex;
             flex-direction: row;
             border-top: 1px solid #dddddd;
+            border-bottom: 1px solid #dddddd;
         }
 
 
-        textarea {
+        #message {
             width: 550px;
-            height: 45px;
-            border: none;
+            height: 37px;
+            border:none;
             resize: none;
             z-index: 0;
         }
@@ -121,64 +123,109 @@
             background-color: white;
             color: #001eff;
             border-radius: 2px;
-            height: 45px;
+            height: 37px;
         }
     </style>
     <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.js"></script>
 </head>
 
 <body>
     <div class="chat-wrap">
         <div class="header">
-            CHAT
+            CHAT ${user.memberNickname}
         </div>
-        <div class="message-wrap">
-            <div class="other-message-box">
-                <div id="othername">pearjin15</div>
+        <div class="message-wrap" style="overflow:auto" >
+        <!--     <div class="other-message-box">
+            <div id="othername">pearjin15</div>
                 <div class="others-message">
                     안녕하세요?
                 </div>
                 <span class="time-date" id="receive-date">2021/03/08 | 11:01 AM</span>
             </div>
             <div class="mymessage-box">
-                <div class="mymessage">
-                    환영합니다.dkssuddkssuddkssuddksusdusussdsdsdsdsdsdsdsdsdsdssd
+            <div class="mymessage">
+                    
                 </div>
                 <div class="time-date" id="send-date">2021/03/08 | 11:01 AM</div>
-            </div>
+            </div> -->
         </div>
-        <form>
             <div class="send-message">
-                <textarea placeholder="보낼 메세지를 입력해주세요." id="message"></textarea>
-                <input type="submit" id="sendBtn" value="보내기">
+                <input placeholder="보낼 메세지를 입력해주세요." id="message" required onkeydown="enterKey()"/>
+                <input type="button" id="sendBtn" value="보내기">
             </div>
-        </form>
     </div>
 </body>
 <script type="text/javascript">
-	$("#sendBtn").click(function() {
-		sendMessage();
-		$('#message').val('')
-	});
+let myMessage = "";
+let otherMessage = "";
+let today="";
 
 	let sock = new SockJS("http://localhost:8080/plus/chat");
 	sock.onmessage = onMessage;
 	sock.onclose = onClose;
 	
+	sock.onopen = function() {
+           console.log('info: connection opened.');
+    };
+    
+    
+    sock.onerror = function (err) {
+    	console.log('Errors : ' , err);
+    	
+    }
+    
+    
 	// 메시지 전송
 	function sendMessage() {
 		sock.send($("#message").val());
+		today = new Date();   
+		myMessage = '<div class="mymessage-box">'
+        myMessage += '<div class="mymessage">' + $("#message").val() + "</div>"
+        myMessage += '<div class="time-date" id="send-date">' + today.toLocaleDateString() +  ' | ' + today.toLocaleTimeString() + '</div></div>'
+        $('.message-wrap').append(myMessage);
+		$('#message').val('')
+		$('.message-wrap').scrollTop($('.message-wrap')[0].scrollHeight);
 	}
+	
 	// 서버로부터 메시지를 받았을 때
 	function onMessage(msg) {
-		var data = msg.data;
-		$(".other-message-box").append(data + "<br/>");
+		let words = msg.data.split(':');
+		let id = words[0];
+		words = words[1].trim();
+		console.log(words)
+		
+		today = new Date();  
+		otherMessage = '<div class="other-message-box">' 
+		otherMessage += '<div id="othername">' + id + '</div>'
+		otherMessage += '<div class="others-message">' + words + "</div>"
+		otherMessage += '<div class="time-date" id="receive-date">' + today.toLocaleDateString() +  ' | ' + today.toLocaleTimeString() + '</div></div>'
+	    $('.message-wrap').append(otherMessage);
+		$('.message-wrap').scrollTop($('.message-wrap')[0].scrollHeight);
 	}
+	
 	// 서버와 연결을 끊었을 때
 	function onClose(evt) {
 		$(".mymessage-box").append("연결 끊김");
 
 	}
+	
+
+		$("#sendBtn").click(function() {
+			sendMessage();
+		});
+		
+		
+		function enterKey(){
+			if(event.keyCode == 13) {
+				if($("#message").val() != null && $("#message").val() != '') {
+					sendMessage();
+					$("#message").val('');
+				}
+			}
+		}
+		
+
 </script>
 </html>

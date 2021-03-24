@@ -18,7 +18,7 @@
 <script src="${path}/resources/js/bootstrap-datepicker.ko.js"></script>
 <style>
 	/* body, html{ height: 100%;} */
-#modifyBtn{
+#delBtn, #modifyBtn{
 	width: 180px;
 	height: 50px;
 	top: 350px;
@@ -29,9 +29,6 @@
 	margin-top:30px;
 }
 
-#applyBtn{
-	width: 180px;
-}
 
 #delTag{
 	color:white;
@@ -189,10 +186,10 @@
 			<input name="clubMakeDate" type="hidden" value="${club.clubMakeDate}"/>
 			<input name="clubCurnum" type="hidden" value="${club.clubCurnum}"/>
 			<input name="clubKind" type="hidden" value="${club.clubKind}"/>
-		<button type="button" class="btn" id="applyBtn" onclick="goSubmit()">수정하기</button>
-		<button type="button" class="btn" id="modifyBtn" onclick="">삭제하기</button>
-	</div>
+		<button type="button" class="btn" id="modifyBtn" onclick="goSubmit()">수정하기</button>
 	</form>
+		<button type="button" class="btn" id="delBtn" onclick="location.href='deleteClub.do?clubNum=${club.clubNum}'">삭제하기</button>
+	</div>
 </aside>
 <script>
 

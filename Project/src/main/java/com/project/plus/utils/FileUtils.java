@@ -15,6 +15,11 @@ import com.project.plus.domain.ClubVO;
 
 import lombok.extern.log4j.Log4j;
 
+
+<<<<<<< HEAD
+
+=======
+>>>>>>> 8ae3d18c91f5de7c0125fb3250d1ac96316173f7
 @Log4j
 public class FileUtils {
 
@@ -58,6 +63,7 @@ public class FileUtils {
 			} else {
 				if(i==0) {
 					// 사진 수정시 main pic을 삭제했을 때 썸네일 컬럼을 null로 update
+					vo.setClubMain_pic("");
 					vo.setClubThumb_pic("");
 					}
 			}
