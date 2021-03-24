@@ -59,7 +59,11 @@
 	</select>
 	
 	<select id="getMyClubInfo" resultMap="clubResult">
+<<<<<<< HEAD
+		SELECT * FROM CLUB WHERE club_leader = '의지박약'  AND club_num = 6
+=======
 		SELECT * FROM CLUB WHERE club_leader = '블루베리' AND club_num = 17
+>>>>>>> 8ae3d18c91f5de7c0125fb3250d1ac96316173f7
 	</select>
 
 	<insert id="insertClub">
@@ -78,7 +82,7 @@
 		club_thumb_pic=#{clubThumb_pic}, club_content1=#{clubContent1},club_content1_pic=#{clubContent1_pic}, club_content2=#{clubContent2}, 
 		club_content2_pic=#{clubContent2_pic}, club_makedate=#{clubMakeDate}, club_shutdate=#{clubShutDate}, club_startdate=#{clubStartDate}, 
 		club_enddate=#{clubEndDate}, club_fee=#{clubFee}, club_hashtag=#{clubHashtag}, club_curnum=#{clubCurnum}
-		WHERE club_num = 35
+		WHERE club_num = 6
 	</update>
 	
 	<delete id="deleteClub">
