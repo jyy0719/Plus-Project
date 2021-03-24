@@ -11,7 +11,7 @@ public interface ClubMapper {
 	public List<String> getClubHashtag();
 	public ClubVO getMyClubInfo(ClubVO vo);
 	public int updateClub(ClubVO vo);
-	public void deleteClub();
-	public int apply(ApplyVO vo);
-	public ApplyVO getOneApply(ApplyVO vo);
+	public void deleteClub(ClubVO vo);
+	public int apply(ApplyVO apply);
+	public Integer getOneApply(ApplyVO apply);
 }

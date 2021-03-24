@@ -152,9 +152,27 @@ public class ClubController {
 
 	@RequestMapping("/deleteClub.do")
 	public String deleteClub(ClubVO vo) {
-		clubService.deleteClub();
+		clubService.deleteClub(vo);
 		log.info("모임 번호 : " + vo.getClubNum() + " 삭제 완료 ");
 		return "index";
 	}
 	
+	@RequestMapping("/apply.do")
+	@ResponseBody
+	public int apply(ApplyVO apply) {
+		log.info("신청할 모임 번호 : " + apply.getClubNum());
+		log.info("신청할 회원 번호 : " + apply.getMemberNum());
+		
+		// 모임에 신청하는 회원이 이미 신청을 했는지 확인
+		int result = clubService.getOneApply(apply);
+		
+		if(result==1) {
+			return 0;
+		} else {
+			// 없다면 insert 
+			clubService.apply(apply);
+			return 1;
+		}
+		
+	}	
 }

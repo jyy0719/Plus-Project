@@ -27,11 +27,17 @@
 		<result property="clubHashtag" column="club_hashtag" />
 	</resultMap>
 	
+	<resultMap id="applyResult" type="apply">
+		<id property="applyNum" column="apply_num" />
+		<result property="clubNum" column="club_num" />
+		<result property="memberNum" column="member_num" />
+		<result property="applyDate" column="apply_date" />
+	</resultMap>
 
 
 	<select id="getClub" resultMap="clubResult">
 		SELECT * FROM CLUB WHERE
-		club_num = 17
+		club_num = 11
 	</select>
 	
 	<select id="getClubHashtag" resultType="string">
@@ -76,8 +82,18 @@
 	</update>
 	
 	<delete id="deleteClub">
-		DELETE FROM CLUB WHERE CLUB_NUM = 1
+		DELETE FROM CLUB WHERE CLUB_NUM = #{clubNum}
 	</delete>
+	
+		<!-- 신청내역 insert  -->
+	<insert id="apply">
+		INSERT INTO APPLY(club_num, member_num, apply_date) VALUES (#{clubNum}, #{memberNum}, NOW())
+	</insert>
+	
+	<!-- 신청내역 중복검사를 위해 정보 가져오기 -->
+	<select id="getOneApply" resultType="Integer">
+		SELECT count(*) FROM APPLY WHERE club_num = #{clubNum} AND member_num = #{memberNum}
+	</select>
 	
 	<!-- 방장 x , 참여중인 모임 목록 가져오기 -->
 <!-- <select id="getAttendClubList" resultMap="club">

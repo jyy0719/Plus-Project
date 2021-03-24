@@ -35,14 +35,6 @@ public class LoginController {
 
 	}
 	
-<<<<<<< HEAD
-    @GetMapping("/loginPage.do")
-	public void login() {
-		log.info("/로그인 화면 접속");
-	}
-=======
->>>>>>> a81e2f39fa7755a39c42fca95b40ef207c94d9ab
-	
 	@RequestMapping(value="login.do", method=RequestMethod.POST) 
 	public String login(MemberVO vo, HttpSession session, HttpServletResponse response) throws Exception {
 	System.out.println("로그인 컨트롤러 접속");
@@ -55,7 +47,7 @@ public class LoginController {
 			System.out.println(user.getMemberNum());
 			System.out.println(user.getMemberNum());
 			System.out.println(user);
-			return "login";
+			return "index";
 			
 		} catch(Exception e) {
 			e.printStackTrace();
