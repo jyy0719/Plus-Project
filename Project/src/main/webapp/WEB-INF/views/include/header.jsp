@@ -85,7 +85,7 @@
 
             $('body').append(html);
 
-<<<<<<< HEAD
+
 	<!-- 본문영역시작 -->
 
 	<!-- <section>
@@ -96,10 +96,10 @@
             <div style="width: auto; height: 300px; background-color:lightgray; 
                 font-size:80px; color:blue; text-align: center;">
                 <br />picture
-=======
+
                  
             }
->>>>>>> 170baa291e8511c0350858cb9578227bcf00169e
+
 
         })
 
@@ -116,8 +116,6 @@
   } */
 
 
-<<<<<<< HEAD
-
 	<!-- 푸터 시작 -->
 	<!--  
         <footer>
@@ -126,13 +124,11 @@
 	<!--  <ul>
                 <li><a href="#">개인정보처리방침</a></li>
                 <li><a href="#">이용약관</a></li>
-                <li><a href="#">문의사항</a></li>
-=======
+                <li><a href="#">문의사항</a></li>-->
 
 
     </script>
 </head>
->>>>>>> 170baa291e8511c0350858cb9578227bcf00169e
 
 <body>
     <!-- 사실상 헤더가 없어요  -->
@@ -164,7 +160,6 @@
                         </ul>
                     </div>
                 </li>
-<<<<<<< HEAD
                 <li></li>
             </ul> -->
 	<!--    </div>  -->
@@ -177,7 +172,7 @@
 	</div>
 	<!-- id="wrapper" -->
 
-=======
+
                 <li class="nav-right icon"><a href="#"><img src="${path}/resources/img/images/chat.png" id="icon"></a></li>
                 <li class="nav-right icon"><a href="#"><img src="${path}/resources/img/images/bell1.png" id="icon"></a></li>
              </c:when>
@@ -188,7 +183,6 @@
           </c:choose>
             </ul>          
         </nav>
->>>>>>> 170baa291e8511c0350858cb9578227bcf00169e
 
 </body>
 

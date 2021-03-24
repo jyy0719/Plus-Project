@@ -8,5 +8,63 @@ public class InquiryVO {
 	private String inquiryType;
 	private String inquiryState;
 	private String inquiryAnswer;
-	private String inquiryRegdate;
+	private String inquiryRegDate;
+	public int getInquiryNum() {
+		return inquiryNum;
+	}
+	public void setInquiryNum(int inquiryNum) {
+		this.inquiryNum = inquiryNum;
+	}
+	public int getMemberNum() {
+		return memberNum;
+	}
+	public void setMemberNum(int memberNum) {
+		this.memberNum = memberNum;
+	}
+	public String getInquiryTitle() {
+		return inquiryTitle;
+	}
+	public void setInquiryTitle(String inquiryTitle) {
+		this.inquiryTitle = inquiryTitle;
+	}
+	public String getInquiryContent() {
+		return inquiryContent;
+	}
+	public void setInquiryContent(String inquiryContent) {
+		this.inquiryContent = inquiryContent;
+	}
+	public String getInquiryType() {
+		return inquiryType;
+	}
+	public void setInquiryType(String inquiryType) {
+		this.inquiryType = inquiryType;
+	}
+	public String getInquiryState() {
+		return inquiryState;
+	}
+	public void setInquiryState(String inquiryState) {
+		this.inquiryState = inquiryState;
+	}
+	public String getInquiryAnswer() {
+		return inquiryAnswer;
+	}
+	public void setInquiryAnswer(String inquiryAnswer) {
+		this.inquiryAnswer = inquiryAnswer;
+	}
+	public String getInquiryRegDate() {
+		return inquiryRegDate;
+	}
+	public void setInquiryRegDate(String inquiryRegDate) {
+		this.inquiryRegDate = inquiryRegDate;
+	}
+	@Override
+	public String toString() {
+		return "InquiryVO [inquiryNum=" + inquiryNum + ", memberNum=" + memberNum + ", inquiryTitle=" + inquiryTitle
+				+ ", inquiryContent=" + inquiryContent + ", inquiryType=" + inquiryType + ", inquiryState="
+				+ inquiryState + ", inquiryAnswer=" + inquiryAnswer + ", inquiryRegDate=" + inquiryRegDate + "]";
+	}
+	
+	
+	
+	
 }

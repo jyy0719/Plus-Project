@@ -15,37 +15,37 @@ import com.project.plus.service.AnnounceService;
 public class AnnounceController {
 	
 	@Autowired
-	private AnnounceService announceService;
+	private AnnounceService as;
 	
 	@RequestMapping("/insertAnnounce.do")
 	public String insertAnnounce(AnnounceVO vo) throws Exception {
-		announceService.insertAnnounce(vo);	
+		as.insertAnnounce(vo);	
 		return "getAnnounceList.do";
 	}
 	
 	@RequestMapping("/updateAnnounce.do")
 	public String updateAnnounce(@ModelAttribute("announce") AnnounceVO vo) {
 		System.out.println(vo);
-		announceService.updateAnnounce(vo);
+		as.updateAnnounce(vo);
 		return "getAnnounceList.do";
 	}
 	
 	@RequestMapping("/deleteAnnounce.do")
 	public String deleteAnnounce(AnnounceVO vo) {
-		announceService.deleteAnnounce(vo);
+		as.deleteAnnounce(vo);
 		return "getAnnounceList.do";
 	}
 	
 	@RequestMapping("/getAnnounce.do")
 	public String getAnnounce(AnnounceVO vo, Model model) {
-		model.addAttribute("announce", announceService.getAnnounce(vo));
+		model.addAttribute("announce", as.getAnnounce(vo));
 		return "getAnnounce";
 	}
 	
-	@RequestMapping("/getAnnounceList.do")
+	@RequestMapping("/announce.do")
 	public String getAnnounceList(AnnounceVO vo, Model model) {
 		
-		model.addAttribute("AnnounceList", announceService.getAnnounceList(vo));
-		return "getAnnounceList";
+		model.addAttribute("announceList", as.getAnnounceList(vo));
+		return "announce";
 	}
 }

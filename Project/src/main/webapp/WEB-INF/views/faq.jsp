@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%-- <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> --%>
-
-<%@ include file="WEB-INF/views/include/header.jsp" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<c:set var="path" value="${pageContext.request.contextPath}" />
+<%@ include file="include/header.jsp" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -10,16 +10,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Document</title>
-<link rel="stylesheet" type="text/css" href="resources/css/faq.css">
-<!-- themify CSS -->
-<!-- <link rel="stylesheet" type="text/css"
-	href="../resources/icon/themify-icons/themify-icons.css"> -->
+<title>자주 묻는 질문</title>
+<link rel="stylesheet" type="text/css" href="${path}/resources/css/faq.css">
 
 </head>
 
 <body>
-
 
 	<div class="visual-box">
 		<div class="visual-box-in">
@@ -31,24 +27,25 @@
 
 	<div class="notimenu">
 		<div class="notisubmenu">
-			<a href="announce.jsp">공지사항</a>
+			<a href="announce.do">공지사항</a>
 			<a href="">자주묻는질문</a>
-			<!-- <a href="../cs/inquire">문의사항</a> -->
 		</div>
 	</div>
 
 	<div id="faq">
-		<%-- <c:forEach items="${faqContent}" var="faq"></c:forEach> --%>
+	<c:forEach items="${faqList}" var="faq">
 		<button class="accordion">
 			<div class="question"></div>
-			비밀번호는 어떻게 바꾸나요?
+			${faq.faqTitle}
 		</button>
 
 		<div class="panel">
-			<p>faq내용</p>
+			<span>>&nbsp;&nbsp;&nbsp;FAQ&nbsp;&nbsp;&nbsp;>&nbsp;&nbsp;&nbsp;${faq.faqCategory}</span><br/><br/>
+			<p>${faq.faqContent}</p>
 		</div>
-		<%--  </c:forEach>  --%>
-		<button class="accordion">
+		</c:forEach>
+
+		<!-- <button class="accordion">
 			<div class="question"></div>
 			회원 탈퇴는 어떻게 하나요?
 		</button>
@@ -67,7 +64,12 @@
 				테스트 내용입니다 조금 길게 적어넣어야 하는데 할말이 없어 복붙합니다<br /> 테스트 내용입니다 조금 길게 적어넣어야
 				하는데 할말이 없어 복붙합니다<br /> 테스트 내용입니다 조금 길게 적어넣어야 하는데 할말이 없어 복붙합니다<br />
 			</p>
-		</div>
+		</div> -->
+	</div>
+	<br>
+	<div class="faq-submit">
+		<a href="${path }/faqForm.jsp">글 등록하기</a><br/>
+	</div>
 	</div>
 
 	<script>
@@ -87,7 +89,7 @@
 			});
 		}
 	</script>
-	<%@ include file="WEB-INF/views/include/footer.jsp" %>
+	<%@ include file="include/footer.jsp" %>
 </body>
 
 </html>

@@ -2,8 +2,6 @@ package com.project.plus.service;
 
 import java.util.List;
 
-import org.springframework.ui.Model;
-
 import com.project.plus.domain.AnnounceVO;
 
 public interface AnnounceService {
