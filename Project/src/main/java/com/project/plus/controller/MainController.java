@@ -5,6 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.project.plus.domain.ClubVO;
 import com.project.plus.domain.Criteria;
 import com.project.plus.service.MainService;
 
