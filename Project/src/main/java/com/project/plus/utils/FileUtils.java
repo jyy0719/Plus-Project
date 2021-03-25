@@ -16,10 +16,6 @@ import com.project.plus.domain.ClubVO;
 import lombok.extern.log4j.Log4j;
 
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 8ae3d18c91f5de7c0125fb3250d1ac96316173f7
 @Log4j
 public class FileUtils {
 
@@ -57,7 +53,7 @@ public class FileUtils {
 					}
 				} catch (Exception e) {
 					e.printStackTrace();
-					System.out.println("파일 업로드 오류");
+					log.info("파일 업로드 오류");
 				}
 
 			} else {
@@ -67,7 +63,7 @@ public class FileUtils {
 					vo.setClubThumb_pic("");
 					}
 			}
-			System.out.println("업로드 파일이 없습니다");
+			log.info("업로드 파일이 없습니다");
 		}
 		return vo;
 	}//

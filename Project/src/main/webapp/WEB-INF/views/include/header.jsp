@@ -112,7 +112,7 @@
                         </ul>
                     </div>
                 </li>
-                <li class="nav-right icon"><a href="#"><img src="${path}/resources/img/images/chat.png" id="icon"></a></li>
+                <li class="nav-right icon"><a href="chat.do?memberNum=${user.memberNum}"><img src="${path}/resources/img/images/chat.png" id="icon"></a></li>
                 <li class="nav-right icon"><a href="#"><img src="${path}/resources/img/images/bell1.png" id="icon"></a></li>
              </c:when>
              <c:otherwise><!-- 로그인 정보가 없으면  -->

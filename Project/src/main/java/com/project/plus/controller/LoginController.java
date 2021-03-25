@@ -42,12 +42,13 @@ public class LoginController {
 			//로그인 성공했을 때
 			MemberVO user = memberService.login(vo);
 			session.setAttribute("user", user);
+			session.setAttribute("userNickname", user.getMemberNickname());
 			System.out.println(user.getMemberEmail());
 			System.out.println(user.getMemberPassword());
 			System.out.println(user.getMemberNum());
 			System.out.println(user.getMemberNum());
 			System.out.println(user);
-			return "index";
+			return "login";
 			
 		} catch(Exception e) {
 			e.printStackTrace();

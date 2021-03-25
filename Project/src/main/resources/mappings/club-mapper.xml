@@ -36,7 +36,7 @@
 
 
 	<select id="getClub" resultMap="clubResult">
-		SELECT * FROM CLUB WHERE
+		SELECT * FROM club WHERE
 		club_num = 11
 	</select>
 	
@@ -59,16 +59,12 @@
 	</select>
 	
 	<select id="getMyClubInfo" resultMap="clubResult">
-<<<<<<< HEAD
-		SELECT * FROM CLUB WHERE club_leader = '의지박약'  AND club_num = 6
-=======
-		SELECT * FROM CLUB WHERE club_leader = '블루베리' AND club_num = 17
->>>>>>> 8ae3d18c91f5de7c0125fb3250d1ac96316173f7
+		SELECT * FROM club WHERE club_leader = '블루베리' AND club_num = 17
 	</select>
 
 	<insert id="insertClub">
 	<![CDATA[
-		INSERT INTO CLUB(club_name, club_leader, club_town, club_kind, club_category, club_main_pic, club_thumb_pic,
+		INSERT INTO club(club_name, club_leader, club_town, club_kind, club_category, club_main_pic, club_thumb_pic,
 		club_onoff, club_max, club_freq, club_content1, club_content1_pic, club_content2, club_content2_pic,
 		club_makedate, club_shutdate, club_startdate, club_enddate, club_fee, club_hashtag, club_curnum)
 		VALUES(#{clubName}, '블루베리', '마포구', #{clubKind}, #{clubCategory}, #{clubMain_pic}, #{clubThumb_pic},
@@ -78,7 +74,7 @@
 	</insert>
 	
 	<update id="updateClub">
-		UPDATE CLUB SET club_town='마포구', club_category=#{clubCategory}, club_max=#{clubMax}, club_freq=#{clubFreq}, club_main_pic=#{clubMain_pic}, 
+		UPDATE club SET club_town='마포구', club_category=#{clubCategory}, club_max=#{clubMax}, club_freq=#{clubFreq}, club_main_pic=#{clubMain_pic}, 
 		club_thumb_pic=#{clubThumb_pic}, club_content1=#{clubContent1},club_content1_pic=#{clubContent1_pic}, club_content2=#{clubContent2}, 
 		club_content2_pic=#{clubContent2_pic}, club_makedate=#{clubMakeDate}, club_shutdate=#{clubShutDate}, club_startdate=#{clubStartDate}, 
 		club_enddate=#{clubEndDate}, club_fee=#{clubFee}, club_hashtag=#{clubHashtag}, club_curnum=#{clubCurnum}
@@ -86,18 +82,35 @@
 	</update>
 	
 	<delete id="deleteClub">
-		DELETE FROM CLUB WHERE CLUB_NUM = #{clubNum}
+		DELETE FROM club WHERE club_num = #{clubNum}
 	</delete>
 	
 		<!-- 신청내역 insert  -->
 	<insert id="apply">
-		INSERT INTO APPLY(club_num, member_num, apply_date) VALUES (#{clubNum}, #{memberNum}, NOW())
+		INSERT INTO apply(club_num, member_num, apply_date) VALUES (#{clubNum}, #{memberNum}, NOW())
 	</insert>
 	
 	<!-- 신청내역 중복검사를 위해 정보 가져오기 -->
 	<select id="getOneApply" resultType="Integer">
-		SELECT count(*) FROM APPLY WHERE club_num = #{clubNum} AND member_num = #{memberNum}
+		SELECT count(*) FROM apply WHERE club_num = #{clubNum} AND member_num = #{memberNum}
 	</select>
+	
+	<!--  신청한 모임이 진행중이면 가져온다  -->
+	<select id="getChatList" resultMap="clubResult">
+	<![CDATA[
+		SELECT club_num, club_name, club_leader FROM club WHERE club_enddate > curDate() AND club_startdate <= curDate()
+		AND club_num in (select club_num from apply where member_num = #{memberNum});
+	]]>
+	</select>
+	
+	<insert id="insertMessage">
+		INSERT INTO chat(club_num, member_num, chat_sendtime, chat_message) VALUES(#{clubNum}, #{memberNum}, NOW(), #{chatMessage})
+	</insert>
+	
+	<select id="getMessages">
+		SELECT * FROM chat WHERE club_num = 11
+	</select>
+	
 	
 	<!-- 방장 x , 참여중인 모임 목록 가져오기 -->
 <!-- <select id="getAttendClubList" resultMap="club">
