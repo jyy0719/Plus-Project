@@ -66,7 +66,7 @@
     </select>
     
     <select id="getReviewCount" resultType="int">
-    	SELECT count(*) FROM review WHERE club_num = 11 
+    	SELECT count(*) FROM review WHERE club_num = 11
     </select>
 </mapper>
 

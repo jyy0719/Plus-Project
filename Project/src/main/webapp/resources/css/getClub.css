@@ -316,34 +316,3 @@ strong{
     /* color:white; */
     /* background-color: #001eff; */
 }
-
-
-/* 푸터 스타일 시작 */
-
-
-footer {
-  	/* height: 80px;  */
-    text-align: center;
-}
-
-footer li {
-    display: inline;
-    font-weight: 400;
-    font-size: 18px;
-    position: relative;
-    top: 24px;
-    margin: 10px;
-
-}
-
-footer li a {
-    text-decoration: none;
-}
-
-footer li a:hover {
-    color: #1e00ff
-}
-
-#footerAddress {
-    font-size: 15px;
-}
