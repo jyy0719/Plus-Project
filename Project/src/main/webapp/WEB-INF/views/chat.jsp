@@ -214,7 +214,7 @@ let today="";
 				clubNum:'${club.clubNum}',
 				memberNum:"3"
 			},
-			url: "/plus/apply.do",
+			url: "/plus/insertMessage.do",
             success: function (data) {
             	console.log(data);
 	            	if(data==1){
@@ -226,7 +226,7 @@ let today="";
             error: function() {
             	  alert("error");
             	}
-			});
+			}); 
 	}
 	
 	// 서버로부터 메시지를 받았을 때

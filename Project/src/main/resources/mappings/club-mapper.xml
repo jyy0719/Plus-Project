@@ -59,7 +59,7 @@
 	</select>
 	
 	<select id="getMyClubInfo" resultMap="clubResult">
-		SELECT * FROM club WHERE club_leader = '직장의신' AND club_num = 2
+		SELECT * FROM club WHERE club_leader = '혼공최고' AND club_num = 3
 	</select>
 
 	<insert id="insertClub">

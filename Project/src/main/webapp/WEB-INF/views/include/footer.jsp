@@ -7,14 +7,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-  <title>Header and Footer</title>
     <!-- css코드삽입 -->
     <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css">
     <link rel="stylesheet" type="text/css" href="${path}/resources/css/footer.css">
-    <style>
-
-    </style>
-    <script type="text/javascript" src="${path}/resources/js/jquery-1.12.4.min.js"></script>
     <script>
         $(document).ready(function () {
 
@@ -62,7 +57,7 @@
 
         <!-- 푸터 시작 -->
         <div class="footerBox">
-            <ul>
+            <ul class="footerText">
                 <li><a href="#">개인정보처리방침</a></li>
                 <li><a href="#">이용약관</a></li>
                 <li><a href="#">고객지원</a></li>

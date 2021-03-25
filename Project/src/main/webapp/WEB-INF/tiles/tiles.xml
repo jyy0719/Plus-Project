@@ -11,13 +11,12 @@
 	<put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" /> 
 </definition>
 
-<!-- aside 있어야하는 페이지 template은  admin으로 바꿔놨어요 -->
-<definition name="member" template="/WEB-INF/views/admin/inc/layout.jsp"> 
+<!-- <definition name="member" template="/WEB-INF/views/include/template.jsp"> 
 	<put-attribute name="header" value="/WEB-INF/views/include/header.jsp" />
-    <put-attribute name="aside" value="/WEB-INF/views/admin/aside.jsp" />
+	<put-attribute name="aside" value="/WEB-INF/views/include/header.jsp" />
 	<put-attribute name="body" value="" /> 
 	<put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" /> 
-</definition>
+</definition> -->
 
 
 	<!--  마이페이지  -->
@@ -56,7 +55,7 @@
   <!-- 회원가입 페이지 -->
      <definition name="memberJoin" template="/WEB-INF/views/inc/layout.jsp"> 		
     <put-attribute name="header" value="/WEB-INF/views/include/header.jsp" />	
-        <put-attribute name="title" value="" />
+        <put-attribute name="title" value="회원가입 페이지" />
     <put-attribute name="body" value="/WEB-INF/views/memberJoin.jsp" />
     <put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" />	
   </definition>	
@@ -76,12 +75,12 @@
   
   <definition name="*.page" extends="base"> 
   	<put-attribute name="body" value="/WEB-INF/views/club/{1}.jsp" /> 
-  </definition> 
+  </definition>
   
   
-  <definition name="*.pageb" extends="member"> 
+<!--   <definition name="*." extends="member"> 
   	<put-attribute name="body" value="/WEB-INF/views/mypage/{1}.jsp" /> 
-  </definition> 
+  </definition>  -->
   
   
 <!--   
