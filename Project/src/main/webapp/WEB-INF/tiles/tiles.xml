@@ -11,12 +11,12 @@
 	<put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" /> 
 </definition>
 
-<definition name="member" template="/WEB-INF/views/include/template.jsp"> 
+<!-- <definition name="member" template="/WEB-INF/views/include/template.jsp"> 
 	<put-attribute name="header" value="/WEB-INF/views/include/header.jsp" />
 	<put-attribute name="aside" value="/WEB-INF/views/include/header.jsp" />
 	<put-attribute name="body" value="" /> 
 	<put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" /> 
-</definition>
+</definition> -->
 
 
 	<!--  마이페이지  -->
@@ -73,14 +73,14 @@
     <put-attribute name="body" value="" />
   </definition> -->
   
-  <definition name="*.page" extends="base"> 
+  <definition name="*.tiles" extends="base"> 
   	<put-attribute name="body" value="/WEB-INF/views/club/{1}.jsp" /> 
-  </definition> 
+  </definition>
   
   
-  <definition name="*.page" extends="member"> 
+<!--   <definition name="*." extends="member"> 
   	<put-attribute name="body" value="/WEB-INF/views/mypage/{1}.jsp" /> 
-  </definition> 
+  </definition>  -->
   
   
 <!--   

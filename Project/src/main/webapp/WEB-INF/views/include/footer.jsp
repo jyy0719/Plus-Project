@@ -7,7 +7,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-  <title>Header and Footer</title>
     <!-- css코드삽입 -->
     <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css">
     <link rel="stylesheet" type="text/css" href="${path}/resources/css/footer.css">
