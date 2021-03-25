@@ -29,7 +29,7 @@
   <!--  <put-attribute name="body" value="/WEB-INF/views/admin/chart/{1}.jsp" /> -->
     <put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" />
   </definition>
-
+  
   <!-- 메인 페이지 -->
    <definition name="view.*" template="/WEB-INF/views/index.jsp"> 		
     <put-attribute name="header" value="/WEB-INF/views/include/header.jsp" />	
@@ -53,7 +53,14 @@
     <put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" />	
   </definition>	
   
-
+    <!-- 정보수정 페이지 -->
+     <definition name="memberUpdate" template="/WEB-INF/views/inc/layout.jsp"> 		
+    <put-attribute name="header" value="/WEB-INF/views/include/header.jsp" />	
+        <put-attribute name="title" value="회원정보 수정 페이지" />
+    <put-attribute name="body" value="/WEB-INF/views/memberUpdate.jsp" />
+    <put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" />	
+  </definition>	
+  
   <!-- club -->
 <!--    <definition name="club.*" template="/WEB-INF/views/club/layout.jsp">
     <put-attribute name="body" value="" />
@@ -67,7 +74,6 @@
   <definition name="*/*" extends="base"> 
   	<put-attribute name="body" value="/WEB-INF/views/{1}/{2}.jsp" /> 
   </definition> -->
-
 
   <!-- 그 외 필요한 페이지들마다, 속성마다 필요한 부분을  복사해서 사용하시면 됩니다   
    <definition name="페이지.*" template="/WEB-INF/views/admin/inc/layout.jsp"> 	//골격
