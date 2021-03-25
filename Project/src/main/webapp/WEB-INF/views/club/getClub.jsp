@@ -251,6 +251,7 @@ $(document).ready(function () {
 							memberNum:"3"
 						},
 						url: "/plus/apply.do",
+						
 			            success: function (data) {
 			            	console.log(data);
 				            	if(data==1){
