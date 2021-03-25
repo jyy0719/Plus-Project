@@ -6,9 +6,16 @@
 <tiles-definitions>
 
 <definition name="base" template="/WEB-INF/views/include/template.jsp"> 
-<put-attribute name="header" value="/WEB-INF/views/include/header.jsp" /> 
-<put-attribute name="body" value="" /> 
-<put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" /> 
+	<put-attribute name="header" value="/WEB-INF/views/include/header.jsp" /> 
+	<put-attribute name="body" value="" /> 
+	<put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" /> 
+</definition>
+
+<definition name="member" template="/WEB-INF/views/include/template.jsp"> 
+	<put-attribute name="header" value="/WEB-INF/views/include/header.jsp" />
+	<put-attribute name="aside" value="/WEB-INF/views/include/header.jsp" />
+	<put-attribute name="body" value="" /> 
+	<put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" /> 
 </definition>
 
 
@@ -22,7 +29,7 @@
   </definition>
   
   <!-- 관리자페이지 -->
-  <definition name="main" template="/WEB-INF/views/admin/inc/layout.jsp">
+  <definition name="main.page" template="/WEB-INF/views/admin/inc/layout.jsp">
     <put-attribute name="title" value="관리자 페이지" />
     <put-attribute name="header" value="/WEB-INF/views/include/header.jsp" />
     <put-attribute name="aside" value="/WEB-INF/views/admin/aside.jsp" />
@@ -69,6 +76,12 @@
   <definition name="*.page" extends="base"> 
   	<put-attribute name="body" value="/WEB-INF/views/club/{1}.jsp" /> 
   </definition> 
+  
+  
+  <definition name="*.page" extends="member"> 
+  	<put-attribute name="body" value="/WEB-INF/views/mypage/{1}.jsp" /> 
+  </definition> 
+  
   
 <!--   
   <definition name="*/*" extends="base"> 
