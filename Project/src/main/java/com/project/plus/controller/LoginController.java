@@ -27,8 +27,6 @@ public class LoginController {
     @Autowired
 	private MemberService memberService;
 
-<<<<<<< HEAD
-=======
     
 	@RequestMapping(value="login.do", method=RequestMethod.GET) 
 	public String loginpage(MemberVO vo, HttpSession session, HttpServletResponse response) throws Exception {
@@ -36,16 +34,7 @@ public class LoginController {
 		return "login";
 
 	}
->>>>>>> 9361fad3b5e1eae668240a56f07a4a37ae27127a
-	
-	  @RequestMapping(value="login.do", method=RequestMethod.GET) public String
-	  loginpage(MemberVO vo, HttpSession session, HttpServletResponse response)
-	  throws Exception {
-	  
-	  return "login";
-	  
-	  }
-	 
+
 
 	/*
 	 * @GetMapping("/loginPage.do") public void login() { log.info("/로그인 화면 접속"); }

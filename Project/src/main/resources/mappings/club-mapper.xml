@@ -59,11 +59,10 @@
 	</select>
 	
 	<select id="getMyClubInfo" resultMap="clubResult">
-<<<<<<< HEAD
+
 		SELECT * FROM CLUB WHERE club_leader = '의지박약'  AND club_num = 6
-=======
 		SELECT * FROM CLUB WHERE club_leader = '블루베리' AND club_num = 17
->>>>>>> 8ae3d18c91f5de7c0125fb3250d1ac96316173f7
+
 	</select>
 
 	<insert id="insertClub">
