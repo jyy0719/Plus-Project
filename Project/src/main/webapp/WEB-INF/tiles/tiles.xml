@@ -29,17 +29,14 @@
   <!--  <put-attribute name="body" value="/WEB-INF/views/admin/chart/{1}.jsp" /> -->
     <put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" />
   </definition>
-<<<<<<< HEAD
   
-=======
->>>>>>> 9361fad3b5e1eae668240a56f07a4a37ae27127a
-
   <!-- 메인 페이지 -->
    <definition name="view.*" template="/WEB-INF/views/index.jsp"> 		
     <put-attribute name="header" value="/WEB-INF/views/include/header.jsp" />	
     <put-attribute name="header" value="/WEB-INF/views/index.jsp" />	
     <put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" />	
   </definition>	
+
   
     <!-- 로그인 페이지 -->
    <definition name="login" template="/WEB-INF/views/inc/layout.jsp"> 		

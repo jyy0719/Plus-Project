@@ -2,7 +2,6 @@ package com.project.plus.controller;
 
 
 
-import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletResponse;
@@ -26,21 +25,16 @@ public class LoginController {
 
     @Autowired
 	private MemberService memberService;
-
-<<<<<<< HEAD
-=======
-    
-	@RequestMapping(value="login.do", method=RequestMethod.GET) 
+ 
+    @RequestMapping(value="login.do", method=RequestMethod.GET) 
 	public String loginpage(MemberVO vo, HttpSession session, HttpServletResponse response) throws Exception {
 	
 		return "login";
 
 	}
->>>>>>> 9361fad3b5e1eae668240a56f07a4a37ae27127a
 	
-	  @RequestMapping(value="login.do", method=RequestMethod.GET) public String
-	  loginpage(MemberVO vo, HttpSession session, HttpServletResponse response)
-	  throws Exception {
+	  @RequestMapping(value="login.do", method=RequestMethod.GET) 
+	  public String loginpage(MemberVO vo, HttpSession session, HttpServletResponse response) throws Exception {
 	  
 	  return "login";
 	  
