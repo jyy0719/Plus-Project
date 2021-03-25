@@ -44,10 +44,10 @@ public class InquiryController {
 		return "inquiry.do";
 	}
 
-	@RequestMapping("/getInquiry.do")
+	@RequestMapping(value="/getInquiry.do", method=RequestMethod.GET)
 	public String getInquiry(InquiryVO vo, Model model) {
 		model.addAttribute("inquiry", is.getInquiry(vo));
-		return "getInquiry.jsp";
+		return "getInquiry";
 	}
 
 	@RequestMapping("/inquiry.do")

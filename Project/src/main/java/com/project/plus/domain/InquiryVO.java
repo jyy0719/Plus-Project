@@ -9,6 +9,25 @@ public class InquiryVO {
 	private String inquiryState;
 	private String inquiryAnswer;
 	private String inquiryRegDate;
+	
+	/* 추가로 필요한 부분 */
+	private String memberEmail;
+	private String memberNickname;
+	
+	public String getMemberEmail() {
+		return memberEmail;
+	}
+	public void setMemberEmail(String memberEmail) {
+		this.memberEmail = memberEmail;
+	}
+	public String getMemberNickname() {
+		return memberNickname;
+	}
+	public void setMemberNickname(String memberNickname) {
+		this.memberNickname = memberNickname;
+	}
+	
+	
 	public int getInquiryNum() {
 		return inquiryNum;
 	}
@@ -61,7 +80,7 @@ public class InquiryVO {
 	public String toString() {
 		return "InquiryVO [inquiryNum=" + inquiryNum + ", memberNum=" + memberNum + ", inquiryTitle=" + inquiryTitle
 				+ ", inquiryContent=" + inquiryContent + ", inquiryType=" + inquiryType + ", inquiryState="
-				+ inquiryState + ", inquiryAnswer=" + inquiryAnswer + ", inquiryRegDate=" + inquiryRegDate + "]";
+				+ inquiryState + ", inquiryAnswer=" + inquiryAnswer + ", inquiryRegDate=" + inquiryRegDate + ", memberEmail=" + memberEmail + ", memberNickname=" + memberNickname + "]";
 	}
 	
 	

@@ -59,11 +59,12 @@ vertical-align: middle;
                                     </tr>
                                 </thead>
                                     <c:forEach var="inquiry" items="${inquiryList}">
+                                    
                                 <tbody>
                                     <!-- table row -->
                                     <tr>
                                         <th>${inquiry.inquiryType}</th>
-                                        <td><a href="${path}/getInquiry.jsp" class="inquiry-title">${inquiry.inquiryTitle}</a></td>
+                                        <td><a href="${path}/getInquiry.do?inquiryNum=${inquiry.inquiryNum}" class="inquiry-title">${inquiry.inquiryTitle}</a></td>
                                         <fmt:parseDate var="parseRegDate" value="${inquiry.inquiryRegDate}" pattern="yyyy-MM-dd" />
 										<fmt:formatDate var="resultRegDt" value="${parseRegDate}" pattern="yyyy-MM-dd" />
                                         <td class="text-center">${resultRegDt}</td>
@@ -106,7 +107,7 @@ vertical-align: middle;
                             </nav>
                             <!-- end of pagination -->
                         </div>
-                        <button class="btn btn-primary btn-write"><a href="${path}/inquiryForm.jsp">문의</a></button>
+                        <button class="btn btn-primary pull-right"><a href="${path}/inquiryForm.jsp">문의</a></button>
                     </div>
                 </div>
             </div>
