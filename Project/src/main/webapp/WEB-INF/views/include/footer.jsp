@@ -7,7 +7,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-  <title>Header and Footer</title>
     <!-- css코드삽입 -->
     <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css">
     <link rel="stylesheet" type="text/css" href="${path}/resources/css/footer.css">
@@ -61,7 +60,6 @@
 
 
         <!-- 푸터 시작 -->
-        <footer>
             <ul>
                 <li><a href="#">개인정보처리방침</a></li>
                 <li><a href="#">이용약관</a></li>
@@ -79,7 +77,6 @@
                 <li></li>
             </ul>
 
-        </footer>
 
 </body>
 

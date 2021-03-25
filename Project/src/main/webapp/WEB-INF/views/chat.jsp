@@ -208,6 +208,25 @@ let today="";
 		$('.message-wrap').scrollTop($('.message-wrap')[0].scrollHeight);
 		
 		// 에이젝스로 메시지 저장 
+/		$.ajax({
+			type: "post",
+			data: {
+				clubNum:'${club.clubNum}',
+				memberNum:"3"
+			},
+			url: "/plus/insertMessage.do",
+            success: function (data) {
+            	console.log(data);
+	            	if(data==1){
+	            		alert("모임 신청이 완료되었습니다!");
+	            	} else if(data==0){
+	            		alert("이미 신청한 모임입니다!");
+	            	}
+            	},
+            error: function() {
+            	  alert("error");
+            	}
+			}); 
 	}
 	
 	// 서버로부터 메시지를 받았을 때

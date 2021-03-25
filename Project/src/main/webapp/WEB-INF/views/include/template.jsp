@@ -14,7 +14,6 @@
     	margin-top:200px;
     }
     </style>
-<title></title>
 </head>
 	<tiles:insertAttribute name="header" />
 	<tiles:insertAttribute name="body"/>

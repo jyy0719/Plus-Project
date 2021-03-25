@@ -235,6 +235,7 @@ $(document).ready(function () {
 					
 								}
 				            	$(reviewList).appendTo($(".newList")).slideDown();
+				            	
 				        		// 더보기 버튼 삭제
 				            	if(startIndex + step > reviewCnt){
 				        			$('#moreReviewBtn').remove();
