@@ -79,7 +79,7 @@
   </definition> 
   
   
-  <definition name="*.page" extends="member"> 
+  <definition name="*.pageb" extends="member"> 
   	<put-attribute name="body" value="/WEB-INF/views/mypage/{1}.jsp" /> 
   </definition> 
   

@@ -102,12 +102,12 @@ removePic = function(){
         <div class="content1">      
                 <!-- profile pic -->
                 <div class="pro_pic_area">
-                    <div id="image_container"></div>
+                    <div id="image_container">${user.memberPic}</div>
                 <div class="filebox"> 
                 </div>
                 	<button type="button" class="removePic" onclick="removePic();">삭제</button>
    	                <label class="picbutton" for="pic_upload_button"><div class="picbutton">사진첨부하기</div></label>
-                    <input id="pic_upload_button" type="file" accept="image/*" onchange="setThumbnail(event);" value="사진바꾸기">
+                    <input id="pic_upload_button" type="file" name="memberPhoto" accept="image/*" onchange="setThumbnail(event);" value="${user.memberPic}">
                 </div>
 
                 <!-- ID(Email) -->

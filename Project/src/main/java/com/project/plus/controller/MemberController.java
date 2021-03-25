@@ -4,6 +4,7 @@ import java.io.PrintWriter;
 import java.util.Random;
 
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -16,12 +17,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.project.plus.domain.MemberVO;
 import com.project.plus.service.MemberService;
+import com.project.plus.utils.ProfileUtils;
 
+import lombok.extern.log4j.Log4j;
+
+@Log4j
 @Controller
 @SessionAttributes("user")
 public class MemberController {
@@ -35,25 +42,27 @@ public class MemberController {
 
 	@RequestMapping(value="memberJoin.do", method=RequestMethod.GET)
 	public String memberjoinpage(MemberVO vo, HttpSession session, Model model) throws Exception {
+		System.out.println("회원가입 get메서드 진입");
 	return "memberJoin";
 	}
 	
 	
 	@RequestMapping(value="memberJoin.do", method=RequestMethod.POST)
-	public String memberJoin(MemberVO vo) throws Exception {
-		
-		
-//		MultipartFile uploadFile = vo.getUploadfile();
-//		if(!uploadFile.isEmpty()) {
-//			String fileName = uploadFile.getOriginalFilename();
-//			uploadFile.transferTo(new File("C:/" + fileName));
-//		}
-//		
-//		
+	public String memberJoin(MemberVO vo, @RequestParam("memberPhoto") MultipartFile file, HttpServletRequest request) throws Exception {
+		System.out.println("회원가입 컨트롤러 진입");
+		// 파일을 저장할 절대 경로 지정
+		String uploadPath = request.getSession().getServletContext().getRealPath("/resources/uploadImg");
+		vo = ProfileUtils.profile(vo, uploadPath, file);
 		memberService.joinMember(vo);
+		System.out.println(vo);
+		log.info("회원 번호 : " + vo.getMemberNum() + "멤버프로필사진  등록 ");
 		return "index";
 			
 	}
+	
+	
+	
+	
 	
 	@RequestMapping(value="memberUpdate.do", method=RequestMethod.GET)
 	public String memberUpdatepage(MemberVO vo, HttpSession session, Model model) throws Exception {

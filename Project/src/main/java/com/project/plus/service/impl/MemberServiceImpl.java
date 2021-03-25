@@ -21,6 +21,7 @@ public class MemberServiceImpl implements MemberService {
 	HttpSession session;
 
 	public void joinMember(MemberVO vo) {
+		System.out.println("회원가입 service impl");
 		membermapper.joinMember(vo);
 	}
 

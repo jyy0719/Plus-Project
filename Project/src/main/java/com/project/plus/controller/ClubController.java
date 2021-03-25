@@ -54,6 +54,7 @@ public class ClubController {
 		vo = FileUtils.uploadFile(vo, uploadPath, file);
 		clubService.insertClub(vo); // DB에 저장
 		log.info("모임 번호 : " + vo.getClubNum() + " 등록 완료 ");
+		log.info(uploadPath);
 		return "index";
 
 	}
@@ -68,6 +69,7 @@ public class ClubController {
 		vo = FileUtils.uploadFile(vo, uploadPath, file);
 		clubService.updateClub(vo);
 		log.info("모임 번호 : " + vo.getClubNum() + " 수정 완료 ");
+
 		return "index";
 	}
 

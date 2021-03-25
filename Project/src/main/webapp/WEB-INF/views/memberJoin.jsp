@@ -263,6 +263,7 @@
         <!-- content1-->
         <div class="content1">
     
+<input type="hidden" name="memberNum"  value="${user.memberNum }"> 
 
     
             <!-- MOBILE -->
@@ -354,7 +355,7 @@
                 <div class="filebox"> 
                 </div>
                 <label class="picbutton" for="picFile"><div class="picbutton1">사진첨부하기</div></label>
-                <input id="picFile" type="file" name="memeberPic" accept="image/*" onchange="setThumbnail(event);" value="사진올리기">
+                <input id="picFile" type="file" name="memberPhoto" accept="image/*" onchange="setThumbnail(event);"/>
             	<button type="button" class="removePic" onclick="removePic();">취소</button>
             </div>
 

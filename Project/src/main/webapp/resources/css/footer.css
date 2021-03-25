@@ -21,9 +21,9 @@
 /* 푸터 스타일 시작 */
 
 
-footer {
-  	height: 80px; 
-    text-align: center;
+.footerBox{
+	text-align:center;
+	margin-top:200px;
 }
 
 footer li {
