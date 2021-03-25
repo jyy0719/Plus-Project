@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.plus.domain.ApplyVO;
+import com.project.plus.domain.ChatRoomVO;
 import com.project.plus.domain.ClubVO;
 import com.project.plus.mapper.ClubMapper;
 import com.project.plus.service.ClubService;
@@ -41,5 +42,15 @@ public class ClubServiceImpl implements ClubService {
 	}
 	public Integer getOneApply(ApplyVO apply) {
 		return mapper.getOneApply(apply);
+	}
+	public List<ClubVO> getChatList(int memNum) {
+		return mapper.getChatList(memNum);
+	}
+	@Override
+	public ChatRoomVO getMessages(int clubNum) {
+		return mapper.getMessages(clubNum);
+	}
+	public int insertMessage(ChatRoomVO msg) {
+		return mapper.insertMessage(msg);
 	}
 }
