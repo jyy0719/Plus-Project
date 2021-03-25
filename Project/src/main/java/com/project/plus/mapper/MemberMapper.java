@@ -11,7 +11,11 @@ public interface MemberMapper {
 	public void updateMember(MemberVO vo);
 	
 	public MemberVO login(MemberVO vo);
+	public MemberVO kakaologin(MemberVO vo);
+
 	public void logout(HttpSession session);
 	
 	public MemberVO selectMember(MemberVO vo);
+
+
 }

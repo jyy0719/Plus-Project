@@ -24,6 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.project.plus.domain.ApplyVO;
+import com.project.plus.domain.ChatRoomVO;
 import com.project.plus.domain.ClubVO;
 import com.project.plus.domain.ReviewVO;
 import com.project.plus.service.ClubService;
@@ -175,4 +176,24 @@ public class ClubController {
 		}
 		
 	}	
+	
+	@RequestMapping("/chat.do")
+	public String getChatList(@RequestParam("memberNum") int memNum, Model model) {
+		log.info("로그인 멤버 번호 : " + memNum);
+		List<ClubVO> clubs = clubService.getChatList(memNum);
+		model.addAttribute("clubs", clubs);
+		return "chat";
+	}
+	
+	// 클럽 넘버를 받아야 함 
+	public String getMessages(int clubNum) {
+		clubService.getMessages(clubNum);
+		return null;
+	}
+	
+	// 채팅 메시지 db 저장 
+	public String insertMessage(ChatRoomVO msg) {
+		clubService.insertMessage(msg);
+		return null;
+	}
 }

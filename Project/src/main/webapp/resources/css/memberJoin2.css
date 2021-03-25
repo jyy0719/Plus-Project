@@ -59,7 +59,7 @@
     height: 30px;
     position: relative;
     top: 30px;
-    left: 22px;
+    left: 44px;
     background-color: #001eff;
     color: white;
     text-align: center;
@@ -71,7 +71,7 @@
 }
 
 #image_container{
-    background-color:silver;
+    background-color:#efefef;
     border-radius: 50%;
     height: 200px;
     width: 200px;
@@ -84,14 +84,28 @@
     width: 200px;
 }
 
-#pic_upload_button{
+#picFile{
     margin-top: 50px;
-    display: none;
+     display: none;
+
 }
 
-
-
-
+.picbutton1{
+	  color:white;
+	   font:inherit;
+	   font-size:14px;
+	   font-weight:lighter;
+}
+.removePic{
+    width: 40px;
+    height: 20px;
+    padding: 0 3px 3px 3px;
+    border: none;
+    border-radius: 5px;
+    margin-bottom:0px;
+    margin-left:170px;
+    background-color:#efefef;
+}
 /* 입력폼 */
 
 

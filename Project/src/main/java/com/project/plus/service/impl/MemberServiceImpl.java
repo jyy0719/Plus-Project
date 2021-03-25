@@ -1,5 +1,6 @@
 package com.project.plus.service.impl;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +25,13 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	public MemberVO login(MemberVO vo) {
-			System.out.println("유저서비스");
+			System.out.println("member Service impl login메서드");
 		return membermapper.login(vo);
+	}
+
+	public MemberVO kakaologin(MemberVO vo) {
+		System.out.println("카카오로그인 servie impl옴");		
+		return membermapper.kakaologin(vo);
 	}
 
 
@@ -44,6 +50,7 @@ public class MemberServiceImpl implements MemberService {
 		return membermapper.selectMember(vo);
 		
 	}
+
 
 
 

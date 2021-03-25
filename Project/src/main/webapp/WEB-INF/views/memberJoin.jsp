@@ -17,9 +17,9 @@
         var emailVal = $("#email").val();
         var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
         if (emailVal.match(regExp) != null) {
-            alert('good')
+            alert("적합한 메일 형식입니다.")
         } else {
-            alert('tryagain')
+            alert('형식에 맞게 입력해주세요 ex)plus@plus.com')
       	  $('#email').focus();
 
         }        
@@ -30,9 +30,9 @@
         var regExp = /^\d{11}$/;
       /*  var regExp = /^\d{3}-\d{3,4}-\d{4}$/; */
         if(phoneVal.match(regExp) != null){
-            alert('good')
+        //    alert('적합한 휴대폰번호입니다')
         }else{
-            alert('bad')
+            alert("이미 등록된 휴대폰번호입니다")
         }
     }; 
 
@@ -116,7 +116,8 @@
     /* 인증번호 이메일 전송 */
     function emailsend(){
         $(".mail_check_button").click(function(){
-            alert("입력하신 주소로 인증번호가 발송되었습니다.")
+            alert("입력하신 메일로 인증번호가 발송되었습니다.")
+            	$('#mail_check_input').focus();
             var email = $(".mail_input").val();        // 입력한 이메일
             var cehckBox = $(".mail_check_input");        // 인증번호 입력란
              var boxWrap = $(".mail_check_input_box"); 
@@ -124,11 +125,11 @@
                                     
                                     type:"GET",
                                     url:"mailCheck.do?email=" + email,
-                                    success:function(num){
-                                            console.log("data : " + num);
+                                    success:function(num1){
+                                            console.log("data : " + num1);
                                             /* cehckBox.attr("disabled",false); */
                                             boxWrap.attr("class", "mail_check_input_box_true int1"); 
-                                            code = num;
+                                            code = num1;
                                             
                                     }
                                 });
@@ -237,7 +238,13 @@
             });
     }
 
-
+	//등록한 사진 삭제하는 버튼
+    removePic = function(){
+        $('.removePic').click(function(){
+               $("#image_container").empty()
+    	$("#picFile").val("");
+    }
+        )}
 </script>
 
 
@@ -346,8 +353,9 @@
                 <div id="image_container"></div>
                 <div class="filebox"> 
                 </div>
-                <label class="picbutton" for="pic_upload_button"><div class="picbutton">사진첨부하기</div></label>
-                <input id="pic_upload_button" type="file" name="memeberPic" accept="image/*" onchange="setThumbnail(event);" value="사진올리기">
+                <label class="picbutton" for="picFile"><div class="picbutton1">사진첨부하기</div></label>
+                <input id="picFile" type="file" name="memeberPic" accept="image/*" onchange="setThumbnail(event);" value="사진올리기">
+            	<button type="button" class="removePic" onclick="removePic();">취소</button>
             </div>
 
         </div>

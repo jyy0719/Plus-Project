@@ -2,7 +2,6 @@
         * {
             margin: 0;
             padding: 0;
-            color: #333;
             font-family: 'NanumSquare', sans-serif !important;
         }
         
@@ -23,8 +22,7 @@
 
 
 footer {
-/*     border-top: thistle 1px solid;
- */  	height: 80px; 
+  	height: 80px; 
     text-align: center;
 }
 
