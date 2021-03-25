@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -18,25 +19,18 @@ import com.project.plus.domain.MemberVO;
 import com.project.plus.service.MemberService;
 import com.project.plus.service.impl.MemberServiceImpl;
 
+import lombok.extern.log4j.Log4j;
+
 
 
 @Controller
 @SessionAttributes("user")
+@Log4j
 public class LoginController {
 
     @Autowired
 	private MemberService memberService;
 
-<<<<<<< HEAD
-=======
-    
-	@RequestMapping(value="login.do", method=RequestMethod.GET) 
-	public String loginpage(MemberVO vo, HttpSession session, HttpServletResponse response) throws Exception {
-	
-		return "login";
-
-	}
->>>>>>> 9361fad3b5e1eae668240a56f07a4a37ae27127a
 	
 	  @RequestMapping(value="login.do", method=RequestMethod.GET) public String
 	  loginpage(MemberVO vo, HttpSession session, HttpServletResponse response)

@@ -16,7 +16,7 @@
   <definition name="mypage.*" template="/WEB-INF/views/mypage/inc/layout.jsp">
     <put-attribute name="title" value="마이 페이지" />
     <put-attribute name="header" value="/WEB-INF/views/include/header.jsp" />
-    <put-attribute name="aside" value="/WEB-INF/views/mypage/aside.jsp" />
+    <put-attribute name="aside" value="/WEB-INF/views/mypage/inc/aside.jsp" />
   <!--  <put-attribute name="body" value="/WEB-INF/views/mypage/myprofile/{1}.jsp" /> -->
     <put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" />
   </definition>
@@ -29,6 +29,10 @@
   <!--  <put-attribute name="body" value="/WEB-INF/views/admin/chart/{1}.jsp" /> -->
     <put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" />
   </definition>
+<<<<<<< HEAD
+  
+=======
+>>>>>>> 9361fad3b5e1eae668240a56f07a4a37ae27127a
 
   <!-- 메인 페이지 -->
    <definition name="view.*" template="/WEB-INF/views/index.jsp"> 		
