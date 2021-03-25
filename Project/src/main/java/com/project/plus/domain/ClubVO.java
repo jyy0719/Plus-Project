@@ -36,7 +36,5 @@ public class ClubVO {
 	private String clubLongitude;
 
 
-	
-	
-	
+
 }

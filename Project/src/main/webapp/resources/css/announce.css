@@ -15,7 +15,6 @@ body {
 	background-image: url('../img/announce-2503.png');
 }
 
-/* @import url('https://fonts.googleapis.com/css2?family=Lato:wght@900&display=swap'); FAQ를 영문으로 쓸때 괜찮아보였던 폰트*/
 @import url('https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css');
 .visual-box-in .header{
   /* font-family: 'NanumSquare', sans-serif; */
@@ -171,6 +170,13 @@ body {
     box-shadow: 0px 8px 30px 0px rgba(0,0,0,0.2);
     border-bottom:1px solid #999;
   }
+  
+  .panel span {
+  	float:right;
+  	margin-top:20px;
+  	margin-right:30px;
+  	font-size:13px;
+  }
 
   .panel p{
     /* font-family: 'NanumSquare', sans-serif; */
@@ -181,4 +187,11 @@ body {
     padding-right: 20px;
     padding-left: 60px;
     line-height:30px;
+  }
+  
+  .announce-submit a {
+  	float:right;
+  	margin-top:10px;
+  	margin-right:60px;
+  	margin-bottom:40px;
   }

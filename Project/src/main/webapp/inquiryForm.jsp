@@ -44,6 +44,9 @@
             background-color: #001eff;
             margin-top:30px;
         }
+        .back-to-list {
+        	margin-top:30px;
+        }
 
     </style>
 </head>
@@ -63,7 +66,11 @@
         <input type="text" class="form-control" id="inquiry-title" placeholder="제목을 입력해주세요." name="">
         <textarea></textarea>
         <button type="submit" id="inquiryBtn">등록하기</button>
+        <a class="back-to-list" href="inquiry.do">글 목록 가기</a>
     </div>
     </form>
+    <hr>
+	
+	
 </body>
 </html>

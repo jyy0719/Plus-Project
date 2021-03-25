@@ -44,12 +44,10 @@ public class HomeController {
 		return "home";
 	}
 	
-	@RequestMapping(value = "/selectNow.do", method = RequestMethod.GET)
-	public void selectNow() {
-		String result = service.selectNow();
-		Date now = new Date();
-		System.out.println(now);
-		System.out.println(result);
-	}
+	/*
+	 * @RequestMapping(value = "/selectNow.do", method = RequestMethod.GET) public
+	 * void selectNow() { String result = service.selectNow(); Date now = new
+	 * Date(); System.out.println(now); System.out.println(result); }
+	 */
 	
 }

@@ -66,10 +66,10 @@ local.properties
 
 ### Eclipse Patch ###
 # Eclipse Core
-.project
+# .project
 
 # JDT-specific (Eclipse Java Development Tools)
-.classpath
+# .classpath
 
 # Spring Boot Tooling
 .sts4-cache/
@@ -167,3 +167,5 @@ Project/Servers/VMware tc Server Developer Edition v4.1-config/jmxremote.passwor
 Project/Servers/VMware tc Server Developer Edition v4.1-config/server.xml
 Project/Servers/VMware tc Server Developer Edition v4.1-config/tomcat-users.xml
 Project/Servers/VMware tc Server Developer Edition v4.1-config/web.xml
+*.project
+*.classpath
