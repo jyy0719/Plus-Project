@@ -15,30 +15,110 @@
     <link rel="stylesheet" type="text/css" href="${path}/resources/css/login.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css">
     <script type="text/javascript" src="${path}/resources/js/jquery-1.12.4.min.js"></script>
+
     <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
     <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
       
     
     <script>
         window.Kakao.init("9ce759cfc8b480d36084d93d5b5d195f")
+        
+function kakaoLogin(){
+    window.Kakao.Auth.login({
+        scope:'profile, account_email',
+        success: function(authObj) {
+            
+            // 로그인 성공시, API를 호출합니다.
+            Kakao.API.request({
+                  url: '/v2/user/me',
+                 success: function(res) {
+                      console.log(res);
+                      
+                      var userPw = res.id;      //유저의 카카오톡 고유 id. 회원 insert 시 패스워드로 삽입하려고 변수명 pw로 줌
+                      var userEmail = res.kakao_account.email; //유저의 이메일
+                      var userNickName = res.properties.nickname; //유저가 등록한 별명
+                      
+                      console.log(userEmail);
+                      console.log(userNickName);
+                      //console.log(res.redirect_uri);
 
-        function kakaoLogin(){
+                      var userdata = {
+                        memberPassword : userPw,
+                        memberEmail: userEmail,
+                        memberNickname : userNickName
+                      }
+
+                      $.ajax({
+                            url: 'kakaologin.do',
+                            type: 'POST',
+                            data: userdata,
+                                success: function(data){
+                                console.log("보냄");
+                                console.log(data);
+                                console.log(window.location.protocol + "/" + window.location.host + "/" + data);
+                                //location.href = "../../" + data;
+                                location.href = data;
+                                //location.href = 'kakaologin.do'; //이렇게하면 get메서드오류
+                                }
+                        }); // ajax
+                    
+                 }
+                
+                });
+           }
+      
+});
+} 
+/*        function kakaoLogin(){
             window.Kakao.Auth.login({
                 scope:'profile, account_email',
-                success: function(user) {
-                    console.log(user);
-                 window.Kakao.API.request({
-                    url:'/v2/user/me',
-                    success: res => {
-                        const kakao_account = res.kakao_account;
-                        console.log(kakao_account);
-                    }
-                 });
+                success: function(authObj) {
                     
-                }
-            })
-        }
-        
+                    // 로그인 성공시, API를 호출합니다.
+                    Kakao.API.request({
+                     	 url: '/v2/user/me',
+	                     success: function(res) {
+		                      console.log(res);
+		                      
+		                      var userPw = res.id;      //유저의 카카오톡 고유 id. 회원 insert 시 패스워드로 삽입하려고 변수명 pw로 줌
+		                  //    var userEmail = res.kaccount_email;   //유저의 이메일
+		                      var userEmail = res.kakao_account.email; //유저의 이메일
+		                      var userNickName = res.properties.nickname; //유저가 등록한 별명
+		                      
+		                      console.log(userEmail);
+		                      console.log(userNickName);
+		                      console.log(res.redirect_uri);
+		                      //return res.redirect_uri; 아마 필요없을듯
+
+		                    //  var kakaouser = res.kakao_account;
+		                    //  console.log(kakaouser.email); 
+								                    $.ajax({
+		                            url: 'kakaologin.do',
+		                            type: 'POST',
+		                            dataType: 'json',
+		                            data: {
+		                            	memberPassword : userPw,
+		                                memberEmail: userEmail,
+		                                memberNickname : userNickName
+		                                    },
+		                                success: function(data){
+		                                console.log("보냄");
+		                              //  location.href = data;
+		                                }
+		                        }); // ajax
+		                    
+	                     },
+                     	fail: function(error) {
+                      		alert(JSON.stringify(error)+"test");
+                     	}
+                   	 });
+                   },
+               fail: function(err) {
+                alert(JSON.stringify(err)+"v1일때 에러났던곳");
+               }
+       });
+   } 
+         */
         function kakaoLogout(){
             //Kakao.init();
             //Kakao.isInitialized();
@@ -52,10 +132,10 @@
             });
         }
   </script>
-
-</head>
+    </head>
 
 <body>
+
     <!-- 사실상 헤더가 없어요  -->
     <header></header>
     <!-- 본문 너비 정하는 용으로 wrapper 아이디 설정 -->
@@ -64,7 +144,7 @@
 
         <%
         String clientId = "h_yaNKHsI9qSzo9ZPDD8";//애플리케이션 클라이언트 아이디값";
-        String redirectURI = URLEncoder.encode("http://localhost:9999/plus/memberJoin.do", "UTF-8");
+        String redirectURI = URLEncoder.encode("http://localhost:9999/plus/naverlogin.do", "UTF-8");
         SecureRandom random = new SecureRandom();
         String state = new BigInteger(130, random).toString();
         String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code";
@@ -73,7 +153,7 @@
         apiURL += "&state=" + state;
         session.setAttribute("state", state);
         System.out.println(state);
-        System.out.println("네이버 로그인 시도");
+        System.out.println("login.jsp에서 네이버 로그인 시도");
      %>
 
         <!-- 본문영역시작 -->
@@ -109,7 +189,7 @@
                 <section class="Easy-sign-in-wrap">
                     <!-- <div class="hr-1"></div> -->
                     <!-- <h4>SNS로그인</h4> -->
-                    <ul class="sign-button-list">
+                    <ul class="sign-button-list"><!--  id="kakao-login-btn"   -->
                         <li><button class="kakao-login"><a href="javascript:kakaoLogin();"><img src="${path}/resources/img/images/kakao.png"></a></button></li>
                         <li><button class="naver-login"><a href="<%=apiURL%>"><img src="${path}/resources/img/images/naver.png"/></a></button></li>
                     </ul>
@@ -119,7 +199,7 @@
                     </ul>
                     -->
                     <span><a href="#" id="find-id">비밀번호 찾기</a></span>
-                        <p>같이하실래요? <a href="memberJoin.jsp" class="joinMsg">가입하기</a></p><br/>
+                        <p>같이하실래요? <a href="memberJoin.do" class="joinMsg">가입하기</a></p><br/>
                 </section>
                 
                 </div>

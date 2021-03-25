@@ -14,11 +14,30 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <title>채팅</title>
     <style>
-        .chat-wrap {
+    
+	    .chat-wrap{
+	  		margin-top:10px;
+	    	display:flex;
+	  		justify-content: center;
+	  		
+	    }
+	    
+    	.chatRoomList{
+    		width:400px;
+    		border:1px solid #dddddd;
+    		margin-right:10px;
+    	}
+    	
+    	.chatRoom{
+    		height:50px;
+    		border-bottom:1px solid #dddddd;
+    	}
+    
+        .chat-box {
             width: 600px;
             height: 700px;
             border: 1px solid #dddddd;
-            margin: 0 auto;
+           /*  margin: 0 auto; */
         }
 
         .header {
@@ -27,11 +46,10 @@
             font-weight: 500;
             padding-top: 10px;
             text-align: center;
-            margin-bottom: 10px;
         }
 
         .message-wrap {
-            height: 600px;
+            height: 610px;
             overflow-y: scroll;
 
         }
@@ -101,12 +119,10 @@
         }
 
 
-        .send-message {
+	     .send-message {
             display: flex;
             flex-direction: row;
-            border-top: 1px solid #dddddd;
-            border-bottom: 1px solid #dddddd;
-        }
+        } 
 
 
         #message {
@@ -115,15 +131,22 @@
             border:none;
             resize: none;
             z-index: 0;
+            border-top: 1px solid #dddddd;
         }
 
         #sendBtn {
             border: none;
+            border-top: 1px solid #dddddd;
             outline: none;
             background-color: white;
             color: #001eff;
             border-radius: 2px;
             height: 37px;
+        }
+        
+        h2{
+        	color:#dddddd;
+        	text-align:center;
         }
     </style>
     <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
@@ -132,30 +155,26 @@
 </head>
 
 <body>
-    <div class="chat-wrap">
+<div class="chat-wrap">
+	<div class="chatRoomList">
+	<div class="header">채팅방 목록</div>
+	<c:forEach items="${clubs}" var="club">
+		<div class="chatRoom">${club.clubName}</div>
+	</c:forEach>	
+	</div>
+    <div class="chat-box">
         <div class="header">
-            CHAT ${user.memberNickname}
+            메세지 
         </div>
         <div class="message-wrap" style="overflow:auto" >
-        <!--     <div class="other-message-box">
-            <div id="othername">pearjin15</div>
-                <div class="others-message">
-                    안녕하세요?
-                </div>
-                <span class="time-date" id="receive-date">2021/03/08 | 11:01 AM</span>
-            </div>
-            <div class="mymessage-box">
-            <div class="mymessage">
-                    
-                </div>
-                <div class="time-date" id="send-date">2021/03/08 | 11:01 AM</div>
-            </div> -->
+       			<h2>채팅할 모임을 선택해주세요.</h2>
         </div>
             <div class="send-message">
-                <input placeholder="보낼 메세지를 입력해주세요." id="message" required onkeydown="enterKey()"/>
-                <input type="button" id="sendBtn" value="보내기">
+          		<input placeholder="보낼 메세지를 입력해주세요." id="message"/>
+                <input type="button" id="sendBtn" value="보내기"/> 
             </div>
     </div>
+   </div>
 </body>
 <script type="text/javascript">
 let myMessage = "";
@@ -187,6 +206,8 @@ let today="";
         $('.message-wrap').append(myMessage);
 		$('#message').val('')
 		$('.message-wrap').scrollTop($('.message-wrap')[0].scrollHeight);
+		
+		// 에이젝스로 메시지 저장 
 	}
 	
 	// 서버로부터 메시지를 받았을 때
@@ -210,12 +231,6 @@ let today="";
 		$(".mymessage-box").append("연결 끊김");
 
 	}
-	
-
-		$("#sendBtn").click(function() {
-			sendMessage();
-		});
-		
 		
 		function enterKey(){
 			if(event.keyCode == 13) {
@@ -225,6 +240,13 @@ let today="";
 				}
 			}
 		}
+		
+		$(".chatRoom").click(function(){
+			$("h2").remove();
+			$("#message").attr("onkeydown", "enterKey()");
+			$("#sendBtn").attr("onclick", "sendMessage()");
+			
+		})
 		
 
 </script>

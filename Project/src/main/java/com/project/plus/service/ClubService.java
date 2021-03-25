@@ -3,6 +3,7 @@ package com.project.plus.service;
 import java.util.List;
 
 import com.project.plus.domain.ApplyVO;
+import com.project.plus.domain.ChatRoomVO;
 import com.project.plus.domain.ClubVO;
 import com.project.plus.domain.ReviewVO;
 
@@ -15,4 +16,7 @@ public interface ClubService {
 	public void deleteClub(ClubVO vo);
 	public int apply(ApplyVO apply);
 	public Integer getOneApply(ApplyVO apply);
+	public List<ClubVO> getChatList(int memNum);
+	public ChatRoomVO getMessages(int clubNum);
+	public int insertMessage(ChatRoomVO msg);
 }

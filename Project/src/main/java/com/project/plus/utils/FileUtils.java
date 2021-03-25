@@ -53,7 +53,7 @@ public class FileUtils {
 					}
 				} catch (Exception e) {
 					e.printStackTrace();
-					System.out.println("파일 업로드 오류");
+					log.info("파일 업로드 오류");
 				}
 
 			} else {
@@ -63,7 +63,7 @@ public class FileUtils {
 					vo.setClubThumb_pic("");
 					}
 			}
-			System.out.println("업로드 파일이 없습니다");
+			log.info("업로드 파일이 없습니다");
 		}
 		return vo;
 	}//

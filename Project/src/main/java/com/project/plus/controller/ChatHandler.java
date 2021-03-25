@@ -2,6 +2,7 @@ package com.project.plus.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,8 +32,14 @@ public class ChatHandler extends TextWebSocketHandler {
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 		log.info("메세지전송 >> " + session.getId() + " : " +  message.getPayload());
+		// 로그인 아이디 - WebSocket 등록
+		Map<String, Object> map = session.getAttributes();
+		String memid="";
+		if (map.get("user") != null) {
+			memid = (String) map.get("userNickname");
+		}
 		for (WebSocketSession currentSession : sessionList) {
-			currentSession.sendMessage(new TextMessage(session.getId() + " : " + message.getPayload()));
+			currentSession.sendMessage(new TextMessage(memid + " : " + message.getPayload()));
 		}
 	}
 
@@ -40,6 +47,9 @@ public class ChatHandler extends TextWebSocketHandler {
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
 		sessionList.remove(session);
 	}
+	
+
+
 
 
 }

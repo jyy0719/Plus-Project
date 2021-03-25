@@ -28,6 +28,17 @@
 		values(#{memberPhone}, #{memberEmail}, #{memberPassword}, #{memberName}, #{memberNickname}, #{memberPic}, #{memberMarketing}, 0, sysdate())
 	</insert>
 	
+<!-- 	<insert id="kakaologin">
+		insert into member(member_phone, member_email, member_password, member_name, member_nickname, member_pic, member_marketing, member_point, member_joindate)
+		values(#{memberPhone}, #{memberEmail}, #{memberPassword}, #{memberName}, #{memberNickname}, #{memberPic}, #{memberMarketing}, 0, sysdate())
+	</insert> -->
+	
+		<select id="kakaologin" resultMap="memberResult">
+		SELECT * FROM member WHERE
+		member_email = #{memberEmail}
+	</select>
+	
+	
 	<!-- 로그인 관련   "MemberVO"-->
    <!--  
    <select id="login" parameterType="Int" resultType="com.project.plus.domain.MemberVO">
@@ -48,10 +59,12 @@
     
 		<!--  닉네임 휴대전화 비밀번호 -->
  	<update id="updateMember">
-		update member set 
+		UPDATE MEMBER SET
 				member_nickname = #{memberNickname}, 
 				member_phone = #{memberPhone}, 
 				member_password = #{memberPassword} 
-		where member_email = #{memberEmail}
+		WHERE member_email = #{memberEmail}
 	</update> 
+	
+	
 </mapper>

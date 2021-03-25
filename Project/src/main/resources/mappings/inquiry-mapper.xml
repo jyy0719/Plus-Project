@@ -12,6 +12,8 @@
 		<result property="inquiryState" column="inquiry_state" />
 		<result property="inquiryAnswer" column="inquiry_answer" />
  		<result property="inquiryRegDate" column="inquiry_regdate" />
+		<result property="memberEmail" column="member_email"/>
+		<result property="memberNickname" column="member_nickname" />
 	</resultMap>
 	
 	<!-- 회원 : 문의글 작성 -->
@@ -40,7 +42,8 @@
 	
 	<!-- 문의글 개별 상세 조회 -->
 	<select id="getInquiry" resultMap="inquiryResult">
-		SELECT * FROM INQUIRY WHERE INQUIRY_NUM=#{inquiryNum}
+		SELECT inquiry_num, inquiry_title, MEMBER.member_num, inquiry_content, inquiry_type, inquiry_state, inquiry_answer, inquiry_regdate, member_email, member_nickname
+		FROM INQUIRY JOIN MEMBER USING (member_num) WHERE INQUIRY_NUM=#{inquiryNum}
 	</select>
 	
 	<!-- 모든 회원이 쓴 문의글 출력 -->

@@ -1,5 +1,7 @@
 package com.project.plus.service;
 
+import javax.servlet.http.HttpServletRequest;
+
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
@@ -14,6 +16,8 @@ public interface MemberService {
 	void joinMember(MemberVO vo);
 
 	public MemberVO login(MemberVO vo);
+	public MemberVO kakaologin(MemberVO vo);
+
 	
 	public void logout(HttpSession session);
 		

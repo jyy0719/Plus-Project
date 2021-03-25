@@ -6,20 +6,16 @@
 <head>
 <meta charset="UTF-8">
 <title><tiles:getAsString name="title"></tiles:getAsString></title>
-<!-- <link href="/css/mypage/layout.css" type="text/css" rel="stylesheet">  -->
+
 </head>
 <body>
 	<!--  header 부분 -->
 	<tiles:insertAttribute name="header" />
 	
-	<!--  aside 부분 -->
-	<div id="wrapper">
+	<!--  body 부분 -->
 	<tiles:insertAttribute name="body"/>
-	</div>
-
-	<footer>
+	
 	<!--  footer 부분 -->
 	<tiles:insertAttribute name="footer"/>
-	</footer>
 </body>
 </html>
