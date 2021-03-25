@@ -38,8 +38,7 @@
 
 
         //로그인 정보 받아오는 함수 같긴 한데 .. 
-        Kakao.init("9ce759cfc8b480d36084d93d5b5d195f")
-
+/* 
         Kakao.Auth.login({
             url:'v2/user/me',
             success: function(res){
@@ -55,18 +54,8 @@
             }
 
         })
+ */
 
-
-        //카카오 로그아웃시키는 함수 ... ? 
-        function kakaoLogout() {
-    if (!Kakao.Auth.getAccessToken()) {
-      alert('Not logged in.')
-      return
-    }
-    Kakao.Auth.logout(function() {
-      alert('logout ok\naccess token -> ' + Kakao.Auth.getAccessToken())
-    })
-  }
 
 
 
@@ -76,13 +65,13 @@
 
 <body>
     <!-- 사실상 헤더가 없어요  -->
-    <header></header>
+  
     <!-- 본문 너비 정하는 용으로 wrapper 아이디 설정 -->
-    <div id="wrapper">
+
         <!-- navi bar가 사실상 저희 헤더입니다 -->
         <nav>
             <ul class="menu-left">
-                <li id="logo_a"><a href="index.jsp"><img id="logo_img" src="${path}/resources/img/images/logo.png"></a></li>
+                <li id="logo_a"><a href="main.do"><img id="logo_img" src="${path}/resources/img/images/logo.png"></a></li>
                 <li class="hovereffect nav-left"><a href="#">HOME</a></li>
                 <li class="hovereffect nav-left"><a href="#">가치더하기</a></li>
                	<li class="hovereffect nav-left"><a href="#">도움더하기</a></li>
@@ -97,11 +86,11 @@
                         <span class="caret"></span></button>
                         <ul class="dropdown-menu">
                         <form>
-                        <li class="dropli"><a href="memberUpdate.jsp">My Profile</a></li>
+                        <li class="dropli"><a href="memberUpdate.do">My Profile</a></li>
                         </form>
                       <form action="logout.do" method="get">
                       <!--  onclick="kakaoLogout()" -->
-                        <li class="dropli api-btn"><a href="logout.jsp">LogOut</a></li>
+                        <li class="dropli api-btn"><a href="logout.do">LogOut</a></li>
                       </form>
                         </ul>
                     </div>
@@ -123,7 +112,7 @@
 
 
       
-    </div> <!-- id="wrapper" -->
+   
 
 </body>
 

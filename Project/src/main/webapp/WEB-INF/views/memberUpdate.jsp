@@ -72,6 +72,14 @@ checkPw = function() {
     }
 
   }
+  
+//등록한 사진 삭제하는 버튼
+removePic = function(){
+    $('.removePic').click(function(){
+           $("#image_container").empty()
+	$("#picFile").val("");
+}
+    )}
 
 
 </script>
@@ -88,11 +96,8 @@ checkPw = function() {
 
     <!-- wrapper -->
     <div id="wrapper">
-<<<<<<< HEAD
 
-=======
-<input type="hidden" name="memberEmail"  value="${user.memberNum }">
->>>>>>> 0013c97aec50c3409a8d08f0a8436ccb3b5c1880
+<input type="hidden" name="memberNum"  value="${user.memberNum }"> 
         <!-- content1-->
         <div class="content1">      
                 <!-- profile pic -->
@@ -100,6 +105,7 @@ checkPw = function() {
                     <div id="image_container"></div>
                 <div class="filebox"> 
                 </div>
+                	<button type="button" class="removePic" onclick="removePic();">삭제</button>
    	                <label class="picbutton" for="pic_upload_button"><div class="picbutton">사진첨부하기</div></label>
                     <input id="pic_upload_button" type="file" accept="image/*" onchange="setThumbnail(event);" value="사진바꾸기">
                 </div>
@@ -163,7 +169,7 @@ checkPw = function() {
                 <div>
                     <h3 class="join_title"><label for="pswd2">비밀번호 재확인</label></h3>
                     <span class="box int_pass_check">
-                        <input type="password" id="pswd2" onchange="checkPw()" class="int" maxlength="20">
+                        <input type="password" id="pswd2" onchange="checkPw()" class="int" maxlength="20" value="${user.memberPassword }">
 		                    <span id="alertTxt1"></span>
                     </span>
                     <span class="error_next_box"></span>
