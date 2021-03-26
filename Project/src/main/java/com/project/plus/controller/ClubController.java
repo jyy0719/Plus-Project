@@ -192,6 +192,7 @@ public class ClubController {
 	}
 	
 	// 채팅 메시지 db 저장 
+	@RequestMapping("/insertMessage.do")
 	public String insertMessage(ChatRoomVO msg) {
 		clubService.insertMessage(msg);
 		return null;

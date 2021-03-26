@@ -208,7 +208,7 @@ let today="";
 		$('.message-wrap').scrollTop($('.message-wrap')[0].scrollHeight);
 		
 		// 에이젝스로 메시지 저장 
-/		$.ajax({
+		$.ajax({
 			type: "post",
 			data: {
 				clubNum:'${club.clubNum}',
