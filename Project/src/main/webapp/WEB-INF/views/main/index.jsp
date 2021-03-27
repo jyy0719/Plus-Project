@@ -13,7 +13,7 @@
 <link rel="stylesheet" type="text/css"
 	href="${path}/resources/css/index.css">
 
-<!-- 구글 아이콘 -->
+<!-- 구글 아이콘되나-->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
 
