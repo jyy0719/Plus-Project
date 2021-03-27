@@ -11,22 +11,16 @@
 	<put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" /> 
 </definition>
 
-<!-- <definition name="member" template="/WEB-INF/views/include/template.jsp"> 
-	<put-attribute name="header" value="/WEB-INF/views/include/header.jsp" />
-	<put-attribute name="aside" value="/WEB-INF/views/include/header.jsp" />
-	<put-attribute name="body" value="" /> 
-	<put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" /> 
-</definition> -->
 
 
 	<!--  마이페이지  -->
-  <definition name="mypage.*" template="/WEB-INF/views/mypage/inc/layout.jsp">
+<!--   <definition name="mypage.*" template="/WEB-INF/views/mypage/inc/layout.jsp">
     <put-attribute name="title" value="마이 페이지" />
     <put-attribute name="header" value="/WEB-INF/views/include/header.jsp" />
     <put-attribute name="aside" value="/WEB-INF/views/mypage/aside.jsp" />
-  <!--  <put-attribute name="body" value="/WEB-INF/views/mypage/myprofile/{1}.jsp" /> -->
+   <put-attribute name="body" value="/WEB-INF/views/mypage/myprofile/{1}.jsp" />
     <put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" />
-  </definition>
+  </definition> -->
   
   <!-- 관리자페이지 -->
   <definition name="main.page" template="/WEB-INF/views/admin/inc/layout.jsp">
@@ -82,9 +76,33 @@
     <put-attribute name="body" value="" />
   </definition> -->
   
+  
+   <definition name="mypage" template="/WEB-INF/views/include/mytemplate.jsp"> 
+	<put-attribute name="header" value="/WEB-INF/views/include/header.jsp" />
+	<put-attribute name="aside" value="/WEB-INF/views/mypage/inc/aside.jsp" />
+	<put-attribute name="body" value="" /> 
+	<put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" /> 
+</definition> 
+  
+  
+  
   <definition name="*.page" extends="base"> 
   	<put-attribute name="body" value="/WEB-INF/views/club/{1}.jsp" /> 
   </definition>
+    
+  <definition name="*.reviews" extends="mypage"> 
+  	<put-attribute name="body" value="/WEB-INF/views/mypage/reviews/{1}.jsp" /> 
+  </definition>
+   <definition name="*.point" extends="mypage"> 
+  	<put-attribute name="body" value="/WEB-INF/views/mypage/point/paymentList.jsp" /> 
+  </definition>
+  
+    <definition name="*.heart" extends="mypage"> 
+  	<put-attribute name="body" value="/WEB-INF/views/mypage/heart/{1}.jsp" /> 
+  </definition>
+  
+  
+  
   
   
 <!--   <definition name="*." extends="member"> 

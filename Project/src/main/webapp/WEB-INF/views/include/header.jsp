@@ -65,9 +65,9 @@
         <nav>
             <ul class="menu-left">
                 <li id="logo_a"><a href="main.do"><img id="logo_img" src="${path}/resources/img/images/logo.png"></a></li>
-                <li class="hovereffect nav-left"><a href="#">HOME</a></li>
-                <li class="hovereffect nav-left"><a href="#">가치더하기</a></li>
-               	<li class="hovereffect nav-left"><a href="#">도움더하기</a></li>
+                <li class="hovereffect nav-left"><a href="main.do">HOME</a></li>
+                <li class="hovereffect nav-left"><a href="normal.do">가치더하기</a></li>
+               	<li class="hovereffect nav-left"><a href="expert.do">도움더하기</a></li>
  
  
  <!-- 로그인정보 없을 때는 로그인버튼 보이게 , 로그인 후에는 채팅, 알람, 드롭다운 버튼 보이게 했습니다   -->
