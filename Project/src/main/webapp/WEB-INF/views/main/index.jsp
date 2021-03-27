@@ -207,7 +207,7 @@
 						<div class="card border-0 transform-on-hover">
 
 							<a class="lightbox"
-								href='/club/info?club_num=<c:out value="${club.clubNum}" />'>
+								href='getClub.do?clubNum=<c:out value="${club.clubNum}" />'>
 								<img id="clubmainpic"
 								src="${path}/resources${club.clubMain_pic}"
 								onerror="this.onerror=null; this.src='${path}/resources/img/img1.jpg'" />
@@ -222,7 +222,7 @@
 								</div>
 								<div class=clubtitle>
 									<a class=clubtitle
-										href='/club/info?club_num=<c:out value="${club.clubNum}" />'>
+										href='getClub.do?clubNum=<c:out value="${club.clubNum}" />'>
 										${club.clubName} </a>
 								</div>
 								<div class=subtitle>
@@ -257,7 +257,7 @@
 
 
  <button id="addplus">
-		<a href="clubForm.jsp"><i class="fas fa-plus-circle fa-4x"></i></a>
+		<a href="clubForm.do"><i class="fas fa-plus-circle fa-4x"></i></a>
 	</button> 
 
 	</div>

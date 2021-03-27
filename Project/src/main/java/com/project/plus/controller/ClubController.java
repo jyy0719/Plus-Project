@@ -109,7 +109,7 @@ public class ClubController {
 		int startIndex = Integer.valueOf(param.get("startIndex").toString());
 		int clubNum = Integer.valueOf(param.get("clubNum").toString());
 		log.info(startIndex);
-		log.info(clubNum);
+		log.info("리뷰 더 가져오기 : " + clubNum);
 		condition.put("startIndex", startIndex);
 		condition.put("clubNum", clubNum);
 
@@ -134,7 +134,7 @@ public class ClubController {
 		model.addAttribute("isThereHeart", resultClub);
 		//여기위 까지
 		
-		getReviews(model,11);
+		getReviews(model,clubNum);
 		model.addAttribute("club", clubService.getClub(clubNum));
 		log.info("모임 번호 : " + clubNum+ " 상세 정보 ");
 		return "getClub.club";
