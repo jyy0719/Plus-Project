@@ -71,7 +71,7 @@ public class LoginController {
 	            out.close();
 
 
-			return "login.do";
+			return "login";
 		}
 	}
 	

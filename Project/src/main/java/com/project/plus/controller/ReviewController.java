@@ -28,7 +28,7 @@ public class ReviewController {
 		model.addAttribute("selectNotReview", reviewService.selectNotReview(vo)); 
 		model.addAttribute("selectOkayReview", reviewService.selectOkayReview(vo)); 
 		
-		return "reviewList";
+		return "reviewList.reviews";
 	}
 	
 	@RequestMapping("/showReviewForm.do") 

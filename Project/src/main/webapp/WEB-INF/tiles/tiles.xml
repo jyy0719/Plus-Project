@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE tiles-definitions PUBLIC
        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
@@ -104,4 +105,127 @@
     <put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" />	// 푸터 부분
   </definition>	-->
   
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+<definition name="base" template="/WEB-INF/views/include/template.jsp"> 
+	<put-attribute name="header" value="/WEB-INF/views/include/header.jsp" /> 
+	<put-attribute name="body" value="" /> 
+	<put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" /> 
+</definition>
+
+<!-- <definition name="member" template="/WEB-INF/views/include/template.jsp"> 
+	<put-attribute name="header" value="/WEB-INF/views/include/header.jsp" />
+	<put-attribute name="aside" value="/WEB-INF/views/include/header.jsp" />
+	<put-attribute name="body" value="" /> 
+	<put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" /> 
+</definition> -->
+
+<!-- 
+  <definition name="mypage.*" template="/WEB-INF/views/mypage/inc/layout.jsp">
+    <put-attribute name="title" value="마이 페이지" />
+    <put-attribute name="header" value="/WEB-INF/views/include/header.jsp" />
+    <put-attribute name="aside" value="/WEB-INF/views/mypage/aside.jsp" />
+   <put-attribute name="body" value="/WEB-INF/views/mypage/myprofile/{1}.jsp" />
+    <put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" />
+  </definition>
+  
+  관리자페이지
+  <definition name="main.page" template="/WEB-INF/views/admin/inc/layout.jsp">
+    <put-attribute name="title" value="관리자 페이지" />
+    <put-attribute name="header" value="/WEB-INF/views/include/header.jsp" />
+    <put-attribute name="aside" value="/WEB-INF/views/admin/aside.jsp" />
+   <put-attribute name="body" value="/WEB-INF/views/admin/chart/{1}.jsp" />
+    <put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" />
+  </definition>
+  
+  메인 페이지
+   <definition name="view.*" template="/WEB-INF/views/index.jsp"> 		
+    <put-attribute name="header" value="/WEB-INF/views/include/header.jsp" />	
+    <put-attribute name="header" value="/WEB-INF/views/index.jsp" />	
+    <put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" />	
+  </definition>	
+
+  
+    로그인 페이지
+   <definition name="login" template="/WEB-INF/views/inc/layout.jsp"> 		
+    <put-attribute name="header" value="/WEB-INF/views/include/header.jsp" />	
+        <put-attribute name="title" value="로그인 페이지" />
+    <put-attribute name="body" value="/WEB-INF/views/login.jsp" />
+    <put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" />	
+  </definition>	
+  
+  회원가입 페이지
+     <definition name="memberJoin" template="/WEB-INF/views/inc/layout.jsp"> 		
+    <put-attribute name="header" value="/WEB-INF/views/include/joinHeader.jsp" />	
+        <put-attribute name="title" value="회원가입 페이지" />
+    <put-attribute name="body" value="/WEB-INF/views/memberJoin.jsp" />
+    <put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" />	
+  </definition>	
+  
+    정보수정 페이지
+     <definition name="memberUpdate" template="/WEB-INF/views/inc/layout.jsp"> 		
+    <put-attribute name="header" value="/WEB-INF/views/include/header.jsp" />	
+        <put-attribute name="title" value="회원정보 수정 페이지" />
+    <put-attribute name="body" value="/WEB-INF/views/memberUpdate.jsp" />
+    <put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" />	
+  </definition>	
+  
+      정보수정 페이지
+     <definition name="index" template="/WEB-INF/views/inc/layout.jsp"> 		
+    <put-attribute name="header" value="/WEB-INF/views/include/header.jsp" />	
+        <put-attribute name="title" value="더하기 메인" />
+    <put-attribute name="body" value="/WEB-INF/views/index.jsp" />
+    <put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" />	
+  </definition>	
+   -->
+  <!-- club -->
+<!--    <definition name="club.*" template="/WEB-INF/views/club/layout.jsp">
+    <put-attribute name="body" value="" />
+  </definition> -->
+  
+  <definition name="mypage" template="/WEB-INF/views/include/mytemplate.jsp"> 
+   <put-attribute name="header" value="/WEB-INF/views/include/header.jsp" />
+   <put-attribute name="aside" value="/WEB-INF/views/mypage/inc/aside.jsp" />
+   <put-attribute name="body" value="" /> 
+   <put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" /> 
+</definition>
+  
+  <definition name="*.club" extends="base"> 
+  	<put-attribute name="body" value="/WEB-INF/views/club/{1}.jsp" /> 
+  </definition>
+  
+  <definition name="*.main" extends="base"> 
+  	<put-attribute name="body" value="/WEB-INF/views/main/{1}.jsp" /> 
+  </definition>
+  
+  <definition name="*.reviews" extends="mypage"> 
+  	<put-attribute name="body" value="/WEB-INF/views/reviews/{1}.jsp" /> 
+  </definition>
+
+<!--   <definition name="*." extends="member"> 
+  	<put-attribute name="body" value="/WEB-INF/views/mypage/{1}.jsp" /> 
+  </definition>  -->
+  
+  
+<!--   
+  <definition name="*/*" extends="base"> 
+  	<put-attribute name="body" value="/WEB-INF/views/{1}/{2}.jsp" /> 
+  </definition> -->
+
+  <!-- 그 외 필요한 페이지들마다, 속성마다 필요한 부분을  복사해서 사용하시면 됩니다   
+   <definition name="페이지.*" template="/WEB-INF/views/admin/inc/layout.jsp"> 	//골격
+    <put-attribute name="title" value="타이틀" />									 // 제목부분인데 이 속성은 꼭 타일즈와 연관있는것은 아니니 생략해도 무방합니다
+    <put-attribute name="header" value="/WEB-INF/views/include/header.jsp" />	// 헤더
+    <put-attribute name="aside" value="/WEB-INF/views/admin/aside.jsp" />		// 사이드에 공통되는 부분이 있다면 여기에	
+    <put-attribute name="body" value="/WEB-INF/views/admin/chart/{1}.jsp" />	// 메인 바디 부분
+    <put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" />	// 푸터 부분
+  </definition>	-->
+  
+>>>>>>> e17b1a88e3fd2bdb7175bf9f7864a9913fb62b9f
 </tiles-definitions>
