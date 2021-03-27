@@ -109,7 +109,7 @@ public class ClubController {
 		int startIndex = Integer.valueOf(param.get("startIndex").toString());
 		int clubNum = Integer.valueOf(param.get("clubNum").toString());
 		log.info(startIndex);
-		log.info(clubNum);
+		log.info("리뷰 더 가져오기 : " + clubNum);
 		condition.put("startIndex", startIndex);
 		condition.put("clubNum", clubNum);
 
@@ -134,7 +134,7 @@ public class ClubController {
 		model.addAttribute("isThereHeart", resultClub);
 		//여기위 까지
 		
-		getReviews(model,11);
+		getReviews(model,clubNum);
 		model.addAttribute("club", clubService.getClub(clubNum));
 		log.info("모임 번호 : " + clubNum+ " 상세 정보 ");
 		return "getClub.club";
@@ -142,10 +142,9 @@ public class ClubController {
 
 	// 회원 모임 수정 폼 
 	@RequestMapping("/getMyClubInfo.do")
-	public String getMyClubInfo(@RequestParam("clubNum") int clubNum, ClubVO vo, Model model) {
-		vo = clubService.getMyClubInfo(clubNum);
-		log.info(clubNum);
-		
+	public String getMyClubInfo(ClubVO vo, Model model) {
+		vo = clubService.getMyClubInfo(vo);
+
 		// 경로를 자르고 파일명+확장자만 set
 		if (vo.getClubMain_pic() != null) {
 			String formatName = vo.getClubMain_pic().substring(vo.getClubMain_pic().lastIndexOf("_") + 1);

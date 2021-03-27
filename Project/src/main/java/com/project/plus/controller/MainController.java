@@ -31,7 +31,10 @@ public class MainController {
 		// service.getListDeadline(마감임박 더하기)를 main2이라는 이름을 통해 뷰에 보내준다.
 		model.addAttribute("main2", service.getListDeadline(vo));
 		
+
 		return "index.main";
+
+	
 	}
 
 	

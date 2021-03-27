@@ -7,13 +7,7 @@
    font-family: 'NanumSquare';
 }
 
-<<<<<<< HEAD
 
-=======
-body {
-   padding-bottom: 10%;
-}
->>>>>>> e17b1a88e3fd2bdb7175bf9f7864a9913fb62b9f
 
 a {
    text-decoration: none
@@ -55,7 +49,7 @@ a {
 }
 
 .carouser-content1 p {
-   font-size: 48px;
+   font-size: 55px;
    font-weight: 900;
    color: rgb(236, 236, 236);
    text-shadow: 2px 2px 2px rgba(65, 62, 62, 0.808);
@@ -235,7 +229,7 @@ form.box input[type=text]::placeholder {
             left: -10%;
         }
     }
-=======
+
 .catagory-btn p {
    color: rgb(0, 30, 250);
    overflow: hidden;
@@ -316,7 +310,7 @@ left
 -10%;
 }
 }
->>>>>>> e17b1a88e3fd2bdb7175bf9f7864a9913fb62b9f
+
 /* 검색 카테고리  끝*/
 .gallery-container {
    width: 1200px;
@@ -326,21 +320,20 @@ left
 }
 
 .card-bodyarea {
-<<<<<<< HEAD
+
 	padding: 20px 2px 50px 2px;
 }
 
 .card-content {
 	position: relative;
-	padding: 10px 0 20px 3px;
-=======
+
    padding: 20px 2px 50px 2px;
 }
 
 .card-content {
    position: relative;
    padding: 10px 0 20px 3px;
->>>>>>> e17b1a88e3fd2bdb7175bf9f7864a9913fb62b9f
+
 }
 
 .card-content b {
@@ -414,7 +407,7 @@ left
 }
 
 .lightbox img {
-<<<<<<< HEAD
+
 	width: 100%;
 	height: 200px;
 	transition: .1s;
@@ -422,18 +415,18 @@ left
 
 .lightbox img : hover {
 	transform: scale(1.05);
-=======
+
    width: 100%;
    height: 200px;
    transition: .1s;
->>>>>>> e17b1a88e3fd2bdb7175bf9f7864a9913fb62b9f
+
 }
 
 
 
 /* 페이지 위로가기 버튼 */
 #go-top {
-<<<<<<< HEAD
+
 	/* display: none;  */
 	position: absolute;
 	left: 50%;
@@ -459,39 +452,33 @@ left
 }
 
 #bottomarea{
-	padding-bottom:200px;
+	padding-bottom:100px;
 }
-</
-style
->
-=======
+
+#go-top{
    /* display: none;  */
-   position: absolute;
+  position: relative;
    left: 50%;
-   transform: translate(-50%, 0%);
    outline: 0;
    border: 0;
-   background: transparent;
    cursor: pointer;
-   z-index: 9999;
    color: rgb(0, 30, 250);
-   
+
+ 
 }
 /*더하기 등록 버튼*/
-#addplus {
+.addplus {
    outline: 0;
    border: 0;
    background: transparent;
    cursor: pointer;
    position: absolute;
    right: 3%;
-   
-   
-   
+     color: rgb(0, 30, 250);
 }
 .material-icons{
    color: rgb(0, 30, 250);
        
 }
    
->>>>>>> e17b1a88e3fd2bdb7175bf9f7864a9913fb62b9f
+

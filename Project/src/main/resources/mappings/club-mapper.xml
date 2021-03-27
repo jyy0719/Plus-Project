@@ -74,7 +74,7 @@
 	</select>
 	
 	<select id="getMyClubInfo" resultMap="clubResult">
-		SELECT * FROM club WHERE club_leader = '혼공최고' AND club_num = #{clubNum}
+		SELECT * FROM club WHERE club_leader = #{clubLeader} AND club_num = #{clubNum}
 	</select>
 
 	<insert id="insertClub">
