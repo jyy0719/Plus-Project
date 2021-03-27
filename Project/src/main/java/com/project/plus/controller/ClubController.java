@@ -121,11 +121,7 @@ public class ClubController {
 		return jsonString;
 
 	}
-	@GetMapping("/clubForm.do")
-	public String getClubForm() {
-		return "club/clubForm";
-	}
-	
+
 	// 모임 상세정보 
 	@RequestMapping("/getClub.do")
 	public String getClub(@RequestParam("clubNum") int clubNum,HeartVO hvo, Model model) {

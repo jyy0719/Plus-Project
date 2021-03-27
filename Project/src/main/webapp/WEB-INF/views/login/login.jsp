@@ -94,9 +94,7 @@ function kakaoLogin(){
             });
         }
         
-        
-			window.history.forward();
-		
+  
         
         
   </script>
