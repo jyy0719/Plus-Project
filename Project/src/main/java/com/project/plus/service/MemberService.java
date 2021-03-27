@@ -18,11 +18,17 @@ public interface MemberService {
 	public MemberVO login(MemberVO vo);
 	public MemberVO kakaologin(MemberVO vo);
 
-	
 	public void logout(HttpSession session);
 		
 	void updateMember(MemberVO vo);
 	
 	public MemberVO selectMember(MemberVO vo);
-
+	
+	//정연 하단 추가 20210326
+	
+	void updateMemberPoint (MemberVO vo);
+	int selectMemberPoint (MemberVO vo);
+	int selectMemberPointByNickname(MemberVO vo);
+	void deductMemberPoint(MemberVO vo);
+	void updateClubLeaderPoint(MemberVO vo);
 }

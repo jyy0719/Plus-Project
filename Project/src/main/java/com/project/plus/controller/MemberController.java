@@ -48,8 +48,8 @@ public class MemberController {
 //			String fileName = uploadFile.getOriginalFilename();
 //			uploadFile.transferTo(new File("C:/" + fileName));
 //		}
-		
-		
+//		
+//		
 		memberService.joinMember(vo);
 		return "index";
 			

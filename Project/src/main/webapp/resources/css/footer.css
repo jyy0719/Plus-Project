@@ -19,14 +19,16 @@
       
 
 /* 푸터 스타일 시작 */
-
-
-footer {
+.footerBox{
+	text-align:center;
+}
+ 
+/* footer {
   	height: 80px; 
     text-align: center;
-}
+} */
 
-footer li {
+.footerText li {
     display: inline;
     font-weight: 400;
     font-size: 18px;
@@ -36,11 +38,11 @@ footer li {
 
 }
 
-footer li a {
+.footerText li a {
     text-decoration: none;
 }
 
-footer li a:hover {
+.footerText li a:hover {
     color: #1e00ff
 }
 

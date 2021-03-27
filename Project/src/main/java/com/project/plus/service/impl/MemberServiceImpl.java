@@ -51,6 +51,35 @@ public class MemberServiceImpl implements MemberService {
 		
 	}
 
+	//정연 하단 추가 20210326
+	@Autowired
+	private MemberMapper memberMapper; 
+
+	@Override
+	public void updateMemberPoint(MemberVO vo) {
+		memberMapper.updateMemberPoint(vo);
+	}
+	
+	@Override
+	public int selectMemberPoint(MemberVO vo) {
+		
+		return memberMapper.selectMemberPoint(vo);
+	}
+
+	@Override
+	public void deductMemberPoint(MemberVO vo) {
+		memberMapper.deductMemberPoint(vo);
+	}
+
+	@Override
+	public void updateClubLeaderPoint(MemberVO vo) {
+		memberMapper.updateClubLeaderPoint(vo);
+	}
+
+	@Override
+	public int selectMemberPointByNickname(MemberVO vo) {
+		return memberMapper.selectMemberPointByNickname(vo);
+	}
 
 
 
