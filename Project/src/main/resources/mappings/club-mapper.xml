@@ -70,7 +70,7 @@
 		- CHAR_LENGTH ( REPLACE ( Club.club_hashtag , ',' , '' ))>= numbers .
 		n-1
 		WHERE SUBSTRING_INDEX ( SUBSTRING_INDEX ( Club.club_hashtag , ' ' , numbers
-		. n ), ' ' , -1 ) != ' ' AND club_num=33
+		. n ), ' ' , -1 ) != ' ' AND club_num=#{clubNum}
 	</select>
 	
 	<select id="getMyClubInfo" resultMap="clubResult">
