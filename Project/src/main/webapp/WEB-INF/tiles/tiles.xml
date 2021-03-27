@@ -100,6 +100,22 @@
   	<put-attribute name="body" value="/WEB-INF/views/reviews/{1}.jsp" /> 
   </definition>
 
+<!-- 로그인 , 로그아웃-->
+    <definition name="*.login" extends="base"> 
+     <put-attribute name="body" value="/WEB-INF/views/login/{1}.jsp" /> 
+  </definition>
+
+<!-- 멤버 정보수정, 리스트 조회-->
+    <definition name="*.member" extends="base"> 
+     <put-attribute name="body" value="/WEB-INF/views/member/{1}.jsp" /> 
+  </definition>
+  
+  <!-- 회원가입페이지 특정 헤더 사용 -->
+    <definition name="memberJoin" extends="base"> 
+      <put-attribute name="header" value="/WEB-INF/views/include/joinHeader.jsp" />   
+     <put-attribute name="body" value="/WEB-INF/views/member/memberJoin.jsp" /> 
+    <put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" />   
+  </definition>
 <!--   <definition name="*." extends="member"> 
   	<put-attribute name="body" value="/WEB-INF/views/mypage/{1}.jsp" /> 
   </definition>  -->

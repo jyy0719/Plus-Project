@@ -40,10 +40,10 @@ public class MemberController {
 	@Autowired
     private JavaMailSender mailSender;
 
-	@RequestMapping(value="memberList.do")
+	@RequestMapping(value="memberList.do", method=RequestMethod.GET)
 	public String memberList(MemberVO vo, Model model) {
 		List<MemberVO> memberList = memberService.memberList(vo);
-		model.addAttribute("memberList", memberList);
+		model.addAttribute("memberList", memberService.memberList(vo));
 		return "memberList.member";
 	}
 	

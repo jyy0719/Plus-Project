@@ -138,7 +138,9 @@
                              <td>${ml.memberEmail }</td>
                              <td>${ml.memberName }</td>
                              <td>${ml.memberJoindate }</td>
-                             <td>상세보기</td>
+                            <%--  <td><a href="{path}/WEB-INF/views/member/memberUpdate.do?memberEmail=${ml.memberEmail }">상세보기</a></td> --%>
+                            <td><a href="{path}/memberUpdate.do?memberNum=${ml.memberNum }">상세보기</a></td>
+                        
                           </tr>
                        </c:forEach>
               <%--       </c:if>  --%>

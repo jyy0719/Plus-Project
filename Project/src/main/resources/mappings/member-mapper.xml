@@ -49,18 +49,18 @@
     
 
   	<select id="selectMember" resultMap="memberResult">
+		SELECT * FROM member WHERE
+		member_email = #{memberEmail}
+	</select> 
+	
+	<!-- 멤버리스트 조회 -->
+  	<select id="memberList" resultMap="memberResult">
 		SELECT 
 		member_email AS memberEmail,
 		member_name AS memberName,
 		member_joindate AS memberJoindate
 		FROM member 
-		ORDER BY memberNum
-	</select> 
-	
-	<!-- 멤버리스트 조회 -->
-  	<select id="memberList" resultMap="memberResult">
-		SELECT * FROM member WHERE
-		member_email = #{memberEmail}
+		ORDER BY member_num
 	</select> 
     
     
