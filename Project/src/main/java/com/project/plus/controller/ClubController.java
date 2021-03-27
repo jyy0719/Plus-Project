@@ -1,18 +1,15 @@
 package com.project.plus.controller;
 
-import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -48,6 +45,12 @@ public class ClubController {
 	
 	@Autowired
 	private HeartService heartService;
+	
+	@GetMapping("/clubForm.do")
+	public String getClubForm() {
+		return "club/clubForm";
+	}
+	
 
 	// 모임 등록, 파일 업로드
 	@RequestMapping(value = "/insertClub.do", method = RequestMethod.POST)
@@ -60,7 +63,7 @@ public class ClubController {
 		clubService.insertClub(vo); // DB에 저장
 		log.info("모임 번호 : " + vo.getClubNum() + " 등록 완료 ");
 		log.info(uploadPath);
-		return "index";
+		return "redirect:main.do";
 
 	}
 
@@ -75,7 +78,7 @@ public class ClubController {
 		clubService.updateClub(vo);
 		log.info("모임 번호 : " + vo.getClubNum() + " 수정 완료 ");
 
-		return "index";
+		return "redirect:main.do";
 	}
 
 	
@@ -121,7 +124,7 @@ public class ClubController {
 
 	// 모임 상세정보 
 	@RequestMapping("/getClub.do")
-	public String getClub(ClubVO vo,HeartVO hvo, Model model) {
+	public String getClub(@RequestParam("clubNum") int clubNum,HeartVO hvo, Model model) {
 
 		//정연 추가 
 		hvo.setClubNum(2);
@@ -132,15 +135,15 @@ public class ClubController {
 		//여기위 까지
 		
 		getReviews(model,11);
-		model.addAttribute("club", clubService.getClub(vo));
-		log.info("모임 번호 : " + vo.getClubNum() + " 상세 정보 ");
-		return "getClub.page";
+		model.addAttribute("club", clubService.getClub(clubNum));
+		log.info("모임 번호 : " + clubNum+ " 상세 정보 ");
+		return "getClub.club";
 	}
 
 	// 회원 모임 수정 폼 
 	@RequestMapping("/getMyClubInfo.do")
-	public String getMyClubInfo(ClubVO vo, Model model) {
-		vo = clubService.getMyClubInfo(vo);
+	public String getMyClubInfo(@RequestParam("clubNum") int clubNum, ClubVO vo, Model model) {
+		vo = clubService.getMyClubInfo(clubNum);
 
 		// 경로를 자르고 파일명+확장자만 set
 		if (vo.getClubMain_pic() != null) {
@@ -160,14 +163,14 @@ public class ClubController {
 
 		model.addAttribute("club", vo);
 		log.info("모임 수정 폼 : " + vo.getClubNum());
-		return "myClubInfo.page";
+		return "myClubInfo.club";
 	}
 
 	@RequestMapping("/deleteClub.do")
 	public String deleteClub(ClubVO vo) {
 		clubService.deleteClub(vo);
 		log.info("모임 번호 : " + vo.getClubNum() + " 삭제 완료 ");
-		return "index";
+		return "redirect:main.do";
 	}
 	
 	@RequestMapping("/apply.do")
@@ -195,7 +198,7 @@ public class ClubController {
 		log.info("채팅 로그인 멤버 번호 : " + memNum);
 		List<ClubVO> clubs = clubService.getChatList(memNum);
 		model.addAttribute("clubs", clubs);
-		return "chat";
+		return "club/chat";
 	}
 	
 	// 클럽 넘버를 받아야 함 

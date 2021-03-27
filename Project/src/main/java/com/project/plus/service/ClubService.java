@@ -9,9 +9,9 @@ import com.project.plus.domain.ReviewVO;
 
 public interface ClubService {
 	public void insertClub(ClubVO vo);
-	public ClubVO getClub(ClubVO vo);
+	public ClubVO getClub(int clubNum);
 	public List<String> getClubHashtag();
-	public ClubVO getMyClubInfo(ClubVO vo);
+	public ClubVO getMyClubInfo(int clubNum);
 	public int updateClub(ClubVO vo);
 	public void deleteClub(ClubVO vo);
 	public int apply(ApplyVO apply);

@@ -65,15 +65,15 @@
         <nav>
             <ul class="menu-left">
                 <li id="logo_a"><a href="main.do"><img id="logo_img" src="${path}/resources/img/images/logo.png"></a></li>
-                <li class="hovereffect nav-left"><a href="main.do">HOME</a></li>
-                <li class="hovereffect nav-left"><a href="normal.do">가치더하기</a></li>
-               	<li class="hovereffect nav-left"><a href="expert.do">도움더하기</a></li>
+                <li class="hovereffect nav-left"><a href="#">HOME</a></li>
+                <li class="hovereffect nav-left"><a href="#">가치더하기</a></li>
+                  <li class="hovereffect nav-left"><a href="#">도움더하기</a></li>
  
  
  <!-- 로그인정보 없을 때는 로그인버튼 보이게 , 로그인 후에는 채팅, 알람, 드롭다운 버튼 보이게 했습니다   -->
            <c:choose>
             <c:when test = "${user.memberEmail != null }"> <!-- 로그인 정보가 있으면 -->
-             	<li class="nav-right btncolor">
+                <li class="nav-right btncolor">
                     <div class="dropdown">
                         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" id="btncolor"><b>${user.memberNickname }</b>님, 환영합니다
                         <span class="caret"></span></button>
@@ -88,7 +88,7 @@
                         </ul>
                     </div>
                 </li>
-                <li class="nav-right icon"><a href="chat.do?memberNum=${user.memberNum}"><img src="${path}/resources/img/images/chat.png" id="icon"></a></li>
+                <li class="nav-right icon"><a href="chat.do?memberNum=${user.memberNum}" target="_blank"><img src="${path}/resources/img/images/chat.png" id="icon"></a></li>
                 <li class="nav-right icon"><a href="#"><img src="${path}/resources/img/images/bell1.png" id="icon"></a></li>
              </c:when>
              <c:otherwise><!-- 로그인 정보가 없으면  -->

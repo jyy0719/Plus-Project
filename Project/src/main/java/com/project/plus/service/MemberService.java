@@ -11,7 +11,6 @@ import org.springframework.ui.Model;
 
 import com.project.plus.domain.InquiryVO;
 import com.project.plus.domain.MemberVO;
-import com.project.plus.domain.MemberVO;
 import com.project.plus.domain.PaymentVO;
 
 public interface MemberService {

@@ -20,15 +20,15 @@ public class ClubServiceImpl implements ClubService {
 	public void insertClub(ClubVO vo) {
 		mapper.insertClub(vo);
 	}
-	public ClubVO getClub(ClubVO vo) {
-		return mapper.getClub(vo);
+	public ClubVO getClub(int clubNum) {
+		return mapper.getClub(clubNum);
 		
 	}
 	public List<String> getClubHashtag() {
 		return mapper.getClubHashtag();
 	}
-	public ClubVO getMyClubInfo(ClubVO vo) {
-		return mapper.getMyClubInfo(vo);
+	public ClubVO getMyClubInfo(int clubNum) {
+		return mapper.getMyClubInfo(clubNum);
 	}
 	public int updateClub(ClubVO vo) {
 		return mapper.updateClub(vo);

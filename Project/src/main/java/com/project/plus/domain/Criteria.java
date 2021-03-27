@@ -1,82 +1,108 @@
 package com.project.plus.domain;
 
+import java.util.Arrays;
+
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
-// 페이징 처리 담당 클래스
-
-@Getter
-@Setter
-@ToString
+/* Criteria
+ * 특정 페이지 조회를 위한 클래스
+ */
 public class Criteria {
-
-	// searchBy가 어떤거냐에 따라서 쿼리문이 달라져야한다.
-	private String searchBy;
-	private String category;
-	private String onoff;
-	private String hashtag;
-	private String keyword;
-
-	public String getListSearch;
-
-	private String orderBy;
-	private Double clubLatitude;
-	private Double clubLongitude;
-	public String getHeaderSearch;
-
-	private int page; // 보여줄 페이지 번호
-	private int perPageNum; // 페이지당 보여줄 게시글의 개수
-
-	// 한 페이지에 20까지, clubNum 거꾸로.
-	public Criteria() {
-
-		// 최초 게시판에 진입할 때를 위해서 기본 값을 설정 해야 한다.
-		this.page = 1;
-		this.perPageNum = 20;
-	}
-
-	public int getPage() {
-		return page;
-	}
-
-	public void setPage(int page) {
-		if (page <= 0) {
-			this.page = 1;
-			return;
+		
+		/* 현재 페이지 */
+		private int pageNum;
+		
+		/* 한 페이지 당 보여질 게시물 갯수 */
+		private int amount;
+		
+		/* 스킵 할 게시물 수( (pageNum-1) * amount ) */
+		private int skip;
+		
+		/* 검색어 키워드 */
+		private String keyword;
+		
+		/* 검색 타입 */
+		private String type;
+		private String onoff;
+		
+		/* 검색 타입 배열 */
+		private String[] typeArr;
+		
+		/* 기본 생성자 -> 기봅 세팅 : pageNum = 1, amount = 10 */
+		public Criteria() {
+			this(1,20);
+			this.skip = 0;
+		}
+		
+		/* 생성자 => 원하는 pageNum, 원하는 amount */
+		public Criteria(int pageNum, int amount) {
+			this.pageNum = pageNum;
+			this.amount = amount;
+			this.skip = (pageNum-1)*amount;
 		}
 
-		this.page = page;
-	}
-
-	public int getPerPageNum() {
-		return perPageNum;
-	}
-
-	public void setPerPageNum(int perPageNum) {
-
-		if (perPageNum <= 0 || perPageNum > 100) {
-			this.perPageNum = 20;
-			return;
+		public int getPageNum() {
+			return pageNum;
 		}
 
-		this.perPageNum = perPageNum;
-	}
+		public void setPageNum(int pageNum) {
+			
+			this.skip= (pageNum-1)*this.amount;
+			
+			this.pageNum = pageNum;
+		}
 
-	/* limit 구문에서 시작 위치를 지정할 때 사용된다. */
-	/* this.page 1을 가져오려면 0이 되어야 해서 -1을 한다 */
+		public int getAmount() {
+			return amount;
+		}
 
-	public int getPageStart() {
-		return (this.page - 1) * perPageNum;
-	}
+		public void setAmount(int amount) {
+			
+			this.skip= (this.pageNum-1)*amount;
+			
+			this.amount = amount;
+		}
 
-	public String toString() {
-		return "Criteria [page=" + page + ", perPageNum=" + perPageNum + "]";
-	}
 
-	public void setAmount(int i) {
-		// TODO Auto-generated method stub
+		public int getSkip() {
+			return skip;
+		}
+
+		public void setSkip(int skip) {
+			this.skip = skip;
+		}
+
+		public String getKeyword() {
+			return keyword;
+		}
+
+		public void setKeyword(String keyword) {
+			this.keyword = keyword;
+		}
+
+		public String getType() {
+			return type;
+		}
+
+		public void setType(String type) {
+			this.type = type;
+			this.typeArr = type.split("");
+		}
+
+		public String[] getTypeArr() {
+			return typeArr;
+		}
+
+		public void setTypeArr(String[] typeArr) {
+			this.typeArr = typeArr;
+		}
+
+		@Override
+		public String toString() {
+			return "Criteria [pageNum=" + pageNum + ", amount=" + amount + ", skip=" + skip + ", keyword=" + keyword
+					+ ", type=" + type + ", typeArr=" + Arrays.toString(typeArr) + "]";
+		}
+
 		
 	}
-
-}
