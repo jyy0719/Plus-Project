@@ -657,7 +657,7 @@ left
 
 	</button>
  <button id="addplus">
-		<a href="clubForm.jsp"> <span class="material-icons"
+		<a href="clubForm.do"> <span class="material-icons"
 			style="display: inline-block; font-size: 55px;"> add_circle </span></a>
 	</button> 
 

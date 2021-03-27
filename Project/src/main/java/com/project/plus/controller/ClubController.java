@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,6 +45,12 @@ public class ClubController {
 	
 	@Autowired
 	private HeartService heartService;
+	
+	@GetMapping("/clubForm.do")
+	public String getClubForm() {
+		return "club/clubForm";
+	}
+	
 
 	// 모임 등록, 파일 업로드
 	@RequestMapping(value = "/insertClub.do", method = RequestMethod.POST)
@@ -135,8 +142,8 @@ public class ClubController {
 
 	// 회원 모임 수정 폼 
 	@RequestMapping("/getMyClubInfo.do")
-	public String getMyClubInfo(ClubVO vo, Model model) {
-		vo = clubService.getMyClubInfo(vo);
+	public String getMyClubInfo(@RequestParam("clubNum") int clubNum, ClubVO vo, Model model) {
+		vo = clubService.getMyClubInfo(clubNum);
 
 		// 경로를 자르고 파일명+확장자만 set
 		if (vo.getClubMain_pic() != null) {
