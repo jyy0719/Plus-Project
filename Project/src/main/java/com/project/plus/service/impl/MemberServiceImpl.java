@@ -1,5 +1,7 @@
 package com.project.plus.service.impl;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -50,6 +52,19 @@ public class MemberServiceImpl implements MemberService {
 	public MemberVO selectMember(MemberVO vo) {
 		return membermapper.selectMember(vo);
 		
+	}
+
+	public int memberPChk(String memberPhone) {
+		return membermapper.memberPChk(memberPhone);
+	}
+
+	public int memberNChk(String memberNickname) {
+		return membermapper.memberNChk(memberNickname);
+	}
+
+	public List<MemberVO> memberList() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

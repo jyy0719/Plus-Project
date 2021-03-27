@@ -1,6 +1,7 @@
 package com.project.plus.controller;
 
 import java.io.PrintWriter;
+import java.util.List;
 import java.util.Random;
 
 import javax.mail.internet.MimeMessage;
@@ -46,6 +47,12 @@ public class MemberController {
 	return "memberJoin";
 	}
 	
+	@RequestMapping(value="memberList.do", method=RequestMethod.POST)
+	public String memberList(Model model) {
+		List<MemberVO> list = memberService.memberList();
+		model.addAttribute("list", list);
+		return "memberList";
+	}
 	
 	@RequestMapping(value="memberJoin.do", method=RequestMethod.POST)
 	public String memberJoin(MemberVO vo, @RequestParam("memberPhoto") MultipartFile file, HttpServletRequest request) throws Exception {
@@ -61,6 +68,30 @@ public class MemberController {
 	}
 	
 	
+	//휴대폰번호 중복검사 메서드
+	@RequestMapping(value = "memberPhoneCheck", method = RequestMethod.POST)
+	@ResponseBody public String memberPChk(String memberPhone) throws Exception{ 
+		int result = memberService.memberPChk(memberPhone); 
+		logger.info("결과값 = " + result); 
+		if(result != 0) { 
+			return "fail"; // 중복 폰번호 존재
+			} else { 
+				return "success"; // 중복 폰번호 x 
+			}
+	}
+
+		 
+	//닉네임 중복검사 메서드
+	@RequestMapping(value = "memberNickCheck", method = RequestMethod.POST)
+	@ResponseBody public String memberNickChk(String memberNickname) throws Exception{ 
+		int result = memberService.memberNChk(memberNickname); 
+		logger.info("결과값 = " + result); 
+		if(result != 0) { 
+			return "fail"; // 중복 닉네임이 존재 
+			} else { 
+				return "success"; // 중복 닉네임 x 
+			}
+	}
 	
 	
 	
@@ -73,15 +104,12 @@ public class MemberController {
 	
 
 	@RequestMapping(value="memberUpdate.do", method=RequestMethod.POST)
-	public String memberUpdate(MemberVO vo, HttpSession session, Model model, HttpServletResponse response) throws Exception {
+	public String memberUpdate(MemberVO vo, HttpSession session, Model model, HttpServletResponse response, @RequestParam("memberPhoto") MultipartFile file, HttpServletRequest request) throws Exception {
 		
 		
-//		MultipartFile uploadFile = vo.getUploadfile();
-//		if(!uploadFile.isEmpty()) {
-//			String fileName = uploadFile.getOriginalFilename();
-//			uploadFile.transferTo(new File("C:/" + fileName));
-//		}
 		System.out.println("기본"+vo);  //0 email에 36이담겨 ;;  //수정후 정보
+		String uploadPath = request.getSession().getServletContext().getRealPath("/resources/uploadImg");
+		vo = ProfileUtils.profile(vo, uploadPath, file);
 		memberService.updateMember(vo);
 		MemberVO user = memberService.selectMember(vo);  
 		System.out.println(session.getAttribute("user")); //36   //수정전 정보 
@@ -90,6 +118,13 @@ public class MemberController {
 		System.out.println(user); //null  //수정후 
 		
 
+//		if (user.getMemberPic() != null) {
+//			String formatName = user.getMemberPic().substring(vo.getMemberPic().lastIndexOf("_") + 1);
+//			user.setMemberPic(formatName);
+//		}
+//		
+		
+		
 		
 		//알럿창 띄우는 부분
 		response.setContentType("text/html; charset=UTF-8");
@@ -166,6 +201,6 @@ public class MemberController {
         
     }
  
-
+	
 	
 }

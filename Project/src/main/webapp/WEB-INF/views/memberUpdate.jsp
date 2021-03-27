@@ -25,17 +25,40 @@ function setThumbnail(event){
 		reader.readAsDataURL(event.target.files[0]);
 	}
 	
-	//휴대폰번호 유효성 검사. 번호 11자리 
-isMobile = function(){
-    var phoneVal = $("#mobile").val();
-    var regExp = /^\d{11}$/;
-  /*  var regExp = /^\d{3}-\d{3,4}-\d{4}$/; */
-    if(phoneVal.match(regExp) != null){
-        alert('good')
-    }else{
-        alert('bad')
-    }
-}; 
+//휴대폰번호 유효성, 중복검사
+  isMobile = function(){
+        var phoneVal = $("#mobile").val();
+        /*  var regExp = /^\d{11}$/;*/
+      	var regExp = /^\d{3}-\d{3,4}-\d{4}$/; 
+        if(phoneVal.match(regExp) != null){
+          // alert('형식에 맞는 번호입니다')
+           
+         //  $('#chkMobile').on("click", function(){
+        	   var memberPhone = $('#mobile').val();
+        	   var data = {memberPhone : memberPhone}
+        	   
+        	   $.ajax({
+        		   type: "post",
+        		   url : "memberPhoneCheck",
+        		   data : data,
+        		   success : function(result){
+        			   console.log("성공 여부"+result);
+        		 	if(result !='fail'){
+        		 		alert("사용 가능한 휴대폰번호입니다.")
+        		 	}else{
+        		 		alert("이미 등록된 휴대폰번호입니다. 다시 한 번 확인해주세요.")
+        		 	}
+        		   
+        		   }//success종료
+        	   }); //ajax종료
+          // })
+        }else{
+            alert("입력 형식에 맞지 않습니다. '010-0000-0000'의 형태로 입력해주세요.")
+        }
+    }; 
+
+
+
 
 
 	
@@ -82,6 +105,46 @@ removePic = function(){
     )}
 
 
+//닉네임 중복 , 유효성 검사
+chNickname = function(){
+    for (var i=0; i<$("#nickname").val().length; i++)  { 
+
+	        var chk = $("#nickname").val().substring(i,i+1); 
+	
+	        if(chk.match(/([^가-힣a-zA-Z\x20])/i)){
+	        	alert("자음과 모음을 분리해 사용할 수 없습니다");
+	            return;
+	       	}
+		    if ($("#nickname").val().length > 8) {
+		    	alert("8자를 초과하였습니다");
+		    	return;
+		    }
+	        if($("#nickname").val() == " "){
+	        	alert("공백은 입력할 수 없습니다");
+	            return;
+	        }
+    } 
+    
+    var memberNickname = $('#nickname').val();
+	   var data = {memberNickname : memberNickname}
+	   
+	   $.ajax({
+		   type: "post",
+		   url : "memberNickCheck",
+		   data : data,
+		   success : function(result){
+			   console.log("성공 여부"+result);
+		 	if(result !='fail'){
+		 		alert("사용 가능한 닉네임입니다.")
+		 	}else{
+		 		alert("이미 등록된 닉네임입니다. 다른 닉네임을 사용해주세요.")
+		 	}
+		   
+		   }//success종료
+	   }); //ajax종료
+	  //      alert("사용 가능한 닉네임입니다")
+}
+
 </script>
 </head>
 
@@ -102,11 +165,11 @@ removePic = function(){
         <div class="content1">      
                 <!-- profile pic -->
                 <div class="pro_pic_area">
-                    <div id="image_container">${user.memberPic}</div>
+                    <div id="image_container"><img src="${path}/resources${user.memberPic}" onerror="this.style.display='none';"/></div>
                 <div class="filebox"> 
                 </div>
                 	<button type="button" class="removePic" onclick="removePic();">삭제</button>
-   	                <label class="picbutton" for="pic_upload_button"><div class="picbutton">사진첨부하기</div></label>
+   	                <label class="picbutton" for="pic_upload_button"><div class="picbutton1">사진첨부하기</div></label>
                     <input id="pic_upload_button" type="file" name="memberPhoto" accept="image/*" onchange="setThumbnail(event);" value="${user.memberPic}">
                 </div>
 
@@ -126,7 +189,7 @@ removePic = function(){
             <div>
                 <h3 class="join_title"><label for="name">이름</label></h3>
                 <span class="box int_name">
-                    <input type="text" name="memberName" id="name" class="int1" maxlength="20" value="${user.memberName }" readonly>
+                    <input type="text" name="memberName" id="name" class="int1" maxlength="16" value="${user.memberName }" readonly>
                     <!-- <input type="button" class="check" value="중복체크하기"> -->
                 </span>
                 <span class="error_next_box"></span>
@@ -137,8 +200,8 @@ removePic = function(){
                 <div>
                     <h3 class="join_title"><label for="name">닉네임</label></h3>
                     <span class="box int_name">
-                        <input type="text" name="memberNickname" id="nickname" class="int1" maxlength="20" value="${user.memberNickname }">
-                        <input type="button" class="check" value="중복체크하기">
+                        <input type="text" name="memberNickname" id="nickname" class="int1" maxlength="16" value="${user.memberNickname }" placeholder="8자 이내의 닉네임을 지어주세요" >
+                        <input type="button" id="chkNickname" class="check" value="중복체크하기" onclick="chNickname()" >
                     </span>
                     <span class="error_next_box"></span>
                 </div>
@@ -147,8 +210,8 @@ removePic = function(){
                 <div>
                     <h3 class="join_title"><label for="phoneNo">휴대전화</label></h3>
                     <span class="box int_mobile">
-                        <input type="tel" name="memberPhone" id="mobile" class="int1" maxlength="16" placeholder=" 하이픈 없이 입력해주세요" value="${user.memberPhone }">
-                        <input type="button" class="check" value="번호변경하기">
+                        <input type="tel" name="memberPhone" id="mobile" class="int1" maxlength="16" placeholder=" 하이픈'-'을 포함해 입력해주세요" value="${user.memberPhone }">
+                        <input type="button" id="chkMobile" class="check" onclick="isMobile()" value="중복검사하기">
                     </span>
                     <span class="error_next_box"></span>
                 </div>
@@ -189,7 +252,7 @@ removePic = function(){
                 <button type="submit" id="btnJoin">
                     <span>수정하기</span>
                 </button>
-             </div>
+            	</div>
         </div>
         <!--content1-->
     </div>
