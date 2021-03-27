@@ -1,21 +1,41 @@
 package com.project.plus.domain;
 
-import java.sql.Date;
-
-import lombok.Getter;
-import lombok.Setter;
-
-@Getter
-@Setter
 public class ChatRoomVO {
-
-	private int messageNum;
-	private int memberNum;
-	private String memberNickname;
-	private int clubNum;
-	private String clubName;
-	private String clubLeader;
-	private Date chatSendDate;
-	private Date chatOpenDate;
-	private String chatMessage;
+	
+	
+//	
+//	
+//    private String roomId;
+//    private String name;
+//    private Set<WebSocketSession> sessions = new HashSet<>();
+//
+//    public static ChatRoom create(String name){
+//        ChatRoom chatRoom = new ChatRoom();
+//        chatRoom.roomId = UUID.randomUUID().toString();
+//        chatRoom.name = name;
+//        return chatRoom;
+//    }
+//	
+//    private Map<String, ChatRoom> chatRoomMap;
+//
+//    @PostConstruct
+//    private void init(){
+//        chatRoomMap = new LinkedHashMap<>();
+//    }
+//
+//    public List<ChatRoom> findAllRoom(){
+//        List chatRooms = new ArrayList<>(chatRoomMap.values());
+//        Collections.reverse(chatRooms);
+//        return chatRooms;
+//    }
+//
+//    public ChatRoom findRoomById(String id){
+//        return chatRoomMap.get(id);
+//    }
+//
+//    public ChatRoom createChatRoom(String name){
+//        ChatRoom chatRoom = ChatRoom.create(name);
+//        chatRoomMap.put(chatRoom.getRoomId(), chatRoom);
+//        return chatRoom;
+//    }
 }

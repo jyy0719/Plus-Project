@@ -12,7 +12,7 @@ public interface ReviewService {
 	List<ReviewVO> selectOkayReview(ReviewVO vo); 
 	void insertReview(ReviewVO vo);
 	String reviewList();
-	public List<ReviewVO> getReviews(ReviewVO vo);
+	public List<ReviewVO> getReviews(int clubNum);
 	public List<ReviewVO> getMoreReviews(Map<String,Integer> map);
-	public int getReviewCount();
+	public int getReviewCount(int clubNum);
 }

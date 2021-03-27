@@ -24,7 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.project.plus.domain.ApplyVO;
-import com.project.plus.domain.ChatRoomVO;
+import com.project.plus.domain.ChatVO;
 import com.project.plus.domain.ClubVO;
 import com.project.plus.domain.ReviewVO;
 import com.project.plus.service.ClubService;
@@ -79,15 +79,21 @@ public class ClubController {
 	}
 
 	
+	// 모임 상세정보 
+	// .do?clubNum=?를 통해 뿌려줘야 함 
+	@RequestMapping("/getClub.do")
+	public String getClub(ClubVO vo, Model model) {
+		int clubNum = vo.getClubNum();
+		getReviews(model,11);
+		model.addAttribute("club", clubService.getClub(vo));
+		log.info("모임 번호 : " + vo.getClubNum() + " 상세 정보 ");
+		return "getClub.page";
+	}
+	
 	// 미리 보여줄 5개의 리뷰 데이터
-	public void getReviews(Model model) {
-		// club_num과 member_num을 이용하여 닉네임 가져오기
-		// club_num은 rttr로 가져왔다고 치고
-		ReviewVO review = new ReviewVO();
-		// 임의 값
-		review.setClubNum(11);
-		model.addAttribute("reviews", reviewService.getReviews(review));
-		model.addAttribute("reviewCount", reviewService.getReviewCount());
+	public void getReviews(Model model, int clubNum) {
+		model.addAttribute("reviews", reviewService.getReviews(clubNum));
+		model.addAttribute("reviewCount", reviewService.getReviewCount(clubNum));
 		log.info("리뷰 5개 가져오기");
 	}
 
@@ -96,13 +102,14 @@ public class ClubController {
 	// produces : response의 content-type을 utf-8로 인코딩하여 보내기
 	@RequestMapping(value = "/getMoreReview.do", produces = "application/text;charset=UTF-8", method = RequestMethod.POST)
 	@ResponseBody
-	public String getMoreReview(@RequestBody Map<String, String> param) throws JsonProcessingException {
+	public String getMoreReviews(@RequestBody Map<String, String> param) throws JsonProcessingException {
 		Map<String, Integer> condition = new HashMap<String, Integer>();
 
 		// json string으로 들어온 파라미터 형변환
 		int startIndex = Integer.valueOf(param.get("startIndex").toString());
 		int clubNum = Integer.valueOf(param.get("clubNum").toString());
-
+		log.info(startIndex);
+		log.info(clubNum);
 		condition.put("startIndex", startIndex);
 		condition.put("clubNum", clubNum);
 
@@ -115,15 +122,7 @@ public class ClubController {
 
 	}
 
-	// 모임 상세정보 
-	@RequestMapping("/getClub.do")
-	public String getClub(ClubVO vo, Model model) {
 
-		getReviews(model);
-		model.addAttribute("club", clubService.getClub(vo));
-		log.info("모임 번호 : " + vo.getClubNum() + " 상세 정보 ");
-		return "getClub.page";
-	}
 
 	// 회원 모임 수정 폼 
 	@RequestMapping("/getMyClubInfo.do")
@@ -177,24 +176,33 @@ public class ClubController {
 		
 	}	
 	
+	// 채팅방 목록 불러오기 
 	@RequestMapping("/chat.do")
 	public String getChatList(@RequestParam("memberNum") int memNum, Model model) {
-		log.info("로그인 멤버 번호 : " + memNum);
+		log.info("채팅 로그인 멤버 번호 : " + memNum);
 		List<ClubVO> clubs = clubService.getChatList(memNum);
 		model.addAttribute("clubs", clubs);
 		return "chat";
 	}
 	
 	// 클럽 넘버를 받아야 함 
-	public String getMessages(int clubNum) {
-		clubService.getMessages(clubNum);
-		return null;
+	@RequestMapping(value = "/getMessages.do")
+	@ResponseBody
+	public List<ChatVO> getMessages(@RequestParam("clubNum") int clubNum) {
+		// vo 리턴하는거 
+		log.info("채팅내역 불러오는 모임 번호 : " + clubNum);
+		List<ChatVO> lists = clubService.getMessages(clubNum);
+		return lists;
 	}
 	
 	// 채팅 메시지 db 저장 
 	@RequestMapping("/insertMessage.do")
-	public String insertMessage(ChatRoomVO msg) {
-		clubService.insertMessage(msg);
-		return null;
+	@ResponseBody
+	public int insertMessage(ChatVO msg) {
+		log.info(msg);
+		log.info(msg.getChatMessage());
+		log.info(msg.getClubNum());
+		log.info(msg.getMemberNum());
+		return clubService.insertMessage(msg);
 	}
 }

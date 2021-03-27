@@ -9,7 +9,16 @@
 		<result property="reviewContent" column="review_content" />
 		<result property="reviewRate" column="review_rate" />
 		<result property="reviewRegDate" column="review_regdate" />
+	<!-- <collection property="member" resultMap="user" /> -->
+		<association property="members" resultMap="memberResult" />
 	</resultMap>
+
+	
+	<resultMap id="memberResult" type="user">
+		<id property="memberNum" column="member_num"/>
+		<result property="memberName" column="member_name"/>
+		<result property="memberNickname" column="member_nickname"/>
+	</resultMap> 
 
 
 <!--========유저가 리뷰 작성 안한 모임=========  -->
@@ -58,15 +67,21 @@
 	
 	<!-- 모임별 최근 날짜 순으로 리뷰 출력 -->
 	<select id="getReviews" resultMap="reviewResult">
-        SELECT * FROM review WHERE club_num = #{clubNum} ORDER BY review_regdate DESC LIMIT 0, 5
+        SELECT member_nickname, review_content, review_rate, review_regdate FROM review r, member m WHERE club_num = #{clubNum} 
+        AND r.member_num = m.member_num
+        ORDER BY review_regdate DESC LIMIT 0, 5
     </select>
     
 	<select id="getMoreReviews" resultMap="reviewResult" parameterType="java.util.HashMap">
-        SELECT * FROM review WHERE club_num = #{clubNum} LIMIT #{startIndex}, 5
+       <!--  SELECT * FROM review WHERE club_num = #{clubNum} LIMIT #{startIndex}, 5 -->
+        SELECT member_nickname, review_content, review_rate, review_regdate FROM review r, member m WHERE club_num = #{clubNum} 
+        AND r.member_num = m.member_num
+        ORDER BY review_regdate DESC LIMIT #{startIndex}, 5
+        
     </select>
     
     <select id="getReviewCount" resultType="int">
-    	SELECT count(*) FROM review WHERE club_num = 11
+    	SELECT count(*) FROM review WHERE club_num = #{clubNum}
     </select>
 </mapper>
 
