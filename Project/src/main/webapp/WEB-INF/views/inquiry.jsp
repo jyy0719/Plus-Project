@@ -48,7 +48,7 @@ vertical-align: middle;
                 <div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
                     <div class="row">
                         <div class="col-12">
-                            <h3 class="text-muted text-center mb-3">나의 문의 내역</h3>
+                            <h3 class="text-muted text-center mb-3">1:1 문의 내역</h3>
                             <table class="table bg-light">
                                 <thead>
                                     <tr class="text-muted">
