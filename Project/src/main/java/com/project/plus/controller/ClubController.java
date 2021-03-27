@@ -1,15 +1,11 @@
 package com.project.plus.controller;
 
-import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -83,17 +79,8 @@ public class ClubController {
 		return clubService.getClubHashtag();
 	}
 
+
 	
-	// 모임 상세정보 
-	// .do?clubNum=?를 통해 뿌려줘야 함 
-	@RequestMapping("/getClub.do")
-	public String getClub(ClubVO vo, Model model) {
-		int clubNum = vo.getClubNum();
-		getReviews(model,11);
-		model.addAttribute("club", clubService.getClub(vo));
-		log.info("모임 번호 : " + vo.getClubNum() + " 상세 정보 ");
-		return "getClub.page";
-	}
 	
 	// 미리 보여줄 5개의 리뷰 데이터
 	public void getReviews(Model model, int clubNum) {
@@ -127,10 +114,10 @@ public class ClubController {
 
 	}
 
-<<<<<<< HEAD
 	// 모임 상세정보 
+	// .do?clubNum=?를 통해 뿌려줘야 함 
 	@RequestMapping("/getClub.do")
-	public String getClub(ClubVO vo,HeartVO hvo, Model model) {
+	public String getClub(ClubVO vo, HeartVO hvo, Model model) {
 
 		//정연 추가 
 		hvo.setClubNum(2);
@@ -140,14 +127,12 @@ public class ClubController {
 		model.addAttribute("isThereHeart", resultClub);
 		//여기위 까지
 		
-		getReviews(model);
+		int clubNum = vo.getClubNum();
+		getReviews(model, 11);
 		model.addAttribute("club", clubService.getClub(vo));
 		log.info("모임 번호 : " + vo.getClubNum() + " 상세 정보 ");
 		return "getClub.page";
 	}
-=======
-
->>>>>>> cc7b2e2ad58d9bf5737df9772dbfd322bad86475
 
 	// 회원 모임 수정 폼 
 	@RequestMapping("/getMyClubInfo.do")
