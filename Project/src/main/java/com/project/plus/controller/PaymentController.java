@@ -35,12 +35,12 @@ public class PaymentController {
 		List<PaymentVO> paymentList = paymentService.selectPaymentList(vo);
 		model.addAttribute("currentMemberPoint", currentMemberPoint);
 		model.addAttribute("paymentList", paymentList);
-		return "paymentList";
+		return "paymentList.point";
 	}
 	
 	@RequestMapping("/chargePointPopup.do")
 	public String chargePointPopup(PaymentVO vo, Model model) {
-		return "chargePoint";
+		return "mypage/point/chargePoint";
 	}
 	
 	@RequestMapping("/chargePoint.do")
