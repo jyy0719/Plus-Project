@@ -25,14 +25,13 @@
 </head>
 
 <body>
-	<!--배너 -->
+	<!-- 배너너ㅓ -->
 	  <div id="mainbanner">
-	  <p>도움더하기는</p>
-<p>내 주변의 전문가와 함께하는 모임이에요.</p>
+	 
         <img class="togetherbanner" 
          src="${path}/resources/img/plus2.png"
          alt="First slide"> 
-<p>도움더하기는</p>
+ <p>도움더하기는</p>
 <p>내 주변의 전문가와 함께하는 모임이에요.</p>
 
     </div>
