@@ -53,4 +53,10 @@ public class ClubServiceImpl implements ClubService {
 	public int insertMessage(ChatRoomVO msg) {
 		return mapper.insertMessage(msg);
 	}
+	
+	//정연 하단 추가 20210326
+	// 추가 - 정연 (리뷰에서 쓸 것)
+	public ClubVO selectClub(ClubVO vo) {
+		return mapper.selectClub(vo);
+	}
 }

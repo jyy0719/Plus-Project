@@ -26,8 +26,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.project.plus.domain.ApplyVO;
 import com.project.plus.domain.ChatRoomVO;
 import com.project.plus.domain.ClubVO;
+import com.project.plus.domain.HeartVO;
 import com.project.plus.domain.ReviewVO;
 import com.project.plus.service.ClubService;
+import com.project.plus.service.HeartService;
 import com.project.plus.service.ReviewService;
 import com.project.plus.utils.FileUtils;
 
@@ -43,6 +45,9 @@ public class ClubController {
 
 	@Autowired
 	private ReviewService reviewService;
+	
+	@Autowired
+	private HeartService heartService;
 
 	// 모임 등록, 파일 업로드
 	@RequestMapping(value = "/insertClub.do", method = RequestMethod.POST)
@@ -117,8 +122,16 @@ public class ClubController {
 
 	// 모임 상세정보 
 	@RequestMapping("/getClub.do")
-	public String getClub(ClubVO vo, Model model) {
+	public String getClub(ClubVO vo,HeartVO hvo, Model model) {
 
+		//정연 추가 
+		hvo.setClubNum(2);
+		hvo.setMemberNum(3);
+		System.out.println("heart" + hvo.getClubNum() +" " +  hvo.getMemberNum());
+		int resultClub = heartService.selectHeartNum(hvo);
+		model.addAttribute("isThereHeart", resultClub);
+		//여기위 까지
+		
 		getReviews(model);
 		model.addAttribute("club", clubService.getClub(vo));
 		log.info("모임 번호 : " + vo.getClubNum() + " 상세 정보 ");

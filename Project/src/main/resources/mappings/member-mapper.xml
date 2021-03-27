@@ -66,5 +66,45 @@
 		WHERE member_email = #{memberEmail}
 	</update> 
 	
+<!-- 정연하단 추가 20210326 -->
+	
+	<select id="selectMemberPoint" resultType="int">
+		<![CDATA[
+			SELECT member_point as memberPoint
+			FROM member 
+			WHERE member_num = #{memberNum};
+		]]>
+	</select> 
+	
+	<select id="selectMemberPointByNickname" resultType="Integer">
+		<![CDATA[
+			SELECT member_point as memberPoint
+			FROM member 
+			WHERE member_nickname = #{memberNickname};
+		]]>
+	</select>
+	
+    <!-- 포인트 충전 시 멤버 포인트 업데이트  -->
+    <update id="updateMemberPoint">
+		UPDATE MEMBER SET member_point= #{memberPoint}
+		WHERE member_num= #{memberNum};
+	</update>
+	
+	<!--========참가자 모임 결제 시 member 테이블 현금 업데이트 =========  -->
+
+	<update id="deductMemberPoint">
+		UPDATE MEMBER SET member_point = ${memberPoint}
+		WHERE (member_num = ${memberNum}); 
+	</update>
+	
+	
+	 <!-- 포인트 충전 시 멤버 포인트 업데이트  -->
+    <update id="updateClubLeaderPoint">
+		UPDATE MEMBER SET member_point= #{memberPoint}
+		WHERE member_nickname= #{memberNickname};
+	</update>
+	
+	
+	
 	
 </mapper>

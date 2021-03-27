@@ -22,18 +22,20 @@
 			   club.club_name as clubName,
 			   club.club_enddate  as endDate,
 			   club.club_startdate as startDate
+			   
 		FROM apply , club 
 		WHERE apply.club_num = club.club_num
 	 	AND apply.member_num = #{memberNum}
 		AND club.club_num not in ( SELECT club.club_num
 								   FROM review
 				                   WHERE review.club_num = club.club_num 
-				                   AND review.member_num = #{memberNum});
+				                   AND review.member_num = #{memberNum})
+		AND club_enddate < ( NOW());
 		]]>
 	</select>
 <!-- 				   date_format( club.club_enddate, '%Y-%m-%d') as endDate,
 			   date_format( club.club_startdate, '%Y-%m-%d') as startDate -->
-<!--========유저가 리뷰 작성 안한 모임=========  -->
+<!--========유저가 리뷰 작성한 모임=========  -->
 	<select id="selectOkayReview" resultType="com.project.plus.domain.ReviewVO">
 		<![CDATA[
 		SELECT club.club_num as clubNum ,
@@ -43,18 +45,18 @@
 			   club.club_enddate  as endDate,
 			   club.club_startdate as startDate
 		FROM  review , club 
-		WHERE review.club_num = club.club_num and review.member_num = #{memberNum}; 
+		WHERE review.club_num = club.club_num AND review.member_num = #{memberNum}
+		AND club_enddate < ( NOW());
 		]]>
 	</select>
 	
-	<!--
 	<insert id="insertReview">
 		<![CDATA[
-		insert into review (review_num, member_num, club_num, review_content,review_rate,review_regdate)
-		values(#{reviewNum}, #{memberNum}, #{clubNum}, #{reviewContent},#{reviewRate},#{reviewRegDate})
+		INSERT into review (member_num, club_num, review_content,review_rate,review_regdate)
+		VALUES (#{memberNum}, #{clubNum}, #{reviewContent},#{reviewRate},now())
 		]]>
 	</insert>
-	-->
+	
 	
 	<!-- 모임별 최근 날짜 순으로 리뷰 출력 -->
 	<select id="getReviews" resultMap="reviewResult">
@@ -68,5 +70,43 @@
     <select id="getReviewCount" resultType="int">
     	SELECT count(*) FROM review WHERE club_num = 11
     </select>
+    
+    <!-- 정연하단추가 20210326 -->
+    <!-- 서버 테스트를 위한 쿼리 -->
+	<select id="writeClubReview" resultType="String">
+        SELECT NOW()
+    </select>
+    
+    <!-- 이전 리뷰 작성 불러오기 -->
+   	<select id="readReview" resultType="com.project.plus.domain.ReviewVO">
+		<![CDATA[
+		SELECT review_rate as reviewRate,
+			   review_content as reviewContent,
+			   member_num as memberNum,
+			   club_num as clubNum
+		FROM  review 
+		WHERE club_num = #{clubNum} 
+		AND member_num = #{memberNum}
+		]]>
+	</select>
+    
+    <!-- 리뷰수정 -->
+    <update id="updateReview">
+    <![CDATA[
+	    UPDATE review SET review_content = #{reviewContent}, review_rate = #{reviewRate}
+		WHERE (member_num = #{memberNum} and club_num= #{clubNum});
+	]]>  
+    </update>
+    
+     <!-- 리뷰삭제 -->
+    <delete id="deleteReview">
+    <![CDATA[
+  		DELETE FROM review 
+  		WHERE (member_num = #{memberNum} and club_num= #{clubNum});
+	]]>  
+    </delete>
+    
+    
+    
 </mapper>
 

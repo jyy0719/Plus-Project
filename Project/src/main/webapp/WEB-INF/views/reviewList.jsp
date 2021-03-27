@@ -41,14 +41,19 @@
 		                    
 		                       <div class="title_text">
 		                            <h2 title="모임타이틀 ">${noRvw.clubName}</h2>
-		                            <!-- parseDate는 날짜 값을 string으로 받았을 경우 date타입으로 형변환 한 후 formatdate의 형태로 변환(날짜바꾸기)-->
-		                            
 									<fmt:formatDate value="${noRvw.startDate}" var="startDateFmt" pattern="yyyy-MM-dd hh:mm"/>
 									<fmt:formatDate value="${noRvw.endDate}" var="endDateFmt" pattern="yyyy-MM-dd hh:mm"/>
-		                            
 		                            <h4>📆모임기간 : ${startDateFmt} ~ ${endDateFmt }</h4>
 		                       </div>
-		                       <div class="reviewBtn"><button style="width:130px;height:55px;"><a href="#" style="text-decoration: none; font-size: 19px; font-weight:700;color:black;" >후기작성</a></button></div>
+		                       <div class="reviewBtn">
+		                       		<form id="frm" name="frm" action="showReviewForm.do">
+		                      	 		<input name="clubNum" type="hidden" value="${noRvw.clubNum}"/>
+		                      	 		<input name="memberNum" type="hidden" value="${noRvw.memberNum}"/>
+					                       <button style="width:130px;height:55px; font-size: 19px; font-weight:700;color:black;">
+					                       		후기작성
+					                       </button>
+			                       	</form>
+		                       </div>
 		                    </div>
 		                </div>
 		        </c:forEach>
@@ -72,12 +77,21 @@
 		                            
 		                            <h4>📆모임기간 : ${startDateFmt2} ~ ${endDateFmt2}</h4>
 		                        </div>
-		                        <div class="reviewBtn"><button style="width:130px;height:55px;"><a href="#" style="text-decoration: none; font-size: 19px; font-weight:700;color:black;" >상세보기</a></button></div>
+		                        <div class="reviewBtn">
+			                        <form id="frm" name="frm" action="readReview.do">
+			                        	<input name="clubNum" type="hidden" value="${okayRvw.clubNum}"/>
+		                      	 		<input name="memberNum" type="hidden" value="${okayRvw.memberNum}"/>
+					                       <button style="width:130px;height:55px; font-size: 19px; font-weight:700;color:black;">
+					                       		리뷰보기
+					                       </button>
+			                        </form>
+		                        </div>
 		                     </div>
 		                </div>
 		        </c:forEach>
 		        </section> 
 		    </div>        
 		</div>
+
 </body>
 </html>

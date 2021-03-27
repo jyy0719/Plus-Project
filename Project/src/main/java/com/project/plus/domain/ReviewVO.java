@@ -20,7 +20,6 @@ public class ReviewVO {
 	private int memberNum;
 	private int clubNum;
 	private String reviewContent;
-	private String reviewPic;
 	private int reviewRate;
 	
 	@JsonFormat(pattern="yyyy. MM. dd")
@@ -59,12 +58,6 @@ public class ReviewVO {
 	}
 	public void setReviewContent(String reviewContent) {
 		this.reviewContent = reviewContent;
-	}
-	public String getReviewPic() {
-		return reviewPic;
-	}
-	public void setReviewPic(String reviewPic) {
-		this.reviewPic = reviewPic;
 	}
 	public int getReviewRate() {
 		return reviewRate;
@@ -105,7 +98,7 @@ public class ReviewVO {
 	@Override
 	public String toString() {
 		return "ReviewVO [reviewNum=" + reviewNum + ", memberNum=" + memberNum + ", clubNum=" + clubNum
-				+ ", reviewContent=" + reviewContent + ", reviewPic=" + reviewPic + ", reviewRate=" + reviewRate
+				+ ", reviewContent=" + reviewContent +", reviewRate=" + reviewRate
 				+ ", reviewRegDate=" + reviewRegDate + ", clubThumbPic=" + clubThumbPic + ", clubName=" + clubName
 				+ ", startDate=" + startDate + ", endDate=" + endDate + "]";
 	}

@@ -14,4 +14,9 @@ public interface ReviewMapper {
 		public List<ReviewVO> getReviews(ReviewVO vo);
 		public List<ReviewVO> getMoreReviews(Map<String,Integer> map);
 		public int getReviewCount();
+		
+		//20210326 정연 하단 추가
+		public ReviewVO readReview(ReviewVO vo);
+		public void updateReview(ReviewVO vo);
+		public void deleteReview(ReviewVO vo);
 }
