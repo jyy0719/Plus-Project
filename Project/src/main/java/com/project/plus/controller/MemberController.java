@@ -40,18 +40,18 @@ public class MemberController {
 	@Autowired
     private JavaMailSender mailSender;
 
+	@RequestMapping(value="memberList.do", method=RequestMethod.POST)
+	public String memberList(Model model) {
+		List<MemberVO> list = memberService.memberList();
+		model.addAttribute("list", list);
+		return "memberList.member";
+	}
+	
 
 	@RequestMapping(value="memberJoin.do", method=RequestMethod.GET)
 	public String memberjoinpage(MemberVO vo, HttpSession session, Model model) throws Exception {
 		System.out.println("회원가입 get메서드 진입");
 	return "memberJoin";
-	}
-	
-	@RequestMapping(value="memberList.do", method=RequestMethod.POST)
-	public String memberList(Model model) {
-		List<MemberVO> list = memberService.memberList();
-		model.addAttribute("list", list);
-		return "memberList";
 	}
 	
 	@RequestMapping(value="memberJoin.do", method=RequestMethod.POST)
@@ -63,7 +63,7 @@ public class MemberController {
 		memberService.joinMember(vo);
 		System.out.println(vo);
 		log.info("회원 번호 : " + vo.getMemberNum() + "멤버프로필사진  등록 ");
-		return "index";
+		return "main/index"; //?
 			
 	}
 	
@@ -97,7 +97,7 @@ public class MemberController {
 	
 	@RequestMapping(value="memberUpdate.do", method=RequestMethod.GET)
 	public String memberUpdatepage(MemberVO vo, HttpSession session, Model model) throws Exception {
-	return "memberUpdate";
+	return "memberUpdate.member";
 	}
 	
 	
@@ -150,7 +150,7 @@ public class MemberController {
 
 		
 		
-		return "memberUpdate";
+		return "memberUpdate.member";
 
 	}
 	

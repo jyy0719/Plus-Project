@@ -9,7 +9,7 @@ public interface MemberMapper {
 	public void updateMember(MemberVO vo);
 	
 	public MemberVO login(MemberVO vo);
-	public MemberVO kakaologin(MemberVO vo);
+	public Integer kakaologin(MemberVO vo);
 
 	//휴대폰번호 중복 검사
 	public int memberPChk(String memberPhone);

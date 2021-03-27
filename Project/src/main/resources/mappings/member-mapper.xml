@@ -28,11 +28,15 @@
 		values(#{memberPhone}, #{memberEmail}, #{memberPassword}, #{memberName}, #{memberNickname}, #{memberPic}, #{memberMarketing}, 0, sysdate())
 	</insert>
 	
-		<select id="kakaologin" resultMap="memberResult">
+<!-- 		<select id="kakaologin" resultMap="memberResult">
 		SELECT * FROM member WHERE
 		member_email = #{memberEmail}
-	</select>
+	</select> -->
 	
+   	<select id="kakaologin" resultType="Integer">
+		SELECT count(*) FROM member WHERE
+		member_email = #{memberEmail}
+	</select>
 	
 	<!-- 로그인 관련   "MemberVO"-->
    <select id="login" resultMap="memberResult">
@@ -43,10 +47,11 @@
     </select>
     
     
-   	<select id="selectMember" resultMap="memberResult">
+
+  	<select id="selectMember" resultMap="memberResult">
 		SELECT * FROM member WHERE
 		member_email = #{memberEmail}
-	</select>
+	</select> 
 	
     
 		<!--  닉네임 휴대전화 비밀번호 -->

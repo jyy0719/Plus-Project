@@ -33,7 +33,7 @@ public class MemberServiceImpl implements MemberService {
 		return membermapper.login(vo);
 	}
 
-	public MemberVO kakaologin(MemberVO vo) {
+	public Integer kakaologin(MemberVO vo) {
 		System.out.println("카카오로그인 servie impl옴");		
 		return membermapper.kakaologin(vo);
 	}
