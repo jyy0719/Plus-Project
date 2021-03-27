@@ -19,7 +19,7 @@ public interface MemberService {
 	void joinMember(MemberVO vo);
 
 	public MemberVO login(MemberVO vo);
-	public MemberVO kakaologin(MemberVO vo);
+	public Integer kakaologin(MemberVO vo);
 
 	// 휴대폰번호 중복 검사
 	public int memberPChk(String memberPhone);
@@ -33,7 +33,7 @@ public interface MemberService {
 	
 	public MemberVO selectMember(MemberVO vo);
 
-	List<MemberVO> memberList();
+	List<MemberVO> memberList(MemberVO vo);
 
 	   void updateMemberPoint (MemberVO vo);
 	   int selectMemberPoint (MemberVO vo);
@@ -41,5 +41,6 @@ public interface MemberService {
 	//   int selectMemberPoint(PaymentVO vo);
 	   void deductMemberPoint(MemberVO vo);
 	   void updateClubLeaderPoint(MemberVO vo);
+
 
 }

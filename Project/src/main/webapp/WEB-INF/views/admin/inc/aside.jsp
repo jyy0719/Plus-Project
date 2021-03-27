@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,10 +10,10 @@
  
      <!-- Bootstrap CSS -->
      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="../../../../resources/css/admin-aside.css">
+    <link rel="stylesheet" href="${path}/resources/css/admin-aside.css">
 
     <!-- themify icon -->
-    <link rel="stylesheet" type="text/css" href="../../../../resources/icon/themify-icons/themify-icons.css">
+    <link rel="stylesheet" type="text/css" href="${path}/resources/icon/themify-icons/themify-icons.css">
     <!-- fontawesome CSS -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
   
@@ -50,7 +51,7 @@
                        
                         <!-- 문의 관리 -->
                         <li class="nav-item">
-                            <a href="#" class="nav-link text-white p-3 mb-2 sidebar-link">
+                            <a href="adminInquiry.do" class="nav-link text-white p-3 mb-2 sidebar-link">
                                 <i class="fas fa-question-circle text-white fa-lg mr-3"></i>문의 관리
                             </a>
                         </li>

@@ -3,6 +3,7 @@ package com.project.plus.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -29,10 +30,14 @@ public class InquiryController {
 	@RequestMapping(value="/editInquiry.do", method=RequestMethod.POST)
 	public String editInquiry(@ModelAttribute("inquiry")InquiryVO vo) {
 		is.editInquiry(vo);
-		return "inquiry.do";
+		return "inquiry/inquiryForm";
 	}
 	
-
+//	@RequestMapping(value="/answerInquiry.do", method=RequestMethod.POST)
+//	public String answerInquiry(@ModelAttribute("inquiry")InquiryVO vo) {
+//		is.answerInquiry(vo);
+//		return "inquiry.do";
+//	}
 
 	@RequestMapping("/deleteInquiry.do")
 	public String deleteInquiry(InquiryVO vo) {
@@ -40,16 +45,22 @@ public class InquiryController {
 		return "inquiry.do";
 	}
 
-	@RequestMapping(value="/getInquiry.do", method=RequestMethod.GET)
+//	@RequestMapping(value="/getInquiry.do", method=RequestMethod.GET)
+//	public String getInquiry(InquiryVO vo, Model model) {
+//		model.addAttribute("inquiry", is.getInquiry(vo));
+//		return "inquiry/getInquiry";
+//	}
+	
+	@GetMapping("/getInquiry.do")
 	public String getInquiry(InquiryVO vo, Model model) {
 		model.addAttribute("inquiry", is.getInquiry(vo));
-		return "getInquiry";
+		return "inquiry/getInquiry";
 	}
-
+	
 	@RequestMapping("/inquiry.do")
 	public String getInquiryList(InquiryVO vo, Model model) {
 		model.addAttribute("inquiryList", is.getInquiryList(vo));
-		return "inquiry";
+		return "inquiry.mypage";
 	}
 	
 	@RequestMapping("/inquiryPerson.do")

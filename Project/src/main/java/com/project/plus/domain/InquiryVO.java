@@ -27,6 +27,12 @@ public class InquiryVO {
 	public void setMemberNickname(String memberNickname) {
 		this.memberNickname = memberNickname;
 	}
+	public String getInquiryAnswerDate() {
+		return inquiryAnswerDate;
+	}
+	public void setInquiryAnswerDate(String inquiryAnswerDate) {
+		this.inquiryAnswerDate = inquiryAnswerDate;
+	}
 	
 	
 	public int getInquiryNum() {
@@ -82,12 +88,6 @@ public class InquiryVO {
 		return "InquiryVO [inquiryNum=" + inquiryNum + ", memberNum=" + memberNum + ", inquiryTitle=" + inquiryTitle
 				+ ", inquiryContent=" + inquiryContent + ", inquiryType=" + inquiryType + ", inquiryState="
 				+ inquiryState + ", inquiryAnswer=" + inquiryAnswer + ", inquiryRegDate=" + inquiryRegDate + ", inquiryAnswerDate=" + inquiryAnswerDate + ", memberEmail=" + memberEmail + ", memberNickname=" + memberNickname + "]";
-	}
-	public String getInquiryAnswerDate() {
-		return inquiryAnswerDate;
-	}
-	public void setInquiryAnswerDate(String inquiryAnswerDate) {
-		this.inquiryAnswerDate = inquiryAnswerDate;
 	}
 	
 	

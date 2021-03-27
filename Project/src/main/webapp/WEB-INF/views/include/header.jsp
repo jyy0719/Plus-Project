@@ -30,29 +30,6 @@
         });
 
 
-        //로그인 정보 받아오는 함수 같긴 한데 .. 
-/* 
-        Kakao.Auth.login({
-            url:'v2/user/me',
-            success: function(res){
-                console.log(res);
-                
-                var nickname = res.properties.nickname;
-                var email = res.kakao_acount.email;
-                var html = '<BR>' + nickname + '<BR>' + email;
-
-            $('body').append(html);
-
-                 
-            }
-
-        })
- */
-
-
-
-
-
     </script>
 </head>
 
@@ -65,21 +42,21 @@
         <nav>
             <ul class="menu-left">
                 <li id="logo_a"><a href="main.do"><img id="logo_img" src="${path}/resources/img/images/logo.png"></a></li>
-                <li class="hovereffect nav-left"><a href="#">HOME</a></li>
-                <li class="hovereffect nav-left"><a href="#">가치더하기</a></li>
-                  <li class="hovereffect nav-left"><a href="expert.do">도움더하기</a></li>
+                <li class="hovereffect nav-left"><a href="main.do">HOME</a></li>
+                <li class="hovereffect nav-left"><a href="normal.do">가치더하기</a></li>
+               	<li class="hovereffect nav-left"><a href="expert.do">도움더하기</a></li>
  
  
  <!-- 로그인정보 없을 때는 로그인버튼 보이게 , 로그인 후에는 채팅, 알람, 드롭다운 버튼 보이게 했습니다   -->
            <c:choose>
             <c:when test = "${user.memberEmail != null }"> <!-- 로그인 정보가 있으면 -->
-                <li class="nav-right btncolor">
+             	<li class="nav-right btncolor">
                     <div class="dropdown">
                         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" id="btncolor"><b>${user.memberNickname }</b>님, 환영합니다
                         <span class="caret"></span></button>
                         <ul class="dropdown-menu">
                         <form>
-                        <li class="dropli"><a href="memberUpdate.do">My Profile</a></li>
+                        <li class="dropli"><a href="memberUpdate.do">My Page</a></li>
                         </form>
                       <form action="logout.do" method="get">
                       <!--  onclick="kakaoLogout()" -->

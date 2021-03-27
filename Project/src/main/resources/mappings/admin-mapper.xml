@@ -33,7 +33,9 @@
 		INQUIRY_ANSWER_DATE=now() WHERE INQUIRY_NUM=#{inquiryNum} 
 	</update>
 	
-	
+	<select id="getAdminChart" resultType="Integer">
+		SELECT count(*) FROM member;
+	</select>
 	
 	
 	<!-- 문의글 개별 상세 조회 -->

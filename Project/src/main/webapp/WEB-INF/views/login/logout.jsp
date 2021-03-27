@@ -14,7 +14,18 @@
 		$(document).ready(function() {
 			alert("로그아웃 되었습니다.");
 		location.href = "main.do" ;
+		
+
+        //뒤로가기 막는 자바스크립트
+		function noBack() {
+			window.history.forward();
+		}
+		
 		});
+		
+	       
+	       
+
 	</script>
 	<%
 		session.invalidate();

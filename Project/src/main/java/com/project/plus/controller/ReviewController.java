@@ -40,13 +40,13 @@ public class ReviewController {
 		System.out.println("getter 확인" + cvo.getClubNum());
 		System.out.println("showReviewForm.do 성공! view로 이동..");
 		
-		return "createReview"; // .jsp는 미리 설정해둠. 
+		return "createReview.reviews"; // .jsp는 미리 설정해둠. 
 	}
 	
 	
 	@RequestMapping("/writeReview.do") // 모임 값 꺼내는 컨트롤러 
 	public String writeReview(ReviewVO vo, Model model) {
-		System.out.println("vo.setMemberNum(5) 넘버 확인 ***** " + vo.getMemberNum());
+		System.out.println("vo.setMemberNum(5)	 넘버 확인 ***** " + vo.getMemberNum());
 		System.out.println("vo.setClubNum(14) 넘버 확인 ***** " + vo.getClubNum());
 		reviewService.insertReview(vo);
 
@@ -63,7 +63,7 @@ public class ReviewController {
 		model.addAttribute("readReview", reviewService.readReview(vo));
 		System.out.println("readReview도 완료!view로 이동..");
 		
-		return "updateReview"; // .jsp는 미리 설정해둠. 
+		return "updateReview.reviews"; // .jsp는 미리 설정해둠. 
 	}
 	@RequestMapping("/updateReview.do")
 	public String updateReview(ReviewVO rvo , ClubVO cvo ,Model model) {

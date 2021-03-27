@@ -17,21 +17,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script>
-       window.onload = function () {
-           var showPopup = document.getElementById('showPopup');
-           showPopup.onclick = function showPopup() {
-               window.open("chargePointPopup.do",
-                   "포인트충전", "width=700, height=600, left=400, top=100");
-           }
-       }; 
     </script>
     <style>
-        .pointContainer {
+        .Container {
             margin: 0;
             width: 1140px;
         }
 
-        .pointContent {
+        .Content {
             padding: 40px 60px;
             height: 100vh;
         }
@@ -111,8 +104,8 @@
 </head>
 
 <body>
-    <div class="pointContainer">
-        <div class="pointContent">
+    <div class="Container">
+        <div class="Content">
             <h1>회원관리</h1>
             <!-- <div id="currentPoint">
                 <table>
@@ -134,21 +127,21 @@
                         <th>상세보기</th> 
                     </tr>
                     
-                <c:if test="${empty paymentList }">
+ <%--                <c:if test="${empty paymentList }">
                     <tr><td></td></tr><tr><td></td></tr><tr><td></td></tr>
                        <tr><td colspan="4" lowspan="2" align="center" style="font-size:20px; font-weight:bold;">포인트 이용내역이 없습니다.</td></tr>
-                    </c:if>
+                    </c:if> --%>
                     
-                    <c:if test="${paymentList != null || paymentList != ''}">
-                       <c:forEach var="payList" items="${paymentList }" >
+             <%--        <c:if test="${memberList != null || paymentList != ''}"> --%>
+                       <c:forEach var="ml" items="${memberList }" >
                           <tr>
-                             <td>${memberList.memberEmail }</td>
-                             <td>${memberList.memberName }</td>
-                             <td>${memberList.memberJoindate }</td>
+                             <td>${ml.memberEmail }</td>
+                             <td>${ml.memberName }</td>
+                             <td>${ml.memberJoindate }</td>
                              <td>상세보기</td>
                           </tr>
                        </c:forEach>
-                    </c:if> 
+              <%--       </c:if>  --%>
                 </table>
             </div>
         </div>

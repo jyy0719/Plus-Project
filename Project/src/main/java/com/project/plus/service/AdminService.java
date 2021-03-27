@@ -3,6 +3,7 @@ package com.project.plus.service;
 import java.util.List;
 
 import com.project.plus.domain.InquiryVO;
+import com.project.plus.domain.MemberVO;
 
 public interface AdminService {
 	
@@ -15,5 +16,7 @@ public interface AdminService {
 //	void answerForm(InquiryVO vo);
 	
 	void answerInquiry(InquiryVO vo);
+	
+	int getAdminChart(MemberVO mvo);
 	
 }
