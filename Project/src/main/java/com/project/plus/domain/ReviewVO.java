@@ -43,7 +43,6 @@ public class ReviewVO {
 	private Date endDate;
 	
 
-<<<<<<< HEAD
 	public int getReviewNum() {
 		return reviewNum;
 	}
@@ -111,6 +110,4 @@ public class ReviewVO {
 				+ ", reviewRegDate=" + reviewRegDate + ", clubThumbPic=" + clubThumbPic + ", clubName=" + clubName
 				+ ", startDate=" + startDate + ", endDate=" + endDate + "]";
 	}
-=======
->>>>>>> cc7b2e2ad58d9bf5737df9772dbfd322bad86475
 }

@@ -127,7 +127,6 @@ public class ClubController {
 
 	}
 
-<<<<<<< HEAD
 	// 모임 상세정보 
 	@RequestMapping("/getClub.do")
 	public String getClub(ClubVO vo,HeartVO hvo, Model model) {
@@ -145,9 +144,6 @@ public class ClubController {
 		log.info("모임 번호 : " + vo.getClubNum() + " 상세 정보 ");
 		return "getClub.page";
 	}
-=======
-
->>>>>>> cc7b2e2ad58d9bf5737df9772dbfd322bad86475
 
 	// 회원 모임 수정 폼 
 	@RequestMapping("/getMyClubInfo.do")
