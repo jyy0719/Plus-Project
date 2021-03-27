@@ -22,5 +22,4 @@ public interface ClubService {
 	
 	// 정연하단 추가 20210326
 	public ClubVO selectClub(ClubVO vo);
-	
 }

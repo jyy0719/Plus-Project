@@ -16,9 +16,10 @@ public interface ClubMapper {
 	public int apply(ApplyVO apply);
 	public Integer getOneApply(ApplyVO apply);
 	public List<ClubVO> getChatList(int memNum);
-	public List<ChatVO> getMessages(int clubNum);
 	public int insertMessage(ChatVO msg);
+	public List<ChatVO> getMessages(int clubNum);
 	
 	//정연하단 추가 20210326
+
 	public ClubVO selectClub(ClubVO vo);
 }
