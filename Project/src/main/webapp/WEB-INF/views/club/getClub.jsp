@@ -126,7 +126,11 @@
 </section>
 </wrap>
 <!-- 카카오 link api -->
+<<<<<<< HEAD
 <script type="text/javascript">
+=======
+  <script>
+>>>>>>> cc7b2e2ad58d9bf5737df9772dbfd322bad86475
   Kakao.init('c727ac6af8f4ea892e4524df5eed6359');
   Kakao.isInitialized();
 
@@ -139,8 +143,8 @@
           imageUrl:
             'https://postfiles.pstatic.net/MjAyMTAzMjFfMTYy/MDAxNjE2MzMxNjMzMTQy.AqxK620MPDQyOyUWo0DQaD2gX7k63f360KEStS_8LhUg.2HGpYONTIq7XJd6uKdSkvOCEsJu70nUTujm9HSGnXG8g.PNG.jk940816/logo.png?type=w966',
           link: {
-            mobileWebUrl: 'http://localhost:8080/plus/getClub.do',
-            webUrl: 'http://localhost:8080/plus/getClub.do',
+            mobileWebUrl: 'http://localhost:9999/plus/getClub.do',
+            webUrl: 'http://localhost:9999/plus/getClub.do',
           },
         },
         social: {
@@ -151,15 +155,15 @@
           {
             title: '웹으로 보기',
             link: {
-              mobileWebUrl: 'http://localhost:8080/plus/getClub.do',
-              webUrl: 'http://localhost:8080/plus/getClub.do',
+              mobileWebUrl: 'http://localhost:9999/plus/getClub.do',
+              webUrl: 'http://localhost:9999/plus/getClub.do',
             },
           },
           {
             title: '앱으로 보기',
             link: {
-              mobileWebUrl: 'http://localhost:8080/plus/getClub.do',
-              webUrl: 'http://localhost:8080/plus/getClub.do',
+              mobileWebUrl: 'http://localhost:9999/plus/getClub.do',
+              webUrl: 'http://localhost:9999/plus/getClub.do',
             },
           },
         ],
@@ -207,6 +211,11 @@ $(document).ready(function () {
 	 
 	 
 	 let reviewCnt = '${reviewCount}'   
+ 
+	 if(reviewCnt<=5){
+		 $('#moreReviewBtn').css("display","none");
+	 }
+
 	 console.log(reviewCnt)
 				// limit으로 넣어줄 값 
 				let startIndex = 0;	
@@ -237,8 +246,7 @@ $(document).ready(function () {
 			            	let reviewList = "";
 		                    for(i = 0; i < data.length; i++){
 		                        let  newList = '<div class="userReview">';
-		                            // nickname 아직 안받아와서 
-		                        newList += '<strong>블루베리</strong>';
+		                        newList += '<strong>'+ data[i].members.memberNickname + '</strong>';
 		                        if(data[i].reviewRate == 1){
 		                            newList += '<div class="reviewRate">★☆☆☆☆</div>';
 		                        } else if (data[i].reviewRate == 2){

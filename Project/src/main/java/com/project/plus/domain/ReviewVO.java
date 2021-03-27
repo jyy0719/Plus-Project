@@ -1,6 +1,7 @@
  package com.project.plus.domain;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -11,8 +12,13 @@ import javax.xml.bind.annotation.XmlTransient;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import lombok.Getter;
+import lombok.Setter;
+
 @XmlRootElement(name="selectNotReview")
 @XmlAccessorType(XmlAccessType.FIELD)
+@Getter
+@Setter
 public class ReviewVO {
 	@XmlElement(name="review")
 	@XmlAttribute
@@ -21,6 +27,9 @@ public class ReviewVO {
 	private int clubNum;
 	private String reviewContent;
 	private int reviewRate;
+	
+	// for join 
+	private MemberVO members;
 	
 	@JsonFormat(pattern="yyyy. MM. dd")
 	private Date reviewRegDate;
@@ -33,8 +42,8 @@ public class ReviewVO {
 	private Date startDate;
 	private Date endDate;
 	
-	
 
+<<<<<<< HEAD
 	public int getReviewNum() {
 		return reviewNum;
 	}
@@ -102,4 +111,6 @@ public class ReviewVO {
 				+ ", reviewRegDate=" + reviewRegDate + ", clubThumbPic=" + clubThumbPic + ", clubName=" + clubName
 				+ ", startDate=" + startDate + ", endDate=" + endDate + "]";
 	}
+=======
+>>>>>>> cc7b2e2ad58d9bf5737df9772dbfd322bad86475
 }

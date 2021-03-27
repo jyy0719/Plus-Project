@@ -11,6 +11,8 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
+import com.project.plus.domain.MemberVO;
+
 import lombok.extern.log4j.Log4j;
 
 @Log4j
@@ -22,6 +24,13 @@ public class ChatHandler extends TextWebSocketHandler {
 	private ChatHandler() {
 		sessionList = new ArrayList<>();
 	}
+//	
+//    public static ChatRoom create(String name){
+//        ChatRoom chatRoom = new ChatRoom();
+//        chatRoom.roomId = UUID.randomUUID().toString();
+//        chatRoom.name = name;
+//        return chatRoom;
+//    }
 
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
@@ -34,12 +43,16 @@ public class ChatHandler extends TextWebSocketHandler {
 		log.info("메세지전송 >> " + session.getId() + " : " +  message.getPayload());
 		// 로그인 아이디 - WebSocket 등록
 		Map<String, Object> map = session.getAttributes();
-		String memid="";
+		String nickname="";
 		if (map.get("user") != null) {
-			memid = (String) map.get("userNickname");
+			MemberVO member = (MemberVO) map.get("user");
+			nickname = member.getMemberNickname();
 		}
+		
 		for (WebSocketSession currentSession : sessionList) {
-			currentSession.sendMessage(new TextMessage(memid + " : " + message.getPayload()));
+			// 내 메시지라면 보내지 않는다 
+			if(!currentSession.getId().equals(session.getId()))
+				currentSession.sendMessage(new TextMessage(nickname + " : " + message.getPayload()));
 		}
 	}
 

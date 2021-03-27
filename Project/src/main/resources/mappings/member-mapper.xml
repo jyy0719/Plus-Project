@@ -33,7 +33,7 @@
 		values(#{memberPhone}, #{memberEmail}, #{memberPassword}, #{memberName}, #{memberNickname}, #{memberPic}, #{memberMarketing}, 0, sysdate())
 	</insert> -->
 	
-		<select id="kakaologin" resultMap="memberResult">
+	<select id="kakaologin" resultMap="memberResult">
 		SELECT * FROM member WHERE
 		member_email = #{memberEmail}
 	</select>
