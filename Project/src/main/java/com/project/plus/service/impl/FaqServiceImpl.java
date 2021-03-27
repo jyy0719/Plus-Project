@@ -1,6 +1,8 @@
 package com.project.plus.service.impl;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.project.plus.domain.FaqVO;
@@ -12,13 +14,24 @@ public class FaqServiceImpl implements FaqService{
 
 	@Autowired
 	private FaqMapper mapper;
-	
-	
+
+	@Override
 	public void insertFaq(FaqVO vo) {
 		mapper.insertFaq(vo);
 	}
-	public String selectNow() {
-		return mapper.selectNow();
-		
+
+	@Override
+	public void updateFaq(FaqVO vo) {
+		mapper.updateFaq(vo);
+	}
+
+	@Override
+	public void deleteFaq(FaqVO vo) {
+		mapper.deleteFaq(vo);
+	}
+
+	@Override
+	public List<FaqVO> getFaqList(FaqVO vo) {
+		return mapper.getFaqList(vo);
 	}
 }

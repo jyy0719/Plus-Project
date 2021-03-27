@@ -1,78 +1,118 @@
-//package com.project.plus.controller;
-//// mypage-1vs1inquiry.jsp
-//
-//import java.lang.annotation.Annotation;
-//import javax.servlet.http.HttpServletRequest;
-//import javax.servlet.http.HttpServletResponse;
-//
-//import org.springframework.stereotype.Controller;
-//import org.springframework.ui.Model;
-//import org.springframework.web.bind.annotation.RequestMapping;
-//import org.springframework.web.servlet.ModelAndView;
-//
-//import com.project.plus.domain.InquiryVO;
-//import com.project.plus.service.InquiryService;
-//
-//@Controller
-//public class InquiryController {
-//
-//	private InquiryService is;
-//	
-//	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-//		System.out.println("inquiry controller");
-//		ModelAndView mv = new ModelAndView();
-//		mv.addObject("data", "Hello spring MVC");
-//		mv.setViewName("WEB-INF/views/inquiry.jsp");
-//		
-//		return mv;
+package com.project.plus.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
+
+import com.project.plus.domain.InquiryVO;
+import com.project.plus.service.InquiryService;
+
+@Controller
+@SessionAttributes("inquiry")
+public class InquiryController {
+
+	@Autowired
+	private InquiryService is;
+
+	// return 어디로 할지가 아직 정리가 안됨
+
+	// 회원용 : 문의글 등록
+	@RequestMapping(value = "/writeInquiry.do", method = RequestMethod.POST)
+	public String writeInquiry(InquiryVO vo) throws Exception {
+		vo.setMemberNum(12);
+		is.writeInquiry(vo);
+		return "redirect:inquiry.do";
+	}
+	
+
+	// 회원용 : 문의글 수정
+	@RequestMapping(value = "/editInquiry.do", method = RequestMethod.POST)
+	public String editInquiry(@ModelAttribute("inquiry") InquiryVO vo) {
+		vo.setMemberNum(12);
+		is.editInquiry(vo);
+		return "redirect:inquiry.do";
+	}
+
+	// 문의글 삭제
+	@RequestMapping("/deleteInquiry.do")
+	public String deleteInquiry(InquiryVO vo) {
+		is.deleteInquiry(vo);
+		return "redirect:inquiry.do";
+	}
+
+	// 문의글 상세조회
+	@RequestMapping(value = "/getInquiry.do", method = RequestMethod.GET)
+	public String getInquiry(InquiryVO vo, Model model) {
+		model.addAttribute("inquiry", is.getInquiry(vo));
+		return "getInquiry";
+	}
+
+	// 모든 글 보기 : 게시판 목록 조회
+	@RequestMapping("/inquiry.do")
+	public String getInquiryList(InquiryVO vo, Model model) {
+		model.addAttribute("inquiryList", is.getInquiryList(vo));
+		return "inquiry";
+	}
+
+	// 아직 구현 못한 부분
+
+	// 관리자용 : 답글 달기
+	/*
+	 * @RequestMapping(value="/answerInquiry.do", method=RequestMethod.POST) public
+	 * String answerInquiry(@ModelAttribute("inquiry")InquiryVO vo) {
+	 * is.answerInquiry(vo); return "inquiryAnswerForm"; }
+	 */
+
+	// 폼으로 보내기인데 이거 필요없을것 같음
+	/*
+	 * @RequestMapping(value = "/answerInquiry.do", method = RequestMethod.POST)
+	 * public String answerInquiry(@ModelAttribute("inquiry") InquiryVO vo) {
+	 * is.answerInquiry(vo); return "inquiryAnswerForm"; }
+	 */
+	
+	
+	/*
+	 * @RequestMapping(value = "/answerForm.do", method = RequestMethod.POST) public
+	 * String answerForm(InquiryVO vo, HttpServletRequest request, HttpSession
+	 * session) throws Exception { is.addAnswer(vo);
+	 * 
+	 * int inquiryNum = Integer.parseInt(request.getParameter("inquiryNum"));
+	 * System.out.println(inquiryNum); session = request.getSession();
+	 * session.setAttribute("inquiryNum", inquiryNum); return "inquiryAnswerForm";
+	 * // 답글창 요청시 미리 부모 글 번호를 inquiryNum속성으로 세션에 저장 }
+	 */
+	
+	
+	/*
+	 * @RequestMapping(value = "/addAnswer.do", method = RequestMethod.POST) public
+	 * String addAnswer(InquiryVO vo, HttpServletRequest request,
+	 * HttpServletResponse response, HttpSession session) throws Exception { session
+	 * = request.getSession(); int inquiryNum = (Integer)
+	 * session.getAttribute("inquiryNum"); System.out.println(inquiryNum);
+	 * vo.setInquiryNum(inquiryNum); // 답글의 부모 글 번호를 설정 String inquiryAnswer =
+	 * (String) session.getAttribute("inquiryAnswer");
+	 * vo.setInquiryAnswer(inquiryAnswer); vo.setMemberNum(1); is.writeInquiry(vo);
+	 * return "redirect:inquiry.do";
+	 * 
+	 * }
+	 */
+
+
+//	// 회원용 : 회원별로 개별 리스트 보기
+//	@RequestMapping("/inquiryPerson.do")
+//	public String getInquiryPersonList(InquiryVO vo, Model model) {
+//		model.addAttribute("inquiryPersonList", is.getInquiryPersonList(vo));
+//		return "inquiry";
 //	}
 //
-//
-//	@RequestMapping("/insertInquiry.do")
-//	public String insertInquiry(InquiryVO vo) {
-//			System.out.println("글 등록 처리");
-//			is.insertInquiry(vo);
-//			return "getInquiryList.do";
+//	// 관리자용 : 카테고리별로 리스트 보기
+//	@RequestMapping("/inquiryType.do")
+//	public String getInquiryTypeList(InquiryVO vo, Model model) {
+//		model.addAttribute("inquiryTypeList", is.getInquiryTypeList(vo));
+//		return "inquiry";
 //	}
-//
-//	@RequestMapping("/updateInquiry.do")
-//	public String updateInquiry(InquiryVO vo) {
-//		System.out.println("글 수정 처리");
-//		is.updateInquiry(vo);
-//		return "getInquiryList.do";
-//	}
-//
-//	@RequestMapping("/deleteInquiry.do")
-//	public String deleteInquiry(InquiryVO vo) {
-//		System.out.println("글 삭제 처리");
-//		is.deleteInquiry(vo);
-//		return "getInquiryList.do";
-//	}
-//
-//	@RequestMapping("/getInquiry.do")
-//	public String getInquiry(InquiryVO vo, Model model) {
-//		System.out.println("글 상세 조회");
-//		model.addAttribute("inquiry", is.getInquiry(vo, model));
-//		return "getInquiry.jsp";
-//	}
-//
-//	@RequestMapping("/getInquiryList.do")
-//	public String getInquiryList(InquiryVO vo, Model model) {
-//		System.out.println("글 목록 조회");
-//		model.addAttribute("inquiryList", is.getInquiryList(vo, model));
-//		is.getInquiryList(vo, model);
-//		return "getInquiryList.jsp";
-//	}
-//
-//	public Class<? extends Annotation> annotationType() {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//
-//	public String value() {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//}
-//
-//
+}

@@ -24,8 +24,9 @@ html {
 #header {
     padding-top: 62px;
     padding-bottom: 40px;
-    text-align: center;
+    text-align: center; 
 }
+
 
 
 .content1 {
@@ -44,7 +45,7 @@ html {
 
 
 #image_container{
-    background-color:silver;
+    background-color: #efefef;
     border-radius: 50%;
     height: 200px;
     width: 200px;
@@ -83,6 +84,16 @@ html {
     box-shadow: lightgray 2px 2px;
     font-size: small;
 
+}
+
+.removePic{
+    width: 40px;
+    height: 20px;
+    padding: 0 3px 3px 3px;
+    border: none;
+    border-radius: 5px;
+    margin-bottom:0px;
+    margin-left:180px;
 }
 
 /* 입력폼 */

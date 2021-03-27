@@ -190,6 +190,7 @@
 		if (checkInput()) {
 			if (isNumber()) {
 				if (compareDate()) {
+					
 					document.getElementById('frm').submit();
 					alert("모임 등록이 완료되었습니다!")
 				}

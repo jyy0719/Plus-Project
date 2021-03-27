@@ -3,33 +3,91 @@ package com.project.plus.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.project.plus.domain.ClubVO;
 import com.project.plus.domain.ReviewVO;
+import com.project.plus.service.ClubService;
 import com.project.plus.service.ReviewService;
 
-//주석입니다 , 나중에 지우세요 
+
 @Controller
-@SessionAttributes("review") // 값 변동이 없어도 review라는 이름에 같이 담겨서 나올 수 있도록.
+@SessionAttributes("review") 
 public class ReviewController {
 	
-	@Autowired //자동 주입 , 아래의 객체 타입을 읽어들여서, 자동으로 해당 클래스의 객체를 생성한다.
+	@Autowired 
 	private ReviewService reviewService;	 
+	@Autowired 
+	private ClubService clubService;	 
 
 	
 	@RequestMapping("/getReviewList.do")
-		//	RequestMapping보다 먼저 적용되어서 아래 Map객체는 자동으로 Model에 저장되고
-		//	화면 이동시 전달되게 된다
-//	@ModelAttribute("selectNotReview")
 	public String getReviewList(ReviewVO vo, Model model) {
-		//reviewList라는 이름으로 reviewService.selectNotReview(vo)의 값을 담아서 jsp로 넘김.
 		vo.setMemberNum(5);
 		model.addAttribute("selectNotReview", reviewService.selectNotReview(vo)); 
 		model.addAttribute("selectOkayReview", reviewService.selectOkayReview(vo)); 
 		
 		return "reviewList";
 	}
+	
+	@RequestMapping("/showReviewForm.do") 
+	public String showReviewForm(ClubVO cvo,ReviewVO vo, Model model) {
+		System.out.println("******showReviewForm.do ReviewVO 넘버확인 ******" + vo.getMemberNum() + "**임시 회원번호에필요한 vo**");
+		System.out.println("******showReviewForm.do ClubVO넘버확인 ******" + cvo.getClubNum());
+		model.addAttribute("selectMember", vo.getMemberNum());
+		model.addAttribute("selectClub", clubService.selectClub(cvo));
+		System.out.println("getter 확인" + cvo.getClubNum());
+		System.out.println("showReviewForm.do 성공! view로 이동..");
+		
+		return "createReview"; // .jsp는 미리 설정해둠. 
+	}
+	
+	
+	@RequestMapping("/writeReview.do") // 모임 값 꺼내는 컨트롤러 
+	public String writeReview(ReviewVO vo, Model model) {
+		System.out.println("vo.setMemberNum(5) 넘버 확인 ***** " + vo.getMemberNum());
+		System.out.println("vo.setClubNum(14) 넘버 확인 ***** " + vo.getClubNum());
+		reviewService.insertReview(vo);
+
+		return "redirect:getReviewList.do";
+	}
+	
+	@RequestMapping("/readReview.do") 
+	public String readReview(ClubVO cvo,ReviewVO vo, Model model) {
+		System.out.println("******showReviewForm.do ReviewVO 넘버확인 ******"+vo.getClubNum()+"/" + vo.getMemberNum() + "**임시 회원번호에필요한 vo**");
+		System.out.println("******showReviewForm.do ClubVO넘버확인 ******" + cvo.getClubNum());
+		model.addAttribute("selectClub", clubService.selectClub(cvo));
+		System.out.println("getter 확인" + cvo.getClubNum());
+		System.out.println("showReviewForm.do 성공!");
+		model.addAttribute("readReview", reviewService.readReview(vo));
+		System.out.println("readReview도 완료!view로 이동..");
+		
+		return "updateReview"; // .jsp는 미리 설정해둠. 
+	}
+	@RequestMapping("/updateReview.do")
+	public String updateReview(ReviewVO rvo , ClubVO cvo ,Model model) {
+		System.out.println("******showReviewForm.do ReviewVO 넘버확인 ******"+rvo.getClubNum()+"/" + rvo.getMemberNum() + "**임시 회원번호에필요한 vo**");
+		System.out.println("******showReviewForm.do ClubVO넘버확인 ******" + cvo.getClubNum());
+		reviewService.updateReview(rvo);
+		System.out.println("리뷰 업뎃완료!! .. 목록 view로 이동..");
+		model.addAttribute("msg", "리뷰가 수정되었습니다!"); 
+
+		return "redirect:getReviewList.do";
+	}
+	
+	@RequestMapping("/deleteReview.do")
+	public String deleteReview(ReviewVO rvo , ClubVO cvo ,Model model) {
+		System.out.println("******showReviewForm.do ReviewVO 넘버확인 ******"+rvo.getClubNum()+"/" + rvo.getMemberNum() + "**임시 회원번호에필요한 vo**");
+		System.out.println("******showReviewForm.do ClubVO넘버확인 ******" + cvo.getClubNum());
+		reviewService.deleteReview(rvo);
+		System.out.println("리뷰 삭제완료!! .. 목록 view로 이동..");
+		model.addAttribute("msg", "리뷰가 삭제되었습니다!"); 
+
+		return "redirect:getReviewList.do";
+	}
 }
+
+
+
 

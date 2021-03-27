@@ -7,14 +7,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-  <title>Header and Footer</title>
     <!-- css코드삽입 -->
     <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css">
     <link rel="stylesheet" type="text/css" href="${path}/resources/css/footer.css">
-    <style>
-
-    </style>
-    <script type="text/javascript" src="${path}/resources/js/jquery-1.12.4.min.js"></script>
     <script>
         $(document).ready(function () {
 
@@ -33,11 +28,13 @@
 </head>
 
 <body>
+<<<<<<< HEAD
 
     <!-- 사실상 헤더가 없어요  -->
+=======
+>>>>>>> a05ec5e930e61aca1bf841f7baf5fd747370b574
 
     <!-- 본문 너비 정하는 용으로 wrapper 아이디 설정 -->
-    <div id="wrapper">
         <!-- navi bar가 사실상 저희 헤더입니다 -->
         <!-- id="selected" 나중에 자바스크립트로 수정할 부분 -->
       <!--   <nav>
@@ -64,12 +61,17 @@
 
 
         <!-- 푸터 시작 -->
+<<<<<<< HEAD
 
         <footer>
             <ul>
+=======
+        <div class="footerBox">
+            <ul class="footerText">
+>>>>>>> a05ec5e930e61aca1bf841f7baf5fd747370b574
                 <li><a href="#">개인정보처리방침</a></li>
                 <li><a href="#">이용약관</a></li>
-                <li><a href="#">고객지원</a></li>
+                <li><a href="announce.do">고객지원</a></li>
 
             </ul>
             <ul>
@@ -82,12 +84,16 @@
                 </li>
                 <li></li>
             </ul>
+<<<<<<< HEAD
 
         </footer>
 
     </div> <!-- id="wrapper" -->
     </div> <!-- id="wrapper" -->
 
+=======
+		</div>
+>>>>>>> a05ec5e930e61aca1bf841f7baf5fd747370b574
 
 </body>
 

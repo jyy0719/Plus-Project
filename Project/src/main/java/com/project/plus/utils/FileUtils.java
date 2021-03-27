@@ -16,7 +16,10 @@ import com.project.plus.domain.ClubVO;
 import lombok.extern.log4j.Log4j;
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> a05ec5e930e61aca1bf841f7baf5fd747370b574
 @Log4j
 public class FileUtils {
 
@@ -54,16 +57,17 @@ public class FileUtils {
 					}
 				} catch (Exception e) {
 					e.printStackTrace();
-					System.out.println("파일 업로드 오류");
+					log.info("파일 업로드 오류");
 				}
 
 			} else {
 				if(i==0) {
 					// 사진 수정시 main pic을 삭제했을 때 썸네일 컬럼을 null로 update
+					vo.setClubMain_pic("");
 					vo.setClubThumb_pic("");
 					}
 			}
-			System.out.println("업로드 파일이 없습니다");
+			log.info("업로드 파일이 없습니다");
 		}
 		return vo;
 	}//

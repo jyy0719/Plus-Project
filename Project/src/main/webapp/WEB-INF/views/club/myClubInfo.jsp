@@ -13,12 +13,12 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="${path}/resources/css/bootstrap-datepicker.css">
 <link rel="stylesheet" href="${path}/resources/css/clubform.css">
-<!-- <script src="https://code.jquery.com/jquery-3.2.1.js"></script> -->
+<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 <script src="${path}/resources/js/bootstrap-datepicker.js"></script>
 <script src="${path}/resources/js/bootstrap-datepicker.ko.js"></script>
 <style>
 	/* body, html{ height: 100%;} */
-#modifyBtn{
+#delBtn, #modifyBtn{
 	width: 180px;
 	height: 50px;
 	top: 350px;
@@ -29,9 +29,6 @@
 	margin-top:30px;
 }
 
-#applyBtn{
-	width: 180px;
-}
 
 #delTag{
 	color:white;
@@ -189,14 +186,13 @@
 			<input name="clubMakeDate" type="hidden" value="${club.clubMakeDate}"/>
 			<input name="clubCurnum" type="hidden" value="${club.clubCurnum}"/>
 			<input name="clubKind" type="hidden" value="${club.clubKind}"/>
-		<button type="button" class="btn" id="applyBtn" onclick="goSubmit()">수정하기</button>
-		<button type="button" class="btn" id="modifyBtn" onclick="">삭제하기</button>
-	</div>
+		<button type="button" class="btn" id="modifyBtn" onclick="goSubmit()">수정하기</button>
 	</form>
+		<button type="button" class="btn" id="delBtn" onclick="deleteClub()">삭제하기</button>
+	</div>
 </aside>
 <script>
 
-//파일 
 
 //파일 선택시 파일이름 변경 
 function getFileName(index){
@@ -236,9 +232,7 @@ function checkInput(){
 	let title = document.getElementById("club-title");
 	let date = document.querySelectorAll(".c-date");
 
-/* 
-	if(title && fee && max){
-		console.log("존재 ") */
+
      if(title.value == "" || fee.value == "" || max.value == "" || 
          date[0].value == "" || date[1].value == "" || date[2].value == "" ){
     	 
@@ -407,6 +401,18 @@ function changeDetail(){
  }
 
 }
+
+function deleteClub(){
+		let delBtn = document.getElementById('delBtn');
+		delBtn.onclick = function(){
+			let returnValue = confirm("정말로 모임을 삭제하시겠습니까?");
+			if(returnValue){
+				alert("모임이 삭제되었습니다.");
+				window.location.href='deleteClub.do?clubNum=${club.clubNum}';
+			}
+		}
+	}
+
 
 $(function(){
 	
