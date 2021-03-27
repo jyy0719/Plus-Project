@@ -1,15 +1,11 @@
 package com.project.plus.controller;
 
-import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -60,7 +56,7 @@ public class ClubController {
 		clubService.insertClub(vo); // DB에 저장
 		log.info("모임 번호 : " + vo.getClubNum() + " 등록 완료 ");
 		log.info(uploadPath);
-		return "index";
+		return "redirect:main.do";
 
 	}
 
@@ -75,7 +71,7 @@ public class ClubController {
 		clubService.updateClub(vo);
 		log.info("모임 번호 : " + vo.getClubNum() + " 수정 완료 ");
 
-		return "index";
+		return "redirect:main.do";
 	}
 
 	
@@ -134,7 +130,7 @@ public class ClubController {
 		getReviews(model,11);
 		model.addAttribute("club", clubService.getClub(vo));
 		log.info("모임 번호 : " + vo.getClubNum() + " 상세 정보 ");
-		return "getClub.page";
+		return "getClub.club";
 	}
 
 	// 회원 모임 수정 폼 
@@ -160,14 +156,14 @@ public class ClubController {
 
 		model.addAttribute("club", vo);
 		log.info("모임 수정 폼 : " + vo.getClubNum());
-		return "myClubInfo.page";
+		return "myClubInfo.club";
 	}
 
 	@RequestMapping("/deleteClub.do")
 	public String deleteClub(ClubVO vo) {
 		clubService.deleteClub(vo);
 		log.info("모임 번호 : " + vo.getClubNum() + " 삭제 완료 ");
-		return "index";
+		return "redirect:main.do";
 	}
 	
 	@RequestMapping("/apply.do")
