@@ -77,6 +77,14 @@
     <put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" />	
   </definition>	
   
+      <!-- 정보수정 페이지 -->
+     <definition name="index" template="/WEB-INF/views/inc/layout.jsp"> 		
+    <put-attribute name="header" value="/WEB-INF/views/include/header.jsp" />	
+        <put-attribute name="title" value="더하기 메인" />
+    <put-attribute name="body" value="/WEB-INF/views/index.jsp" />
+    <put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" />	
+  </definition>	
+  
   <!-- club -->
 <!--    <definition name="club.*" template="/WEB-INF/views/club/layout.jsp">
     <put-attribute name="body" value="" />
