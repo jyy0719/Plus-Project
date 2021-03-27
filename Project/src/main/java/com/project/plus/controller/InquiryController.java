@@ -32,6 +32,14 @@ public class InquiryController {
 		return "inquiry.do";
 	}
 	
+<<<<<<< HEAD
+	/*
+	 * @RequestMapping(value="/answerInquiry.do", method=RequestMethod.POST) public
+	 * String answerInquiry(@ModelAttribute("inquiry")InquiryVO vo) {
+	 * is.answerInquiry(vo); return "inquiry.do"; }
+	 */
+=======
+>>>>>>> e17b1a88e3fd2bdb7175bf9f7864a9913fb62b9f
 
 	@RequestMapping("/deleteInquiry.do")
 	public String deleteInquiry(InquiryVO vo) {

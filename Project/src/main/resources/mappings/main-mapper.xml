@@ -70,7 +70,7 @@
 
 <![CDATA[
 		SELECT * FROM club 	
-	    WHERE (club_category like '%'||#{headerKeyword}||'%' or club_hashtag like '%'||#{headerKeyword}||'%') 
+	    WHERE club_name like '%Test%' or club_hashtag like '%Test%'
 	    AND club_max > club_curnum AND club_shutdate > NOW()
 	    ORDER BY club_num DESC
 	]]>

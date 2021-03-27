@@ -24,7 +24,7 @@ import com.project.plus.service.MemberService;
 import com.project.plus.service.PaymentService;
 
 @Controller
-@SessionAttributes("heart")
+/* @SessionAttributes("heart") */
 public class HeartController {
 
 	@Autowired
@@ -46,7 +46,7 @@ public class HeartController {
 		model.addAttribute("checkApplyClub", applyService.checkApplyClubByMemberNum(avo));
 		model.addAttribute("selectFreeClub", heartService.selectFreeClub(vo));
 		model.addAttribute("selectNoFreeClub", heartService.selectNoFreeClub(vo));
-		return "heartList";
+		return "heartList.heart";
 	}
 
 	@RequestMapping(value = "/applyFreeClub.do", produces = "application/text;charset=UTF-8")
@@ -90,7 +90,7 @@ public class HeartController {
 		model.addAttribute("clubNumArr", request.getParameter("clubNumArr"));
 		model.addAttribute("checkApplyClub", applyService.checkApplyClubByMemberNum(vo));
 
-		return "applyPayClub";
+		return "applyPayClub.heart";
 	}
 
 	@RequestMapping("/applyPayClubPayment.do")

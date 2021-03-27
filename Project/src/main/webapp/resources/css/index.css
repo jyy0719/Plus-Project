@@ -7,9 +7,13 @@
    font-family: 'NanumSquare';
 }
 
+<<<<<<< HEAD
+
+=======
 body {
    padding-bottom: 10%;
 }
+>>>>>>> e17b1a88e3fd2bdb7175bf9f7864a9913fb62b9f
 
 a {
    text-decoration: none
@@ -178,6 +182,60 @@ form.box input[type=text]::placeholder {
    margin: -5px;
 }
 
+<<<<<<< HEAD
+ .catagory-btn p {
+        color: rgb(0, 30, 250);
+        overflow: hidden;
+        position: relative;
+        font-family: 'NanumSquare', sans-serif !important;
+        font-size: 16px;
+        font-weight: 700;
+    }
+
+    .catagory-btn:hover i {
+        transform: scale(1.1);
+        color: #f1f1f1;
+    }
+
+    .catagory-btn:hover p {
+        transform: scale(1.1);
+        color: #f1f1f1;
+    }
+
+    .catagory-btn::before {
+        content: "";
+        position: absolute;
+        width: 120%;
+        height: 120%;
+        background: rgb(0, 30, 250);
+        transform: rotate(10deg);
+        left: -110%;
+        top: 90%;
+    }
+
+    .catagory-btn:hover::before {
+        animation: aaa 1s 1;
+        top: -10%;
+        left: -10%;
+    }
+
+    @keyframes aaa {
+        0% {
+            left: -110%;
+            top: 90%;
+        }
+
+        50% {
+            left: 10%;
+            top: -30%;
+        }
+
+        100% {
+            top: -10%;
+            left: -10%;
+        }
+    }
+=======
 .catagory-btn p {
    color: rgb(0, 30, 250);
    overflow: hidden;
@@ -258,6 +316,7 @@ left
 -10%;
 }
 }
+>>>>>>> e17b1a88e3fd2bdb7175bf9f7864a9913fb62b9f
 /* 검색 카테고리  끝*/
 .gallery-container {
    width: 1200px;
@@ -267,12 +326,21 @@ left
 }
 
 .card-bodyarea {
+<<<<<<< HEAD
+	padding: 20px 2px 50px 2px;
+}
+
+.card-content {
+	position: relative;
+	padding: 10px 0 20px 3px;
+=======
    padding: 20px 2px 50px 2px;
 }
 
 .card-content {
    position: relative;
    padding: 10px 0 20px 3px;
+>>>>>>> e17b1a88e3fd2bdb7175bf9f7864a9913fb62b9f
 }
 
 .card-content b {
@@ -346,15 +414,57 @@ left
 }
 
 .lightbox img {
+<<<<<<< HEAD
+	width: 100%;
+	height: 200px;
+	transition: .1s;
+}
+
+.lightbox img : hover {
+	transform: scale(1.05);
+=======
    width: 100%;
    height: 200px;
    transition: .1s;
+>>>>>>> e17b1a88e3fd2bdb7175bf9f7864a9913fb62b9f
 }
 
 
 
 /* 페이지 위로가기 버튼 */
 #go-top {
+<<<<<<< HEAD
+	/* display: none;  */
+	position: absolute;
+	left: 50%;
+	transform: translate(-50%, 0%);
+	outline: 0;
+	border: 0;
+	background: transparent;
+	cursor: pointer;
+	z-index: 9999;
+	color: rgb(0, 30, 250);
+	margin-bottom:50px;
+}
+/*더하기 등록 버튼*/
+#addplus {
+	outline: 0;
+	border: 0;
+	background: transparent;
+	cursor: pointer;
+	position: absolute;
+	right: 3%;
+	color: rgb(0, 30, 250);
+
+}
+
+#bottomarea{
+	padding-bottom:200px;
+}
+</
+style
+>
+=======
    /* display: none;  */
    position: absolute;
    left: 50%;
@@ -384,3 +494,4 @@ left
        
 }
    
+>>>>>>> e17b1a88e3fd2bdb7175bf9f7864a9913fb62b9f
