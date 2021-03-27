@@ -159,15 +159,29 @@ public class LoginController {
 	
 	
 	//카카오정보 vo에 담아서 헤더에 사람이름 출력가능!! 
+	@ResponseBody 
 	@RequestMapping(value="kakaologin.do", method=RequestMethod.POST) 
-	public @ResponseBody String kakaologin(MemberVO vo, HttpSession session, HttpServletResponse response) throws Exception {
+	public String kakaologin(MemberVO vo, HttpSession session) throws Exception {
 	System.out.println("카카오 로그인 컨트롤러 접속");
 		try {
 			//로그인 성공했을 때
-			vo = memberService.kakaologin(vo);
 			
-			MemberVO user = vo;
-			System.out.println(vo + "vo카카오");  //카카오 로그인시 vo 확인
+			System.out.println("카카오로그인시도중~"+vo);  //카카오 로그인시 vo 확인
+
+
+			
+			MemberVO user = vo;					//이거랑	
+			vo = memberService.kakaologin(vo);  //이거랑 카카오 로그인 할때 꼭 있어야돼.. 둘 다 있어야돼 .... 왠지는 몰라
+			
+			System.out.println("카카오 로그인 거친 vo~"+ user);  //카카오 로그인시 vo 확인
+
+			
+			System.out.println(user.getMemberNum());
+			//MemberVO user = vo;
+			//MemberVO user = memberService.kakaologin(vo);
+			
+			System.out.println(user + "vo카카오");  //카카오 로그인시 vo 확인
+			//MemberVO user = vo;
 			System.out.println("user카카2"+user);
 			
 			log.info(vo.getMemberNum());
@@ -191,7 +205,7 @@ public class LoginController {
 		} catch(Exception e) {
 			e.printStackTrace();
 			System.out.println("카카오 로그인 실패");
-			return "login";
+			return "login.do";
 		}
 	}
 	
