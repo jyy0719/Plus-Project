@@ -65,7 +65,7 @@
             <ul>
                 <li><a href="#">개인정보처리방침</a></li>
                 <li><a href="#">이용약관</a></li>
-                <li><a href="#">고객지원</a></li>
+                <li><a href="announce.do">고객지원</a></li>
 
             </ul>
             <ul>

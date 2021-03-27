@@ -48,23 +48,23 @@ td {
 			<div class="post">
 				<tr>
 					<th width="10%"><center>제목</center></th>
-					<td>${inquiry.inquiryTitle}</td>
+					<td>${adminInquiry.inquiryTitle}</td>
 				</tr>	
 				<tr>
 					<th width="10%"><center>닉네임</center></th>
-					<td>${inquiry.memberNickname}</td>
+					<td>${adminInquiry.memberNickname}</td>
 				</tr>
 				<tr>
 					<th><center>이메일</center></th>
-					<td>${inquiry.memberEmail}</td>
+					<td>${adminInquiry.memberEmail}</td>
 				</tr>
 				<tr>
 					<th><center>카테고리</center></th>
-					<td>${inquiry.inquiryType}</td>
+					<td>${adminInquiry.inquiryType}</td>
 				</tr>	
 				<tr>
 					<th><center>문의일자</center></th>
-					<fmt:parseDate var="parseRegDate" value="${inquiry.inquiryRegDate}"
+					<fmt:parseDate var="parseRegDate" value="${adminInquiry.inquiryRegDate}"
 							pattern="yyyy-MM-dd" />
 						<fmt:formatDate var="resultRegDt" value="${parseRegDate}"
 							pattern="yyyy-MM-dd" />
@@ -72,7 +72,7 @@ td {
 				</tr>
 				<tr>
 					<th><center>내용</center></th>
-					<td class="content-data" style="white-space:pre;">${inquiry.inquiryContent}</td>
+					<td class="content-data" style="white-space:pre;">${adminInquiry.inquiryContent}</td>
 				</tr>
 			</div>
 		</div>
@@ -80,15 +80,19 @@ td {
 	
 	<hr>
 	
-	<form action="deleteInquiry.do" method="post" style="display:inline-block;">
-	<input type="hidden" value="${inquiry.inquiryNum}" name="inquiryNum">
-	<a href="deleteInquiry.do"><button type="submit" class="btn btn-primary" id="deleteBtn">삭제</button></a>
+	<form action="deleteAdminInquiry.do" method="post" style="display:inline-block;">
+	<input type="hidden" value="${adminInquiry.inquiryNum}" name="inquiryNum">
+	<a href="deleteAdminInquiry.do"><button type="submit" class="btn btn-danger" id="deleteBtn">삭제</button></a>
 	</form>
+	<form action="answerInquiry.do" method="post" style="display:inline-block;">
+	<input type="hidden" value="${adminInquiry.inquiryNum}" name="inquiryNum">
+	<a href="inquiryAnswerForm.jsp"><button type="submit" class="btn btn-primary" id="answerBtn">답변 작성</button></a>
+	</form>
+	<!-- <a href="inquiryEditForm.jsp"><button type="submit" class="btn btn-primary" id="editBtn">수정</button></a> -->
 	
-	<a href="inquiryEditForm.jsp"><button type="submit" class="btn btn-primary" id="editBtn">수정</button></a>
+	<a href="adminInquiry.do"><button type="submit" class="btn btn-primary" id="listBtn">문의 목록</button></a>
 	
-	<a href="inquiry.do"><button type="submit" class="btn btn-primary" id="listBtn">문의 목록</button></a>
-
+	
 	
 
 </center>

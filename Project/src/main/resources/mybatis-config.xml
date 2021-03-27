@@ -17,6 +17,7 @@
 		<typeAlias alias="apply" type="com.project.plus.domain.ApplyVO"/>
 		<typeAlias alias="faq" type="com.project.plus.domain.FaqVO"/>
 		<typeAlias alias="inquiry" type="com.project.plus.domain.InquiryVO"/>
+		
 	
 </typeAliases>
 

@@ -74,7 +74,8 @@
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="/admin/chart">
+                <!-- <a class="nav-link" href="/admin/chart"> -->
+                <a class="nav-link" href="/chart.jsp">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>차트</span></a>
             </li>
@@ -114,7 +115,7 @@
                     <div id="collapsePages3" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">공지사항:</h6>
-                        <a class="collapse-item" href="/admin/noticemanage">공지사항관리</a>
+                        <a class="collapse-item" href="announce.do">공지사항관리</a>
                         </div>
                     </div>
                 </li>
