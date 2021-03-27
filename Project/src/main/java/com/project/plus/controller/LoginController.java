@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -17,7 +18,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import com.project.plus.domain.MemberVO;
 import com.project.plus.service.MemberService;
 import com.project.plus.service.impl.MemberServiceImpl;
-
 
 
 @Controller
@@ -34,14 +34,6 @@ public class LoginController {
 		return "login";
 
 	}
-	
-<<<<<<< HEAD
-    @GetMapping("/loginPage.do")
-	public void login() {
-		log.info("/로그인 화면 접속");
-	}
-=======
->>>>>>> a81e2f39fa7755a39c42fca95b40ef207c94d9ab
 	
 	@RequestMapping(value="login.do", method=RequestMethod.POST) 
 	public String login(MemberVO vo, HttpSession session, HttpServletResponse response) throws Exception {

@@ -23,11 +23,10 @@
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
 <link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> 
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <!-- 나눔폰트 -->
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css">
-
 
 <title>더하기+ 같이해서 더 가치있는 모임</title>
 </head>
@@ -35,7 +34,6 @@
 <body>
 
 	<main>
-		<main>
 		<!-- 메인 carousel -->
 		<div id="carouselExampleIndicators" class="carousel slide"
 			data-ride="carousel">
@@ -102,10 +100,12 @@
 
 	<div id="current-location"></div>
 
+
 	<!--검색창 -->
 	<div class=search>
-		<form class="box" action="#" method="get" onsubmit="return #">
-			<input type="text" name="headerKeyword" size="40"
+		<form class="box" action="totalList.do" method="get"
+			onsubmit="return inputCheckMain()">
+			<input type="text" name="keyword" size="30"
 				placeholder=" 관심있는 더하기를 검색해보세요 🔍"> <input type="submit"
 				value="Search">
 		</form>
@@ -113,13 +113,13 @@
 
 	<!--검색 카테고리 -->
 	<div class="middle">
-		<a class="catagory-btn" href="#"> <i class="fas fa-running"></i>
+		<a class="catagory-btn" href="totalLlist.do?category=운동"> <i class="fas fa-running"></i>
 			<p>운동</p>
-		</a> <a class="catagory-btn" href="#"> <i class="fas fa-book-reader"></i>
+		</a> <a class="catagory-btn" href="totalLlist.do?category=학습"> <i class="fas fa-book-reader"></i>
 			<p>학습</p>
-		</a> <a class="catagory-btn" href="#"> <i class="fas fa-cubes"></i>
+		</a> <a class="catagory-btn" href="totalLlist.do?category=취미"> <i class="fas fa-cubes"></i>
 			<p>취미</p>
-		</a> <a class="catagory-btn" href="#"> <i class="far fa-grin-alt"></i>
+		</a> <a class="catagory-btn" href="totalLlist.do?category=습관"> <i class="far fa-grin-alt"></i>
 			<p>습관</p>
 		</a>
 	</div>
@@ -131,34 +131,38 @@
 				<h3 id="viewtitle">
 					<b> 💙BEST 인기 더하기</b>
 				</h3>
-				<a href="/totalList" id="viewtotal"> 더 보기 > </a>
+				<a href="totalList.do" id="viewtotal"> 더 보기 > </a>
 			</div>
 
 			<div class="row">
 				<c:forEach items="${main}" var="club" varStatus="status" begin="0"
-					end="7">
+					end="11">
 					<div class="col-md-6 col-lg-3">
 						<div class="card border-0 transform-on-hover">
 
 							<a class="lightbox"
 								href='/club/info?club_num=<c:out value="${club.clubNum}" />'>
-								<img src='<c:out value="${club.clubThumb_pic}" />' alt="">
+
+								<img id="clubmainpic"
+								src="${path}/resources${club.clubMain_pic}"
+								onerror="this.onerror=null; this.src='${path}/resources/img/img1.jpg'" />
+
+
 							</a>
-							<div class="card-body">
+							<div class="card-bodyarea">
 								<div class=spanspace>
-									<span class="badge" id="onoff">${club.clubOnOff}</span>
-									 <span
+									<span class="badge" id="onoff">${club.clubOnOff}</span> <span
 										class="badge" id="freq">${club.clubFreq}</span>
-										
+
 								</div>
 								<div class=clubtitle>
 									<a class=clubtitle
-								        href='/club/info?club_num=<c:out value="${club.clubNum}" />'>
+										href='/club/info?club_num=<c:out value="${club.clubNum}" />'>
 										${club.clubName} </a>
 								</div>
 								<div class=subtitle>
-								<i class="fas fa-heart" > ${club.clubHeart}</i>
-								
+									<i class="fas fa-heart"> ${club.clubHeart}</i>
+
 								</div>
 
 								<!-- 더하기 상세 정보 -->
@@ -173,8 +177,8 @@
 									<fmt:formatDate var="endDay" value='${club.clubEndDate}'
 										pattern="yyyyMMdd" />
 									<span class="period">📅 ${club.clubStartDate} ~
-										${club.clubEndDate}</span></br> <span class="shutdown"> 🔒 									
-										모집 마감까지 D - <c:out value="${shutDay-today}" />
+										${club.clubEndDate}</span></br> <span class="shutdown"> 🔒 모집 마감까지
+										D - <c:out value="${shutDay-today}" />
 									</span></br> <span class="person">현재<b> ${club.clubCurnum}</b> /
 										${club.clubMax}명 참여중!
 									</span></br>
@@ -191,101 +195,65 @@
 	<section class="gallery-block cards-gallery">
 		<div class="gallery-container">
 			<div class="gallerytitle">
-				<h4 id="viewtitle">
+				<h3 id="viewtitle">
 					<b>🚩내 주변 가까운 더하기</b>
-				</h4>
-				<a href="#" id="viewtotal"> 전체 보기 > </a>
-
+				</h3>
+				<a href="totalList.do" id="viewtotal"> 더 보기 > </a>
 			</div>
+
 			<div class="row">
-				<div class="col-md-6 col-lg-3">
-					<div class="card border-0 transform-on-hover">
-						<a class="lightbox" href="#"> <img
-							src="${path}/resources/img/deadline1.jfif" alt="bestplus1"
-							class="card-img-top">
-						</a>
+				<c:forEach items="${main2}" var="club" varStatus="status" begin="0"
+					end="11">
+					<div class="col-md-6 col-lg-3">
+						<div class="card border-0 transform-on-hover">
 
-						<div class="card-body">
-							<!--딱지-->
-							<div class=spanspace>
-								<a href="#" class="badge badge-info">온라인</a> <a href="#"
-									class="badge badge-danger">주 3일</a>
+							<a class="lightbox"
+								href='/club/info?club_num=<c:out value="${club.clubNum}" />'>
+								<img id="clubmainpic"
+								src="${path}/resources${club.clubMain_pic}"
+								onerror="this.onerror=null; this.src='${path}/resources/img/img1.jpg'" />
+
+
+							</a>
+							<div class="card-bodyarea">
+								<div class=spanspace>
+									<span class="badge" id="onoff">${club.clubOnOff}</span> <span
+										class="badge" id="freq">${club.clubFreq}</span>
+
+								</div>
+								<div class=clubtitle>
+									<a class=clubtitle
+										href='/club/info?club_num=<c:out value="${club.clubNum}" />'>
+										${club.clubName} </a>
+								</div>
+								<div class=subtitle>
+									<i class="fas fa-heart"> ${club.clubHeart}</i>
+
+								</div>
+
+								<!-- 더하기 상세 정보 -->
+								<p class="text-muted card-text">
+
+									<c:set var="today" value="<%=new java.util.Date()%>" />
+									<fmt:formatDate var="today" value="${today}" pattern="yyyyMMdd" />
+									<fmt:formatDate var="shutDay" value="${club.clubShutDate}"
+										pattern="yyyyMMdd" />
+									<fmt:formatDate var="startDay" value='${club.clubStartDate}'
+										pattern="yyyy-MM-dd" />
+									<fmt:formatDate var="endDay" value='${club.clubEndDate}'
+										pattern="yyyyMMdd" />
+									<span class="period">📅 ${club.clubStartDate} ~
+										${club.clubEndDate}</span></br> <span class="shutdown"> 🔒 모집 마감까지
+										D - <c:out value="${shutDay-today}" />
+									</span></br> <span class="person">현재<b> ${club.clubCurnum}</b> /
+										${club.clubMax}명 참여중!
+									</span></br>
+
+								</p>
 							</div>
-							<h6>
-								<a href="#"><b>매일 아침 우린 달린다.</b></a>
-							</h6>
-							<p class="text-muted card-text">
-								testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest
-							</p>
 						</div>
 					</div>
-				</div>
-				<div class="col-md-6 col-lg-3">
-					<div class="card border-0 transform-on-hover">
-						<a class="lightbox" href="#"> <img
-							src="${path}/resources/img/deadline1.jfif" alt="bestplus1"
-							class="card-img-top">
-						</a>
-
-						<div class="card-body">
-							<!--딱지-->
-							<div class=spanspace>
-								<a href="#" class="badge badge-info">온라인</a> <a href="#"
-									class="badge badge-danger">주 3일</a>
-							</div>
-							<h6>
-								<a href="#"><b>매일 아침 우린 달린다.</b></a>
-							</h6>
-							<p class="text-muted card-text">
-								testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest
-							</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-6 col-lg-3">
-					<div class="card border-0 transform-on-hover">
-						<a class="lightbox" href="#"> <img
-							src="${path}/resources/img/deadline1.jfif" alt="bestplus1"
-							class="card-img-top">
-						</a>
-
-						<div class="card-body">
-							<!--딱지-->
-							<div class=spanspace>
-								<a href="#" class="badge badge-info">온라인</a> <a href="#"
-									class="badge badge-danger">주 3일</a>
-							</div>
-							<h6>
-								<a href="#"><b>매일 아침 우린 달린다.</b></a>
-							</h6>
-							<p class="text-muted card-text">
-								testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest
-							</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-6 col-lg-3">
-					<div class="card border-0 transform-on-hover">
-						<a class="lightbox" href="#"> <img
-							src="${path}/resources/img/deadline1.jfif" alt="bestplus1"
-							class="card-img-top">
-						</a>
-
-						<div class="card-body">
-							<!--딱지-->
-							<div class=spanspace>
-								<a href="#" class="badge badge-info">온라인</a> <a href="#"
-									class="badge badge-danger">주 3일</a>
-							</div>
-							<h6>
-								<a href="#"><b>매일 아침 우린 달린다.</b></a>
-							</h6>
-							<p class="text-muted card-text">
-								testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest
-							</p>
-						</div>
-					</div>
-				</div>
+				</c:forEach>
 	</section>
 
 	<!--페이지 위로가기 버튼 -->
@@ -296,12 +264,18 @@
         <path fill-rule="evenodd"
 				d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z" />
       </svg>
+
+
 	</button>
+ <button id="addplus">
+		<a href="clubForm.jsp"> <span class="material-icons"
+			style="display: inline-block; font-size: 55px;"> add_circle </span></a>
+	</button> 
+
 
 
 	</div>
 	</div>
-
 </body>
 
 <!--어썸폰트 아이콘 -->
@@ -325,12 +299,12 @@
 <script async defer
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA14FclHyP6uY1AXC81jP9ZEsnWKEn-nYE"></script>
 
-
-
 <script>
 	<!--메인 carousel 2초-->
 	$('.carousel').carousel({ interval: 2000 })
+	
 
+	
 
 <!------------------현재 위치 가져오기----------------->
 
@@ -345,7 +319,27 @@
             var lat = position.coords.latitude;          // 위도
             var lng = position.coords.longitude;         // 경도
             var latlng = new google.maps.LatLng(lat, lng);
+			console.log(lat, lng);  //현재 위치 위도 경도
+				
+/* 	$.ajax({
+		type:"post",
+		data:{
+			userLatitude : lat,
+			userLongitude : lng
+		},
+		url : "plus/main.do",
+		
+		error : function(error) {
+			console.log("error");
+		},
+		success : function(data) {
+			console.log(data);
 
+		}
+	}); */
+
+			 
+             <!----위도, 경도 주소로 변환하기---->
             var geocoder = new google.maps.Geocoder();
             geocoder.geocode({ 'latLng': latlng }, function (results, status) {
                 if (status !== google.maps.GeocoderStatus.OK) {
@@ -361,13 +355,13 @@
               
                 }
                 document.getElementById("current-location").innerHTML = "🚩 현재 위치 : " + address;
-
-
+               
             });
         }
         function errorCallback(error) {
             alert(error.message);
         }
+     
 
         <!------------------스크롤 위로 올리기----------------->
         var backToTop = () => {
@@ -390,18 +384,19 @@
         };
         backToTop();
         
+        
+        
+        
         <!------------------검색창----------------->
         const inputCheckMain = function(){
-            // 공백을 제거해한 뒤에 개수를 세던지 한다.
-            let headerKeyword = $.trim($("[name=headerKeyword]").val());
-            $('[name=headerKeyword]').val(headerKeyword);
-            console.log(headerKeyword.length);
-            if (headerKeyword.length > 30) {
-               alert("키워드가 너무 깁니다 (30자 이하)");
+            // 공백을 제거한 뒤에 개수를 세던지 한다.
+            let headerKeyword = $.trim($("[name=keyword]").val());
+            $('[name=keyword]').val(keyword);
+            console.log(keyword.length);
+            if (keyword.length >= 30) {
+               alert("30자 이하로 검색해주세요.");
                return false;
             }
          };
     </script>
-
-<footer></footer>
 </html>

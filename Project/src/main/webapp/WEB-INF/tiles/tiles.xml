@@ -31,9 +31,17 @@
   </definition>
 
   <!-- 메인 페이지 -->
-   <definition name="view.*" template="/WEB-INF/views/index.jsp"> 		
+   <definition name="main" template="/WEB-INF/views/inc/layout.jsp"> 		
     <put-attribute name="header" value="/WEB-INF/views/include/header.jsp" />	
-    <put-attribute name="header" value="/WEB-INF/views/index.jsp" />	
+        <put-attribute name="title" value="메인화면" />
+<put-attribute name="body" value="/WEB-INF/views/index.jsp" />	
+    <put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" />	
+  </definition>	
+  
+   <!-- 전체 리스트 페이지 -->
+   <definition name="main" template="/WEB-INF/views/inc/layout.jsp"> 		
+    <put-attribute name="header" value="/WEB-INF/views/include/header.jsp" />	
+<put-attribute name="body" value="/WEB-INF/views/totalList.jsp" />	
     <put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" />	
   </definition>	
   
