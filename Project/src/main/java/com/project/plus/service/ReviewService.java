@@ -12,12 +12,12 @@ public interface ReviewService {
 	String reviewList();
 	public List<ReviewVO> getReviews(int clubNum);
 	public List<ReviewVO> getMoreReviews(Map<String,Integer> map);
-<<<<<<< HEAD
+
 	public int getReviewCount(int clubNum);	
-=======
-	public int getReviewCount(int clubNum);
+
+
 	
->>>>>>> e17b1a88e3fd2bdb7175bf9f7864a9913fb62b9f
+
 	//정연 하단 추가 20210326
 	ReviewVO readReview(ReviewVO vo);
 	void updateReview(ReviewVO vo);

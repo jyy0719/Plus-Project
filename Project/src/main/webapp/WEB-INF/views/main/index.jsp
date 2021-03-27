@@ -63,9 +63,9 @@
 					<div class="carousel-caption d-none d-md-block">
 						<div class="carouser-content2">
 							<p>모임은 가까워야 좋죠.</p>
-							<h5>
+							<h3>
 								더하기는 현재 내 위치에서 </br> 10KM 반경의 모임만 볼 수 있어요.
-							</h5>
+							</h3>
 						</div>
 					</div>
 				</div>
@@ -75,9 +75,9 @@
 					<div class="carousel-caption d-none d-md-block">
 						<div class="carouser-content3">
 							<p>우린 같은 곳을 봐요.</p>
-							<h5>
+							<h3>
 								같은 목표를 가진 사람들이</br>함께하니 끝까지 할 수 있어요.
-							</h5>
+							</h3>
 						</div>
 					</div>
 				</div>
@@ -97,7 +97,7 @@
 	</main>
 
 	<div id="current-location">
-	<i class="fas fa-search-location"></i>
+	
 	</div>
 
 
@@ -141,7 +141,7 @@
 						<div class="card border-0 transform-on-hover">
 
 							<a class="lightbox"
-								href='/club/info?club_num=<c:out value="${club.clubNum}" />'>
+									href='getClub.do?clubNum=<c:out value="${club.clubNum}" />'>
 
 								<img id="clubmainpic"
 								src="${path}/resources${club.clubMain_pic}"
@@ -157,7 +157,7 @@
 								</div>
 								<div class=clubtitle>
 									<a class=clubtitle
-										href='/club/info?club_num=<c:out value="${club.clubNum}" />'>
+											href='getClub.do?clubNum=<c:out value="${club.clubNum}" />'>
 										${club.clubName} </a>
 								</div>
 								<div class=subtitle>
@@ -207,7 +207,7 @@
 						<div class="card border-0 transform-on-hover">
 
 							<a class="lightbox"
-								href='/club/info?club_num=<c:out value="${club.clubNum}" />'>
+								href='getClub.do?clubNum=<c:out value="${club.clubNum}" />'>
 								<img id="clubmainpic"
 								src="${path}/resources${club.clubMain_pic}"
 								onerror="this.onerror=null; this.src='${path}/resources/img/img1.jpg'" />
@@ -222,7 +222,7 @@
 								</div>
 								<div class=clubtitle>
 									<a class=clubtitle
-										href='/club/info?club_num=<c:out value="${club.clubNum}" />'>
+											href='getClub.do?clubNum=<c:out value="${club.clubNum}" />'>
 										${club.clubName} </a>
 								</div>
 								<div class=subtitle>
@@ -256,14 +256,15 @@
 	</section>
 
 
- <button id="addplus">
-		<a href="clubForm.jsp"><i class="fas fa-plus-circle fa-4x"></i></a>
-	</button> 
+ <div class="addplus">
+		<a href="clubForm.do"><i class="fas fa-plus-circle fa-4x"></i></a>
+	</div> 
 
 	</div>
 	</div>
 	<!-- 푸터와 공백을 위해 지정한 div -->
 	<div id="bottomarea"></div>
+	
 		<!--페이지 위로가기 버튼 -->
 	<button id="go-top">
 		<svg xmlns="http://www.w3.org/2000/svg" width="38" height="38"
@@ -275,7 +276,7 @@
 	</button>
 	
 </body>
-
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <!--어썸폰트 아이콘 -->
 <script src="https://kit.fontawesome.com/831a4ab0db.js"
 	crossorigin="anonymous"></script>
@@ -302,7 +303,7 @@
 	$('.carousel').carousel({ interval: 2000 })
 	
 
-	
+
 
 <!------------------현재 위치 가져오기----------------->
 
@@ -318,25 +319,7 @@
             var lng = position.coords.longitude;         // 경도
             var latlng = new google.maps.LatLng(lat, lng);
 			console.log(lat, lng);  //현재 위치 위도 경도
-				
-/* 	$.ajax({
-		type:"post",
-		data:{
-			userLatitude : lat,
-			userLongitude : lng
-		},
-		url : "plus/main.do",
-		
-		error : function(error) {
-			console.log("error");
-		},
-		success : function(data) {
-			console.log(data);
-
-		}
-	}); */
-
-			 
+	
              <!----위도, 경도 주소로 변환하기---->
             var geocoder = new google.maps.Geocoder();
             geocoder.geocode({ 'latLng': latlng }, function (results, status) {

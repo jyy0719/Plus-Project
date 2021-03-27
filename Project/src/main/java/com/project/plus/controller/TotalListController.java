@@ -35,7 +35,7 @@ public class TotalListController {
 
 	/* 게시판 목록 페이지 접속(페이징 적용) */
 	@RequestMapping("totalList.do")
-	public void boardListGET(Model model, Criteria cri) {
+	public String  boardListGET(Model model, Criteria cri) {
 		
 		log.info("boardListGET");
 		log.info("cri : " + cri);
@@ -47,7 +47,7 @@ public class TotalListController {
 		PageMakerDTO pageMake = new PageMakerDTO(cri, total);
 		
 		model.addAttribute("pageMaker", pageMake);
-		
+		return "totalList.main";
 	}	
 
 }

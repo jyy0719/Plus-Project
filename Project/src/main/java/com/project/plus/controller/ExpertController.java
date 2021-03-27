@@ -31,7 +31,7 @@ public class ExpertController {
 		model.addAttribute("expert1", service.getListExpert(vo));
 		model.addAttribute("expert2", service.getListExpertBest(vo));
 		
-		return "main/expertPlus";
+		return "expertPlus.main";
 		
 	}
 }
