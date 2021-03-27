@@ -33,7 +33,7 @@ public interface MemberService {
 	
 	public MemberVO selectMember(MemberVO vo);
 
-	List<MemberVO> memberList();
+	List<MemberVO> memberList(MemberVO vo);
 
 	   void updateMemberPoint (MemberVO vo);
 	   int selectMemberPoint (MemberVO vo);
@@ -41,5 +41,6 @@ public interface MemberService {
 	//   int selectMemberPoint(PaymentVO vo);
 	   void deductMemberPoint(MemberVO vo);
 	   void updateClubLeaderPoint(MemberVO vo);
+
 
 }

@@ -63,9 +63,8 @@ public class MemberServiceImpl implements MemberService {
 		return membermapper.memberNChk(memberNickname);
 	}
 
-	public List<MemberVO> memberList() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<MemberVO> memberList(MemberVO vo) {
+		return membermapper.memberList(vo);
 	}
 
 

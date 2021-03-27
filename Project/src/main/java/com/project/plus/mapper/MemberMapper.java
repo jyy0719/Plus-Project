@@ -1,5 +1,7 @@
 package com.project.plus.mapper;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import com.project.plus.domain.MemberVO;
@@ -19,6 +21,9 @@ public interface MemberMapper {
 	public void logout(HttpSession session);
 	
 	public MemberVO selectMember(MemberVO vo);
+	
+	List<MemberVO> memberList(MemberVO vo);
+
 	
 	//정연 하단 추가 20210326
 
