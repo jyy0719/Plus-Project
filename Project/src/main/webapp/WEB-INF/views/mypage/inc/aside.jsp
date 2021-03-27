@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="path" value="${pageContext.request.contextPath}" />
 <%@ page import="com.project.plus.domain.InquiryVO"%>
 
 <!DOCTYPE html>
@@ -13,12 +14,12 @@
  
      <!-- Bootstrap CSS -->
      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="../../../../resources/css/mypage-aside.css">
+    <link rel="stylesheet" href="${path}/resources/css/mypage-aside.css">
 
     <!-- themify icon -->
-    <link rel="stylesheet" type="text/css" href="../../../../resources/icon/themify-icons/themify-icons.css">
+    <link rel="stylesheet" type="text/css" href="${path}/resources/icon/themify-icons/themify-icons.css">
     <!-- fontawesome CSS -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
+  <!--   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous"> -->
     
 <title>Plus! My page</title>
 </head>
@@ -35,7 +36,7 @@
                     <div class="col-lg-3 sidebar fixed-top">
                      <a href="#" class="navbar-brand text-white text-center d-block mx-auto py-3 mb-4">MY PAGE</a>
                      <div class="bottom-border pb-3">
-                         <img class="rounded-circle mr-3" src="../../../../resources/img/avatar-6.jpg" alt="" width="200px" height="200px">
+                         <img class="rounded-circle mr-3" src="${path}/resources/img/avatar-6.jpg" alt="" width="200px" height="200px">
                          <div class="user-name">${vo.memberName}</a>
                             <i class="fas fa-cog text-white fa-lg mr-3"></i>
                      </div>

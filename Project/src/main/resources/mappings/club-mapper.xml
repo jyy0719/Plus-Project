@@ -52,7 +52,7 @@
 
 	<select id="getClub" resultMap="clubResult">
 		SELECT * FROM club WHERE
-		club_num = 11
+		club_num = #{clubNum}
 	</select>
 	
 	<select id="getClubHashtag" resultType="string">
