@@ -13,16 +13,10 @@ public interface InquiryService {
 
 	void editInquiry(InquiryVO vo);
 	
-	void answerInquiry(InquiryVO vo);
-
 	void deleteInquiry(InquiryVO vo);
 
 	InquiryVO getInquiry(InquiryVO vo);
 
 	List<InquiryVO> getInquiryList(InquiryVO vo);
-	
-	List<InquiryVO> getInquiryPersonList(InquiryVO vo);
-	
-	List<InquiryVO> getInquiryTypeList(InquiryVO vo);
 	
 }

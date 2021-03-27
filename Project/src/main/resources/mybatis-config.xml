@@ -17,7 +17,11 @@
 		<typeAlias alias="apply" type="com.project.plus.domain.ApplyVO"/>
 		<typeAlias alias="faq" type="com.project.plus.domain.FaqVO"/>
 		<typeAlias alias="inquiry" type="com.project.plus.domain.InquiryVO"/>
+<<<<<<< HEAD
+		
+=======
 		<typeAlias alias="chat" type="com.project.plus.domain.ChatVO"/>
+>>>>>>> 0d3be32bb8b62a56109eaebf38d2c84028906a57
 	
 </typeAliases>
 
