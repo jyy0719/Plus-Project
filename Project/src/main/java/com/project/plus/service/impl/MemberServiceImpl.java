@@ -1,5 +1,7 @@
 package com.project.plus.service.impl;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -17,10 +19,12 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	MemberMapper membermapper;
 	
+	
 	@Autowired
 	HttpSession session;
 
 	public void joinMember(MemberVO vo) {
+		System.out.println("회원가입 service impl");
 		membermapper.joinMember(vo);
 	}
 
@@ -51,35 +55,46 @@ public class MemberServiceImpl implements MemberService {
 		
 	}
 
-	//정연 하단 추가 20210326
-	@Autowired
-	private MemberMapper memberMapper; 
-
-	@Override
-	public void updateMemberPoint(MemberVO vo) {
-		memberMapper.updateMemberPoint(vo);
-	}
-	
-	@Override
-	public int selectMemberPoint(MemberVO vo) {
-		
-		return memberMapper.selectMemberPoint(vo);
+	public int memberPChk(String memberPhone) {
+		return membermapper.memberPChk(memberPhone);
 	}
 
-	@Override
-	public void deductMemberPoint(MemberVO vo) {
-		memberMapper.deductMemberPoint(vo);
+	public int memberNChk(String memberNickname) {
+		return membermapper.memberNChk(memberNickname);
 	}
 
-	@Override
-	public void updateClubLeaderPoint(MemberVO vo) {
-		memberMapper.updateClubLeaderPoint(vo);
+	public List<MemberVO> memberList() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
+
 	@Override
-	public int selectMemberPointByNickname(MemberVO vo) {
-		return memberMapper.selectMemberPointByNickname(vo);
-	}
+	   public void updateMemberPoint(MemberVO vo) {
+	      membermapper.updateMemberPoint(vo);
+	   }
+	   
+	   @Override
+	   public int selectMemberPoint(MemberVO vo) {
+	      
+	      return membermapper.selectMemberPoint(vo);
+	   }
+
+	   @Override
+	   public void deductMemberPoint(MemberVO vo) {
+	      membermapper.deductMemberPoint(vo);
+	   }
+
+	   @Override
+	   public void updateClubLeaderPoint(MemberVO vo) {
+	      membermapper.updateClubLeaderPoint(vo);
+	   }
+
+	   @Override
+	   public int selectMemberPointByNickname(MemberVO vo) {
+	      return membermapper.selectMemberPointByNickname(vo);
+	   }
+
 
 
 

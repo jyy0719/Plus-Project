@@ -1,9 +1,11 @@
 package com.project.plus.controller;
 
 import java.io.PrintWriter;
+import java.util.List;
 import java.util.Random;
 
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -16,12 +18,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.project.plus.domain.MemberVO;
 import com.project.plus.service.MemberService;
+import com.project.plus.utils.ProfileUtils;
 
+import lombok.extern.log4j.Log4j;
+
+@Log4j
 @Controller
 @SessionAttributes("user")
 public class MemberController {
@@ -35,25 +43,57 @@ public class MemberController {
 
 	@RequestMapping(value="memberJoin.do", method=RequestMethod.GET)
 	public String memberjoinpage(MemberVO vo, HttpSession session, Model model) throws Exception {
+		System.out.println("회원가입 get메서드 진입");
 	return "memberJoin";
 	}
 	
+	@RequestMapping(value="memberList.do", method=RequestMethod.POST)
+	public String memberList(Model model) {
+		List<MemberVO> list = memberService.memberList();
+		model.addAttribute("list", list);
+		return "memberList";
+	}
 	
 	@RequestMapping(value="memberJoin.do", method=RequestMethod.POST)
-	public String memberJoin(MemberVO vo) throws Exception {
-		
-		
-//		MultipartFile uploadFile = vo.getUploadfile();
-//		if(!uploadFile.isEmpty()) {
-//			String fileName = uploadFile.getOriginalFilename();
-//			uploadFile.transferTo(new File("C:/" + fileName));
-//		}
-//		
-//		
+	public String memberJoin(MemberVO vo, @RequestParam("memberPhoto") MultipartFile file, HttpServletRequest request) throws Exception {
+		System.out.println("회원가입 컨트롤러 진입");
+		// 파일을 저장할 절대 경로 지정
+		String uploadPath = request.getSession().getServletContext().getRealPath("/resources/uploadImg");
+		vo = ProfileUtils.profile(vo, uploadPath, file);
 		memberService.joinMember(vo);
+		System.out.println(vo);
+		log.info("회원 번호 : " + vo.getMemberNum() + "멤버프로필사진  등록 ");
 		return "index";
 			
 	}
+	
+	
+	//휴대폰번호 중복검사 메서드
+	@RequestMapping(value = "memberPhoneCheck", method = RequestMethod.POST)
+	@ResponseBody public String memberPChk(String memberPhone) throws Exception{ 
+		int result = memberService.memberPChk(memberPhone); 
+		logger.info("결과값 = " + result); 
+		if(result != 0) { 
+			return "fail"; // 중복 폰번호 존재
+			} else { 
+				return "success"; // 중복 폰번호 x 
+			}
+	}
+
+		 
+	//닉네임 중복검사 메서드
+	@RequestMapping(value = "memberNickCheck", method = RequestMethod.POST)
+	@ResponseBody public String memberNickChk(String memberNickname) throws Exception{ 
+		int result = memberService.memberNChk(memberNickname); 
+		logger.info("결과값 = " + result); 
+		if(result != 0) { 
+			return "fail"; // 중복 닉네임이 존재 
+			} else { 
+				return "success"; // 중복 닉네임 x 
+			}
+	}
+	
+	
 	
 	@RequestMapping(value="memberUpdate.do", method=RequestMethod.GET)
 	public String memberUpdatepage(MemberVO vo, HttpSession session, Model model) throws Exception {
@@ -64,15 +104,12 @@ public class MemberController {
 	
 
 	@RequestMapping(value="memberUpdate.do", method=RequestMethod.POST)
-	public String memberUpdate(MemberVO vo, HttpSession session, Model model, HttpServletResponse response) throws Exception {
+	public String memberUpdate(MemberVO vo, HttpSession session, Model model, HttpServletResponse response, @RequestParam("memberPhoto") MultipartFile file, HttpServletRequest request) throws Exception {
 		
 		
-//		MultipartFile uploadFile = vo.getUploadfile();
-//		if(!uploadFile.isEmpty()) {
-//			String fileName = uploadFile.getOriginalFilename();
-//			uploadFile.transferTo(new File("C:/" + fileName));
-//		}
 		System.out.println("기본"+vo);  //0 email에 36이담겨 ;;  //수정후 정보
+		String uploadPath = request.getSession().getServletContext().getRealPath("/resources/uploadImg");
+		vo = ProfileUtils.profile(vo, uploadPath, file);
 		memberService.updateMember(vo);
 		MemberVO user = memberService.selectMember(vo);  
 		System.out.println(session.getAttribute("user")); //36   //수정전 정보 
@@ -81,6 +118,13 @@ public class MemberController {
 		System.out.println(user); //null  //수정후 
 		
 
+//		if (user.getMemberPic() != null) {
+//			String formatName = user.getMemberPic().substring(vo.getMemberPic().lastIndexOf("_") + 1);
+//			user.setMemberPic(formatName);
+//		}
+//		
+		
+		
 		
 		//알럿창 띄우는 부분
 		response.setContentType("text/html; charset=UTF-8");
@@ -157,6 +201,6 @@ public class MemberController {
         
     }
  
-
+	
 	
 }

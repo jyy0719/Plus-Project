@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="com.project.plus.domain.MemberVO" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
@@ -19,88 +20,55 @@
 <!-- font -->
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css">
-<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 <style>
 body {
 	font-family: 'NanumSquare', sans-serif;
 	margin-left: 40px;
 }
-.content-data {
-	padding:30px;
-}
-tr {
-	height:50;}
-td {
-	padding-left:20px;
-}
 </style>
 
 </head>
 <body>
-<div class="wrapper">
-<center>
-	<h2>문의 상세보기</h2>
-	<hr>
+
+	<h2>1:1 문의</h2>
+	<br />
 
 
 	<table border="1" width="70%" height="200">
 		<div class="container">
 			<div class="post">
-				<tr>
-					<th width="10%"><center>제목</center></th>
-					<td>${inquiry.inquiryTitle}</td>
-				</tr>	
-				<tr>
-					<th width="10%"><center>닉네임</center></th>
-					<td>${inquiry.memberNickname}</td>
-				</tr>
-				<tr>
-					<th><center>이메일</center></th>
-					<td>${inquiry.memberEmail}</td>
-				</tr>
-				<tr>
-					<th><center>카테고리</center></th>
-					<td>${inquiry.inquiryType}</td>
-				</tr>	
-				<tr>
-					<th><center>문의일자</center></th>
-					<fmt:parseDate var="parseRegDate" value="${inquiry.inquiryRegDate}"
-							pattern="yyyy-MM-dd" />
-						<fmt:formatDate var="resultRegDt" value="${parseRegDate}"
-							pattern="yyyy-MM-dd" />
-						<td style="padding-left:20px;">${resultRegDt}</td>
-				</tr>
-				<tr>
-					<th><center>내용</center></th>
-					<td class="content-data" style="white-space:pre;">${inquiry.inquiryContent}</td>
-				</tr>
+			<tr height="50">
+				<th><center>제목</center></th>
+				<td style="text-indent:20px">${inquiry.inquiryTitle}</td>
+			</tr>	
+			<tr height="50">
+				<th><center>닉네임</center></th>
+				<td style="text-indent:20px">${inquiry.memberNickname}</td>
+			</tr>
+			<tr height="50">
+				<th><center>이메일</center></th>
+				<td style="text-indent:20px">${inquiry.memberEmail}</td>
+			</tr>
+			<tr height="50">
+				<th><center>카테고리</center></th>
+				<td style="text-indent:20px;">${inquiry.inquiryType}</td>
+			</tr>	
+			<tr height="50">
+				<th><center>문의일자</center></th>
+				<fmt:parseDate var="parseRegDate" value="${inquiry.inquiryRegDate}"
+						pattern="yyyy-MM-dd" />
+					<fmt:formatDate var="resultRegDt" value="${parseRegDate}"
+						pattern="yyyy-MM-dd" />
+					<td style="text-indent:20px;">${resultRegDt}</td>
+			</tr>
+			<tr height="50">
+				<th><center>내용</center></th>
+				<td style="text-indent:20px;">${inquiry.inquiryContent}</td>
+			</tr>
+				</div>
 			</div>
 		</div>
 	</table>
-	
-	<hr>
-	
-	<form action="deleteInquiry.do" method="post" style="display:inline-block;">
-	<input type="hidden" value="${inquiry.inquiryNum}" name="inquiryNum">
-	<a href="deleteInquiry.do"><button type="submit" class="btn btn-primary" id="deleteBtn">삭제</button></a>
-	</form>
-	
-	<a href="inquiryEditForm.jsp"><button type="submit" class="btn btn-primary" id="editBtn">수정</button></a>
-	
-	<a href="inquiry.do"><button type="submit" class="btn btn-primary" id="listBtn">문의 목록</button></a>
-
-	
-
-</center>
-</div>
-
-<script>
-		$(document).ready(function(){
-			$("#deleteBtn").on("click", function(){
-				alert("문의가 정상적으로 삭제되었습니다");
-			});
-		});
-</script>
 
 </body>
 </html>

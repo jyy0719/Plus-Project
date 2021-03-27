@@ -13,26 +13,35 @@
 <script type="text/javascript" src="${path}/resources/js/jquery-1.12.4.min.js"></script>
 <script>
  
-    verifyEmail = function () {
-        var emailVal = $("#email").val();
-        var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-        if (emailVal.match(regExp) != null) {
-            alert("적합한 메일 형식입니다.")
-        } else {
-            alert('형식에 맞게 입력해주세요 ex)plus@plus.com')
-      	  $('#email').focus();
-
-        }        
-    };
-
+//휴대폰번호 유효성, 중복검사
     isMobile = function(){
         var phoneVal = $("#mobile").val();
-        var regExp = /^\d{11}$/;
-      /*  var regExp = /^\d{3}-\d{3,4}-\d{4}$/; */
+        /*  var regExp = /^\d{11}$/;*/
+      	var regExp = /^\d{3}-\d{3,4}-\d{4}$/; 
         if(phoneVal.match(regExp) != null){
-        //    alert('적합한 휴대폰번호입니다')
+          // alert('형식에 맞는 번호입니다')
+           
+         //  $('#chkMobile').on("click", function(){
+        	   var memberPhone = $('#mobile').val();
+        	   var data = {memberPhone : memberPhone}
+        	   
+        	   $.ajax({
+        		   type: "post",
+        		   url : "memberPhoneCheck",
+        		   data : data,
+        		   success : function(result){
+        			   console.log("성공 여부"+result);
+        		 	if(result !='fail'){
+        		 		alert("사용 가능한 휴대폰번호입니다.")
+        		 	}else{
+        		 		alert("이미 등록된 휴대폰번호입니다. 다시 한 번 확인해주세요.")
+        		 	}
+        		   
+        		   }//success종료
+        	   }); //ajax종료
+          // })
         }else{
-            alert("이미 등록된 휴대폰번호입니다")
+            alert("입력 형식에 맞지 않습니다. '010-0000-0000'의 형태로 입력해주세요.")
         }
     }; 
 
@@ -99,7 +108,7 @@
         chk3_yn()
         
         //이메일 인증코드 보내는 함수
-        emailsend()
+      //  emailsend()
         
         //이메일 인증코드 확인 함수
         emailcode()
@@ -110,32 +119,45 @@
 
 
     });
-       
+    
     var code = "";
+    
+    //메일 형식 중복검사, 형식에 적합할 시 이메일 보냄
+    verifyEmail = function () {
+        var emailVal = $("#email").val();
+        var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+        if (emailVal.match(regExp) != null) {
+           // alert("적합한 메일 형식입니다.")
+            
+          //  function emailsend(){
+           //     $(".mail_check_button").click(function(){
+                    alert("입력하신 메일로 인증번호가 발송되었습니다. 메일함을 확인해주세요.")
+                    	$('#mail_check_input').focus();
+                    var email = $(".mail_input").val();        // 입력한 이메일
+                    var cehckBox = $(".mail_check_input");        // 인증번호 입력란
+                     var boxWrap = $(".mail_check_input_box"); 
+                             $.ajax({
+                                 
+                                 type:"GET",
+                                 url:"mailCheck.do?email=" + email,
+                                 success:function(num1){
+                                         console.log("data : " + num1);
+                                         boxWrap.attr("class", "mail_check_input_box_true int1"); 
+                                         code = num1;
+                                         
+                                 }
+                             });
+            //    });
+       //     };
 
-    /* 인증번호 이메일 전송 */
-    function emailsend(){
-        $(".mail_check_button").click(function(){
-            alert("입력하신 메일로 인증번호가 발송되었습니다.")
-            	$('#mail_check_input').focus();
-            var email = $(".mail_input").val();        // 입력한 이메일
-            var cehckBox = $(".mail_check_input");        // 인증번호 입력란
-             var boxWrap = $(".mail_check_input_box"); 
-                                $.ajax({
-                                    
-                                    type:"GET",
-                                    url:"mailCheck.do?email=" + email,
-                                    success:function(num1){
-                                            console.log("data : " + num1);
-                                            /* cehckBox.attr("disabled",false); */
-                                            boxWrap.attr("class", "mail_check_input_box_true int1"); 
-                                            code = num1;
-                                            
-                                    }
-                                });
-        });
+        } else {
+            alert('형식에 맞게 입력해주세요 ex)plus@plus.com')
+      	  $('#email').focus();
+
+        }        
     };
 
+       
     
    //인증번호 일치 여부 검사
     function emailcode(){
@@ -143,10 +165,10 @@
                 var inputCode = $("#mail_check_input").val();        // 입력코드    
                 
                 if(inputCode == code){                            // 일치할 경우
-                    alert("코드가 일치합니다")
+                    alert("인증되었습니다.")
                     isCertification = true;
                 } else {                                            // 일치하지 않을 경우
-                    alert("코드가 일치하지 않습니다 ")
+                    alert("코드가 일치하지 않습니다. 다시 입력해주세요.")
               	  $('#mail_check_input').focus();
 
                     isCertification = false;
@@ -191,7 +213,6 @@
    
 
 
-   //submit 버튼타입을 button으로 고치고 true일때 type을 submit으로 바꾸게
     
     function chk_ess(){
     $("#btnJoin").click(function(){
@@ -224,12 +245,6 @@
         });       
     };
 
-    //마케팅정보 수신동의항목 value값 전달 함수
-    /*  function chk3_yn(){
-            $('#chk3').click(function(){
-             $(this).val(this.checked ? "y" : "n");
-              });
-    } */
 
     //마케팅정보 수신동의항목 value값 전달 함수
     function chk3_yn(){
@@ -245,6 +260,52 @@
     	$("#picFile").val("");
     }
         )}
+	
+	
+	
+//닉네임 중복 및 유효성 검사
+    chNickname = function(){
+	    for (var i=0; i<$("#nickname").val().length; i++)  { 
+	
+		        var chk = $("#nickname").val().substring(i,i+1); 
+		
+		        if(chk.match(/([^가-힣a-zA-Z\x20])/i)){
+		        	alert("자음과 모음을 분리해 사용할 수 없습니다");
+		            return;
+		       	}
+			    if ($("#nickname").val().length > 8) {
+			    	alert("8자를 초과하였습니다");
+			    	return;
+			    }
+		        if($("#nickname").val() == " "){
+		        	alert("공백은 입력할 수 없습니다");
+		            return;
+		        }
+		        
+		        
+		        
+	    } 
+	    
+	    var memberNickname = $('#nickname').val();
+ 	   var data = {memberNickname : memberNickname}
+ 	   
+ 	   $.ajax({
+ 		   type: "post",
+ 		   url : "memberNickCheck",
+ 		   data : data,
+ 		   success : function(result){
+ 			   console.log("성공 여부"+result);
+ 		 	if(result !='fail'){
+ 		 		alert("사용 가능한 닉네임입니다.")
+ 		 	}else{
+ 		 		alert("이미 등록된 닉네임입니다. 다른 닉네임을 사용해주세요.")
+ 		 	}
+ 		   
+ 		   }//success종료
+ 	   }); //ajax종료
+		  //      alert("사용 가능한 닉네임입니다")
+    }
+	
 </script>
 
 
@@ -262,15 +323,17 @@
     <div id="original_content">
         <!-- content1-->
         <div class="content1">
-    
+  <!-- 
+<input type="hidden" name="memberNum"  value="${user.memberNum }"> 
+   -->  
 
     
             <!-- MOBILE -->
             <div>
                 <h3 class="join_title"><label for="phoneNo">휴대전화</label></h3>
                 <span class="box int_mobile">
-                    <input type="tel" name="memberPhone" id="mobile" class="int1" maxlength="16" placeholder=" 하이픈 없이 입력해주세요" value="${user.memberPhone }" required>
-                    <input type="button" onclick="isMobile()" class="check" value="중복검사하기">
+                    <input type="tel" name="memberPhone" id="mobile" class="int1" value="${user.memberPhone }" maxlength="16" placeholder=" 하이픈'-'을 포함해 입력해주세요 " required>
+                    <input type="button" onclick="isMobile()" id="chkMobile" class="check" value="중복검사하기">
                 </span>
                 <span class="error_next_box"></span>
             </div>
@@ -281,8 +344,8 @@
                     <label for="email">이메일(ID)</label>
                 </h3>
                 <span class="box int_email">
-                    <input name="memberEmail" id="email" class="int1 mail_input" maxlength="50" value="${user.memberEmail }" required>
-                    <input type="button" class="check mail_check_button" value="인증번호발송"/> 
+                    <input name="memberEmail" type="email" id="email" class="int1 mail_input" maxlength="50" value="${user.memberEmail }" required>
+                    <input type="button" class="check mail_check_button" onclick="verifyEmail()" value="인증번호발송"/> 
                 </span>
                 <span class="error_next_box"></span>
             </div>
@@ -315,7 +378,7 @@
             <div>
                 <h3 class="join_title"><label for="pswd2">비밀번호 재확인</label></h3>
                 <span class="box int_pass_check">
-                    <input type="password" id="pswd2" onchange="checkPw()" class="int psscolor" maxlength="20" required>
+                    <input type="password" id="pswd2" onchange="checkPw()" class="int psscolor" maxlength="20" value="${user.memberPassword }" required>
                     <span id="alertTxt1"></span>
                 </span>
                 <span class="error_next_box"></span>
@@ -336,8 +399,8 @@
             <div>
                 <h3 class="join_title"><label for="nickname">닉네임</label></h3>
                 <span class="box int_name">
-                    <input type="text" name="memberNickname" id="nickname" class="int1" maxlength="20" value="${user.memberNickname }" required>
-                    <input type="button" class="check" value="중복체크하기">
+                    <input type="text" name="memberNickname" id="nickname" class="int1" maxlength="16" value="${user.memberNickname }" placeholder="8자 이내의 닉네임을 지어주세요" required>
+                    <input type="button" class="check" id="chkNickname" onclick="chNickname()" value="중복체크하기">
                 </span>
                 <span class="error_next_box"></span>
             </div>
@@ -350,11 +413,11 @@
 
             <!-- original_content -->
             <div class="pro_pic_area">
-                <div id="image_container"></div>
+                <div id="image_container">${user.memberPic}</div>
                 <div class="filebox"> 
                 </div>
                 <label class="picbutton" for="picFile"><div class="picbutton1">사진첨부하기</div></label>
-                <input id="picFile" type="file" name="memeberPic" accept="image/*" onchange="setThumbnail(event);" value="사진올리기">
+                <input id="picFile" type="file" name="memberPhoto" accept="image/*" onchange="setThumbnail(event);"/>
             	<button type="button" class="removePic" onclick="removePic();">취소</button>
             </div>
 
