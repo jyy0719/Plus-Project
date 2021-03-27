@@ -84,16 +84,6 @@ public class ClubController {
 	}
 
 	
-	// 모임 상세정보 
-	// .do?clubNum=?를 통해 뿌려줘야 함 
-	@RequestMapping("/getClub.do")
-	public String getClub(ClubVO vo, Model model) {
-		int clubNum = vo.getClubNum();
-		getReviews(model,11);
-		model.addAttribute("club", clubService.getClub(vo));
-		log.info("모임 번호 : " + vo.getClubNum() + " 상세 정보 ");
-		return "getClub.page";
-	}
 	
 	// 미리 보여줄 5개의 리뷰 데이터
 	public void getReviews(Model model, int clubNum) {
@@ -139,7 +129,7 @@ public class ClubController {
 		model.addAttribute("isThereHeart", resultClub);
 		//여기위 까지
 		
-		getReviews(model);
+		getReviews(model,11);
 		model.addAttribute("club", clubService.getClub(vo));
 		log.info("모임 번호 : " + vo.getClubNum() + " 상세 정보 ");
 		return "getClub.page";
