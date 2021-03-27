@@ -13,9 +13,7 @@
 	<tiles:insertAttribute name="header" />
 	
 	<!--  aside 부분 -->
-	<div id="wrapper">
 	<tiles:insertAttribute name="body"/>
-	</div>
 
 	<footer>
 	<!--  footer 부분 -->
