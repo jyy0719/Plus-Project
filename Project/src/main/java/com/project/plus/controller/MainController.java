@@ -14,8 +14,6 @@ import lombok.extern.log4j.Log4j;
 
 
 
-
-
 @Controller
 @Log4j
 //@AllArgsConstructor
@@ -24,9 +22,7 @@ public class MainController {
 	@Autowired
 	private MainService service;
 
-	@RequestMapping("/main.do")
-//	/* @ResponseBody */
-	// 모델을 통해서 뷰에 데이터 전달하기
+	@RequestMapping("main.do")
 	public String mainList(Model model, ClubVO vo) {
 	log.info("main");
 	
@@ -39,16 +35,18 @@ public class MainController {
 	}
 
 	
-	// 검색결과 보여주기
-	@GetMapping("/searchlist.do")
-	public void list(Criteria cri, Model model) {
-		cri.setAmount(20);
-
-		model.addAttribute("cri", cri);
-		log.info("searchlist(GET) - cri : " + cri);
-
-		model.addAttribute("list", service.getListSearch(cri.getKeyword()));
-		log.info("searchlist(GET) - list : " + service.getListSearch(cri.getKeyword()));
-
-	}
+	/*
+	 * // 검색결과 보여주기
+	 * 
+	 * @GetMapping("/searchlist.do") public void list(Criteria cri, Model model) {
+	 * cri.setAmount(20);
+	 * 
+	 * model.addAttribute("cri", cri); log.info("searchlist(GET) - cri : " + cri);
+	 * 
+	 * model.addAttribute("list", service.getListSearch(cri.getKeyword()));
+	 * log.info("searchlist(GET) - list : " +
+	 * service.getListSearch(cri.getKeyword()));
+	 * 
+	 * }
+	 */
 }

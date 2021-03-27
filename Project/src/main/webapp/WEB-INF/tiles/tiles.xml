@@ -100,23 +100,23 @@
   	<put-attribute name="body" value="/WEB-INF/views/reviews/{1}.jsp" /> 
   </definition>
 
-
-<!-- 로그인 , 로그아웃-->
-    <definition name="*.login" extends="base"> 
-     <put-attribute name="body" value="/WEB-INF/views/login/{1}.jsp" /> 
-  </definition>
-
-<!-- 멤버 정보수정, 리스트 조회-->
-    <definition name="*.member" extends="base"> 
-     <put-attribute name="body" value="/WEB-INF/views/member/{1}.jsp" /> 
-  </definition>
+<!--   <definition name="*." extends="member"> 
+  	<put-attribute name="body" value="/WEB-INF/views/mypage/{1}.jsp" /> 
+  </definition>  -->
   
-  <!-- 회원가입페이지 특정 헤더 사용 -->
-    <definition name="memberJoin" extends="base"> 
-      <put-attribute name="header" value="/WEB-INF/views/include/joinHeader.jsp" />   
-     <put-attribute name="body" value="/WEB-INF/views/member/memberJoin.jsp" /> 
-    <put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" />   
-  </definition>
+  
+<!--   
+  <definition name="*/*" extends="base"> 
+  	<put-attribute name="body" value="/WEB-INF/views/{1}/{2}.jsp" /> 
+  </definition> -->
 
+  <!-- 그 외 필요한 페이지들마다, 속성마다 필요한 부분을  복사해서 사용하시면 됩니다   
+   <definition name="페이지.*" template="/WEB-INF/views/admin/inc/layout.jsp"> 	//골격
+    <put-attribute name="title" value="타이틀" />									 // 제목부분인데 이 속성은 꼭 타일즈와 연관있는것은 아니니 생략해도 무방합니다
+    <put-attribute name="header" value="/WEB-INF/views/include/header.jsp" />	// 헤더
+    <put-attribute name="aside" value="/WEB-INF/views/admin/aside.jsp" />		// 사이드에 공통되는 부분이 있다면 여기에	
+    <put-attribute name="body" value="/WEB-INF/views/admin/chart/{1}.jsp" />	// 메인 바디 부분
+    <put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" />	// 푸터 부분
+  </definition>	-->
   
 </tiles-definitions>

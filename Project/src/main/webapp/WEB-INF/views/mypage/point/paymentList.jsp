@@ -47,6 +47,7 @@
             width: 85%;
             margin-bottom: 4%;
             border-radius: 2%;
+            padding:3%;
         }
 
         #nowPoint {

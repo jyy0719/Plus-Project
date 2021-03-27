@@ -181,7 +181,7 @@
 					<textarea name="reviewContent" cols="100" rows="9"
 						style="resize: none; font-size: 20px;"
 						placeholder=" 100자 이내로 작성해주세요." maxlength="100"></textarea>
-					<br> <input type="submit" id="addBtn" value="등록하기">
+					<br> <input type="submit" id="addBtn" value="등록하기" >
 				</div>
 			</form>
 		</div>

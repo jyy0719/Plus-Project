@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -19,7 +20,6 @@ import com.project.plus.service.MemberService;
 import com.project.plus.service.impl.MemberServiceImpl;
 
 import lombok.extern.log4j.Log4j;
-
 
 
 @Controller
@@ -38,7 +38,9 @@ public class LoginController {
 
 	}
 	
+
 	//로그인 버튼 클릭했을 때 실행되는 컨트롤러
+
 	@RequestMapping(value="login.do", method=RequestMethod.POST) 
 	public String login(MemberVO vo, HttpSession session, HttpServletResponse response) throws Exception {
 	System.out.println("로그인 컨트롤러 접속");
