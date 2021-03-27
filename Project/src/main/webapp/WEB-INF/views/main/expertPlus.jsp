@@ -21,15 +21,19 @@
     <!-- 나눔폰트 -->
     <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css">
 
-<title>같이하면 더 즐거운 가치더하기</title>
+<title>전문가와 함께하는 도움더하기</title>
 </head>
 
 <body>
 	<!--배너 -->
 	  <div id="mainbanner">
+	  <p>도움더하기는</p>
+<p>내 주변의 전문가와 함께하는 모임이에요.</p>
         <img class="togetherbanner" 
          src="${path}/resources/img/plus2.png"
-         alt="First slide">
+         alt="First slide"> 
+<p>도움더하기는</p>
+<p>내 주변의 전문가와 함께하는 모임이에요.</p>
 
     </div>
 
@@ -104,9 +108,7 @@
 	<section class="gallery-block cards-gallery">
 		<div class="gallery-container">
 				<div class="gallerytitle">
-				<h3 id="viewtitle">
-					<b> 시작되니</b>
-				</h3>
+				
 				<a href="totalList.do" id="viewtotal"> 더 보기 > </a>
 			</div>
 

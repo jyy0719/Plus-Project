@@ -11,15 +11,13 @@ import javax.imageio.ImageIO;
 import org.imgscalr.Scalr;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.project.plus.controller.MainController;
 import com.project.plus.domain.ClubVO;
 
 import lombok.extern.log4j.Log4j;
 
 
-<<<<<<< HEAD
 
-=======
->>>>>>> a05ec5e930e61aca1bf841f7baf5fd747370b574
 @Log4j
 public class FileUtils {
 

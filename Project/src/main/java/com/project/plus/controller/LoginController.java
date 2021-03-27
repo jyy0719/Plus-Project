@@ -38,10 +38,9 @@ public class LoginController {
 
 	}
 	
-<<<<<<< HEAD
-=======
+
 	//로그인 버튼 클릭했을 때 실행되는 컨트롤러
->>>>>>> a05ec5e930e61aca1bf841f7baf5fd747370b574
+
 	@RequestMapping(value="login.do", method=RequestMethod.POST) 
 	public String login(MemberVO vo, HttpSession session, HttpServletResponse response) throws Exception {
 	System.out.println("로그인 컨트롤러 접속");

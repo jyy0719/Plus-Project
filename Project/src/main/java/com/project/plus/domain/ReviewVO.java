@@ -15,8 +15,10 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;
 
+
 @XmlRootElement(name="selectNotReview")
 @XmlAccessorType(XmlAccessType.FIELD)
+
 @Getter
 @Setter
 public class ReviewVO {
