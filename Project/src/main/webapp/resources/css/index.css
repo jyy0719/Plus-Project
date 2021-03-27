@@ -7,9 +7,7 @@
 	font-family: 'NanumSquare';
 }
 
-body {
-	padding-bottom: 10%;
-}
+
 
 a {
 	text-decoration: none
@@ -178,87 +176,58 @@ form.box input[type=text]::placeholder {
 	margin: -5px;
 }
 
-.catagory-btn p {
-	color: rgb(0, 30, 250);
-	overflow: hidden;
-	position: relative;
-	font-family: 'NanumSquare', sans-serif !important;
-	font-size: 14px;
-	font-weight: 700;
-}
+ .catagory-btn p {
+        color: rgb(0, 30, 250);
+        overflow: hidden;
+        position: relative;
+        font-family: 'NanumSquare', sans-serif !important;
+        font-size: 16px;
+        font-weight: 700;
+    }
 
-.catagory-btn:hover i {
-	transform: scale(1.1);
-	color: #f1f1f1;
-}
+    .catagory-btn:hover i {
+        transform: scale(1.1);
+        color: #f1f1f1;
+    }
 
-.catagory-btn:hover p {
-	transform: scale(1.1);
-	color: #f1f1f1;
-}
+    .catagory-btn:hover p {
+        transform: scale(1.1);
+        color: #f1f1f1;
+    }
 
-.catagory-btn::before {
-	content: "";
-	position: absolute;
-	width: 120%;
-	height: 120%;
-	background: rgb(0, 30, 250);
-	transform: rotate(10deg);
-	left: -110%;
-	top: 90%;
-}
+    .catagory-btn::before {
+        content: "";
+        position: absolute;
+        width: 120%;
+        height: 120%;
+        background: rgb(0, 30, 250);
+        transform: rotate(10deg);
+        left: -110%;
+        top: 90%;
+    }
 
-.catagory-btn:hover::before {
-	animation: aaa 1s 1;
-	top: -10%;
-	left: -10%;
-}
+    .catagory-btn:hover::before {
+        animation: aaa 1s 1;
+        top: -10%;
+        left: -10%;
+    }
 
-@
-keyframes aaa { 0% {
-	left: -110%;
-	top: 90%;
-}
+    @keyframes aaa {
+        0% {
+            left: -110%;
+            top: 90%;
+        }
 
-50%
-{
-left
+        50% {
+            left: 10%;
+            top: -30%;
+        }
 
-
-:
-
- 
-
-10%;
-top
-
-
-:
-
- 
-
--30%;
-}
-100%
-{
-top
-
-
-:
-
- 
-
--10%;
-left
-
-
-:
-
- 
-
--10%;
-}
-}
+        100% {
+            top: -10%;
+            left: -10%;
+        }
+    }
 /* 검색 카테고리  끝*/
 .gallery-container {
 	width: 1200px;
@@ -368,7 +337,7 @@ left
 	cursor: pointer;
 	z-index: 9999;
 	color: rgb(0, 30, 250);
-	
+	margin-bottom:50px;
 }
 /*더하기 등록 버튼*/
 #addplus {
@@ -378,16 +347,13 @@ left
 	cursor: pointer;
 	position: absolute;
 	right: 3%;
-	
-	
-	
-}
-.material-icons{
 	color: rgb(0, 30, 250);
-	 	
-}
-	
 
+}
+
+#bottomarea{
+	padding-bottom:200px;
+}
 </
 style
 >

@@ -28,11 +28,6 @@
 </head>
 
 <body>
-<<<<<<< HEAD
-
-    <!-- 사실상 헤더가 없어요  -->
-=======
->>>>>>> a05ec5e930e61aca1bf841f7baf5fd747370b574
 
     <!-- 본문 너비 정하는 용으로 wrapper 아이디 설정 -->
         <!-- navi bar가 사실상 저희 헤더입니다 -->
@@ -61,14 +56,8 @@
 
 
         <!-- 푸터 시작 -->
-<<<<<<< HEAD
-
-        <footer>
-            <ul>
-=======
         <div class="footerBox">
             <ul class="footerText">
->>>>>>> a05ec5e930e61aca1bf841f7baf5fd747370b574
                 <li><a href="#">개인정보처리방침</a></li>
                 <li><a href="#">이용약관</a></li>
                 <li><a href="#">고객지원</a></li>
@@ -84,16 +73,7 @@
                 </li>
                 <li></li>
             </ul>
-<<<<<<< HEAD
-
-        </footer>
-
-    </div> <!-- id="wrapper" -->
-    </div> <!-- id="wrapper" -->
-
-=======
-		</div>
->>>>>>> a05ec5e930e61aca1bf841f7baf5fd747370b574
+      </div>
 
 </body>
 

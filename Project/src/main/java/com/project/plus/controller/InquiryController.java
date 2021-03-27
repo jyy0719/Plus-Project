@@ -32,11 +32,11 @@ public class InquiryController {
 		return "inquiry.do";
 	}
 	
-	@RequestMapping(value="/answerInquiry.do", method=RequestMethod.POST)
-	public String answerInquiry(@ModelAttribute("inquiry")InquiryVO vo) {
-		is.answerInquiry(vo);
-		return "inquiry.do";
-	}
+	/*
+	 * @RequestMapping(value="/answerInquiry.do", method=RequestMethod.POST) public
+	 * String answerInquiry(@ModelAttribute("inquiry")InquiryVO vo) {
+	 * is.answerInquiry(vo); return "inquiry.do"; }
+	 */
 
 	@RequestMapping("/deleteInquiry.do")
 	public String deleteInquiry(InquiryVO vo) {

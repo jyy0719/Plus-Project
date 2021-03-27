@@ -38,13 +38,13 @@
   </definition>
   
   <!-- 메인 페이지 -->
-   <definition name="main" template="/WEB-INF/views/inc/layout.jsp"> 		
+<!--    <definition name="main" template="/WEB-INF/views/inc/layout.jsp"> 		
     <put-attribute name="header" value="/WEB-INF/views/include/header.jsp" />	
         <put-attribute name="title" value="메인화면" />
 <put-attribute name="body" value="/WEB-INF/views/index.jsp" />	
     <put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" />	
   </definition>	
-  
+   -->
    <!-- 전체 리스트 페이지 -->
    <definition name="main" template="/WEB-INF/views/inc/layout.jsp"> 		
     <put-attribute name="header" value="/WEB-INF/views/include/header.jsp" />	
@@ -53,47 +53,37 @@
   </definition>	
 
   
-    <!-- 로그인 페이지 -->
-   <definition name="login" template="/WEB-INF/views/inc/layout.jsp"> 		
-    <put-attribute name="header" value="/WEB-INF/views/include/header.jsp" />	
-        <put-attribute name="title" value="로그인 페이지" />
-    <put-attribute name="body" value="/WEB-INF/views/login.jsp" />
-    <put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" />	
-  </definition>	
+<!-- 로그인 , 로그아웃-->
+    <definition name="*.login" extends="base"> 
+     <put-attribute name="body" value="/WEB-INF/views/login/{1}.jsp" /> 
+  </definition>
+
+<!-- 멤버 정보수정, 리스트 조회-->
+    <definition name="*.member" extends="base"> 
+     <put-attribute name="body" value="/WEB-INF/views/member/{1}.jsp" /> 
+  </definition>
   
-  <!-- 회원가입 페이지 -->
-     <definition name="memberJoin" template="/WEB-INF/views/inc/layout.jsp"> 		
-    <put-attribute name="header" value="/WEB-INF/views/include/joinHeader.jsp" />	
-        <put-attribute name="title" value="회원가입 페이지" />
-    <put-attribute name="body" value="/WEB-INF/views/memberJoin.jsp" />
-    <put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" />	
-  </definition>	
-  
-    <!-- 정보수정 페이지 -->
-     <definition name="memberUpdate" template="/WEB-INF/views/inc/layout.jsp"> 		
-    <put-attribute name="header" value="/WEB-INF/views/include/header.jsp" />	
-        <put-attribute name="title" value="회원정보 수정 페이지" />
-    <put-attribute name="body" value="/WEB-INF/views/memberUpdate.jsp" />
-    <put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" />	
-  </definition>	
-  
-      <!-- 정보수정 페이지 -->
-     <definition name="index" template="/WEB-INF/views/inc/layout.jsp"> 		
-    <put-attribute name="header" value="/WEB-INF/views/include/header.jsp" />	
-        <put-attribute name="title" value="더하기 메인" />
-    <put-attribute name="body" value="/WEB-INF/views/index.jsp" />
-    <put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" />	
-  </definition>	
-  
-  <!-- club -->
-<!--    <definition name="club.*" template="/WEB-INF/views/club/layout.jsp">
-    <put-attribute name="body" value="" />
-  </definition> -->
+  <!-- 회원가입페이지 특정 헤더 사용 -->
+    <definition name="memberJoin" extends="base"> 
+      <put-attribute name="header" value="/WEB-INF/views/include/joinHeader.jsp" />   
+     <put-attribute name="body" value="/WEB-INF/views/member/memberJoin.jsp" /> 
+    <put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" />   
+  </definition>
   
   <definition name="*.page" extends="base"> 
   	<put-attribute name="body" value="/WEB-INF/views/club/{1}.jsp" /> 
   </definition>
   
+  <definition name="*.tiles" extends="base"> 
+  	<put-attribute name="body" value="/WEB-INF/views/main/{1}.jsp" /> 
+  </definition>
+  
+  <!-- 메인 페이지 -->
+   <definition name="view.*" template="/WEB-INF/views/main/index.jsp">       
+    <put-attribute name="header" value="/WEB-INF/views/include/header.jsp" />   
+    <put-attribute name="header" value="/WEB-INF/views/main/index.jsp" />   
+    <put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" />   
+  </definition>   
   
 <!--   <definition name="*." extends="member"> 
   	<put-attribute name="body" value="/WEB-INF/views/mypage/{1}.jsp" /> 

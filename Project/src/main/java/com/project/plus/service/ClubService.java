@@ -17,14 +17,9 @@ public interface ClubService {
 	public int apply(ApplyVO apply);
 	public Integer getOneApply(ApplyVO apply);
 	public List<ClubVO> getChatList(int memNum);
-<<<<<<< HEAD
-	public ChatRoomVO getMessages(int clubNum);
-	public int insertMessage(ChatRoomVO msg);
+	public List<ChatVO> getMessages(int clubNum);
+	public int insertMessage(ChatVO msg);
 	
 	// 정연하단 추가 20210326
 	public ClubVO selectClub(ClubVO vo);
-=======
-	public List<ChatVO> getMessages(int clubNum);
-	public int insertMessage(ChatVO msg);
->>>>>>> cc7b2e2ad58d9bf5737df9772dbfd322bad86475
 }

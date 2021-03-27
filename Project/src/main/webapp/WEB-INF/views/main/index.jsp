@@ -12,10 +12,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css"
 	href="${path}/resources/css/index.css">
-
-<!-- 구글 아이콘되나-->
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-	rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
 
 <!-- 부트 스트랩 -->
 <link rel="stylesheet"
@@ -27,6 +24,7 @@
 <!-- 나눔폰트 -->
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css">
+
 
 <title>더하기+ 같이해서 더 가치있는 모임</title>
 </head>
@@ -98,7 +96,9 @@
 		</div>
 	</main>
 
-	<div id="current-location"></div>
+	<div id="current-location">
+	<i class="fas fa-search-location"></i>
+	</div>
 
 
 	<!--검색창 -->
@@ -162,8 +162,7 @@
 								</div>
 								<div class=subtitle>
 									<i class="fas fa-heart"> ${club.clubHeart}</i>
-
-								</div>
+			</div>
 
 								<!-- 더하기 상세 정보 -->
 								<p class="text-muted card-text">
@@ -256,7 +255,16 @@
 				</c:forEach>
 	</section>
 
-	<!--페이지 위로가기 버튼 -->
+
+ <button id="addplus">
+		<a href="clubForm.jsp"><i class="fas fa-plus-circle fa-4x"></i></a>
+	</button> 
+
+	</div>
+	</div>
+	<!-- 푸터와 공백을 위해 지정한 div -->
+	<div id="bottomarea"></div>
+		<!--페이지 위로가기 버튼 -->
 	<button id="go-top">
 		<svg xmlns="http://www.w3.org/2000/svg" width="38" height="38"
 			fill="currentColor" class="bi bi-arrow-up-circle-fill"
@@ -264,18 +272,8 @@
         <path fill-rule="evenodd"
 				d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z" />
       </svg>
-
-
 	</button>
- <button id="addplus">
-		<a href="clubForm.jsp"> <span class="material-icons"
-			style="display: inline-block; font-size: 55px;"> add_circle </span></a>
-	</button> 
-
-
-
-	</div>
-	</div>
+	
 </body>
 
 <!--어썸폰트 아이콘 -->
