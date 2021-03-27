@@ -9,7 +9,6 @@ public class InquiryVO {
 	private String inquiryState;
 	private String inquiryAnswer;
 	private String inquiryRegDate;
-	private String inquiryAnswerDate;
 	
 	/* 추가로 필요한 부분 */
 	private String memberEmail;
@@ -28,7 +27,6 @@ public class InquiryVO {
 		this.memberNickname = memberNickname;
 	}
 	
-
 	
 	public int getInquiryNum() {
 		return inquiryNum;
@@ -78,17 +76,11 @@ public class InquiryVO {
 	public void setInquiryRegDate(String inquiryRegDate) {
 		this.inquiryRegDate = inquiryRegDate;
 	}
-	public String getInquiryAnswerDate() {
-		return inquiryAnswerDate;
-	}
-	public void setInquiryAnswerDate(String inquiryAnswerDate) {
-		this.inquiryAnswerDate = inquiryAnswerDate;
-	}
 	@Override
 	public String toString() {
 		return "InquiryVO [inquiryNum=" + inquiryNum + ", memberNum=" + memberNum + ", inquiryTitle=" + inquiryTitle
 				+ ", inquiryContent=" + inquiryContent + ", inquiryType=" + inquiryType + ", inquiryState="
-				+ inquiryState + ", inquiryAnswer=" + inquiryAnswer + ", inquiryRegDate=" + inquiryRegDate + ", inquiryAnswerDate=" + inquiryAnswerDate + ", memberEmail=" + memberEmail + ", memberNickname=" + memberNickname + "]";
+				+ inquiryState + ", inquiryAnswer=" + inquiryAnswer + ", inquiryRegDate=" + inquiryRegDate + ", memberEmail=" + memberEmail + ", memberNickname=" + memberNickname + "]";
 	}
 	
 	

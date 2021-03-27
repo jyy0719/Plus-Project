@@ -17,7 +17,6 @@ public class MemberVO {
 	private String memberMarketing;
 	private String memberLatitude;
 	private String memberLongitude;
-	private MultipartFile uploadfile;
 	
 	
 	public int getMemberNum() {
@@ -95,12 +94,7 @@ public class MemberVO {
 	}
 	
 	
-	public MultipartFile getUploadfile() {
-		return uploadfile;
-	}
-	public void setUploadfile(MultipartFile uploadfile) {
-		this.uploadfile = uploadfile;
-	}
+
 	@Override
 	public String toString() {
 		return "MemberVO [memberNum=" + memberNum + ", memberPhone=" + memberPhone + ", memberPic=" + memberPic

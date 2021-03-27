@@ -1,11 +1,15 @@
 package com.project.plus.controller;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -55,6 +59,7 @@ public class ClubController {
 		vo = FileUtils.uploadFile(vo, uploadPath, file);
 		clubService.insertClub(vo); // DB에 저장
 		log.info("모임 번호 : " + vo.getClubNum() + " 등록 완료 ");
+		log.info(uploadPath);
 		return "index";
 
 	}
@@ -69,6 +74,7 @@ public class ClubController {
 		vo = FileUtils.uploadFile(vo, uploadPath, file);
 		clubService.updateClub(vo);
 		log.info("모임 번호 : " + vo.getClubNum() + " 수정 완료 ");
+
 		return "index";
 	}
 
@@ -78,7 +84,6 @@ public class ClubController {
 	public List<String> getTags() {
 		return clubService.getClubHashtag();
 	}
-
 
 	
 	
@@ -115,9 +120,8 @@ public class ClubController {
 	}
 
 	// 모임 상세정보 
-	// .do?clubNum=?를 통해 뿌려줘야 함 
 	@RequestMapping("/getClub.do")
-	public String getClub(ClubVO vo, HeartVO hvo, Model model) {
+	public String getClub(ClubVO vo,HeartVO hvo, Model model) {
 
 		//정연 추가 
 		hvo.setClubNum(2);
@@ -127,8 +131,7 @@ public class ClubController {
 		model.addAttribute("isThereHeart", resultClub);
 		//여기위 까지
 		
-		int clubNum = vo.getClubNum();
-		getReviews(model, 11);
+		getReviews(model,11);
 		model.addAttribute("club", clubService.getClub(vo));
 		log.info("모임 번호 : " + vo.getClubNum() + " 상세 정보 ");
 		return "getClub.page";

@@ -11,12 +11,12 @@
     <!-- css코드삽입 -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css">
-    <link rel="stylesheet" type="text/css" href="${path}/resources/css/loginHeader.css">
+    <link rel="stylesheet" type="text/css" href="${path}/resources/css/header.css">
     <style>
 
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
     <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 
 
@@ -83,18 +83,18 @@
         <!-- id="selected" 나중에 자바스크립트로 수정할 부분 -->
         <nav>
             <ul class="menu-left">
-                <li id="logo_a"><a href="index.html"><img id="logo_img" src="${path}/resources/img/images/logo.png"></a></li>
+                <li id="logo_a"><a href="main.do"><img id="logo_img" src="${path}/resources/img/images/logo.png"></a></li>
                 <li class="hovereffect nav-left"><a href="#">HOME</a></li>
                 <li class="hovereffect nav-left"><a href="#">가치더하기</a></li>
                 <li class="hovereffect nav-left"><a href="#">도움더하기</a></li>
  
                 <li class="nav-right btncolor">
                     <div class="dropdown">
-                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" id="btncolor">송강님, 환영합니다
-                        <span class="caret"></span></button>
+                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" id="btncolor">회원가입
+                        </button>
                         <ul class="dropdown-menu">
-                        <li class="dropli"><a href="#">My Profile</a></li>
-                        <li class="dropli api-btn" onclick="kakaoLogout()"><a href="#">LogOut</a></li>
+                        <li class="dropli"><a href="#"></a></li>
+                        <li class="dropli api-btn" onclick="kakaoLogout()"><a href="#"></a></li>
                         </ul>
                     </div>
                 </li>
@@ -104,44 +104,6 @@
         </nav>
 
 
-
-
-
-        <!-- 본문영역시작 -->
-        <section>
-            <br /><br /><br />
-            <div style="width: auto; height: 300px; background-color:lightgray; 
-                font-size:80px; color:blue; text-align: center;">
-                <br />picture
-
-            </div>
-            본문영역입니다<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-
-        </section>
-
-
-
-
-
-        <!-- 푸터 시작 -->
-        <footer>
-<!--             <ul>
-                <li><a href="#">개인정보처리방침</a></li>
-                <li><a href="#">이용약관</a></li>
-                <li><a href="#">문의사항</a></li>
-
-            </ul>
-            <ul>
-                <li id="footerAddress">
-                    <br />
-                    <b>더하기+</b> | 서울특별시 마포구 백범로 23 구프라자 지하 1층 <br />
-                    <b>대표:</b> 유정연 | <b>함께하는사람들 :</b> 배진경 이현정 천혜미 황순근<br />
-                    Copyright 2021 . All rights reserved.<br /><br />
-                </li>
-                <li></li>
-            </ul> -->
-
-        </footer>
     </div> <!-- id="wrapper" -->
 
 </body>

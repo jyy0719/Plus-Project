@@ -71,7 +71,7 @@
 >>>>>>> a05ec5e930e61aca1bf841f7baf5fd747370b574
                 <li><a href="#">개인정보처리방침</a></li>
                 <li><a href="#">이용약관</a></li>
-                <li><a href="announce.do">고객지원</a></li>
+                <li><a href="#">고객지원</a></li>
 
             </ul>
             <ul>

@@ -16,6 +16,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css">
     <script type="text/javascript" src="${path}/resources/js/jquery-1.12.4.min.js"></script>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
     <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
       
@@ -37,15 +38,19 @@ function kakaoLogin(){
                       var userPw = res.id;      //유저의 카카오톡 고유 id. 회원 insert 시 패스워드로 삽입하려고 변수명 pw로 줌
                       var userEmail = res.kakao_account.email; //유저의 이메일
                       var userNickName = res.properties.nickname; //유저가 등록한 별명
+                      var userPic = res.properties.profile_image;
                       
                       console.log(userEmail);
                       console.log(userNickName);
+                      console.log(userPic);
+
                       //console.log(res.redirect_uri);
 
-                      var userdata = {
+       			    var userdata = {
                         memberPassword : userPw,
                         memberEmail: userEmail,
-                        memberNickname : userNickName
+                        memberNickname : userNickName,
+                        memberPic : userPic
                       }
 
                       $.ajax({
@@ -60,15 +65,19 @@ function kakaoLogin(){
                                 location.href = data;
                                 //location.href = 'kakaologin.do'; //이렇게하면 get메서드오류
                                 }
-                        }); // ajax
-                    
-                 }
-                
-                });
-           }
-      
-});
-} 
+                       }); // ajax
+		                    
+	                     },
+                     	fail: function(error) {
+                      		alert(JSON.stringify(error)+"test");
+                     	}
+                   	 });
+                   },
+               fail: function(err) {
+                alert(JSON.stringify(err)+"v1일때 에러났던곳");
+               }
+       });
+   } 
 /*        function kakaoLogin(){
             window.Kakao.Auth.login({
                 scope:'profile, account_email',
