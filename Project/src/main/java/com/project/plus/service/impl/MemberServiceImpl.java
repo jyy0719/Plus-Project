@@ -33,7 +33,7 @@ public class MemberServiceImpl implements MemberService {
 		return membermapper.login(vo);
 	}
 
-	public MemberVO kakaologin(MemberVO vo) {
+	public Integer kakaologin(MemberVO vo) {
 		System.out.println("카카오로그인 servie impl옴");		
 		return membermapper.kakaologin(vo);
 	}
@@ -63,9 +63,8 @@ public class MemberServiceImpl implements MemberService {
 		return membermapper.memberNChk(memberNickname);
 	}
 
-	public List<MemberVO> memberList() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<MemberVO> memberList(MemberVO vo) {
+		return membermapper.memberList(vo);
 	}
 
 

@@ -78,56 +78,9 @@ function kakaoLogin(){
                }
        });
    } 
-/*        function kakaoLogin(){
-            window.Kakao.Auth.login({
-                scope:'profile, account_email',
-                success: function(authObj) {
-                    
-                    // 로그인 성공시, API를 호출합니다.
-                    Kakao.API.request({
-                     	 url: '/v2/user/me',
-	                     success: function(res) {
-		                      console.log(res);
-		                      
-		                      var userPw = res.id;      //유저의 카카오톡 고유 id. 회원 insert 시 패스워드로 삽입하려고 변수명 pw로 줌
-		                  //    var userEmail = res.kaccount_email;   //유저의 이메일
-		                      var userEmail = res.kakao_account.email; //유저의 이메일
-		                      var userNickName = res.properties.nickname; //유저가 등록한 별명
-		                      
-		                      console.log(userEmail);
-		                      console.log(userNickName);
-		                      console.log(res.redirect_uri);
-		                      //return res.redirect_uri; 아마 필요없을듯
 
-		                    //  var kakaouser = res.kakao_account;
-		                    //  console.log(kakaouser.email); 
-								                    $.ajax({
-		                            url: 'kakaologin.do',
-		                            type: 'POST',
-		                            dataType: 'json',
-		                            data: {
-		                            	memberPassword : userPw,
-		                                memberEmail: userEmail,
-		                                memberNickname : userNickName
-		                                    },
-		                                success: function(data){
-		                                console.log("보냄");
-		                              //  location.href = data;
-		                                }
-		                        }); // ajax
-		                    
-	                     },
-                     	fail: function(error) {
-                      		alert(JSON.stringify(error)+"test");
-                     	}
-                   	 });
-                   },
-               fail: function(err) {
-                alert(JSON.stringify(err)+"v1일때 에러났던곳");
-               }
-       });
-   } 
-         */
+        
+        
         function kakaoLogout(){
             //Kakao.init();
             //Kakao.isInitialized();
@@ -140,6 +93,12 @@ function kakaoLogin(){
                 console.log(Kakao.Auth.getAccessToken());
             });
         }
+        
+        
+			window.history.forward();
+		
+        
+        
   </script>
     </head>
 
