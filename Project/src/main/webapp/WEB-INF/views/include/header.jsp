@@ -56,7 +56,7 @@
                         <span class="caret"></span></button>
                         <ul class="dropdown-menu">
                         <form>
-                        <li class="dropli"><a href="memberUpdate.do">My Profile</a></li>
+                        <li class="dropli"><a href="memberUpdate.do">My Page</a></li>
                         </form>
                       <form action="logout.do" method="get">
                       <!--  onclick="kakaoLogout()" -->
