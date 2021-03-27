@@ -86,6 +86,10 @@
   	<put-attribute name="body" value="/WEB-INF/views/club/{1}.jsp" /> 
   </definition>
   
+  <definition name="*.tiles" extends="base"> 
+  	<put-attribute name="body" value="/WEB-INF/views/main/{1}.jsp" /> 
+  </definition>
+  
   
 <!--   <definition name="*." extends="member"> 
   	<put-attribute name="body" value="/WEB-INF/views/mypage/{1}.jsp" /> 
