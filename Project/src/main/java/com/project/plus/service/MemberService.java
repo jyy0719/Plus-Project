@@ -11,6 +11,8 @@ import org.springframework.ui.Model;
 
 import com.project.plus.domain.InquiryVO;
 import com.project.plus.domain.MemberVO;
+import com.project.plus.domain.MemberVO;
+import com.project.plus.domain.PaymentVO;
 
 public interface MemberService {
 
@@ -34,5 +36,11 @@ public interface MemberService {
 
 	List<MemberVO> memberList();
 
+	   void updateMemberPoint (MemberVO vo);
+	   int selectMemberPoint (MemberVO vo);
+	   int selectMemberPointByNickname(MemberVO vo);
+	//   int selectMemberPoint(PaymentVO vo);
+	   void deductMemberPoint(MemberVO vo);
+	   void updateClubLeaderPoint(MemberVO vo);
 
 }

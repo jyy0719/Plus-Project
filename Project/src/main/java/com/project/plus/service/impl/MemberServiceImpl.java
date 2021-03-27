@@ -19,6 +19,7 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	MemberMapper membermapper;
 	
+	
 	@Autowired
 	HttpSession session;
 
@@ -66,6 +67,33 @@ public class MemberServiceImpl implements MemberService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
+	@Override
+	   public void updateMemberPoint(MemberVO vo) {
+	      membermapper.updateMemberPoint(vo);
+	   }
+	   
+	   @Override
+	   public int selectMemberPoint(MemberVO vo) {
+	      
+	      return membermapper.selectMemberPoint(vo);
+	   }
+
+	   @Override
+	   public void deductMemberPoint(MemberVO vo) {
+	      membermapper.deductMemberPoint(vo);
+	   }
+
+	   @Override
+	   public void updateClubLeaderPoint(MemberVO vo) {
+	      membermapper.updateClubLeaderPoint(vo);
+	   }
+
+	   @Override
+	   public int selectMemberPointByNickname(MemberVO vo) {
+	      return membermapper.selectMemberPointByNickname(vo);
+	   }
 
 
 
