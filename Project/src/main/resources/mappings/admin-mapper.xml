@@ -12,7 +12,6 @@
 		<result property="inquiryState" column="inquiry_state" />
 		<result property="inquiryAnswer" column="inquiry_answer" />
  		<result property="inquiryRegDate" column="inquiry_regdate" />
- 		<result property="inquiryAnswerDate" column="inquiry_answer_date" />
 		<result property="memberEmail" column="member_email"/>
 		<result property="memberNickname" column="member_nickname" />
 	</resultMap>

@@ -13,7 +13,7 @@ public interface ReviewMapper {
 		public String reviewList();
 		public List<ReviewVO> getReviews(int clubNum);
 		public List<ReviewVO> getMoreReviews(Map<String,Integer> map);
-		public int getReviewCount();
+		public int getReviewCount(int clubNum);
 		
 		//20210326 정연 하단 추가
 		public ReviewVO readReview(ReviewVO vo);
