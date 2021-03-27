@@ -1,109 +1,132 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<c:set var="path" value="${pageContext.request.contextPath}"/>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-   <title>모임상세보기</title>
-   	<link rel='stylesheet' type='text/css' href='${path}/resources/css/getClub.css'> 
-    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<title>모임상세보기</title>
+<link rel='stylesheet' type='text/css'
+	href='${path}/resources/css/getClub.css'>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 </head>
 <wrap class="clearfix">
-    <section>
-    <input type="hidden" value="${club.clubNum}" name="clubNum"/>
-      <img id="mainImg" src="${path}/resources${club.clubMain_pic}" onerror="this.onerror=null; this.src='${path}/resources/img/img1.jpg'" />
-      <div class="stickyWrap">
-        <div class="stickyTab">
-            <div id="moreInfoTab">
-                <a href="#moreInfo" class="tabMenu">상세정보</a> 
-            </div>
-            <div id="introTab">
-                <a href="#leaderInfo" class="tabMenu">리더소개</a>
-            </div>
-            <div id="reviewTab">
-                <a href="#review" class="tabMenu">후기</a>
-            </div>
-        </div>
-      </div>
-      <article>
-      
-      <div id="moreInfo">
-      <img class="images" src="${path}/resources${club.clubContent1_pic}" onerror="this.style.display='none';" />
-         ${club.clubContent1}
-      </div>
-      <hr>
-        <h3>리더 소개</h3>
-      <div id="leaderInfo">
-          <img class="images" src="${path}/resources${club.clubContent2_pic}" onerror="this.style.display='none';" /> 
-          ${club.clubContent2}
-      </div>
-      <hr>
-      <div class="reviewTitle"><h3>후기<small>(총 ${reviewCount}개)</small></h3></div>
-    <div id="review" class="clearfix">
-            <!-- 리뷰 출력 부분  -->
-            <c:forEach items="${reviews}" var="review">
-                 <div class="userReview">
-                    <strong>블루베리</strong>     
-                    <div class="reviewRate">
-                       ${review.reviewRate}
-                    </div>
-                    <div id="reviewRegDate">
-                           <fmt:formatDate value="${review.reviewRegDate}" var="changedDate" pattern="yyyy. MM. dd"/>
-                               ${changedDate}
-                    </div>
-                    <div id="reviewText">
-                        ${review.reviewContent}
-                    </div>
-                 </div>
-            </c:forEach>
-    <div class="newList">
-       
-    </div>
-    	<button type="button" class="btn" id="moreReviewBtn">더보기</button>
-    </div>
-    </article>
-    </section>
-    <section id="right_con">
-        <aside>
-            <div class="stickybox">
-                <div id="leaderId">${club.clubLeader} <span class="badge" id="onoff">${club.clubOnOff}</span> <span class="badge" id="freq">${club.clubFreq}</span> </div>
-                <div class="titleInfo">
-                    <div id="clubname">${club.clubName}</div>
-                    <!-- 해시태그 출력부분  -->
-                    <c:forEach items="${tags}" var="tag">
-                        <span class="label label-info"># ${tag}</span>
-                    </c:forEach>
-                    <div id="location">
-                        <img src="${path}/resources/img/mapicon.png"></img> 
-                        <div id="locationText"> 위치표시 </div>
-                    </div> 
-                </div>
-                <div class="clubInfoTable">
-                    <div id="infoLabel">모집종료일</div>
-                    <div class="fstyle" id="endDate">${club.clubShutDate}</div>
-                    <div id="infoLabel">모임진행기간</div>
-                    <div class="fstyle" id="makeDate">${club.clubStartDate}</div>
-                    <div id="tilde"> ~ </div>
-                    <div class="fstyle" id="shutDate">${club.clubMakeDate}</div>
-                    <div id="infoLabel">참가인원</div>
-                    <div class="fstyle" id="people"> ${club.clubCurnum}명 / ${club.clubMax}명 </div>
-                    <div id="infoLabel">참가비</div>
-                    <div class="fstyle" id="amount">${club.clubFee}P</div>
-                    <button type="button" class="btn" id="applyBtn">신청하기</button>
-                    <button type="button" class="btn" id="heartBtn"><img src="${path}/resources/img/heart.png"></button>
-                    <!-- 공유 버튼  -->
-                    <button type="button" class="btn" id="shareBtn" onclick="sendLink()"><img id="file" src="${path}/resources/img/share.png"></button>
-                    
-                </div>
-            </div>
-        </aside>
-    </section>
+<section>
+	<input type="hidden" value="${club.clubNum}" name="clubNum" /> <img
+		id="mainImg" src="${path}/resources${club.clubMain_pic}"
+		onerror="this.onerror=null; this.src='${path}/resources/img/img1.jpg'" />
+	<div class="stickyWrap">
+		<div class="stickyTab">
+			<div id="moreInfoTab">
+				<a href="#moreInfo" class="tabMenu">상세정보</a>
+			</div>
+			<div id="introTab">
+				<a href="#leaderInfo" class="tabMenu">리더소개</a>
+			</div>
+			<div id="reviewTab">
+				<a href="#review" class="tabMenu">후기</a>
+			</div>
+		</div>
+	</div>
+	<article>
+
+		<div id="moreInfo">
+			<img class="images" src="${path}/resources${club.clubContent1_pic}"
+				onerror="this.style.display='none';" /> ${club.clubContent1}
+		</div>
+		<hr>
+		<h3>리더 소개</h3>
+		<div id="leaderInfo">
+			<img class="images" src="${path}/resources${club.clubContent2_pic}"
+				onerror="this.style.display='none';" /> ${club.clubContent2}
+		</div>
+		<hr>
+		<div class="reviewTitle">
+			<h3>
+				후기<small>(총 ${reviewCount}개)</small>
+			</h3>
+		</div>
+		<div id="review" class="clearfix">
+			<!-- 리뷰 출력 부분  -->
+			<c:forEach items="${reviews}" var="review">
+				<div class="userReview">
+					<strong>블루베리</strong>
+					<div class="reviewRate">${review.reviewRate}</div>
+					<div id="reviewRegDate">
+						<fmt:formatDate value="${review.reviewRegDate}" var="changedDate"
+							pattern="yyyy. MM. dd" />
+						${changedDate}
+					</div>
+					<div id="reviewText">${review.reviewContent}</div>
+				</div>
+			</c:forEach>
+			<div class="newList"></div>
+			<button type="button" class="btn" id="moreReviewBtn">더보기</button>
+		</div>
+	</article>
+</section>
+<section id="right_con">
+	<aside>
+		<div class="stickybox">
+			<div id="leaderId">${club.clubLeader}
+				<span class="badge" id="onoff">${club.clubOnOff}</span> <span
+					class="badge" id="freq">${club.clubFreq}</span>
+			</div>
+			<div class="titleInfo">
+				<div id="clubname">${club.clubName}</div>
+				<!-- 해시태그 출력부분  -->
+				<c:forEach items="${tags}" var="tag">
+					<span class="label label-info"># ${tag}</span>
+				</c:forEach>
+				<div id="location">
+					<img src="${path}/resources/img/mapicon.png"></img>
+					<div id="locationText">위치표시</div>
+				</div>
+			</div>
+			<div class="clubInfoTable">
+				<div id="infoLabel">모집종료일</div>
+				<div class="fstyle" id="endDate">${club.clubShutDate}</div>
+				<div id="infoLabel">모임진행기간</div>
+				<div class="fstyle" id="makeDate">${club.clubStartDate}</div>
+				<div id="tilde">~</div>
+				<div class="fstyle" id="shutDate">${club.clubMakeDate}</div>
+				<div id="infoLabel">참가인원</div>
+				<div class="fstyle" id="people">${club.clubCurnum}명 /
+					${club.clubMax}명</div>
+				<div id="infoLabel">참가비</div>
+				<div class="fstyle" id="amount">${club.clubFee}P</div>
+				<button type="button" class="btn" id="applyBtn">신청하기</button>
+				
+				<!-- 찜버튼 -->
+				<button type="button" class="btn" id="heartBtn" onclick="toggleImg()">
+					<c:if test="${isThereHeart eq 0}" >
+					    	<img src="${path}/resources/img/heart.png" id="heartImg">
+					    	<input type="hidden" id="heartInput" value=0 />
+					</c:if>
+					<c:if test="${isThereHeart ne 0}" >
+					    	<img src="${path}/resources/img/blackheart.png" id="heartImg"/>
+					    	<input type="hidden" id="heartInput" value=1 />
+					</c:if> 
+				</button>
+				
+				<%-- <button type="button" class="btn" id="heartBtn"
+					onclick="toggleImg()">
+					<img id="heartImg" src="${path}/resources/img/heart.png">
+				</button>--%>
+				<!-- 공유 버튼  -->
+				<button type="button" class="btn" id="shareBtn" onclick="sendLink()">
+					<img id="file" src="${path}/resources/img/share.png">
+				</button> 
+
+			</div>
+		</div>
+	</aside>
+</section>
 </wrap>
 <!-- 카카오 link api -->
-  <script type="text/javascript">
+  <script>
   Kakao.init('c727ac6af8f4ea892e4524df5eed6359');
   Kakao.isInitialized();
 
@@ -116,33 +139,35 @@
           imageUrl:
             'https://postfiles.pstatic.net/MjAyMTAzMjFfMTYy/MDAxNjE2MzMxNjMzMTQy.AqxK620MPDQyOyUWo0DQaD2gX7k63f360KEStS_8LhUg.2HGpYONTIq7XJd6uKdSkvOCEsJu70nUTujm9HSGnXG8g.PNG.jk940816/logo.png?type=w966',
           link: {
-            mobileWebUrl: 'http://localhost:8080/plus/getClub.do',
-            webUrl: 'http://localhost:8080/plus/getClub.do',
+            mobileWebUrl: 'http://localhost:9999/plus/getClub.do',
+            webUrl: 'http://localhost:9999/plus/getClub.do',
           },
         },
         social: {
           likeCount: 286,
           commentCount: ${reviewCount},
         },
-        buttons: [
+        buttons:[ 
           {
             title: '웹으로 보기',
             link: {
-              mobileWebUrl: 'http://localhost:8080/plus/getClub.do',
-              webUrl: 'http://localhost:8080/plus/getClub.do',
+              mobileWebUrl: 'http://localhost:9999/plus/getClub.do',
+              webUrl: 'http://localhost:9999/plus/getClub.do',
             },
           },
           {
             title: '앱으로 보기',
             link: {
-              mobileWebUrl: 'http://localhost:8080/plus/getClub.do',
-              webUrl: 'http://localhost:8080/plus/getClub.do',
+              mobileWebUrl: 'http://localhost:9999/plus/getClub.do',
+              webUrl: 'http://localhost:9999/plus/getClub.do',
             },
           },
         ],
       })
     }
+    
   </script>
+  
 <script>
 
 $(document).ready(function () {
@@ -183,6 +208,11 @@ $(document).ready(function () {
 	 
 	 
 	 let reviewCnt = '${reviewCount}'   
+ 
+	 if(reviewCnt<=5){
+		 $('#moreReviewBtn').css("display","none");
+	 }
+
 	 console.log(reviewCnt)
 				// limit으로 넣어줄 값 
 				let startIndex = 0;	
@@ -213,8 +243,7 @@ $(document).ready(function () {
 			            	let reviewList = "";
 		                    for(i = 0; i < data.length; i++){
 		                        let  newList = '<div class="userReview">';
-		                            // nickname 아직 안받아와서 
-		                        newList += '<strong>블루베리</strong>';
+		                        newList += '<strong>'+ data[i].members.memberNickname + '</strong>';
 		                        if(data[i].reviewRate == 1){
 		                            newList += '<div class="reviewRate">★☆☆☆☆</div>';
 		                        } else if (data[i].reviewRate == 2){
@@ -252,6 +281,7 @@ $(document).ready(function () {
 							memberNum:"3"
 						},
 						url: "/plus/apply.do",
+						
 			            success: function (data) {
 			            	console.log(data);
 				            	if(data==1){
@@ -267,6 +297,55 @@ $(document).ready(function () {
 			    	
 			    })
 })
+
+function toggleImg(){
+	var state = document.getElementById("heartInput").value; 
+	console.log(state);
+	if(state==0){
+		 state=1;
+     document.getElementById("heartImg").src = "${path}/resources/img/blackheart.png"; 
+	$.ajax({
+		type: "post",
+		data: {	
+			clubNum:'${club.clubNum}',
+			memberNum:"3",
+			clubName: '${club.clubName}'
+		},
+		url: 'insertHeart.do',
+        success: function (result) {
+        	console.log(result);
+				console.log(result)
+  				alert(result);
+				console.log(state)
+        	},
+        error: function() {
+        	  alert("error");
+        	}
+		});
+	 
+	
+	}else{
+		state=0; 
+		document.getElementById("heartImg").src = "${path}/resources/img/heart.png";
+		 
+		 $.ajax({
+				type: "post",
+				data: {
+					clubNum:'${club.clubNum}',
+					memberNum:"3"
+				},
+				url: 'deleteHeartOne.do',
+		        success: function (result) {
+		        	console.log(result);
+						console.log(result)
+		  				alert(result);
+		        	},
+		        error: function() {
+		        	  alert("error");
+		        	}
+				});
+	}
+} 
 
 </script>
 </html>

@@ -3,7 +3,7 @@ package com.project.plus.mapper;
 import java.util.List;
 
 import com.project.plus.domain.ApplyVO;
-import com.project.plus.domain.ChatRoomVO;
+import com.project.plus.domain.ChatVO;
 import com.project.plus.domain.ClubVO;
 
 public interface ClubMapper {
@@ -16,6 +16,10 @@ public interface ClubMapper {
 	public int apply(ApplyVO apply);
 	public Integer getOneApply(ApplyVO apply);
 	public List<ClubVO> getChatList(int memNum);
-	public ChatRoomVO getMessages(int clubNum);
-	public int insertMessage(ChatRoomVO msg);
+	public List<ChatVO> getMessages(int clubNum);
+	public int insertMessage(ChatVO msg);
+	
+	//정연하단 추가 20210326
+
+	public ClubVO selectClub(ClubVO vo);
 }

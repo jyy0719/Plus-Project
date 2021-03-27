@@ -63,13 +63,22 @@ float:right;
 </style>
 </head>
 <body>
-	<form action="getInquiry.jsp" method="post">
+
+<!-- 로그인 안한 경우  -->
+<%-- <%
+	if(session.getAttribute("memberNum") == null) {
+		response.sendRedirect("/login.do");
+		return;
+	}
+%> --%>
+
+	<form action="writeInquiry.do" method="post">
 		<div class="inquiry-wrap">
 			<h1>1:1문의하기</h1>
 			<hr>
 			<div class="inquiry-category">
 				<label for="exampleFormControlSelect2">카테고리 선택</label>
-				<select	name="name_Select" id="id_select" class="form-control">
+				<select	name="inquiryType" id="id_select" class="form-control">
 					<option value="회원문의">회원문의</option>
 					<option value="모임문의">모임문의</option>
 					<option value="결제문의">결제문의</option>
@@ -78,10 +87,10 @@ float:right;
 			</div>
 			
 			<input type="text" class="form-control" id="inquiry-title"
-				placeholder="제목을 입력해주세요." name="title">
-			<textarea name="text"></textarea>
+				placeholder="제목을 입력해주세요." name="inquiryTitle">
+			<textarea name="inquiryContent"></textarea>
 			<button type="submit" id="inquiryBtn">등록하기</button><br/>
-	<div class="submit"><a href="inquiry.do">글 목록 가기</a></div>
+			<div class="submit"><a href="inquiry.do">글 목록 가기</a></div>
 		<hr></div>
 	</form>
 <script>

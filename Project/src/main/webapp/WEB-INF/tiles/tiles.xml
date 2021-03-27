@@ -36,13 +36,14 @@
   <!--  <put-attribute name="body" value="/WEB-INF/views/admin/chart/{1}.jsp" /> -->
     <put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" />
   </definition>
-  
+    
   <!-- 메인 페이지 -->
    <definition name="view.*" template="/WEB-INF/views/index.jsp"> 		
     <put-attribute name="header" value="/WEB-INF/views/include/header.jsp" />	
     <put-attribute name="header" value="/WEB-INF/views/index.jsp" />	
     <put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" />	
   </definition>	
+
   
     <!-- 로그인 페이지 -->
    <definition name="login" template="/WEB-INF/views/inc/layout.jsp"> 		

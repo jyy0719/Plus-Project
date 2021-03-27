@@ -1,5 +1,7 @@
 package com.project.plus.domain;
 
+import java.sql.Date;
+
 public class HeartVO {
 	private int heartNum;
 	private int memberNum;
@@ -8,8 +10,51 @@ public class HeartVO {
 	
 	/*추가한 vo*/
 	private String clubThumbPic;
-
+	private Date clubStartDate;
+	private Date clubEndDate;
+	private int clubFee;
+	private String clubLeader;
+	private String clubFreq;
+	private int clubNumArr[];
 	
+	
+	public int[] getClubNumArr() {
+		return clubNumArr;
+	}
+	public void setClubNumArr(int[] clubNumArr) {
+		this.clubNumArr = clubNumArr;
+	}
+	public String getClubFreq() {
+		return clubFreq;
+	}
+	public void setClubFreq(String clubFreq) {
+		this.clubFreq = clubFreq;
+	}
+	public String getClubLeader() {
+		return clubLeader;
+	}
+	public void setClubLeader(String clubLeader) {
+		this.clubLeader = clubLeader;
+	}
+	public int getClubFee() {
+		return clubFee;
+	}
+	public void setClubFee(int clubFee) {
+		this.clubFee = clubFee;
+	}
+	
+	public Date getClubStartDate() {
+		return clubStartDate;
+	}
+	public void setClubStartDate(Date clubStartDate) {
+		this.clubStartDate = clubStartDate;
+	}
+	public Date getClubEndDate() {
+		return clubEndDate;
+	}
+	public void setClubEndDate(Date clubEndDate) {
+		this.clubEndDate = clubEndDate;
+	}
 	
 	public int getHeartNum() {
 		return heartNum;

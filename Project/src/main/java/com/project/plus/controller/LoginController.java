@@ -18,10 +18,13 @@ import com.project.plus.domain.MemberVO;
 import com.project.plus.service.MemberService;
 import com.project.plus.service.impl.MemberServiceImpl;
 
+import lombok.extern.log4j.Log4j;
+
 
 
 @Controller
 @SessionAttributes("user")
+@Log4j
 public class LoginController {
 
     @Autowired
@@ -48,7 +51,7 @@ public class LoginController {
 			System.out.println(user.getMemberNum());
 			System.out.println(user.getMemberNum());
 			System.out.println(user + "일반로그인 유저정보 획득");
-			return "index";
+			return "login";
 			
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -180,6 +183,8 @@ public class LoginController {
 			System.out.println(user + "vo카카오");  //카카오 로그인시 vo 확인
 			//MemberVO user = vo;
 			System.out.println("user카카2"+user);
+			
+			log.info(vo.getMemberNum());
 			
 			if(user.getMemberNum()!=0) {
 				session.setAttribute("user", user);

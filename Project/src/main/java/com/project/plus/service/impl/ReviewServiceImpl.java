@@ -42,8 +42,8 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public List<ReviewVO> getReviews(ReviewVO vo) {
-		return reviewMapper.getReviews(vo);
+	public List<ReviewVO> getReviews(int clubNum) {
+		return reviewMapper.getReviews(clubNum);
 		
 	}
 	@Override
@@ -53,11 +53,27 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public int getReviewCount() {
-		return reviewMapper.getReviewCount();
+	public int getReviewCount(int clubNum) {
+		return reviewMapper.getReviewCount(clubNum);
 		
 	}
 	
+	//정연하단 추가 20210326
+	@Override
+	public ReviewVO readReview(ReviewVO vo) {
+		return reviewMapper.readReview(vo);
+	}
+
+	@Override
+	public void updateReview(ReviewVO vo) {
+		reviewMapper.updateReview(vo);		
+	}
+
+	@Override
+	public void deleteReview(ReviewVO vo) {
+		reviewMapper.deleteReview(vo);			
+	}
+
 	
 	
 

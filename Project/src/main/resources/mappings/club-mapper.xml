@@ -33,11 +33,26 @@
 		<result property="memberNum" column="member_num" />
 		<result property="applyDate" column="apply_date" />
 	</resultMap>
-
+	
+	<resultMap id="chatResult" type="chat">
+		<id property="messageNum" column="message_num" />
+		<result property="clubNum" column="club_num" />
+		<result property="chatSendTime" column="chat_sendtime" />
+		<result property="chatStringSendtime" column="chat_string_sendtime" />
+		<result property="chatMessage" column="chat_message" />
+		<association property="members" resultMap="memberResult" />
+	</resultMap> 
+	
+	<resultMap id="memberResult" type="user">
+		<id property="memberNum" column="member_num"/>
+		<result property="memberName" column="member_name"/>
+		<result property="memberNickname" column="member_nickname"/>
+	</resultMap> 
+	
 
 	<select id="getClub" resultMap="clubResult">
 		SELECT * FROM club WHERE
-		club_num = 2
+		club_num = 11
 	</select>
 	
 	<select id="getClubHashtag" resultType="string">
@@ -107,9 +122,11 @@
 		INSERT INTO chat(club_num, member_num, chat_sendtime, chat_message) VALUES(#{clubNum}, #{memberNum}, NOW(), #{chatMessage})
 	</insert>
 	
-	<select id="getMessages">
-		SELECT * FROM chat WHERE club_num = 11
-	</select>
+	<!-- 채팅내역 불러오기 -->
+	<select id="getMessages" resultMap="chatResult">
+		SELECT c.club_num, date_format(chat_sendtime,'%Y.%m.%d | %h:%i:%s %p') as chat_string_sendtime, chat_message, m.member_nickname 
+		FROM chat c, member m WHERE c.member_num = m.member_num AND c.club_num = #{clubNum}
+	</select> 
 	
 	
 	<!-- 방장 x , 참여중인 모임 목록 가져오기 -->
@@ -121,4 +138,21 @@
 <!-- <select id="getOpenClubList" resultMap="club">
 		SELECT * FROM CLUB WHERE club_leader = #{clubLeader}
 	</select> -->
+	
+<!-- 정연하단추가20210326 -->
+		<select id="selectClub" resultType="com.project.plus.domain.ClubVO">
+		<![CDATA[
+		SELECT 
+			club_num  as clubNum,
+			club_thumb_pic as clubThumb_pic,  
+			club_name as clubName , 
+			club_leader as clubLeader,
+			club_fee as clubFee,
+			club_startdate as clubStartDate , 
+			club_enddate as clubEndDate
+		    FROM club
+		    WHERE club_num = #{clubNum}
+	    ]]>
+	</select>
+	
 </mapper>
