@@ -117,7 +117,7 @@ public class ClubController {
 
 	// 모임 상세정보 
 	@RequestMapping("/getClub.do")
-	public String getClub(ClubVO vo,HeartVO hvo, Model model) {
+	public String getClub(@RequestParam("clubNum") int clubNum,HeartVO hvo, Model model) {
 
 		//정연 추가 
 		hvo.setClubNum(2);
@@ -128,8 +128,8 @@ public class ClubController {
 		//여기위 까지
 		
 		getReviews(model,11);
-		model.addAttribute("club", clubService.getClub(vo));
-		log.info("모임 번호 : " + vo.getClubNum() + " 상세 정보 ");
+		model.addAttribute("club", clubService.getClub(clubNum));
+		log.info("모임 번호 : " + clubNum+ " 상세 정보 ");
 		return "getClub.club";
 	}
 
@@ -191,7 +191,7 @@ public class ClubController {
 		log.info("채팅 로그인 멤버 번호 : " + memNum);
 		List<ClubVO> clubs = clubService.getChatList(memNum);
 		model.addAttribute("clubs", clubs);
-		return "chat";
+		return "club/chat";
 	}
 	
 	// 클럽 넘버를 받아야 함 

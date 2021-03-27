@@ -126,11 +126,7 @@
 </section>
 </wrap>
 <!-- 카카오 link api -->
-<<<<<<< HEAD
 <script type="text/javascript">
-=======
-  <script>
->>>>>>> cc7b2e2ad58d9bf5737df9772dbfd322bad86475
   Kakao.init('c727ac6af8f4ea892e4524df5eed6359');
   Kakao.isInitialized();
 

@@ -530,7 +530,7 @@ left
 						<div class="card border-0 transform-on-hover">
 
 							<a class="lightbox"
-								href='/club/info?club_num=<c:out value="${club.clubNum}" />'>
+								href='getClub.do?clubNum=<c:out value="${club.clubNum}" />'>
 
 								<img id="clubmainpic"
 								src="${path}/resources${club.clubMain_pic}"
@@ -546,7 +546,7 @@ left
 								</div>
 								<div class=clubtitle>
 									<a class=clubtitle
-										href='/club/info?club_num=<c:out value="${club.clubNum}" />'>
+										href='getClub.do?clubNum=<c:out value="${club.clubNum}" />'>
 										${club.clubName} </a>
 								</div>
 								<div class=subtitle>
