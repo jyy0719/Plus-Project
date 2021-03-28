@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import com.project.plus.domain.CriteriaMem;
 import com.project.plus.domain.MemberVO;
 
 public interface MemberMapper {
@@ -21,8 +22,10 @@ public interface MemberMapper {
 	public void logout(HttpSession session);
 	
 	public MemberVO selectMember(MemberVO vo);
+	public MemberVO viewMember(int memberNum);
 	
-	List<MemberVO> memberList(MemberVO vo);
+	public List<MemberVO> memberList(CriteriaMem cmem);
+	public int listCount();
 
 	
 	//정연 하단 추가 20210326
@@ -36,6 +39,7 @@ public interface MemberMapper {
 	public void deductMemberPoint(MemberVO vo);
 	
 	public void updateClubLeaderPoint(MemberVO vo);
+	
 
 
 

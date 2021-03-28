@@ -2,16 +2,10 @@ package com.project.plus.service;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import javax.servlet.http.HttpSession;
 
-import org.apache.ibatis.session.SqlSession;
-import org.springframework.ui.Model;
-
-import com.project.plus.domain.InquiryVO;
+import com.project.plus.domain.CriteriaMem;
 import com.project.plus.domain.MemberVO;
-import com.project.plus.domain.PaymentVO;
 
 public interface MemberService {
 
@@ -32,8 +26,10 @@ public interface MemberService {
 	void updateMember(MemberVO vo);
 	
 	public MemberVO selectMember(MemberVO vo);
+	public MemberVO viewMember(int memberNum);
 
-	List<MemberVO> memberList(MemberVO vo);
+	public List<MemberVO> memberList(CriteriaMem cmem);
+	public int listCount();
 
 	   void updateMemberPoint (MemberVO vo);
 	   int selectMemberPoint (MemberVO vo);
