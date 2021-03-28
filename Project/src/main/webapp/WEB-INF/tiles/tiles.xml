@@ -43,7 +43,7 @@
     <put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" />   
   </definition>
   
-  <definition name="*.page" extends="base"> 
+  <definition name="*.club" extends="base"> 
   	<put-attribute name="body" value="/WEB-INF/views/club/{1}.jsp" /> 
   </definition>
   
