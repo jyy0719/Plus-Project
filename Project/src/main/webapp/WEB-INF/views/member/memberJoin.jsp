@@ -273,7 +273,7 @@
 		        var chk = $("#nickname").val().substring(i,i+1); 
 		
 		        if(chk.match(/([^가-힣a-zA-Z\x20])/i)){
-		        	alert("자음과 모음을 분리해 사용할 수 없습니다");
+		        	alert("자음과 모음을 분리해 사용할 수 없습니다. 특수문자는 사용할 수 없습니다.");
 		            return;
 		       	}
 			    if ($("#nickname").val().length > 8) {

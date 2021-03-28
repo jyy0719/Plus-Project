@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
- <title>LoginHeader</title>
+ <title>회원가입</title>
     <!-- css코드삽입 -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css">
