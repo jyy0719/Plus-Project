@@ -80,21 +80,25 @@
         }
 
         #tableWrapper {
-            border: 1px solid rgba(189, 186, 186, 0.829);
             width: 85%;
-            height: 65%;
-            border-radius: 2%;
+            height:65%;
+            min-height:415.550px;
+        }
+        
+
+        #tableWrapper .useInfo {
+            width: 100%;
+                        height:65%;
+            
+            border-collapse: collapse;
+             border: 1px solid rgba(189, 186, 186, 0.829);
+
+            
         }
         
         #block{
-            min-height:415.550px;
+                    min-height:415.550px;
         
-        }
-
-        #tableWrapper table {
-            width: 100%;
-            border-collapse: collapse;
-            
         }
 
         #tableWrapper table th {
@@ -136,20 +140,25 @@
         text-decoration:none;
         }
 
-    </style>
-    <script>
-/* 	$(document).ready(function() {
+	#keywordInput{
+	display:inline;
+	}
+	.search{
+	float:right;
+	margin-bottom:3px;
+	margin-right:3px;
+	
+	}
+	
 
-    function fn_view(memberNum){
-        
-        var form = document.getElementById("tableWrapper");
-        var url = "<c:url value='memberUpdate.do'/>";
-        url = url + "?memberNum=" + memberNum;
-        
-        form.action = url;    
-        form.submit(); 
-    } */
-    </script>
+    </style>
+ <script>
+    $(function(){
+      $('#searchBtn').click(function() {
+        self.location = "memberList" + '${pmem.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());
+      });
+    });   
+</script>
 </head>
 
 <body>
@@ -157,46 +166,59 @@
         <div class="Content">
             <h1>회원관리</h1>
             
-           <div id="tableWrapper">
-           	 <div id="block">
-              <table class="useInfo">
-                  <tr>
-                  	<th>회원번호</th>
-                      <th>회원Email</th>
-                      <th>회원이름</th>
-                      <th>가입일</th>
-                      <th>상세보기</th> 
-                  </tr>
-                  
-                     <c:forEach var="list" items="${list}" >
-                        <tr>
-                        	 <td>${list.memberNum }</td>
-                           <td>${list.memberEmail }</td>
-                           <td>${list.memberName }</td>
-                           <td>${list.memberJoindate }</td>
-                          <td><button><a id="info" href="${path}/memberView.do?memberNum=${list.memberNum}">상세보기</a></button></td>
-                      
-                        </tr>
-                     </c:forEach>
-              </table>
-               </div> <!-- block -->
+       	 <form role="form" method="get">
+       	        	            <div id="tableWrapper">
+       	 
+ <div class="search">
+    <select name="searchType">
+      <option value="null"<c:out value="${scmem.searchType == null ? 'selected' : ''}"/>>-----</option>
+      <option value="e"<c:out value="${scmem.searchType eq 'e' ? 'selected' : ''}"/>>이메일</option>
+      <option value="n"<c:out value="${scmem.searchType eq 'n' ? 'selected' : ''}"/>>이름</option>
+    </select>
+
+    <input type="text" size="30" name="keyword" id="keywordInput" value="${scmem.keyword}"/>
+    <button id="searchBtn" type="button">검색</button>
+</div>
+
+      <div id="block"> 	 
+		              <table class="useInfo">
+		                  <tr>
+		                  	<th>회원번호</th>
+		                      <th>회원Email</th>
+		                      <th>회원이름</th>
+		                      <th>가입일</th>
+		                      <th>상세보기</th> 
+		                  </tr>
+		                  
+		                     <c:forEach var="list" items="${list}" >
+		                        <tr>
+		                        	<td>${list.memberNum }</td>
+		                           <td>${list.memberEmail }</td>
+		                           <td>${list.memberName }</td>
+		                           <td>${list.memberJoindate }</td>
+		                          <td><button><a id="info" href="${path}/memberView?memberNum=${list.memberNum}">상세보기</a></button></td>
+		                      
+		                        </tr>
+		                     </c:forEach>
+		              </table>
+              </div><!-- block -->
 					 <div id="pageArea">
+              
 						  <ul class="paging">
-						    <c:if test="${pmem.prev}">
-						    	<li><a href="memberList.do${pmem.makeQuery(pmem.startPage - 1)}">이전</a></li>
-						    </c:if> 
+							  
+						  
+						    	<li><a class="span" href="memberList${pmem.makeSearch(pmem.startPage - 1)}">◀</a></li>
 						
 						    <c:forEach begin="${pmem.startPage}" end="${pmem.endPage}" var="idx">
-						    	<li><a href="memberList.do${pmem.makeQuery(idx)}"><span class="span">${idx}</span></a></li>
+						    	<li><a href="memberList${pmem.makeSearch(idx)}"><span class="span">${idx}</span></a></li>
 						    </c:forEach>
 						
-						    <c:if test="${pmem.next && pmem.endPage > 0}">
-						    	<li><a href="memberList.do${pmem.makeQuery(pmem.endPage + 1)}">다음</a></li>
-						    </c:if> 
+						    	<li><a class="span" href="memberList${pmem.makeSearch(pmem.endPage + 1)}">▶</a></li>
 						  </ul>
 					 </div><!-- pageArea -->
      
             </div><!-- wrapper -->
+       	 </form>
         </div>
     </div>
 </body>
