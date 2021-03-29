@@ -15,7 +15,7 @@ public interface ClubMapper {
 	public void deleteClub(ClubVO vo);
 	public int apply(ApplyVO apply);
 	public Integer getOneApply(ApplyVO apply);
-
+	public int plusCurnum(int clubNum);
 	
 	//정연하단 추가 20210326
 
