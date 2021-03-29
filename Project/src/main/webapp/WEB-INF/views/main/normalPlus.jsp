@@ -49,11 +49,11 @@
 
 				<div class="row">
 				<c:forEach items="${normal2}" var="club" varStatus="status" begin="0"
-					end="11">
-					<div class="col-md-6 col-lg-4">
+					end="5">
+					<div class="col-md-8 col-lg-4">
 						<div class="card border-0 transform-on-hover">
 
-							<a class="lightbox"
+							<a class="lightboxbest"
 									href='getClub.do?clubNum=<c:out value="${club.clubNum}" />'>
 								<img id="clubmainpic"
 								src="${path}/resources${club.clubMain_pic}"

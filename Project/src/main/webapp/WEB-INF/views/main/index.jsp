@@ -13,7 +13,7 @@
 <link rel="stylesheet" type="text/css"
 	href="${path}/resources/css/index.css">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <!-- 부트 스트랩 -->
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -131,7 +131,7 @@
 				<h3 id="viewtitle">
 					<b> 💙BEST 인기 더하기</b>
 				</h3>
-				<a href="totalList.do" id="viewtotal"> 더 보기 > </a>
+				<a href="totalList" id="viewtotal"> 더 보기 > </a>
 			</div>
 
 			<div class="row">
@@ -197,7 +197,7 @@
 				<h3 id="viewtitle">
 					<b>🚩내 주변 가까운 더하기</b>
 				</h3>
-				<a href="totalList.do" id="viewtotal"> 더 보기 > </a>
+				<a href="totalList" id="viewtotal"> 더 보기 > </a>
 			</div>
 
 			<div class="row">
@@ -257,7 +257,9 @@
 
 
  <div class="addplus">
-		<a href="clubForm.do"><i class="fas fa-plus-circle fa-4x"></i></a>
+		<a href="clubForm"><span class="material-icons" style= "font-size:55px;" >
+add_circle
+</span></a>
 	</div> 
 
 	</div>

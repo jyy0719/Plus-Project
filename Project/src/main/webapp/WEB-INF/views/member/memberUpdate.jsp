@@ -155,7 +155,7 @@ chNickname = function(){
         <!-- <img src="../images/logo.png" id="logo"> -->
     </div>
 
-  <form action="memberUpdate.do" method="POST" enctype="multipart/form-data">
+  <form action="memberUpdate" method="POST" enctype="multipart/form-data">
 
     <!-- wrapper -->
     <div id="wrapper">

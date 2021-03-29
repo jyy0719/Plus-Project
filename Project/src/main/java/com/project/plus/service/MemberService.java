@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import com.project.plus.domain.CriteriaMem;
 import com.project.plus.domain.MemberVO;
+import com.project.plus.domain.SearchCriteriaMem;
 
 public interface MemberService {
 
@@ -28,8 +29,8 @@ public interface MemberService {
 	public MemberVO selectMember(MemberVO vo);
 	public MemberVO viewMember(int memberNum);
 
-	public List<MemberVO> memberList(CriteriaMem cmem);
-	public int listCount();
+	public List<MemberVO> memberList(SearchCriteriaMem scmem);
+	public int listCount(SearchCriteriaMem scmem);
 
 	   void updateMemberPoint (MemberVO vo);
 	   int selectMemberPoint (MemberVO vo);

@@ -140,7 +140,7 @@
                              $.ajax({
                                  
                                  type:"GET",
-                                 url:"mailCheck.do?email=" + email,
+                                 url:"mailCheck?email=" + email,
                                  success:function(num1){
                                          console.log("data : " + num1);
                                          boxWrap.attr("class", "mail_check_input_box_true int1"); 
@@ -319,7 +319,7 @@
        <%--  <img src="${path}/resources/img/images/logo.png" id="logo"> --%>
     </div>
 <!--onsubmit="return submitCheck();"  -->
-  <form action="memberJoin.do" method="POST" enctype="multipart/form-data" >
+  <form action="memberJoin" method="POST" enctype="multipart/form-data" >
 
     <!-- wrapper -->
     <div id="wrapper">

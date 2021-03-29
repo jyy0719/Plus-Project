@@ -26,6 +26,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.project.plus.domain.CriteriaMem;
 import com.project.plus.domain.MemberVO;
 import com.project.plus.domain.PageMakerMem;
+import com.project.plus.domain.SearchCriteriaMem;
 import com.project.plus.service.MemberService;
 import com.project.plus.utils.ProfileUtils;
 
@@ -43,23 +44,23 @@ public class MemberController {
     private JavaMailSender mailSender;
 
 
-	@RequestMapping(value="/memberList.do", method=RequestMethod.GET)
-	public String memberList(Model model, CriteriaMem cmem) {
+	@RequestMapping(value="/memberList", method=RequestMethod.GET)
+	public String memberList(Model model, SearchCriteriaMem scmem) {
 		System.out.println("리스트 조회 하고싶다..");
 		
-		List<MemberVO> list = memberService.memberList(cmem);
+		List<MemberVO> list = memberService.memberList(scmem);
 		System.out.println(list);
 		model.addAttribute("list", list);
 		
 		PageMakerMem pmem = new PageMakerMem();
-		pmem.setCriMem(cmem);
-		pmem.setTotalCount(memberService.listCount());
+		pmem.setCriMem(scmem);
+		pmem.setTotalCount(memberService.listCount(scmem));
 		model.addAttribute("pmem", pmem);
 		return "memberList.member";
 	}
 	
 
-	@RequestMapping(value="memberView.do", method=RequestMethod.GET)
+	@RequestMapping(value="memberView", method=RequestMethod.GET)
     public String memberView(MemberVO memberNum, Model model){
 		System.out.println("memberView진입");
         // 회원 정보를 model에 저장
@@ -70,13 +71,13 @@ public class MemberController {
         return "memberView.member";
     }
 
-	@RequestMapping(value="memberJoin.do", method=RequestMethod.GET)
+	@RequestMapping(value="memberJoin", method=RequestMethod.GET)
 	public String memberjoinpage(MemberVO vo, HttpSession session, Model model) throws Exception {
 		System.out.println("회원가입 get메서드 진입");
 	return "memberJoin.member";
 	}
 	
-	@RequestMapping(value="memberJoin.do", method=RequestMethod.POST)
+	@RequestMapping(value="memberJoin", method=RequestMethod.POST)
 	public String memberJoin(MemberVO vo, @RequestParam("memberPhoto") MultipartFile file, HttpServletRequest request) throws Exception {
 		System.out.println("회원가입 컨트롤러 진입");
 		// 파일을 저장할 절대 경로 지정
@@ -117,7 +118,7 @@ public class MemberController {
 	
 	
 	
-	@RequestMapping(value="memberUpdate.do", method=RequestMethod.GET)
+	@RequestMapping(value="memberUpdate", method=RequestMethod.GET)
 	public String memberUpdatepage(MemberVO vo, HttpSession session, Model model) throws Exception {
 	return "memberUpdate.member";
 	}
@@ -133,7 +134,7 @@ public class MemberController {
 	 */
 
 	
-	@RequestMapping(value="memberUpdate.do", method=RequestMethod.POST)
+	@RequestMapping(value="memberUpdate", method=RequestMethod.POST)
 	public String memberUpdate(MemberVO vo, HttpSession session, Model model, HttpServletResponse response, @RequestParam("memberPhoto") MultipartFile file, HttpServletRequest request) throws Exception {
 		
 		
@@ -186,7 +187,7 @@ public class MemberController {
 	
 	public static final Logger logger = LoggerFactory.getLogger(MemberController.class);
     
-	@RequestMapping(value="mailCheck.do", method=RequestMethod.GET)
+	@RequestMapping(value="mailCheck", method=RequestMethod.GET)
     @ResponseBody
     public String mailCheckGET(String email) throws Exception{
         

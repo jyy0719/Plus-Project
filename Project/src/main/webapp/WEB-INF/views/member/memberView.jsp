@@ -155,7 +155,7 @@ chNickname = function(){
         <!-- <img src="../images/logo.png" id="logo"> -->
     </div>
 
-  <form action="memberUpdate.do" method="POST" enctype="multipart/form-data">
+  <form action="memberUpdate" method="POST" enctype="multipart/form-data">
 
     <!-- wrapper -->
     <div id="wrapper">
@@ -249,10 +249,10 @@ chNickname = function(){
 
 
                 <div class="btn_area">
-                <button type="submit" id="btnJoin">
+                <button type="submit" id="btnUp">
                     <span>수정하기</span>
                 </button>
-                 <button type="button" id="btnJoin">
+                 <button type="button" id="btnDel">
                     <span>삭제하기</span>
                 </button>
             	</div>

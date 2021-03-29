@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import com.project.plus.domain.CriteriaMem;
 import com.project.plus.domain.MemberVO;
+import com.project.plus.domain.SearchCriteriaMem;
 
 public interface MemberMapper {
 	public void joinMember(MemberVO vo);
@@ -24,8 +25,8 @@ public interface MemberMapper {
 	public MemberVO selectMember(MemberVO vo);
 	public MemberVO viewMember(int memberNum);
 	
-	public List<MemberVO> memberList(CriteriaMem cmem);
-	public int listCount();
+	public List<MemberVO> memberList(SearchCriteriaMem scmem);
+	public int listCount(SearchCriteriaMem scmem);
 
 	
 	//정연 하단 추가 20210326

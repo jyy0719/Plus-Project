@@ -160,7 +160,8 @@ form.box input[type=text]::placeholder {
    display: inline-block;
    width: 130px;
    height: 120px;
-   background-color: rgba(146, 194, 221, 0.123);
+   background-color: rgba(146, 194, 221, 0.123); 
+
    margin: 20px 60px 20px 20px;
    border-radius: 30%;
    box-shadow: 0 5px 15px -5px #52515170;
@@ -474,11 +475,13 @@ left
    cursor: pointer;
    position: absolute;
    right: 3%;
-     color: rgb(0, 30, 250);
+      font-size : 40px;
+      color: rgb(0, 30, 250);
 }
-.material-icons{
-   color: rgb(0, 30, 250);
-       
-}
-   
+
+ .material-icons:hover{
+     transform: scale(1.1);
+   color: #ccf2f4; 
+} 
+
 
