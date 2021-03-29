@@ -211,7 +211,7 @@ let roomId = "";
 			data: {
 				clubNum:roomId
 			},
-			url: "/plus/getMessages.do",
+			url: "/plus/getMessages",
 			success : function(data){        
 				console.log("채팅내역 불러오기 성공"); 
 				for(var i=0; i<data.length; i++){
@@ -280,7 +280,7 @@ let roomId = "";
 				chatMessage:msg
 				
 			},
-			url: "/plus/insertMessage.do",
+			url: "/plus/insertMessage",
             success: function (data) {
             	console.log(data);
 	           	if(data==1){
