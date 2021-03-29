@@ -117,8 +117,8 @@
           imageUrl:
             'https://postfiles.pstatic.net/MjAyMTAzMjFfMTYy/MDAxNjE2MzMxNjMzMTQy.AqxK620MPDQyOyUWo0DQaD2gX7k63f360KEStS_8LhUg.2HGpYONTIq7XJd6uKdSkvOCEsJu70nUTujm9HSGnXG8g.PNG.jk940816/logo.png?type=w966',
           link: {
-            mobileWebUrl: 'http://localhost:9999/plus/getClub.do',
-            webUrl: 'http://localhost:9999/plus/getClub.do',
+            mobileWebUrl: 'http://localhost:9999/plus/getClub',
+            webUrl: 'http://localhost:9999/plus/getClub',
           },
         },
         social: {
@@ -129,15 +129,15 @@
           {
             title: '웹으로 보기',
             link: {
-              mobileWebUrl: 'http://localhost:9999/plus/getClub.do',
-              webUrl: 'http://localhost:9999/plus/getClub.do',
+              mobileWebUrl: 'http://localhost:9999/plus/getClub',
+              webUrl: 'http://localhost:9999/plus/getClub',
             },
           },
           {
             title: '앱으로 보기',
             link: {
-              mobileWebUrl: 'http://localhost:9999/plus/getClub.do',
-              webUrl: 'http://localhost:9999/plus/getClub.do',
+              mobileWebUrl: 'http://localhost:9999/plus/getClub',
+              webUrl: 'http://localhost:9999/plus/getClub',
             },
           },
         ],
@@ -214,7 +214,7 @@ $(document).ready(function () {
 							startIndex:startIndex
 						}),
 						contentType: "application/json",
-						url: "/plus/getMoreReview.do",
+						url: "/plus/getMoreReview",
 			            success: function (data) {
 			            	console.log(data);
 			            	let reviewList = "";
@@ -257,7 +257,7 @@ $(document).ready(function () {
 							clubNum:'${club.clubNum}',
 							memberNum:"3"
 						},
-						url: "/plus/apply.do",
+						url: "/plus/apply",
 						
 			            success: function (data) {
 			            	console.log(data);
@@ -290,7 +290,7 @@ function toggleImg(){
 			memberNum:"3",
 			clubName: '${club.clubName}'
 		},
-		url: 'insertHeart.do',
+		url: 'insertHeart',
         success: function (result) {
         	console.log(result);
 				console.log(result)
@@ -313,7 +313,7 @@ function toggleImg(){
 					clubNum:'${club.clubNum}',
 					memberNum:"3"
 				},
-				url: 'deleteHeartOne.do',
+				url: 'deleteHeartOne',
 		        success: function (result) {
 		        	console.log(result);
 						console.log(result)

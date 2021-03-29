@@ -38,7 +38,6 @@
 	width: 600px;
 	height: 700px;
 	border: 1px solid #dddddd;
-	/*  margin: 0 auto; */
 }
 
 .header {
@@ -57,11 +56,9 @@
 
 .time-date {
 	color: #747474;
-	;
 }
 
 .other-message-box {
-	/* position: relative; */
 	width: 300px;
 	display: flex;
 	flex-direction: column;
@@ -96,8 +93,6 @@
 }
 
 .mymessage {
-	/* position:relative; */
-	/* float:right; */
 	margin-right: 10px;
 	width: 300px;
 	padding: 5px 5px 5px 5px;
@@ -109,7 +104,6 @@
 }
 
 #send-date {
-	/* position:absolute; */
 	height: 20px;
 	margin-bottom: 10px;
 }

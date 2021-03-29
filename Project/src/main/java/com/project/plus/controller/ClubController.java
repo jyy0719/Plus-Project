@@ -46,14 +46,14 @@ public class ClubController {
 	@Autowired
 	private HeartService heartService;
 	
-	@GetMapping("/clubForm.do")
+	@GetMapping("/clubForm")
 	public String getClubForm() {
 		return "club/clubForm";
 	}
 	
 
 	// 모임 등록, 파일 업로드
-	@RequestMapping(value = "/insertClub.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/insertClub", method = RequestMethod.POST)
 	public String insertClub(ClubVO vo, @RequestParam("upload") MultipartFile[] file, HttpServletRequest request)
 			throws Exception {
 
@@ -63,12 +63,12 @@ public class ClubController {
 		clubService.insertClub(vo); // DB에 저장
 		log.info("모임 번호 : " + vo.getClubNum() + " 등록 완료 ");
 		log.info(uploadPath);
-		return "redirect:main.do";
+		return "redirect:main";
 
 	}
 
 	// 모임 수정  
-	@RequestMapping("/updateClub.do")
+	@RequestMapping("/updateClub")
 	public String updateClub(ClubVO vo, @RequestParam("upload") MultipartFile[] file, HttpServletRequest request)
 			throws Exception {
 		System.out.println(vo.getClubShutDate());
@@ -78,7 +78,7 @@ public class ClubController {
 		clubService.updateClub(vo);
 		log.info("모임 번호 : " + vo.getClubNum() + " 수정 완료 ");
 
-		return "redirect:main.do";
+		return "redirect:main";
 	}
 
 	
@@ -100,7 +100,7 @@ public class ClubController {
 	
 	// json을 이용하여 더보기 리뷰 리스트 가져오기
 	// produces : response의 content-type을 utf-8로 인코딩하여 보내기
-	@RequestMapping(value = "/getMoreReview.do", produces = "application/text;charset=UTF-8", method = RequestMethod.POST)
+	@RequestMapping(value = "/getMoreReview", produces = "application/text;charset=UTF-8", method = RequestMethod.POST)
 	@ResponseBody
 	public String getMoreReviews(@RequestBody Map<String, String> param) throws JsonProcessingException {
 		Map<String, Integer> condition = new HashMap<String, Integer>();
@@ -123,7 +123,7 @@ public class ClubController {
 	}
 
 	// 모임 상세정보 
-	@RequestMapping("/getClub.do")
+	@RequestMapping("/getClub")
 	public String getClub(@RequestParam("clubNum") int clubNum,HeartVO hvo, Model model) {
 
 		//정연 추가 
@@ -141,7 +141,7 @@ public class ClubController {
 	}
 
 	// 회원 모임 수정 폼 
-	@RequestMapping("/getMyClubInfo.do")
+	@RequestMapping("/getMyClubInfo")
 	public String getMyClubInfo(ClubVO vo, Model model) {
 		vo = clubService.getMyClubInfo(vo);
 
@@ -166,7 +166,7 @@ public class ClubController {
 		return "myClubInfo.club";
 	}
 
-	@RequestMapping("/deleteClub.do")
+	@RequestMapping("/deleteClub")
 	public String deleteClub(ClubVO vo) {
 		clubService.deleteClub(vo);
 		log.info("모임 번호 : " + vo.getClubNum() + " 삭제 완료 ");

@@ -23,7 +23,7 @@ public class ChatController {
 	ChatService chatService;
 	
 	// 채팅방 목록 불러오기 
-	@RequestMapping("/chat.do")
+	@RequestMapping("/chat")
 	public String getChatList(@RequestParam("memberNum") int memNum, Model model) {
 		log.info("채팅 로그인 멤버 번호 : " + memNum);
 		List<ClubVO> clubs = chatService.getChatList(memNum);
@@ -32,7 +32,7 @@ public class ChatController {
 	}
 	
 	// 클럽 넘버를 받아야 함 
-	@RequestMapping(value = "/getMessages.do")
+	@RequestMapping(value = "/getMessages")
 	@ResponseBody
 	public List<ChatVO> getMessages(@RequestParam("clubNum") int clubNum) {
 		// vo 리턴하는거 
@@ -42,7 +42,7 @@ public class ChatController {
 	}
 	
 	// 채팅 메시지 db 저장 
-	@RequestMapping("/insertMessage.do")
+	@RequestMapping("/insertMessage")
 	@ResponseBody
 	public int insertMessage(ChatVO msg) {
 		log.info("모임번호 : " + msg.getClubNum() + ", 멤버번호 : " + msg.getMemberNum() + ", 메시지 : " + msg.getChatMessage());
