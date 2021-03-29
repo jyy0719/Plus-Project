@@ -7,6 +7,7 @@
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <!-- 그래서 path 써주고 그 아래 소스 파일 이름 지정해주면 된다 ! 이건 진경언니가 준거 !   -->
 <link rel="stylesheet" href="${path}/resources/css/reviewList.css">
+    <script type="text/javascript" src="${path}/resources/js/jquery-1.12.4.min.js"></script>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -15,7 +16,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>회원관리</title>
     <script>
     </script>
     <style>
@@ -81,13 +82,27 @@
         #tableWrapper {
             border: 1px solid rgba(189, 186, 186, 0.829);
             width: 85%;
-            height: 60%;
+            height: 65%;
             border-radius: 2%;
+        }
+        
+        #block{
+            min-height:415.550px;
+        
         }
 
         #tableWrapper table {
             width: 100%;
             border-collapse: collapse;
+            
+        }
+
+        #tableWrapper table th {
+            text-align: center;
+            background-color: grey;
+            padding: 13px;
+            background-color:#001eff;
+            color:white;
         }
 
         #tableWrapper table td {
@@ -95,55 +110,93 @@
             padding: 7px;
 
         }
-
-        #tableWrapper table th {
-            background-color: grey;
-            padding: 13px;
+        #pageArea{
+        margin:0 auto;
+        position:relative;
         }
+        
+        .paging{
+        margin-top:10px;
+        position:absolute;
+        left:45%;
+        }
+        
+       .paging > li{
+        list-style:none;
+        float:left;
+        padding:6px 1px;
+        }
+        
+        .span{
+        padding:6px 12px;
+        border: 1px solid lightgray;
+        }
+        
+        #info, .paging >li :hover{
+        text-decoration:none;
+        }
+
     </style>
+    <script>
+/* 	$(document).ready(function() {
+
+    function fn_view(memberNum){
+        
+        var form = document.getElementById("tableWrapper");
+        var url = "<c:url value='memberUpdate.do'/>";
+        url = url + "?memberNum=" + memberNum;
+        
+        form.action = url;    
+        form.submit(); 
+    } */
+    </script>
 </head>
 
 <body>
     <div class="Container">
         <div class="Content">
             <h1>회원관리</h1>
-            <!-- <div id="currentPoint">
-                <table>
-                    <tr>
-                        <th id="nowPoint">나의 현재 포인트</th>
-                        <th id="point"> ${currentMemberPoint} 원</th>
-                    </tr>
-                </table>
-                <div id="chargeBtn">
-                    <input type="button" value="포인트충전" id="showPopup" />
-                </div>
-            </div> -->
-            <div id="tableWrapper">
-                <table class="useInfo">
-                    <tr>
-                        <th>회원Email</th>
-                        <th>회원이름</th>
-                        <th>가입일</th>
-                        <th>상세보기</th> 
-                    </tr>
-                    
- <%--                <c:if test="${empty paymentList }">
-                    <tr><td></td></tr><tr><td></td></tr><tr><td></td></tr>
-                       <tr><td colspan="4" lowspan="2" align="center" style="font-size:20px; font-weight:bold;">포인트 이용내역이 없습니다.</td></tr>
-                    </c:if> --%>
-                    
-             <%--        <c:if test="${memberList != null || paymentList != ''}"> --%>
-                       <c:forEach var="ml" items="${memberList }" >
-                          <tr>
-                             <td>${ml.memberEmail }</td>
-                             <td>${ml.memberName }</td>
-                             <td>${ml.memberJoindate }</td>
-                             <td>상세보기</td>
-                          </tr>
-                       </c:forEach>
-              <%--       </c:if>  --%>
-                </table>
-            </div>
+            
+           <div id="tableWrapper">
+           	 <div id="block">
+              <table class="useInfo">
+                  <tr>
+                  	<th>회원번호</th>
+                      <th>회원Email</th>
+                      <th>회원이름</th>
+                      <th>가입일</th>
+                      <th>상세보기</th> 
+                  </tr>
+                  
+                     <c:forEach var="list" items="${list}" >
+                        <tr>
+                        	 <td>${list.memberNum }</td>
+                           <td>${list.memberEmail }</td>
+                           <td>${list.memberName }</td>
+                           <td>${list.memberJoindate }</td>
+                          <td><button><a id="info" href="${path}/memberView.do?memberNum=${list.memberNum}">상세보기</a></button></td>
+                      
+                        </tr>
+                     </c:forEach>
+              </table>
+               </div> <!-- block -->
+					 <div id="pageArea">
+						  <ul class="paging">
+						    <c:if test="${pmem.prev}">
+						    	<li><a href="memberList.do${pmem.makeQuery(pmem.startPage - 1)}">이전</a></li>
+						    </c:if> 
+						
+						    <c:forEach begin="${pmem.startPage}" end="${pmem.endPage}" var="idx">
+						    	<li><a href="memberList.do${pmem.makeQuery(idx)}"><span class="span">${idx}</span></a></li>
+						    </c:forEach>
+						
+						    <c:if test="${pmem.next && pmem.endPage > 0}">
+						    	<li><a href="memberList.do${pmem.makeQuery(pmem.endPage + 1)}">다음</a></li>
+						    </c:if> 
+						  </ul>
+					 </div><!-- pageArea -->
+     
+            </div><!-- wrapper -->
         </div>
     </div>
 </body>

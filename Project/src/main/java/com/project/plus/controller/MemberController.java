@@ -23,7 +23,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.project.plus.domain.CriteriaMem;
 import com.project.plus.domain.MemberVO;
+import com.project.plus.domain.PageMakerMem;
 import com.project.plus.service.MemberService;
 import com.project.plus.utils.ProfileUtils;
 
@@ -40,18 +42,38 @@ public class MemberController {
 	@Autowired
     private JavaMailSender mailSender;
 
-	@RequestMapping(value="memberList.do")
-	public String memberList(MemberVO vo, Model model) {
-		List<MemberVO> memberList = memberService.memberList(vo);
-		model.addAttribute("memberList", memberList);
+
+	@RequestMapping(value="/memberList.do", method=RequestMethod.GET)
+	public String memberList(Model model, CriteriaMem cmem) {
+		System.out.println("리스트 조회 하고싶다..");
+		
+		List<MemberVO> list = memberService.memberList(cmem);
+		System.out.println(list);
+		model.addAttribute("list", list);
+		
+		PageMakerMem pmem = new PageMakerMem();
+		pmem.setCriMem(cmem);
+		pmem.setTotalCount(memberService.listCount());
+		model.addAttribute("pmem", pmem);
 		return "memberList.member";
 	}
 	
 
+	@RequestMapping(value="memberView.do", method=RequestMethod.GET)
+    public String memberView(MemberVO memberNum, Model model){
+		System.out.println("memberView진입");
+        // 회원 정보를 model에 저장
+        model.addAttribute("result", memberService.viewMember(memberNum.getMemberNum()));
+        logger.info("클릭한 회원: "+memberNum);
+        System.out.println("model 출력..?"+model);
+        //번호는 갖고오는데 왜 정보를 못가져오니 ...
+        return "memberView.member";
+    }
+
 	@RequestMapping(value="memberJoin.do", method=RequestMethod.GET)
 	public String memberjoinpage(MemberVO vo, HttpSession session, Model model) throws Exception {
 		System.out.println("회원가입 get메서드 진입");
-	return "memberJoin";
+	return "memberJoin.member";
 	}
 	
 	@RequestMapping(value="memberJoin.do", method=RequestMethod.POST)
@@ -63,7 +85,7 @@ public class MemberController {
 		memberService.joinMember(vo);
 		System.out.println(vo);
 		log.info("회원 번호 : " + vo.getMemberNum() + "멤버프로필사진  등록 ");
-		return "main/index"; //?
+		return "index.main"; //?
 			
 	}
 	
@@ -100,9 +122,17 @@ public class MemberController {
 	return "memberUpdate.member";
 	}
 	
-	
-	
+	/*
+	 * @RequestMapping(value="selectMember.do") public String selectMember(MemberVO
+	 * newVo, Model model, HttpServletRequest request) throws Exception { // int
+	 * memberNum = Integer.parseInt(request.getParameter("memberNum")); //
+	 * vo.setMemberNum(memberNum); // MemberVO newvo =
+	 * memberService.selectMember(vo); model.addAttribute("newVo",
+	 * memberService.selectMember(newVo)); log.info("클릭한 아이디" + newVo); return
+	 * "memberUpdate.member"; }
+	 */
 
+	
 	@RequestMapping(value="memberUpdate.do", method=RequestMethod.POST)
 	public String memberUpdate(MemberVO vo, HttpSession session, Model model, HttpServletResponse response, @RequestParam("memberPhoto") MultipartFile file, HttpServletRequest request) throws Exception {
 		

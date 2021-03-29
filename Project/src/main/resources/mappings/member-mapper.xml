@@ -3,9 +3,6 @@
 
 <mapper namespace="com.project.plus.mapper.MemberMapper">
 
-<!-- colomn part need to modify 완료 -->
-<!-- memberJoin.jsp need to be input ${user.porperty} ...-->
-<!--  위 내용 about insert member (memberJoin) -->
 	<resultMap id="memberResult" type="user">
 		<id property="memberNum" column="member_num"/>
 		<result property="memberPhone" column="member_phone"/>
@@ -19,7 +16,6 @@
 		<result property="memberMarketing" column="member_marketing"/>
 		<result property="memberLatitude" column="member_latitude"/>
 		<result property="memberLongitude" column="member_logitude"/>
-				<!-- <result property="uploadfile" column="CNT"/> -->
 	</resultMap>
 
 	<!-- 회원가입 -->
@@ -47,21 +43,67 @@
     </select>
     
     
-
+<!--  멤버정보 업데이트할때 사용 -->
   	<select id="selectMember" resultMap="memberResult">
+		SELECT * FROM member WHERE
+		member_email = #{memberEmail}
+	</select> 
+	
+
+ 	 <!-- 관리자가 멤버 한 명 조회할때 -->
+  <select id="viewMember" resultMap="memberResult">
+SELECT*
+FROM member
+where member_num = #{memberNum}
+</select>
+  
+  <!-- 
+	<select id="viewMember" resultMap="memberResult">
+		SELECT 
+		member_email = #{memberEmail},
+		member_name = #{memberName},
+		member_pic = #{memberPic},
+		member_nickname = #{memberNickname},
+		member_password = #{memberPassword},
+		member_point = #{memberPoint},
+		member_phone = #{memberPhone}
+		FROM member 
+		where member_num=#{memberNum}
+	</select>   
+  -->
+	
+<!-- 멤버 전체 리스트 조회 -->
+<select id="memberList" resultMap="memberResult">
+SELECT *
+FROM (
+		SELECT *,
+			row_number() over (order by member_num) as rNum
+		FROM member) memPage
+WHERE rNum between #{rowStart} and #{rowEnd}
+ORDER BY member_num 
+</select>
+
+
+<!-- 멤버 페이징에 필요한 쿼리 전체글 세는 갯수-->
+<select id="listCount" resultType="int">
+<![CDATA[
+		SELECT COUNT(member_num)
+		  FROM member
+		 WHERE member_num > 0
+	]]>
+</select>
+
+<!-- 
+  	<select id="memberList" resultMap="memberResult">
 		SELECT 
 		member_email AS memberEmail,
 		member_name AS memberName,
 		member_joindate AS memberJoindate
 		FROM member 
-		ORDER BY memberNum
-	</select> 
-	
-	<!-- 멤버리스트 조회 -->
-  	<select id="memberList" resultMap="memberResult">
-		SELECT * FROM member WHERE
-		member_email = #{memberEmail}
-	</select> 
+		ORDER BY member_num
+	</select>  
+ --> 
+
     
     
 		<!--  닉네임 휴대전화 비밀번호 -->

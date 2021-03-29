@@ -192,33 +192,4 @@ public class ClubController {
 		
 	}	
 	
-	// 채팅방 목록 불러오기 
-	@RequestMapping("/chat.do")
-	public String getChatList(@RequestParam("memberNum") int memNum, Model model) {
-		log.info("채팅 로그인 멤버 번호 : " + memNum);
-		List<ClubVO> clubs = clubService.getChatList(memNum);
-		model.addAttribute("clubs", clubs);
-		return "club/chat";
-	}
-	
-	// 클럽 넘버를 받아야 함 
-	@RequestMapping(value = "/getMessages.do")
-	@ResponseBody
-	public List<ChatVO> getMessages(@RequestParam("clubNum") int clubNum) {
-		// vo 리턴하는거 
-		log.info("채팅내역 불러오는 모임 번호 : " + clubNum);
-		List<ChatVO> lists = clubService.getMessages(clubNum);
-		return lists;
-	}
-	
-	// 채팅 메시지 db 저장 
-	@RequestMapping("/insertMessage.do")
-	@ResponseBody
-	public int insertMessage(ChatVO msg) {
-		log.info(msg);
-		log.info(msg.getChatMessage());
-		log.info(msg.getClubNum());
-		log.info(msg.getMemberNum());
-		return clubService.insertMessage(msg);
-	}
 }
