@@ -173,7 +173,7 @@ public class ClubController {
 		return "redirect:main.do";
 	}
 	
-	@RequestMapping("/apply.do")
+	@RequestMapping("/apply")
 	@ResponseBody
 	public int apply(ApplyVO apply) {
 		log.info("신청할 모임 번호 : " + apply.getClubNum());
