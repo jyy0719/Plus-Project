@@ -33,7 +33,7 @@
 </head>
 
 <body>
-
+<header></header>
 	<!--------------상세검색 영역--------------->
 	<div class="jumbotron">
 		<div id="searchform">
@@ -79,7 +79,7 @@
 	<!----------------검색분류------------------>
 	<div id="sort">
 		<ul>
-			<li class="order_button"><a href="cbHeart desc">인기순</a></li>
+			<li class="order_button"><a href="cbHeart desc" active":"">인기순</a></li>
 			<li class="order_button "><a href="cbNum desc">최신순</a></li>
 			<li class="order_button"><a href="cbAppperiod"> 마감일순</a></li>
 		</ul>
@@ -149,7 +149,7 @@
 							</div>
 						</c:forEach>
 			</section>
-			<div class="search_wrap">
+			<%-- <div class="search_wrap">
 				<div class="search_area">
 					<select name="type">
 						<option value=""
@@ -174,55 +174,26 @@
 					<button>Search</button>
 				</div>
 			</div>
-
-			<div class="pageInfo_wrap">
-				<div class="pageInfo_area">
-					<ul id="pageInfo" class="pageInfo">
-
-						<!-- 이전페이지 버튼 -->
-						<c:if test="${pageMaker.prev}">
-							<li class="pageInfo_btn previous"><a
-								href="${pageMaker.startPage-1}">Previous</a></li>
-						</c:if>
-
-						<!-- 각 번호 페이지 버튼 -->
-						<c:forEach var="num" begin="${pageMaker.startPage}"
-							end="${pageMaker.endPage}">
-							<li class="pageInfo_btn ${pageMaker.cri.pageNum == num ? "active":"" }"><a
-								href="${num}">${num}</a></li>
-						</c:forEach>
-
-						<!-- 다음페이지 버튼 -->
-						<c:if test="${pageMaker.next}">
-							<li class="pageInfo_btn next"><a
-								href="${pageMaker.endPage + 1 }">Next</a></li>
-						</c:if>
+ --%>
+			  
+						 <div id="pageArea">
+						  <ul class="paging">
+						    <c:if test="${cri .prev}">
+						    	<li><a class="span" href="totalList${pageMaker.makeQuery(pageMaker.startPage - 1)}">👈🏼d</li>
+						    </c:if> 
 						
-						<ul class="pagination">
-							<!-- li태그의 클래스에 disabled를 넣으면 마우스를 위에 올렸을 때 클릭 금지 마크가 나오고 클릭도 되지 않는다.-->
-							<!-- disabled의 의미는 앞의 페이지가 존재하지 않다는 뜻이다. -->
-							<li class="disabled"><a href="#"> <span>«</span>
-							</a></li>
-							<!-- li태그의 클래스에 active를 넣으면 색이 반전되고 클릭도 되지 않는다. -->
-							<!-- active의 의미는 현재 페이지의 의미이다. -->
-							<li class="active"><a href="#">1</a></li>
-							<li><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#">4</a></li>
-							<li><a href="#">5</a></li>
-							<li><a href="#"> <span>»</span>
-							</a></li>
-						</ul>
+						    <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
+						    	<li><a href="totalList${pageMaker.makeQuery(idx)}"><span class="span" >${idx}</span></a></li>
+						    </c:forEach>
+						
+						    <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+						    	<li><a class="span" href="totalList${pageMaker.makeQuery(pageMaker.endPage + 1)}">👉🏼</li>
+						    </c:if> 
+						  </ul>
+					 </div><!-- pageArea -->
 
 
-
-					</ul>
-				</div>
-			</div>
-
-
-
-			<form id="moveForm" method="get">
+	<%-- 		<form id="moveForm" method="get">
 				<input type="hidden" name="pageNum"
 					value="${pageMaker.cri.pageNum }"> <input type="hidden"
 					name="amount" value="${pageMaker.cri.amount }"> <input
@@ -231,7 +202,7 @@
 			</form>
 		</div>
 
-
+ --%>
 
 
 		<!------------------------페이징----------------------->
@@ -298,7 +269,6 @@ $(".search_area button").on("click", function(e){
 	moveForm.find("input[name='pageNum']").val(1);
 	moveForm.submit();
 });
-
-            		</script>
+</script>
 </body>
 </html>

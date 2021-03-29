@@ -22,7 +22,7 @@ public class MainController {
 	@Autowired
 	private MainService service;
 
-	@RequestMapping("main.do")
+	@RequestMapping("main")
 	public String mainList(Model model, ClubVO vo) {
 	log.info("main");
 	
