@@ -125,7 +125,7 @@
           likeCount: 286,
           commentCount: ${reviewCount},
         },
-        buttons:[ 
+        buttons: [ 
           {
             title: '웹으로 보기',
             link: {
@@ -143,7 +143,6 @@
         ],
       })
     }
-    
   </script>
 <script>
 
@@ -276,6 +275,14 @@ $(document).ready(function () {
 })
 </script>
 <script>
+ 
+console.log("하트확인 전 ")
+if(${isThereHeart == 0}){
+	state=0
+}else{
+	state=1
+}
+ console.log("하트확인 후 " + state)
 
 function toggleImg(){
 	var state = document.getElementById("heartInput").value; 
