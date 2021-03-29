@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.project.plus.domain.CriteriaMem;
 import com.project.plus.domain.MemberVO;
+import com.project.plus.domain.SearchCriteriaMem;
 import com.project.plus.mapper.MemberMapper;
 import com.project.plus.service.MemberService;
 
@@ -62,14 +63,14 @@ public class MemberServiceImpl implements MemberService {
 		return membermapper.memberNChk(memberNickname);
 	}
 
-	public List<MemberVO> memberList(CriteriaMem cmem) {
+	public List<MemberVO> memberList(SearchCriteriaMem scmem) {
 		List<MemberVO> list = null;
-		list = membermapper.memberList(cmem);
+		list = membermapper.memberList(scmem);
 		return list;
 	}
 	
-	public int listCount() {
-		return membermapper.listCount();
+	public int listCount(SearchCriteriaMem scmem) {
+		return membermapper.listCount(scmem);
 	}
 
 	public MemberVO viewMember(int memberNum) {

@@ -17,7 +17,7 @@
 </head>
 <header></header>
 <section>
-	<form action="insertClub.do" enctype="multipart/form-data" method="post" id="frm">
+	<form action="insertClub" enctype="multipart/form-data" method="post" id="frm">
 		<div class="selection">
 			<div class="select-kind">
 				<label for="exampleFormControlSelect2">더하기 종류</label> <select

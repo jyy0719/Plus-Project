@@ -1,5 +1,8 @@
 package com.project.plus.domain;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -10,7 +13,7 @@ public class PageMakerMem {
 	private int endPage;
 	private boolean prev;
 	private boolean next;
-	private int displayPageNum = 10;
+	private int displayPageNum = 5;
 	private CriteriaMem cmem;
 	
 	public void setCriMem(CriteriaMem cmem) {
@@ -71,5 +74,29 @@ public class PageMakerMem {
 							.build();
 		   
 		return uriComponents.toUriString();
+	}
+	
+	//검색할 때 page, perPageNum, searchType, keyword를 url로 사용할수 있게 하기 위해 만든 메서드
+	public String makeSearch(int page) {
+		
+		UriComponents uriComponents = 
+		UriComponentsBuilder.newInstance().queryParam("page", page)
+								          .queryParam("perPageNum", cmem.getPerPageNum())
+								          .queryParam("searchType", ((SearchCriteriaMem)cmem).getSearchType())
+								          .queryParam("keyword", encoding(((SearchCriteriaMem)cmem).getKeyword()))
+								          .build(); 
+			return uriComponents.toUriString();  
+	}
+	
+	private String encoding(String keyword) {
+		if(keyword == null || keyword.trim().length() == 0) { 
+			return "";
+		}
+		 
+		try {
+			return URLEncoder.encode(keyword, "UTF-8");
+		} catch(UnsupportedEncodingException e) { 
+			return ""; 
+		}
 	}
 }
