@@ -165,42 +165,36 @@ a{
 .lightbox img : hover {
 	 transform: scale(1.05);
 }
- .pageInfo{
-  	list-style : none;
-  	display: inline-block;
-    margin: 50px 0 0 100px;  	
-  }
-  .pageInfo li{
-  	float: left;
-    font-size: 20px;
-    margin-left: 18px;
-    padding: 7px;
-    font-weight: 500;
-  }
- a:link {color:black; text-decoration: none;}
- a:visited {color:black; text-decoration: none;}
- a:hover {color:black; text-decoration: underline;}
-  .active{
-  	background-color: #cdd5ec;
-  }
-  .search_area{
-    display: inline-block;
-    margin-top: 30px;
-    margin-left: 260px;
-  }
-  .search_area input{
-  	height: 30px;
-    width: 250px;
-  }
-  .search_area button{
- 	width: 100px;
-    height: 36px;
-  } 
-  .search_area select{
-  	height: 35px;
-  }
-   
-   
+   #pageArea{
+        margin:0 auto;
+        position:relative;
+        padding-bottom:100px;
+        }
+        
+        .paging{
+        margin-top:10px;
+        position:absolute;
+        left:45%;
+        }
+        
+       .paging > li{
+        list-style:none;
+        float:left;
+        padding:6px 1px;
+        }
+        
+        .span{
+        padding:6px 12px;
+        border: 1px solid lightgray;
+        }
+        
+        #info, .paging >li :hover{
+        text-decoration:none;
+        background-color: rgba(146, 194, 221);
+        }
+        
+      
+    
 </
 style
 >

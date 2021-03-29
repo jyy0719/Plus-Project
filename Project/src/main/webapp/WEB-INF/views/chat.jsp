@@ -32,6 +32,9 @@
 .chatRoom {
 	height: 50px;
 	border-bottom: 1px solid #dddddd;
+	display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .chat-box {
@@ -136,10 +139,18 @@ h2 {
 	color: #dddddd;
 	text-align: center;
 }
+.clubName{
+	margin-left:10px;
+}
 
 #enterBtn {
 	border: 0;
 	outline: 0;
+	border-radius: 3px;
+	float: right;
+    background-color: #001eff;
+    color: white;
+    margin-right: 10px;
 }
 </style>
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
@@ -154,15 +165,16 @@ h2 {
 		<div class="chatRoomList">
 			<div class="header">채팅방 목록</div>
 			<c:forEach items="${clubs}" var="club">
-				<div class="chatRoom">${club.clubName}
+				<div class="chatRoom">
+					<div class="clubName"> ${club.clubName}</div>
 					<input type="button" value="입장" id="enterBtn"
 						onclick="enterRoom(${club.clubNum})" />
+				<input type="hidden" name="hiddenName" value="${club.clubName}" />
 				</div>
-				<input type="hidden" id="clubNum" value="${club.clubNum}" />
 			</c:forEach>
 		</div>
 		<div class="chat-box">
-			<div class="header">메세지 ${user.memberNickname}</div>
+			<div class="header" id="title">더하기</div>
 				<div class="message-wrap" style="overflow: auto">
 					<h2>채팅할 모임을 선택해주세요.</h2>
 				</div>
@@ -175,6 +187,24 @@ h2 {
 </body>
 <script type="text/javascript">
 
+
+$(function() {
+	
+		// 동적인 태그의 채팅방 이름 바꾸기 
+	$(document).on('click', '#enterBtn', function(){		
+		$('#title').text('');
+		let it = $(this);
+		console.log(it);
+		
+		let checkme = $(this).parent('div').find("input[name='hiddenName']").val();
+		console.log(checkme)
+		
+		$('#title').text(checkme);
+		
+		
+	})
+	
+})
 
 let myMessage = "";
 let otherMessage = "";
@@ -194,11 +224,12 @@ let roomId = "";
 			sock.close();
 			console.log("연결끊기완료");
 		}  
+
 		
 		//입장할때마다 소켓에 연결 
 			connect(roomId);
 		
-		$("h2").remove();
+		$('h2').remove();
 		$('.message-wrap').html('');
 		
 		$('#message').attr("onkeydown", "enterKey(" + roomId + ")");
@@ -215,22 +246,22 @@ let roomId = "";
 			success : function(data){        
 				console.log("채팅내역 불러오기 성공"); 
 				for(var i=0; i<data.length; i++){
-				if(name===data[i].members.memberNickname){
-					myMessage = '<div class="mymessage-box">';
-				        myMessage += '<div class="mymessage">' + data[i].chatMessage + '</div>';
-				        myMessage += '<div class="time-date" id="send-date">' + data[i].chatStringSendtime + '</div></div>';
-				        $('.message-wrap').append(myMessage);
-						$('#message').val('');
-				} else{
-					otherMessage = '<div class="other-message-box">';
-						otherMessage += '<div id="othername">' + data[i].members.memberNickname + '</div>';
-						otherMessage += '<div class="others-message">' + data[i].chatMessage + '</div>';
-						otherMessage += '<div class="time-date" id="receive-date">' + data[i].chatStringSendtime + '</div></div>';
-					    $('.message-wrap').append(otherMessage);
+					if(name===data[i].members.memberNickname){
+						myMessage = '<div class="mymessage-box">';
+					        myMessage += '<div class="mymessage">' + data[i].chatMessage + '</div>';
+					        myMessage += '<div class="time-date" id="send-date">' + data[i].chatStringSendtime + '</div></div>';
+					        $('.message-wrap').append(myMessage);
+							$('#message').val('');
+					} else{
+						otherMessage = '<div class="other-message-box">';
+							otherMessage += '<div id="othername"><strong>' + data[i].members.memberNickname + '</strong></div>';
+							otherMessage += '<div class="others-message">' + data[i].chatMessage + '</div>';
+							otherMessage += '<div class="time-date" id="receive-date">' + data[i].chatStringSendtime + '</div></div>';
+						    $('.message-wrap').append(otherMessage);
 					
 					}
 				}
-						$('.message-wrap').append('<p>' + name + "님이 입장하셨습니다." + '</p>');
+						$('.message-wrap').append('<p><strong>' + name + "</strong>님이 입장하셨습니다." + '</p>');
 						$('.message-wrap').scrollTop($('.message-wrap')[0].scrollHeight);
             },
             error: function() {

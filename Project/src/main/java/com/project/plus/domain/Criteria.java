@@ -16,8 +16,11 @@ public class Criteria {
 		/* 한 페이지 당 보여질 게시물 갯수 */
 		private int amount;
 		
-		/* 스킵 할 게시물 수( (pageNum-1) * amount ) */
-		private int skip;
+		/* 페이지 시작넘버 */
+		private int rowStart;
+		
+		/* 페이지에서 끝나는넘버  */
+		private int rowEnd;
 		
 		/* 검색어 키워드 */
 		private String keyword;
@@ -28,51 +31,57 @@ public class Criteria {
 		
 		/* 검색 타입 배열 */
 		private String[] typeArr;
+		private String[] onoffArr;
 		
-		/* 기본 생성자 -> 기봅 세팅 : pageNum = 1, amount = 10 */
+		/* 정렬 방식 */
+		private String orderBy;
+		
+		/* 기본 생성자 -> 기본 세팅 : pageNum = 1, amount = 20 */
 		public Criteria() {
-			this(1,20);
-			this.skip = 0;
+		this.pageNum=1;
+		this.amount=20;
 		}
 		
-		/* 생성자 => 원하는 pageNum, 원하는 amount */
-		public Criteria(int pageNum, int amount) {
-			this.pageNum = pageNum;
-			this.amount = amount;
-			this.skip = (pageNum-1)*amount;
+		public void setPage(int page) {
+			if(page <= 0) {
+				this.pageNum = 1;
+				return ;
+			}
+			this.pageNum = page;
 		}
-
-		public int getPageNum() {
+		
+		public void setAmount(int amount) {
+			if(amount <= 0 || amount>100) {
+				this.amount=20;
+				return ;
+			}
+			this.amount=amount;
+		}
+		
+		public int getPage() {
 			return pageNum;
 		}
-
-		public void setPageNum(int pageNum) {
-			
-			this.skip= (pageNum-1)*this.amount;
-			
-			this.pageNum = pageNum;
+		
+		public int getPageStart() {
+			return (this.pageNum - 1) * amount;
+		}
+		
+		public int getPerPageNum() {
+			return this.amount;
+		}
+		
+		public int getRowStart() {
+			rowStart = ((pageNum - 1) * amount) + 1;
+			return rowStart;
+		}
+		
+		public int getRowEnd() {
+			rowEnd = rowStart + amount - 1;
+			return rowEnd;
 		}
 
-		public int getAmount() {
-			return amount;
-		}
 
-		public void setAmount(int amount) {
-			
-			this.skip= (this.pageNum-1)*amount;
-			
-			this.amount = amount;
-		}
-
-
-		public int getSkip() {
-			return skip;
-		}
-
-		public void setSkip(int skip) {
-			this.skip = skip;
-		}
-
+	
 		public String getKeyword() {
 			return keyword;
 		}
@@ -84,12 +93,12 @@ public class Criteria {
 		public String getType() {
 			return type;
 		}
+		
 
 		public void setType(String type) {
 			this.type = type;
 			this.typeArr = type.split("");
 		}
-
 		public String[] getTypeArr() {
 			return typeArr;
 		}
@@ -97,12 +106,30 @@ public class Criteria {
 		public void setTypeArr(String[] typeArr) {
 			this.typeArr = typeArr;
 		}
-
-		@Override
-		public String toString() {
-			return "Criteria [pageNum=" + pageNum + ", amount=" + amount + ", skip=" + skip + ", keyword=" + keyword
-					+ ", type=" + type + ", typeArr=" + Arrays.toString(typeArr) + "]";
-		}
+		
 
 		
+
+		public String getOnoff() {
+			return onoff;
+		}
+
+		public void setOnoff(String onoff) {
+			this.onoff = onoff;
+			this.onoffArr = type.split("");
+		}
+		public String[] getOnoffArr() {
+			return onoffArr;
+		}
+
+		public void setOnoffArr(String[] OnoffArr) {
+			this.onoffArr= onoffArr;
+		}
+	
+		@Override
+		public String toString() {
+			return "Criteria [pageNum=" + pageNum + ", amount=" + amount +  ", rowStart=" + rowStart + ", rowEnd=" + rowEnd +", keyword=" + keyword
+					+ ", type=" + type + ", typeArr=" + Arrays.toString(typeArr) + ", onoff=" + onoff + ", onoffArr=" + Arrays.toString(onoffArr) +  ", orderBy=" + orderBy+ "]";
+		}
+	
 	}

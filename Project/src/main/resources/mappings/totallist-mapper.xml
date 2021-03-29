@@ -30,8 +30,8 @@
 
 	</resultMap>
 
-<!-- 검색 조건문 -->
-	<sql id="criteria">
+
+<!-- 	<sql id="criteria">
 		<trim prefix="where (" suffix=")" prefixOverrides="OR">
 			<foreach collection="typeArr" item="type">
 				<trim prefix="OR">
@@ -50,38 +50,30 @@
 			</foreach>
 		</trim>
 	</sql>
+ -->
 
-<!-- 게시판 목록 -->
-	<select id="getList" resultMap="clubResult">
-	
-		select * from club
-		WHERE club_shutdate > NOW()
-		AND club_max > club_curnum
-        ORDER BY club_num DESC
-	
-	</select>
-	
     <!-- 게시물 목록(페이징) -->
     <select id="getListPaging" resultMap="clubResult">
-    
-        select *    from club
-                <if test="keyword != null">
-					<include refid="criteria"></include>
-				</if>
-                order by club_num DESC 
-                <!-- as T1 -->
-        limit #{skip},#{amount}
-   
+    SELECT *
+FROM (
+		SELECT *,
+			row_number() over (order by club_num) as rNum
+		FROM club) memPage
+WHERE rNum between #{rowStart} and #{rowEnd}
+ORDER BY club_heart DESC 
     </select>
     
     
  <!-- 게시물 총 개숫 -->
 	<select id="getTotal" resultType="int">
-		select count(*) from club
-		<if test="keyword != null">
-			<include refid="criteria"></include>
-		</if>	
-	
+	<![CDATA[
+		SELECT COUNT(club_num)
+		  FROM club
+		 WHERE club_num > 0
+		AND  club_shutdate > NOW()
+		AND club_max > club_curnum
+		
+	]]>
 	</select>
 
 

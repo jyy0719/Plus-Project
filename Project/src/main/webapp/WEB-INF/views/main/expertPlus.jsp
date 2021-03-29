@@ -53,7 +53,7 @@
 					<div class="col-md-6 col-lg-4">
 						<div class="card border-0 transform-on-hover">
 
-							<a class="lightbox"
+							<a class="lightboxbest"
 									href='getClub.do?clubNum=<c:out value="${club.clubNum}" />'>
 								<img id="clubmainpic"
 								src="${path}/resources${club.clubMain_pic}"

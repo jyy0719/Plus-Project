@@ -189,7 +189,19 @@ public class ClubController {
 			clubService.apply(apply);
 			return 1;
 		}
-		
 	}	
+	
+	@RequestMapping("/plusCurnum")
+	@ResponseBody
+	public int plusCurnum(@RequestParam("clubNum") int clubNum) {
+		int result = clubService.plusCurnum(clubNum);
+		log.info("참여인원수 증가 업데이트");
+		
+		if(result==1) {
+			return 1;
+		} else {
+			return 0;
+		}
+	}
 	
 }
