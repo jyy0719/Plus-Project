@@ -20,7 +20,7 @@
     <!-- 나눔폰트 -->
     <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css">
 
-<title>전문가와 함께하는 도움더하기</title>
+<title>같이하는 즐거움 가치더하기</title>
 </head>
 
 <body>
@@ -29,12 +29,12 @@
     
 	  <div class="mainbanner">
         <img 
-         src="${path}/resources/img/plus2.png"
+         src="${path}/resources/img/plus1.png"
          alt="First slide"> 
-         <div class="bannercontent">
- <h1>도움더하기</h1>
-<h4>내 주변의 전문가와 함께하는 도움더하기</h4>
-<h4>나의 재능과 스펙을 많은 사람들과 공유해보세요.</h4>
+         <div class="bannercontent2">
+ <h1>가치더하기</h1>
+<h4>같은 목표를 가진 사람들과 함께하는 가치더하기</h4>
+<h4>사소하거나 혼자선 힘든 일도 같이하면 즐거움이 2배</h4>
 </div>
     </div>
 
@@ -48,7 +48,7 @@
 			</div>
 
 				<div class="row">
-				<c:forEach items="${expert2}" var="club" varStatus="status" begin="0"
+				<c:forEach items="${normal2}" var="club" varStatus="status" begin="0"
 					end="11">
 					<div class="col-md-6 col-lg-4">
 						<div class="card border-0 transform-on-hover">
@@ -113,7 +113,7 @@
 			</div>
 
 			<div class="row">
-				<c:forEach items="${expert1}" var="club" varStatus="status" begin="0"
+				<c:forEach items="${normal1}" var="club" varStatus="status" begin="0"
 					end="11">
 					<div class="col-md-6 col-lg-3">
 						<div class="card border-0 transform-on-hover">

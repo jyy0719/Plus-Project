@@ -27,10 +27,9 @@
 	href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css">
 
 <title>더하기+ 같이해서 더 가치있는 모임</title>
-<script
-  src="https://code.jquery.com/jquery-3.4.1.js"
-  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-  crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.js"
+	integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+	crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -97,13 +96,13 @@
 				<div class="gallery-container">
 
 					<div class="row">
-						<c:forEach items="${list}" var="club" varStatus="status"
-							begin="0" end="19">
+						<c:forEach items="${list}" var="club" varStatus="status" begin="0"
+							end="19">
 							<div class="col-md-6 col-lg-3">
 								<div class="card border-0 transform-on-hover">
 
 									<a class="lightbox"
-											href='getClub.do?clubNum=<c:out value="${club.clubNum}" />'>
+										href='getClub.do?clubNum=<c:out value="${club.clubNum}" />'>
 										<img id="clubmainpic"
 										src="${path}/resources${club.clubMain_pic}"
 										onerror="this.onerror=null; this.src='${path}/resources/img/img1.jpg'" />
@@ -117,7 +116,7 @@
 										</div>
 										<div class=clubtitle>
 											<a class=clubtitle
-													href='getClub.do?clubNum=<c:out value="${club.clubNum}" />'>
+												href='getClub.do?clubNum=<c:out value="${club.clubNum}" />'>
 												${club.clubName} </a>
 										</div>
 										<div class=subtitle>
@@ -198,6 +197,24 @@
 							<li class="pageInfo_btn next"><a
 								href="${pageMaker.endPage + 1 }">Next</a></li>
 						</c:if>
+						
+						<ul class="pagination">
+							<!-- li태그의 클래스에 disabled를 넣으면 마우스를 위에 올렸을 때 클릭 금지 마크가 나오고 클릭도 되지 않는다.-->
+							<!-- disabled의 의미는 앞의 페이지가 존재하지 않다는 뜻이다. -->
+							<li class="disabled"><a href="#"> <span>«</span>
+							</a></li>
+							<!-- li태그의 클래스에 active를 넣으면 색이 반전되고 클릭도 되지 않는다. -->
+							<!-- active의 의미는 현재 페이지의 의미이다. -->
+							<li class="active"><a href="#">1</a></li>
+							<li><a href="#">2</a></li>
+							<li><a href="#">3</a></li>
+							<li><a href="#">4</a></li>
+							<li><a href="#">5</a></li>
+							<li><a href="#"> <span>»</span>
+							</a></li>
+						</ul>
+
+
 
 					</ul>
 				</div>
