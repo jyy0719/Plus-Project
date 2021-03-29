@@ -9,28 +9,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.project.plus.domain.ClubVO;
-import com.project.plus.service.ExpertService;
-
+import com.project.plus.service.NormalService;
 
 import lombok.extern.log4j.Log4j;
 
+
 @Log4j
 @Controller()
-@SessionAttributes("expert")
+@SessionAttributes("normal")
 
-public class ExpertController {
+public class NormalController {
 
 	@Autowired
-	private ExpertService service;
+	private NormalService service;
 
-	@RequestMapping("expert.do")
-	public String expertList(Model model, ClubVO vo) {
-	log.info("expert");
+	@RequestMapping("normal.do")
+	public String normalList(Model model, ClubVO vo) {
+	log.info("normal");
 	
-		model.addAttribute("expert1", service.getListExpert(vo));
-		model.addAttribute("expert2", service.getListExpertBest(vo));
+		model.addAttribute("normal1", service.getListNormal(vo));
+		model.addAttribute("normal2", service.getListNormalBest(vo));
 		
-		return "expertPlus.main";
+		return "normalPlus.main";
 		
 	}
 }

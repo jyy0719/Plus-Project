@@ -29,7 +29,7 @@
         font-size: 15px;
         color: slategrey;
         font-family: 'NanumSquare';
-        /* font-weight: 500; */
+  
     }
 
     .gallery-container {
@@ -135,5 +135,45 @@
 	cursor: pointer;
 	position: absolute;
 	right: 3%;
-	
+}
+
+.mainbanner img{
+	width:100%;
+	position:relative;
+}
+.bannercontent {
+	  position: absolute;
+     top:17%;
+     left:60%;
+     transform: translate(-40%, 0);                                                                   
+     z-index: 1;
+     text-align: left;
+}
+
+.bannercontent h1{
+	font-weight:900;
+	color:#303F9D;
+}
+.bannercontent h4{
+	font-weight:500;
+   font-size:20px;
+	color:#655E5B;
+}
+.bannercontent2 {
+	  position: absolute;
+     top:17%;
+     left:60%;
+     transform: translate(-40%, 0);                                                                   
+     z-index: 1;
+     text-align: left;
+}
+.bannercontent2 h1{
+	font-weight:900;
+	color:#FF6426;
+}
+.bannercontent2 h4{
+	font-weight:500;
+   font-size:20px;
+	color:#655E5B;
+}
 	
