@@ -117,33 +117,32 @@
           imageUrl:
             'https://postfiles.pstatic.net/MjAyMTAzMjFfMTYy/MDAxNjE2MzMxNjMzMTQy.AqxK620MPDQyOyUWo0DQaD2gX7k63f360KEStS_8LhUg.2HGpYONTIq7XJd6uKdSkvOCEsJu70nUTujm9HSGnXG8g.PNG.jk940816/logo.png?type=w966',
           link: {
-            mobileWebUrl: 'http://localhost:9999/plus/getClub',
-            webUrl: 'http://localhost:9999/plus/getClub',
+            mobileWebUrl: 'http://localhost:9999/plus/getClub.do',
+            webUrl: 'http://localhost:9999/plus/getClub.do',
           },
         },
         social: {
           likeCount: 286,
           commentCount: ${reviewCount},
         },
-        buttons:[ 
+        buttons: [ 
           {
             title: '웹으로 보기',
             link: {
-              mobileWebUrl: 'http://localhost:9999/plus/getClub',
-              webUrl: 'http://localhost:9999/plus/getClub',
+              mobileWebUrl: 'http://localhost:9999/plus/getClub.do',
+              webUrl: 'http://localhost:9999/plus/getClub.do',
             },
           },
           {
             title: '앱으로 보기',
             link: {
-              mobileWebUrl: 'http://localhost:9999/plus/getClub',
-              webUrl: 'http://localhost:9999/plus/getClub',
+              mobileWebUrl: 'http://localhost:9999/plus/getClub.do',
+              webUrl: 'http://localhost:9999/plus/getClub.do',
             },
           },
         ],
       })
     }
-    
   </script>
 <script>
 
@@ -214,7 +213,7 @@ $(document).ready(function () {
 							startIndex:startIndex
 						}),
 						contentType: "application/json",
-						url: "/plus/getMoreReview",
+						url: "/plus/getMoreReview.do",
 			            success: function (data) {
 			            	console.log(data);
 			            	let reviewList = "";
@@ -257,7 +256,7 @@ $(document).ready(function () {
 							clubNum:'${club.clubNum}',
 							memberNum:"3"
 						},
-						url: "/plus/apply",
+						url: "/plus/apply.do",
 						
 			            success: function (data) {
 			            	console.log(data);
@@ -276,6 +275,14 @@ $(document).ready(function () {
 })
 </script>
 <script>
+ 
+console.log("하트확인 전 ")
+if(${isThereHeart == 0}){
+	state=0
+}else{
+	state=1
+}
+ console.log("하트확인 후 " + state)
 
 function toggleImg(){
 	var state = document.getElementById("heartInput").value; 
@@ -290,7 +297,7 @@ function toggleImg(){
 			memberNum:"3",
 			clubName: '${club.clubName}'
 		},
-		url: 'insertHeart',
+		url: 'insertHeart.do',
         success: function (result) {
         	console.log(result);
 				console.log(result)
@@ -313,7 +320,7 @@ function toggleImg(){
 					clubNum:'${club.clubNum}',
 					memberNum:"3"
 				},
-				url: 'deleteHeartOne',
+				url: 'deleteHeartOne.do',
 		        success: function (result) {
 		        	console.log(result);
 						console.log(result)
