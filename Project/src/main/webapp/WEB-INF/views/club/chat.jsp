@@ -15,189 +15,8 @@
 	href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="${path}/resources/css/chat.css">
 <title>채팅</title>
-<style>
-.chat-wrap {
-	margin-top: 10px;
-	display: flex;
-	justify-content: center;
-}
-
-.chatRoomList {
-	width: 400px;
-	/* border: 1px solid #dddddd; */
-	margin-right: 10px;
-	    height: 360px;
-}
-
-.chatRoom {
-	height: 50px;
-	border-bottom: 1px solid #dddddd;
-	display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.chat-box {
-	width: 600px;
-	height: 700px;
-	border: 1px solid #dddddd;
-}
-
-.header {
-	height: 50px;
-	border-bottom: 1px solid #dddddd;
-	font-weight: 500;
-	padding-top: 10px;
-	text-align: center;
-}
-
-.message-wrap {
-	height: 610px;
-	overflow-y: scroll;
-	padding-top: 10px;
-}
-
-.time-date {
-	color: #747474;
-}
-
-.other-message-box {
-	width: 300px;
-	display: flex;
-	flex-direction: column;
-	margin: 10px 0 0 5px;
-	padding-left: 10px;
-	    margin-bottom: 5px;
-}
-
-#othername {
-	height: 20px;
-	margin-bottom: 10px;
-}
-
-.others-message {
-	width: 300px;
-	background-color: #f1f0f0;
-	border-radius: 2px;
-	padding: 5px 5px 5px 5px;
-	margin-bottom: 10px;
-	border-radius: 15px;
-	word-break: break-all;
-}
-
-#receive-date {
-	height: 20px;
-	margin-bottom: 10px;
-}
-
-.mymessage-box {
-	display: flex;
-	flex-direction: column;
-	float: right;
-	    margin-bottom: 5px;
-}
-
-.mymessage {
-	margin-right: 10px;
-	width: 300px;
-	padding: 5px 5px 5px 5px;
-	border-radius: 2px;
-	background-color: #001eff;
-	color: white;
-	word-break: break-all;
-	border-radius: 15px;
-}
-
-#send-date {
-	height: 20px;
-	margin-bottom: 10px;
-}
-
-.send-message {
-	display: flex;
-	flex-direction: row;
-}
-
-#message {
-	width: 550px;
-	height: 37px;
-	border: none;
-	resize: none;
-	z-index: 0;
-	border-top: 1px solid #dddddd;
-}
-
-#sendBtn {
-	border: none;
-	border-top: 1px solid #dddddd;
-	outline: none;
-	background-color: white;
-	color: #001eff;
-	border-radius: 2px;
-	height: 37px;
-}
-
-h2 {
-	color: #dddddd;
-	text-align: center;
-}
-.clubName{
-	margin-left:10px;
-}
-
-#enterBtn {
-	border: 0;
-	outline: 0;
-	border-radius: 3px;
-	float: right;
-  	background-color: #001eff;
-    color: white;
-    margin-right: 10px;
-}
-
-.enterTxt{
-	display: flex; 
-	justify-content:center; 
-	clear:both; 
-	margin-bottom:30px;
-	font-size: 15px;
-}
-
-.group-img{
-	width:30px;
-	height:30px;
-	margin-right:10px;
-}
-
-.lists{
-	width:400px;
-	height:700px;
-	border: 1px solid #dddddd;
-}
-
-.userList{
-	width:400px;
-	    height: 340px;
-}
-
-#exitBtn{
-	display:none;
-	float: left; 
-	margin-left:10px;
-}
-
-#exitBtn img{
-	height:30px;
-	width:30px;
-	cursor:pointer;
-}
-
-#total{
-	float:right;
-	margin-right:10px;
-}
-</style>
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js"></script>
@@ -208,44 +27,66 @@ h2 {
 <body>
 	<div class="chat-wrap">
 		<div class="lists">
-		<div class="chatRoomList">
-			<div class="header">채팅방 목록</div>
-			<c:forEach items="${clubs}" var="club">
-				<div class="chatRoom">
-					<div class="clubName"><img class="group-img" src="${path}/resources/img/chat.png" />${club.clubName}</div>
-					<input type="button" value="입장" id="enterBtn" class="btns"
-						onclick="enterRoom(${club.clubNum});" />
-				<input type="hidden" name="hiddenName" value="${club.clubName}" />
-				</div>
-			</c:forEach>
-		</div>
-			<div class="userList">
+			<div class="chatRoomList">
+				<div class="header">채팅방 목록</div>
+				<c:forEach items="${clubs}" var="club">
+					<div class="chatRoom">
+						<div class="clubName">
+							<img class="group-img" src="${path}/resources/img/chat.png" />${club.clubName}</div>
+						<input type="button" value="입장" id="enterBtn" class="btns"
+							onclick="enterRoom(${club.clubNum});" /> <input type="hidden"
+							name="hiddenName" value="${club.clubName}" />
+							
+					</div>
+				</c:forEach>
 			</div>
 		</div>
 		<div class="chat-box">
 			<div class="header" id="chatRoomName">
-				<div id="exitBtn"><img src="${path}/resources/img/back-button.png" /></div>
+				<div id="exitBtn">
+					<img src="${path}/resources/img/back-button.png" />
+				</div>
+				<div id="userBtn"><img src="${path}/resources/img/userInfo.png"/></div>
 				<div id="title">더하기</div>
+				<div id="myModal" class="modal">
+					<div class="modal-content"></div>
 				</div>
-				<div class="message-wrap" style="overflow: auto">
-					<h2>채팅할 모임을 선택해주세요.</h2>
-				</div>
+			</div>
+
+			<div class="message-wrap" style="overflow: auto">
+				<h2>채팅할 모임을 선택해주세요.</h2>
+			</div>
 			<div class="send-message">
-				<input placeholder="보낼 메세지를 입력해주세요." id="message" /> 
-				<input type="button" id="sendBtn" value="보내기" />
+				<input placeholder="보낼 메세지를 입력해주세요." id="message" /> <input
+					type="button" id="sendBtn" value="보내기" />
 			</div>
 		</div>
 	</div>
 </body>
 <script type="text/javascript">
 
+
 $(function() {
-	
-	// 동적으로 채팅방 이름 바꾸기 
+
+
+	// 입장 버튼 누를 시 
 $(document).on('click', '#enterBtn', function(){	
+	// 동적으로 채팅방 이름 바꾸기 
 	let clubName = $(this).parent('div').find("input[name='hiddenName']").val();
-	console.log(clubName);
 	$('#title').text(clubName);
+	$('h2').remove();
+	// 채팅방 대화 초기화 
+	$('.message-wrap').html('');
+	
+	// 엔터키 이벤트 추가 
+	$('#message').attr("onkeydown", "enterKey(" + roomId + ")");
+	// 보내기 클릭이벤트 추가 
+	$('#sendBtn').attr("onclick", "sendMessage()");
+	// 입장 버튼 모두 숨기기 
+	$('.btns').css( "visibility", "hidden" );
+	// 유저목록 아이콘 표시 
+	$('#userBtn').css( "display", "block" );
+	// 나가기 버튼 표시 	
 	$('#exitBtn').css("display","block");
 }); 
 	
@@ -256,25 +97,46 @@ $(document).on('click', '#exitBtn', function(){
 	             "memberNickname" : name,
 	        	 "chatMessage" : "LEAVE"
 			};
+	    
 		let jsonMsg = JSON.stringify(data);
 		sock.send(jsonMsg);
 		sock.close();
-	
-		if($('#total')){
-			$('#total').remove();
-		}
-		
+		 
+		// 채팅방 대화 초기화 
 		$('.message-wrap').html('');
 		let exit = '<h2>채팅할 모임을 선택해주세요</h2>';
 		$('.message-wrap').html(exit);
+		
+		// 버튼클릭 이벤트 삭제 
 		$('#sendBtn').attr("onclick", "");
 		$('#message').attr("onkeydown","");
+		
+		// 나가기 버튼 숨김 
 		$('#exitBtn').css("display","none");
+		// 입장버튼 모두 표시 
 		$('.btns').css( "visibility", "visible" );
+		
+		// default 제목 표시 
 		$('#title').text('더하기');
+		
+		// 유저목록 아이콘 숨김 
+		$('#userBtn').css( "display", "none" );
 });
 	
 	
+	// 모달창 
+	var modal = document.getElementById('myModal');
+	var btn = document.getElementById("userBtn");
+	
+	btn.onclick = function() {
+	    modal.style.display = "block";
+	}
+	
+	window.onclick = function(event) {
+	    if (event.target == modal) {
+	        modal.style.display = "none";
+	    }
+	}
 
 });
 
@@ -284,23 +146,16 @@ let otherMessage = "";
 let today="";
 // 로그인한 유저 닉네임
 let name ='${user.memberNickname}';
-let roomId = "";	
-	
-	//	채팅방 입장 
+let roomId = 0;	
+
+
+	//	채팅방 입장 클릭 이벤트 
 	function enterRoom(clubNum){
 		roomId = clubNum;
 		console.log(" 입장한 모임 번호 : " + roomId);
 
 		//입장할때마다 소켓에 연결 
 		connect(roomId);
-		
-		
-		$('h2').remove();
-		$('.message-wrap').html('');
-		
-		$('#message').attr("onkeydown", "enterKey(" + roomId + ")");
-		$('#sendBtn').attr("onclick", "sendMessage()");
-		$('.btns').css( "visibility", "hidden" );
 		
 		// 채팅 내역 불러오기 
 		$.ajax({
@@ -327,9 +182,17 @@ let roomId = "";
 					
 					}
 				}
+				// 본인 입장 메시지 
 				$('.message-wrap').append('<div class="enterTxt"></div>');
 				$('.enterTxt').append('<p><strong>' + name + "</strong>님이 입장하셨습니다.</p>");
 				$('.message-wrap').scrollTop($('.message-wrap')[0].scrollHeight);
+				// 모달창에 접속인원 표시 
+				let total = '<div id="total">(1명 접속중)</div>';
+				let userList = '<div class="users"><img src="${path}/resources/img/default_pic.png" id="userPic" />'
+								+ name +'</div>';
+				$('.modal-content').html('');
+				$('.modal-content').append(total);
+				$('.modal-content').append(userList);
             },
             error: function() {
             	  console.log(" 채팅내역 error");
@@ -356,7 +219,8 @@ let roomId = "";
 	// 메시지 전송
 	function sendMessage() {
 		let msg = $("#message").val();
-		console.log("메시지 전송 to : " + roomId);
+		
+		// 서버로 메시지 전송 
 	     const data = {
 	    	       "clubNum" : roomId,
                    "memberNickname" : name,
@@ -365,6 +229,7 @@ let roomId = "";
 		let jsonMsg = JSON.stringify(data);
 		sock.send(jsonMsg);
 		
+		// 내 말풍선 표시 
 		today = new Date();   
 		myMessage = '<div class="mymessage-box">';
         myMessage += '<div class="mymessage">' + msg + '</div>';
@@ -398,57 +263,71 @@ let roomId = "";
 			}); 
 	}
 	
+	// 서버로부터 유저 목록 가져오기 
+	function getUserList(jsonString){
+		console.log("유저리스트 오나용")
+		let obj = JSON.parse(jsonString);
+		console.log(obj);
+		let val=0;
+		let userList="";
+		
+		for(key in obj){
+			console.log(key);
+			val = obj[key];
+			console.log(val);
+			
+			if(val==roomId){
+				console.log("일치 " + roomId +","+ val);
+				userList += '<div class="users"><img src="${path}/resources/img/default_pic.png" id="userPic" />'+ key +'</div>';
+			}
+		}
+		return userList;
+	}
 	
+	
+	// 입장 or 퇴장에따라 다른 메시지 표시 
+	function enterOrLeave(id, p){
+		let enterTxt = '<div class="enterTxt">';
+		enterTxt += '<p><strong>' + id + '</strong>님이 ' + p + '하셨습니다.</p></div>';
+				$('.message-wrap').append(enterTxt);
+				$('.message-wrap').scrollTop($('.message-wrap')[0].scrollHeight);
+	}
+	
+	// 접속 인원 보여주기 
+	function showPeopleCnt(people,users){
+		let total = '<div id="total">('+ people + '명 접속중)</div>';
+		$('.modal-content').html('');
+		$('.modal-content').append(total);
+		$('.modal-content').append(getUserList(users));
+	}
 	
 	// 서버로부터 메시지를 받았을 때
 	let people="";
 	function onMessage(msg) {
 		console.log(msg)
-		let words = msg.data.split(',');
+		jsonString = msg.data.split("json");
+		let users = jsonString[1];
+		let words = jsonString[0].split(',');
 		let id = words[1];
 		people = words[2];
-		console.log(words)
-		console.log("0번 : " + words[0]);
-		console.log("1번 : " + words[1]);
+		
 		if(words[0]==="ENTER"){
-			let total="";
-			console.log(id);
-			console.log(people);
 			if(name!==id){
 				// 입장 메시지 띄우기
-				let enterTxt = '<div class="enterTxt">';
-				enterTxt += '<p><strong>' + id + '</strong>님이 입장하셨습니다.</p></div>';
-						$('.message-wrap').append(enterTxt);
-						$('.message-wrap').scrollTop($('.message-wrap')[0].scrollHeight);
+				let p = "입장";
+				enterOrLeave(id,p);
 			}		
-				// 접속한 인원 띄우기 
-				total = '<div id="total">('+ people + '명 접속중)</div>'		
-				if($('#total')){
-					$('#total').remove();
-					$('#title').append(total);
-				} else{
-					$('#title').append(total);
-				}
+			showPeopleCnt(people,users);
+		
 				
 		} else if(words[0]==="LEAVE"){
-			console.log(words[0]);
-			people = words[2];
-			let enterTxt = '<div class="enterTxt">';
-			
-			enterTxt += '<p><strong>' + id + '</strong>님이 퇴장하셨습니다.</p></div>';
-					$('.message-wrap').append(enterTxt);
-					$('.message-wrap').scrollTop($('.message-wrap')[0].scrollHeight);
-			
-			total = '<div id="total">('+ people + '명 접속중)</div>'		
-			if($('#total')){
-				$('#total').remove();
-				$('#title').append(total);
-			} else{
-				$('#title').append(total);
-			}
+			// 퇴장 메시지 띄우기 
+			let p = "퇴장";
+			enterOrLeave(id, p);
+			showPeopleCnt(people,users);
 		
-		
-		}else {
+		} else {
+			// 입장, 퇴장이 아닌 다른 사람으로부터 온 보통의 메시지 
 			let id = words[0];
 			words = words[1].trim();
 			console.log(words);

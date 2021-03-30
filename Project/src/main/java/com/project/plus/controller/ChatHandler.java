@@ -32,6 +32,7 @@ public class ChatHandler extends TextWebSocketHandler {
 	    private Map<WebSocketSession, Integer> sessionList = new ConcurrentHashMap<WebSocketSession, Integer>();
 	    // 채팅방의 접속중인 인원 수 
 	    private Map<Integer, Integer> userCount = new ConcurrentHashMap<Integer, Integer>();
+	    private Map<String, Integer> userList = new ConcurrentHashMap<String, Integer>();
 	  
       
 
@@ -46,9 +47,8 @@ public class ChatHandler extends TextWebSocketHandler {
 		log.info("넘어온 메시지는 : " + textMsg);
 		ChatVO chat = objectMapper.readValue(textMsg, ChatVO.class);
 		
-		//해당 채팅룸이 있는지 없는지 확인하기 위해 roomId 구하기 (+ 채팅방 번호 clubNum으로 생성)
-		int roomId = chatService.checkRoomId(chat.getClubNum());
-		
+		int roomId = chat.getClubNum();
+		log.info("클럼 num : " + roomId);
 		
 		// 채팅방 생성 
 		 if(RoomList.get(roomId) == null && chat.getChatMessage().equals("ENTER") && roomId != 0) {
@@ -65,6 +65,7 @@ public class ChatHandler extends TextWebSocketHandler {
 	            // 각 채팅방에 해당하는 참여인원 수 세기 
 	            int people=0;
 	            userCount.put(roomId, ++people);
+	          //  userList.put(chat.getMemberNickname(),roomId);
 	            
 	            log.info("생성#####" + roomId + " and "  + userCount.get(roomId) + "명");
 	            
@@ -77,9 +78,11 @@ public class ChatHandler extends TextWebSocketHandler {
 	            
 	            int people = userCount.get(roomId);
 	            userCount.put(roomId, ++people);
+	            userList.put(chat.getMemberNickname(),roomId);
+	            String jsonString = objectMapper.writeValueAsString(userList);
 	            
-	            TextMessage textMessage = new TextMessage("ENTER," + chat.getMemberNickname() + "," + userCount.get(roomId));
-	            log.info("입장#####" + roomId + " and " + people + "명");
+	    		TextMessage textMessage = new TextMessage("ENTER," + chat.getMemberNickname() + "," + userCount.get(roomId) + ",json" + jsonString);
+	    		log.info("입장#####" + roomId + " and " + people + "명");
 	            
 	            for(WebSocketSession curSessions : RoomList.get(roomId)) {
                 	curSessions.sendMessage(textMessage);
@@ -94,8 +97,9 @@ public class ChatHandler extends TextWebSocketHandler {
 		      		         
 		      	int people = userCount.get(roomId);
 		      	userCount.put(roomId, --people);
-		      		         
-		      	TextMessage textMessage = new TextMessage("LEAVE," + chat.getMemberNickname() + "," + userCount.get(roomId));
+		      	userList.remove(chat.getMemberNickname());
+		      	String jsonString = objectMapper.writeValueAsString(userList);
+		      	TextMessage textMessage = new TextMessage("LEAVE," + chat.getMemberNickname() + "," + userCount.get(roomId) +  ",json" + jsonString);
 		      	log.info("퇴장#####" + roomId + " and " + people + "명");
 		      		         
 		       for(WebSocketSession curSessions : RoomList.get(roomId)) {
