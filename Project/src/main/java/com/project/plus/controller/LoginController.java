@@ -53,7 +53,7 @@ public class LoginController {
 			System.out.println(user.getMemberNum());
 			System.out.println(user.getMemberNum());
 			System.out.println(user + "일반로그인 유저정보 획득");
-			return "index.main";
+			return "redirect:main";
 			
 		} catch(Exception e) {
 			e.printStackTrace();

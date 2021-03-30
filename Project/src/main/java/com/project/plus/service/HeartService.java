@@ -11,6 +11,7 @@ public interface HeartService {
 	void deleteHeart(HeartVO vo);
 	void insertHeart(HeartVO vo);
 	int selectHeartNum(HeartVO vo);
+	public int getHeartCount(int clubNum);
 //	void applyFreeClub(ApplyVO vo);
 //	ApplyVO checkApplyClub(ApplyVO vo);
 	

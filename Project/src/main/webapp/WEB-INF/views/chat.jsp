@@ -25,8 +25,9 @@
 
 .chatRoomList {
 	width: 400px;
-	border: 1px solid #dddddd;
+	/* border: 1px solid #dddddd; */
 	margin-right: 10px;
+	    height: 360px;
 }
 
 .chatRoom {
@@ -67,6 +68,7 @@
 	flex-direction: column;
 	margin: 10px 0 0 5px;
 	padding-left: 10px;
+	    margin-bottom: 5px;
 }
 
 #othername {
@@ -93,6 +95,7 @@
 	display: flex;
 	flex-direction: column;
 	float: right;
+	    margin-bottom: 5px;
 }
 
 .mymessage {
@@ -148,9 +151,51 @@ h2 {
 	outline: 0;
 	border-radius: 3px;
 	float: right;
-    background-color: #001eff;
+  	background-color: #001eff;
     color: white;
     margin-right: 10px;
+}
+
+.enterTxt{
+	display: flex; 
+	justify-content:center; 
+	clear:both; 
+	margin-bottom:30px;
+	font-size: 15px;
+}
+
+.group-img{
+	width:30px;
+	height:30px;
+	margin-right:10px;
+}
+
+.lists{
+	width:400px;
+	height:700px;
+	border: 1px solid #dddddd;
+}
+
+.userList{
+	width:400px;
+	    height: 340px;
+}
+
+#exitBtn{
+	display:none;
+	float: left; 
+	margin-left:10px;
+}
+
+#exitBtn img{
+	height:30px;
+	width:30px;
+	cursor:pointer;
+}
+
+#total{
+	float:right;
+	margin-right:10px;
 }
 </style>
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
@@ -162,19 +207,26 @@ h2 {
 
 <body>
 	<div class="chat-wrap">
+		<div class="lists">
 		<div class="chatRoomList">
 			<div class="header">채팅방 목록</div>
 			<c:forEach items="${clubs}" var="club">
 				<div class="chatRoom">
-					<div class="clubName"> ${club.clubName}</div>
-					<input type="button" value="입장" id="enterBtn"
-						onclick="enterRoom(${club.clubNum})" />
+					<div class="clubName"><img class="group-img" src="${path}/resources/img/chat.png" />${club.clubName}</div>
+					<input type="button" value="입장" id="enterBtn" class="btns"
+						onclick="enterRoom(${club.clubNum});" />
 				<input type="hidden" name="hiddenName" value="${club.clubName}" />
 				</div>
 			</c:forEach>
 		</div>
+			<div class="userList">
+			</div>
+		</div>
 		<div class="chat-box">
-			<div class="header" id="title">더하기</div>
+			<div class="header" id="chatRoomName">
+				<div id="exitBtn"><img src="${path}/resources/img/back-button.png" /></div>
+				<div id="title">더하기</div>
+				</div>
 				<div class="message-wrap" style="overflow: auto">
 					<h2>채팅할 모임을 선택해주세요.</h2>
 				</div>
@@ -187,54 +239,68 @@ h2 {
 </body>
 <script type="text/javascript">
 
-
 $(function() {
 	
-		// 동적인 태그의 채팅방 이름 바꾸기 
-	$(document).on('click', '#enterBtn', function(){		
-		$('#title').text('');
-		let it = $(this);
-		console.log(it);
-		
-		let checkme = $(this).parent('div').find("input[name='hiddenName']").val();
-		console.log(checkme)
-		
-		$('#title').text(checkme);
-		
-		
-	})
+	// 동적으로 채팅방 이름 바꾸기 
+$(document).on('click', '#enterBtn', function(){	
+	let clubName = $(this).parent('div').find("input[name='hiddenName']").val();
+	console.log(clubName);
+	$('#title').text(clubName);
+	$('#exitBtn').css("display","block");
+}); 
 	
-})
+	// 나가기 버튼 클릭시 
+$(document).on('click', '#exitBtn', function(){		
+	    const data = {
+	    	     "clubNum" : roomId,
+	             "memberNickname" : name,
+	        	 "chatMessage" : "LEAVE"
+			};
+		let jsonMsg = JSON.stringify(data);
+		sock.send(jsonMsg);
+		sock.close();
+	
+		if($('#total')){
+			$('#total').remove();
+		}
+		
+		$('.message-wrap').html('');
+		let exit = '<h2>채팅할 모임을 선택해주세요</h2>';
+		$('.message-wrap').html(exit);
+		$('#sendBtn').attr("onclick", "");
+		$('#message').attr("onkeydown","");
+		$('#exitBtn').css("display","none");
+		$('.btns').css( "visibility", "visible" );
+		$('#title').text('더하기');
+});
+	
+	
+
+});
+
 
 let myMessage = "";
 let otherMessage = "";
 let today="";
 // 로그인한 유저 닉네임
 let name ='${user.memberNickname}';
-
-
 let roomId = "";	
-//	채팅방 입장 
+	
+	//	채팅방 입장 
 	function enterRoom(clubNum){
 		roomId = clubNum;
 		console.log(" 입장한 모임 번호 : " + roomId);
-		
-		// 존재하는 sock이 있다면 연결을 끊는다 (다른방에 입장시 이전 방의 세션을 지우도록)
-		if(sock){
-			sock.close();
-			console.log("연결끊기완료");
-		}  
 
-		
 		//입장할때마다 소켓에 연결 
-			connect(roomId);
+		connect(roomId);
+		
 		
 		$('h2').remove();
 		$('.message-wrap').html('');
 		
 		$('#message').attr("onkeydown", "enterKey(" + roomId + ")");
-		$("#sendBtn").attr("onclick", "sendMessage()");
-		
+		$('#sendBtn').attr("onclick", "sendMessage()");
+		$('.btns').css( "visibility", "hidden" );
 		
 		// 채팅 내역 불러오기 
 		$.ajax({
@@ -261,15 +327,20 @@ let roomId = "";
 					
 					}
 				}
-						$('.message-wrap').append('<p><strong>' + name + "</strong>님이 입장하셨습니다." + '</p>');
-						$('.message-wrap').scrollTop($('.message-wrap')[0].scrollHeight);
+				$('.message-wrap').append('<div class="enterTxt"></div>');
+				$('.enterTxt').append('<p><strong>' + name + "</strong>님이 입장하셨습니다.</p>");
+				$('.message-wrap').scrollTop($('.message-wrap')[0].scrollHeight);
             },
             error: function() {
             	  console.log(" 채팅내역 error");
             }
+						
+						
 		});  
 	}
-	
+
+
+
 	
 	//input에서 엔터치면 메시지 전송 
 	function enterKey(roomId){
@@ -280,6 +351,7 @@ let roomId = "";
 			}
 		}
 	}
+	
 	
 	// 메시지 전송
 	function sendMessage() {
@@ -329,24 +401,71 @@ let roomId = "";
 	
 	
 	// 서버로부터 메시지를 받았을 때
+	let people="";
 	function onMessage(msg) {
 		console.log(msg)
 		let words = msg.data.split(',');
-		let id = words[0];
-		words = words[1].trim();
-		console.log(words);
-		today = new Date();  
+		let id = words[1];
+		people = words[2];
+		console.log(words)
+		console.log("0번 : " + words[0]);
+		console.log("1번 : " + words[1]);
+		if(words[0]==="ENTER"){
+			let total="";
+			console.log(id);
+			console.log(people);
+			if(name!==id){
+				// 입장 메시지 띄우기
+				let enterTxt = '<div class="enterTxt">';
+				enterTxt += '<p><strong>' + id + '</strong>님이 입장하셨습니다.</p></div>';
+						$('.message-wrap').append(enterTxt);
+						$('.message-wrap').scrollTop($('.message-wrap')[0].scrollHeight);
+			}		
+				// 접속한 인원 띄우기 
+				total = '<div id="total">('+ people + '명 접속중)</div>'		
+				if($('#total')){
+					$('#total').remove();
+					$('#title').append(total);
+				} else{
+					$('#title').append(total);
+				}
+				
+		} else if(words[0]==="LEAVE"){
+			console.log(words[0]);
+			people = words[2];
+			let enterTxt = '<div class="enterTxt">';
 			
-		if(name!==id){
-			otherMessage = '<div class="other-message-box">';
-			otherMessage += '<div id="othername">' + id + '</div>';
-			otherMessage += '<div class="others-message">' + words + '</div>';
-			otherMessage += '<div class="time-date" id="receive-date">' + today.toLocaleDateString() 
-						+  ' | ' + today.toLocaleTimeString("en-US") + '</div></div>';
-		    $('.message-wrap').append(otherMessage);
-			$('.message-wrap').scrollTop($('.message-wrap')[0].scrollHeight);
-		} else {
-			console.log("자기 자신이 보냈음")
+			enterTxt += '<p><strong>' + id + '</strong>님이 퇴장하셨습니다.</p></div>';
+					$('.message-wrap').append(enterTxt);
+					$('.message-wrap').scrollTop($('.message-wrap')[0].scrollHeight);
+			
+			total = '<div id="total">('+ people + '명 접속중)</div>'		
+			if($('#total')){
+				$('#total').remove();
+				$('#title').append(total);
+			} else{
+				$('#title').append(total);
+			}
+		
+		
+		}else {
+			let id = words[0];
+			words = words[1].trim();
+			console.log(words);
+			
+			today = new Date();  
+				
+			if(name!==id){
+				otherMessage = '<div class="other-message-box">';
+				otherMessage += '<div id="othername">' + id + '</div>';
+				otherMessage += '<div class="others-message">' + words + '</div>';
+				otherMessage += '<div class="time-date" id="receive-date">' + today.toLocaleDateString() 
+							+  ' | ' + today.toLocaleTimeString("en-US") + '</div></div>';
+			    $('.message-wrap').append(otherMessage);
+				$('.message-wrap').scrollTop($('.message-wrap')[0].scrollHeight);
+			} else {
+				console.log("자기 자신이 보냈음")
+			}
 		}
 		
 	}
@@ -358,7 +477,7 @@ let roomId = "";
 			sock = new SockJS("http://localhost:9999/plus/chat");
 			sock.onopen = onopen;
 			sock.onmessage = onMessage;
-			sock.onclose = onClose; 
+			sock.onclose = onclose; 
 			console.log("세션 생성" + clubNum)
 		}
 
@@ -378,11 +497,13 @@ let roomId = "";
 			 
 		    
 			// 서버와 연결 끊겼을 때 
-		 	function onClose(evt) {
-				$(".mymessage-box").append("연결 끊김");
+		 	function onclose(evt) {
 				console.log("연결끊김");
+				$(".mymessage-box").append("연결 끊김");
+				
 
 			} 
+
 
 
 </script>
