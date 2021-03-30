@@ -30,80 +30,30 @@
             height: 100vh;
         }
 
-        #point {
-            font-weight: bold;
-            font-size: 33px;
-        }
-
-        #currentPoint {
-            display: flex;
-            border: 1px solid rgba(189, 186, 186, 0.829);
-            width: 85%;
-            margin-bottom: 4%;
-            border-radius: 2%;
-        }
-
-        #nowPoint {
-            font-size: 22px;
-            padding: 7px;
-        }
-
-        #currentPoint button {
-            float: right;
-        }
-
-        #currentPoint table {
-            border-spacing: 40px;
-        }
-
-        #chargeBtn input {
-            display: inline-block;
-            padding: 18px 26px;
-            color: #999;
-            background-color: #eee;
-            border: 0;
-            cursor: pointer;
-            border-radius: 5px;
-            margin-left: 52%;
-        }
-
-        #chargeBtn {
-            text-align: center;
-            margin: auto;
-            float: right;
-            font-weight: bold;
-        }
-
-        #chargeBtn input {
-            font-size: 20px;
-            font-weight: bold;
-        }
 
         #tableWrapper {
             width: 85%;
-            height:65%;
-            min-height:415.550px;
+            height: 415.550px;
+        }
+        
+    	 #block{
+            border: 1px solid rgba(189, 186, 186, 0.829);
+            border-radius: 2%;
+       		min-height:443.2px;
         }
         
 
-        #tableWrapper .useInfo {
+        #tableWrapper table {
             width: 100%;
-                        height:65%;
-            
-            border-collapse: collapse;
-             border: 1px solid rgba(189, 186, 186, 0.829);
+            border-collapse: collapse;  
+        }
+        
 
-            
-        }
-        
-        #block{
-                    min-height:415.550px;
-        
-        }
 
         #tableWrapper table th {
             text-align: center;
             background-color: grey;
+            height:19.6px;
             padding: 13px;
             background-color:#001eff;
             color:white;
@@ -112,6 +62,7 @@
         #tableWrapper table td {
             text-align: center;
             padding: 7px;
+            max-height:17px;
 
         }
         #pageArea{
@@ -147,9 +98,10 @@
 	float:right;
 	margin-bottom:3px;
 	margin-right:3px;
-	
 	}
-	
+	#searchType{
+	height:24px;
+	}
 
     </style>
  <script>
@@ -166,21 +118,20 @@
         <div class="Content">
             <h1>회원관리</h1>
             
-       	 <form role="form" method="get">
-       	        	            <div id="tableWrapper">
-       	 
+    
+       	 <div id="tableWrapper">
+       	 <form role="form" method="get" id="form">
+  
  <div class="search">
-    <select name="searchType">
+    <select name="searchType" id="searchType">
       <option value="null"<c:out value="${scmem.searchType == null ? 'selected' : ''}"/>>-----</option>
       <option value="e"<c:out value="${scmem.searchType eq 'e' ? 'selected' : ''}"/>>이메일</option>
       <option value="n"<c:out value="${scmem.searchType eq 'n' ? 'selected' : ''}"/>>이름</option>
     </select>
-
     <input type="text" size="30" name="keyword" id="keywordInput" value="${scmem.keyword}"/>
     <button id="searchBtn" type="button">검색</button>
-</div>
-
-      <div id="block"> 	 
+</div><!-- search -->
+    <div id="block"> 
 		              <table class="useInfo">
 		                  <tr>
 		                  	<th>회원번호</th>
@@ -201,7 +152,7 @@
 		                        </tr>
 		                     </c:forEach>
 		              </table>
-              </div><!-- block -->
+                 </div><!-- block -->
 					 <div id="pageArea">
               
 						  <ul class="paging">
@@ -216,9 +167,9 @@
 						    	<li><a class="span" href="memberList${pmem.makeSearch(pmem.endPage + 1)}">▶</a></li>
 						  </ul>
 					 </div><!-- pageArea -->
-     
-            </div><!-- wrapper -->
        	 </form>
+     			</div><!-- wrapper -->
+         
         </div>
     </div>
 </body>

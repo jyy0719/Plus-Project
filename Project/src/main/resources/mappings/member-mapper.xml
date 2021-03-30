@@ -98,8 +98,8 @@ ORDER BY member_num
 
 <sql id="search">
 	<if test="searchType != null">
-		<if test="searchType == 'e'.toString()" >AND #{memberEmail} LIKE '%' || #{keyword} ||'%'</if>
-		<if test="searchType == 'n'.toString()" >AND #{memberName} LIKE '%' || #{keyword} ||'%'</if>
+		<if test="searchType == 'e'.toString()" >AND member_email LIKE CONCAT( '%', #{keyword}, '%')</if>
+		<if test="searchType == 'n'.toString()" >AND member_name LIKE CONCAT ('%', #{keyword},'%')</if>
 	</if>
 </sql>
 

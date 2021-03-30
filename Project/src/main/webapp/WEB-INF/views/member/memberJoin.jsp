@@ -416,10 +416,10 @@
 
             <!-- original_content -->
             <div class="pro_pic_area">
-                <div id="image_container">${user.memberPic}</div>
+                <div id="image_container">${user.memberPic}<img src="${user.memberPic}"/></div>
                 <div class="filebox"> 
                 </div>
-                <label class="picbutton" for="picFile"><div class="picbutton1">사진첨부하기</div></label>
+                <label class="picbutton" for="picFile"><span class="picbutton1">사진첨부하기</span></label>
                 <input id="picFile" type="file" name="memberPhoto" accept="image/*" onchange="setThumbnail(event);"/>
             	<button type="button" class="removePic" onclick="removePic();">취소</button>
             </div>
