@@ -441,16 +441,7 @@ left
 	margin-bottom:50px;
 }
 /*더하기 등록 버튼*/
-#addplus {
-	outline: 0;
-	border: 0;
-	background: transparent;
-	cursor: pointer;
-	position: absolute;
-	right: 3%;
-	color: rgb(0, 30, 250);
 
-}
 
 #bottomarea{
 	padding-bottom:100px;
@@ -468,19 +459,22 @@ left
  
 }
 /*더하기 등록 버튼*/
-.addplus {
+/* .addplus {
    outline: 0;
    border: 0;
    background: transparent;
    cursor: pointer;
-   position: absolute;
-   right: 3%;
-      font-size : 40px;
-      color: rgb(0, 30, 250);
+   position: fixed;
+
+   font-size : 40px;
+ 
+}  */
+.material-icons{
+	    color: rgb(0, 30, 250);
 }
 
  .material-icons:hover{
-     transform: scale(1.1);
+    transform: scale(1.1);
    color: #ccf2f4; 
 } 
 

@@ -252,7 +252,12 @@
 							</div>
 						</div>
 					</c:forEach>
+					
 		</section>
+		
+	<span class="material-icons addplus" style="font-size:55px;">	<a href="clubForm">
+add_circle
+</a></span>
 
 		<!--페이지 위로가기 버튼 -->
 		<button id="go-top">

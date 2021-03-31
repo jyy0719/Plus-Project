@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import com.project.plus.domain.ClubVO;
 import com.project.plus.domain.Criteria;
 import com.project.plus.domain.FaqVO;
-
+import com.project.plus.domain.SearchCriteria;
 import com.project.plus.mapper.FaqMapper;
 import com.project.plus.mapper.MainMapper;
 import com.project.plus.mapper.TotalListMapper;
@@ -31,15 +31,15 @@ public class TotalListServiceImpl implements TotalListService {
 	
 	/* 게시판 목록(페이징 적용) */
 
-	public List<ClubVO> getListPaging(Criteria cri) {
+	public List<ClubVO> getListPaging(SearchCriteria scri) throws Exception  {
 		List<ClubVO> list = null;
-		list=mapper.getListPaging(cri);
+		list=mapper.getListPaging(scri);
 		return list;
 	}		
 	/* 게시물 총 갯수 */
-	@Override
-	public int getTotal() {
-		return mapper.getTotal();
+
+	public int getTotal(SearchCriteria scri) throws Exception   {
+		return mapper.getTotal(scri);
 	}		
 
 

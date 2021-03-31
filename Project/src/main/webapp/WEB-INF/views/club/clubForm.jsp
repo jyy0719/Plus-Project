@@ -17,6 +17,7 @@
 </head>
 <header></header>
 <section>
+
 	<form action="insertClub" enctype="multipart/form-data" method="post" id="frm">
 		<div class="selection">
 			<div class="select-kind">
@@ -43,11 +44,9 @@
 					<option value="취미">취미</option>
 				</select>
 			</div>
-			<div class="location">
-				<label for="exampleFormControlSelect2">모임위치</label><br> <img
-					src="${path}/resources/img/mapicon.png"> 위치를 선택해주세요
-			</div>
+		
 		</div>
+		
 		<label for="exampleFormControlFile1">모임의 제목을 입력해주세요</label> <input
 			type="text" maxlength='16' class="form-control" id="club-title"
 			placeholder="최대 16글자로 입력해주세요" name="clubName">
@@ -99,6 +98,14 @@
 		</article>
 </section>
 <aside>
+	<div class="location" >
+		<label for="exampleFormControlSelect2">모임위치</label><br> <img
+			src="${path}/resources/img/mapicon.png"> 지도를 클릭하여 모임의 위치를 선택해주세요
+			</div>
+			<div id="clickLatlng"></div>
+
+<div id="map" style="width:400px;height:300px;"></div>
+
 	<div class="clubinfo-form">
 		<label for="exampleFormControlSelect2">모집 종료일 </label>
 		<div class="clubdate">
@@ -162,17 +169,111 @@
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 <script src="${path}/resources/js/bootstrap-datepicker.js"></script>
 <script src="${path}/resources/js/bootstrap-datepicker.ko.js"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=54bd0b6b843cae2c7eb4621d80f301a4"></script>
+<script async defer
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA14FclHyP6uY1AXC81jP9ZEsnWKEn-nYE"></script>
 <script>
-	//파일 
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    mapOption = { 
+        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+        level: 4 // 지도의 확대 레벨 
+    }; 
 
-	//파일 선택시 파일이름 변경 
-	function getFileName(index) {
-		let fileNameSpan = document.getElementById('spanFileName[' + index
-				+ ']')
-		let name = $('input[type=file]')[index].files[0].name
-		fileNameSpan.innerText = ""
-		$(fileNameSpan).append(name);
-	}
+var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+// HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
+if (navigator.geolocation) {
+    
+    // GeoLocation을 이용해서 접속 위치를 얻어옵니다
+    navigator.geolocation.getCurrentPosition(function(position) {
+        
+        var lat = position.coords.latitude, // 위도
+            lon = position.coords.longitude; // 경도
+
+        var locPosition = new kakao.maps.LatLng(lat, lon), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
+            message = '<div style="padding:5px" width:10px";>현재위치</div>'; // 인포윈도우에 표시될 내용입니다
+        
+        // 마커와 인포윈도우를 표시합니다
+        displayMarker(locPosition, message);
+            
+      });
+    
+    var marker = new kakao.maps.Marker({ 
+        // 지도 중심좌표에 마커를 생성합니다 
+        position: map.getCenter() 
+    }); 
+    // 지도에 마커를 표시합니다
+    marker.setMap(map);
+
+  
+    // 지도에 클릭 이벤트를 등록합니다
+    // 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
+    kakao.maps.event.addListener(map, 'click', function(mouseEvent) {        
+        
+        // 클릭한 위도, 경도 정보를 가져옵니다 
+        var latlng = mouseEvent.latLng; 
+    
+        // 마커 위치를 클릭한 위치로 옮깁니다
+        marker.setPosition(latlng);
+      
+      var message = '클릭한 위치의 위도는 ' + latlng.getLat() + ' 이고, ';
+        message += '경도는 ' + latlng.getLng() + ' 입니다';
+      
+        var resultDiv = document.getElementById('clickLatlng'); 
+        resultDiv.innerHTML = message;
+        
+    });
+} else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
+    
+    var locPosition = new kakao.maps.LatLng(33.450701, 126.570667),    
+        message = '위치추적이 허용되지 않은 브라우저입니다.'
+        
+    displayMarker(locPosition, message);
+}
+
+/* // 지도에 마커와 인포윈도우를 표시하는 함수입니다
+function displayMarker(locPosition, message) {
+
+	
+    // 마커를 생성합니다
+    var marker = new kakao.maps.Marker({  
+        map: map, 
+        position: locPosition
+    });  */
+    
+    function displayMarker(locPosition, message) {
+
+var imageSrc ="https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
+    imageSize = new kakao.maps.Size(28, 40), // 마커이미지의 크기입니다
+    imageOption = {offset: new kakao.maps.Point(14, 30)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+      
+// 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
+    markerPosition =locPosition// 마커가 표시될 위치입니다
+   
+    var marker = new kakao.maps.Marker({
+        map:map,
+        position: markerPosition, 
+        image: markerImage // 마커이미지 설정 
+    });
+
+    
+    var iwContent = message, // 인포윈도우에 표시할 내용
+        iwRemoveable = true;
+
+    // 인포윈도우를 생성합니다
+    var infowindow = new kakao.maps.InfoWindow({
+        content : iwContent,
+        removable : iwRemoveable
+    });
+    
+    // 인포윈도우를 마커위에 표시합니다 
+    infowindow.open(map, marker);
+    
+    // 지도 중심좌표를 접속위치로 변경합니다
+    map.setCenter(locPosition);      
+}    
+
 
 	//파일 삭제
 	function deleteFile(index) {

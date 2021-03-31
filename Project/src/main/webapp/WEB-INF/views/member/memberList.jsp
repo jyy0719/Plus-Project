@@ -147,7 +147,7 @@
 		                           <td>${list.memberEmail }</td>
 		                           <td>${list.memberName }</td>
 		                           <td>${list.memberJoindate }</td>
-		                          <td><button><a id="info" href="${path}/memberView?memberNum=${list.memberNum}">상세보기</a></button></td>
+		                          <td><button><a id="info" href="${path}/memberUpdate?memberNum=${list.memberNum}">상세보기</a></button></td>
 		                      
 		                        </tr>
 		                     </c:forEach>
