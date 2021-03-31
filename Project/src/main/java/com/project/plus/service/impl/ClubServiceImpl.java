@@ -44,6 +44,10 @@ public class ClubServiceImpl implements ClubService {
 		return mapper.getOneApply(apply);
 	}
 
+	@Override
+	public int plusCurnum(int clubNum) {
+		return mapper.plusCurnum(clubNum);
+	}
 	
 	//정연 하단 추가 20210326
 	// 추가 - 정연 (리뷰에서 쓸 것)

@@ -11,6 +11,7 @@ import com.project.plus.domain.SearchCriteriaMem;
 public interface MemberMapper {
 	public void joinMember(MemberVO vo);
 	public void updateMember(MemberVO vo);
+	public void deleteMember(int memberNum);
 	
 	public MemberVO login(MemberVO vo);
 	public Integer kakaologin(MemberVO vo);
@@ -23,10 +24,10 @@ public interface MemberMapper {
 	public void logout(HttpSession session);
 	
 	public MemberVO selectMember(MemberVO vo);
-	public MemberVO viewMember(int memberNum);
-	
+
 	public List<MemberVO> memberList(SearchCriteriaMem scmem);
 	public int listCount(SearchCriteriaMem scmem);
+	public MemberVO viewMember(int memberNum);
 
 	
 	//정연 하단 추가 20210326

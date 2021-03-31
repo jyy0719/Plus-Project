@@ -28,11 +28,11 @@ public class ChatController {
 		log.info("채팅 로그인 멤버 번호 : " + memNum);
 		List<ClubVO> clubs = chatService.getChatList(memNum);
 		model.addAttribute("clubs", clubs);
-		return "chat";
+		return "club/chat";
 	}
 	
 	// 클럽 넘버를 받아야 함 
-	@RequestMapping(value = "/getMessages")
+	@RequestMapping("/getMessages")
 	@ResponseBody
 	public List<ChatVO> getMessages(@RequestParam("clubNum") int clubNum) {
 		// vo 리턴하는거 

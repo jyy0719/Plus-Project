@@ -10,5 +10,4 @@ public interface ChatService {
 	public List<ChatVO> getMessages(int clubNum);
 	public int insertMessage(ChatVO msg);
 	public Integer checkRoomId(int clubNum);
-	
 }

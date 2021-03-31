@@ -98,8 +98,8 @@ ORDER BY member_num
 
 <sql id="search">
 	<if test="searchType != null">
-		<if test="searchType == 'e'.toString()" >AND #{memberEmail} LIKE '%' || #{keyword} ||'%'</if>
-		<if test="searchType == 'n'.toString()" >AND #{memberName} LIKE '%' || #{keyword} ||'%'</if>
+		<if test="searchType == 'e'.toString()" >AND member_email LIKE CONCAT( '%', #{keyword}, '%')</if>
+		<if test="searchType == 'n'.toString()" >AND member_name LIKE CONCAT ('%', #{keyword},'%')</if>
 	</if>
 </sql>
 
@@ -122,9 +122,17 @@ ORDER BY member_num
 				member_nickname = #{memberNickname}, 
 				member_phone = #{memberPhone}, 
 				member_password = #{memberPassword},
-				member_pic = #{memberPic} 
+				member_pic = #{memberPic},
+				member_point = #{memberPoint}
 		WHERE member_email = #{memberEmail}
 	</update> 
+	
+	<!-- 관리자 회원 삭제 -->
+	<delete id="deleteMember" parameterType="int">
+		DELETE 
+		FROM member
+		WHERE member_num = #{memberNum}
+	</delete>
 	
 	<!-- 휴대폰번호 중복검사 --> 
 	<select id="memberPChk" resultType="int"> 

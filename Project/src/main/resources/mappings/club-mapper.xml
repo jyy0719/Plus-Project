@@ -85,7 +85,7 @@
 		DELETE FROM club WHERE club_num = #{clubNum}
 	</delete>
 	
-		<!-- 신청내역 insert  -->
+	<!-- 신청내역 insert  -->
 	<insert id="apply">
 		INSERT INTO apply(club_num, member_num, apply_date) VALUES (#{clubNum}, #{memberNum}, NOW())
 	</insert>
@@ -94,8 +94,16 @@
 	<select id="getOneApply" resultType="Integer">
 		SELECT count(*) FROM apply WHERE club_num = #{clubNum} AND member_num = #{memberNum}
 	</select>
-
-
+	
+	<!-- 참가인원 update하기  -->
+	<update id="plusCurnum">
+		UPDATE club SET club_curnum = club_curnum+1 WHERE club_num = #{clubNum}
+	</update>
+	
+	<!-- <select id="countCurnum" resultType="Integer">
+		SELECT club_curnum FROM club WHERE club_num = #{clubNum}
+	</select> -->
+	
 	
 	
 	<!-- 방장 x , 참여중인 모임 목록 가져오기 -->
