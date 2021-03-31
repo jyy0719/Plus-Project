@@ -1,6 +1,5 @@
 package com.project.plus.controller;
 
-import java.util.Objects;
 
 import javax.servlet.http.HttpSession;
 
@@ -18,11 +17,12 @@ import com.project.plus.service.AnnounceService;
 import com.project.plus.service.MemberService;
 
 @Controller
-@SessionAttributes("announce")
 public class AnnounceController {
 	
 	@Autowired
 	private AnnounceService as;
+	
+	@Autowired
 	private MemberService ms;
 	
 	@RequestMapping(value="/insertAnnounce", method = RequestMethod.POST)
@@ -55,14 +55,26 @@ public class AnnounceController {
 	public String getAnnounceList(AnnounceVO vo, MemberVO mvo, Model model, HttpSession session) {
 		
 		MemberVO user = (MemberVO) session.getAttribute("user");
-		if(user.isEmpty()) {
-			System.out.println("로그인정보가 없는 비회원 입장");
-			return "";
-		}
-		else {
+		
+		if(user == null) {
+			System.out.println();
+			return "login.login";
+		} else {
+			
+			// 관리자 1번이면 
 			model.addAttribute("announceList", as.getAnnounceList(vo));
 			return "announce.ann";
+			
 		}
+		
+//		if(user.isEmpty()) {
+//			System.out.println("로그인정보가 없는 비회원 입장");
+//			return "";
+//		}
+//		else {
+//			model.addAttribute("announceList", as.getAnnounceList(vo));
+//			return "announce.ann";
+//		}
 		/*
 		 * if(user.getMemberNum()==1) { model.addAttribute("announceList",
 		 * as.getAnnounceList(vo)); return "announce.ann"; } else {
