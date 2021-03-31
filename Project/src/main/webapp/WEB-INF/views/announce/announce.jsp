@@ -6,7 +6,7 @@
 
 
 <c:set var="path" value="${pageContext.request.contextPath}" />
-
+<%@ include file="../include/header.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,50 +22,55 @@
 	
 	<div class="visual-box">
 		<div class="visual-box-in">
+			<!-- <h2>자주묻는질문</h2> -->
 			<div class="header">공지사항</div>
-			<div class="desc">알려드릴 소식이 있어요 여기되고있는건맞아?</div>
+			<div class="desc">알려드릴 소식이 있어요</div>
 		</div>
 	</div>
 
 	<div class="notimenu">
 		<div class="notisubmenu">
-			<a href="">공지사항</a> <a href="faq">자주묻는질문</a>
+			<a href="">공지사항</a> <a href="faq.do">자주묻는질문</a>
 		</div>
 	</div>
 
 	<div id="announce">
 		<c:forEach var="announce" items="${announceList}">
+			<%-- <c:forEach items="${announceTitle}" var="announce"></c:forEach> --%>
 			<button class="accordion">
-				<!-- <div class="question"></div> -->
-				${announce.announceTitle}
+				<div class="question"></div>
+				${announce.announceTitle }
 			</button>
 			<div class="panel">
-					<fmt:parseDate var="parseRegDate"
-						value="${announce.announceRegDate}" pattern="yyyy-MM-dd" />
-					<fmt:formatDate var="resultRegDt" value="${parseRegDate}"
-						pattern="yyyy-MM-dd" />
-					<span>${resultRegDt}</span><br />
-					<p>${announce.announceContent}</p>
-					<form action="deleteAnnounce" method="post" style="float:right; margin-right:20px; margin-bottom:20px">
-	   			 <input type="hidden" value="${announce.announceNum}" name="announceNum">
-	  			  <a href="deleteAnnounce"><button type="submit" class="btn btn-danger" id="deleteBtn">삭제 </button></a>
-	   			 </form>
+				<fmt:parseDate var="parseRegDate"
+					value="${announce.announceRegDate}" pattern="yyyy-MM-dd" />
+				<fmt:formatDate var="resultRegDt" value="${parseRegDate}"
+					pattern="yyyy-MM-dd" />
+
+				<span>${resultRegDt}</span><br />
+
+
+				<p>${announce.announceContent}</p>
+				<!-- <p>몇시부터 몇시까지 안될 예정이예요</p> -->
 			</div>
-			
-			
-		</c:forEach></div>
-	
+		</c:forEach>
+		<!-- 	
+		<button class="accordion">
+			<div class="question"></div>
+			프로젝트 넘 힘들어
+		</button>
+
+		<div class="panel">
+			<p>
+				테스트 내용입니다 조금 길게 적어넣어야 하는데 할말이 없어 복붙합니다<br /> 테스트 내용입니다 조금 길게 적어넣어야
+				하는데 할말이 없어 복붙합니다<br /> 테스트 내용입니다 조금 길게 적어넣어야 하는데 할말이 없어 복붙합니다<br />
+				테스트 내용입니다 조금 길게 적어넣어야 하는데 할말이 없어 복붙합니다<br /> 테스트 내용입니다 조금 길게 적어넣어야
+				하는데 할말이 없어 복붙합니다<br /> 테스트 내용입니다 조금 길게 적어넣어야 하는데 할말이 없어 복붙합니다<br />
+			</p> -->
+	</div>
 	<br>
-	
-	<div class="announce-write">
-	 <c:set var="memberNum" value="${member.memberNum}" />
-		<c:if test="${memberNum eq 12}">
-		<c:out value="<h2>글 등록하기</h2>" />
-	</c:if>
-	<form action="insertAnnounce" method="post">
-	<input type="hidden" value="${member.memberNum}">
+	<div class="announce-submit">
 		<a href="${path }/announceForm.jsp">글 등록하기</a> <!-- 일단 여기다 잠깐 빼둠 관리자 단에 들어가야함 -->
-	</form>
 	</div>
 	</div>
 
@@ -86,6 +91,6 @@
 			});
 		}
 	</script>
-
+	<%@ include file="../include/footer.jsp" %>
 </body>
 </html>

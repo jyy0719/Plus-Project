@@ -1,11 +1,10 @@
 package com.project.plus.controller;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -19,64 +18,62 @@ public class InquiryController {
 
 	@Autowired
 	private InquiryService is;
-
-	@RequestMapping(value="/inquiryForm", method=RequestMethod.GET)
-	public String inquiryForm(InquiryVO vo, HttpSession session) throws Exception {
-		vo.setMemberNum(12);
-		is.inquiryForm(vo, session);
-		System.out.println(vo.getMemberNum());	// 로그인을 해도 여기서 못받아오면 아무 소용이 없지않나요 일단은 그냥 넣을게요
-		return "inquiryForm.inqu";
-	}
 	
-	@RequestMapping(value="/writeInquiry", method=RequestMethod.POST)
+	// return 어디로 할지가 아직 정리가 안됨
+
+	@RequestMapping(value="/writeInquiry.do", method=RequestMethod.POST)
 	public String writeInquiry(InquiryVO vo) throws Exception {
-		System.out.println("컨트롤러 진입 시도 성공!!");
-		is.writeInquiry(vo);
-		return "redirect:inquiry";
-	}	
-	
-	@RequestMapping("/editInquiryForm")
-	public String editInquiryForm(InquiryVO vo, Model model) {
-		model.addAttribute("inquiryForm", is.editInquiryForm(vo));
-		return "inquiryEditForm.inqu";
+			is.writeInquiry(vo);
+			return "inquiry.do";
 	}
 
-	@RequestMapping(value="/editInquiry", method=RequestMethod.POST)
-	public String editInquiry(InquiryVO vo) {
+	@RequestMapping(value="/editInquiry.do", method=RequestMethod.POST)
+	public String editInquiry(@ModelAttribute("inquiry")InquiryVO vo) {
 		is.editInquiry(vo);
-		return "redirect:inquiry";
+		return "inquiry/inquiryForm";
 	}
 	
-	@RequestMapping("/deleteInquiry")
+//	@RequestMapping(value="/answerInquiry.do", method=RequestMethod.POST)
+//	public String answerInquiry(@ModelAttribute("inquiry")InquiryVO vo) {
+//		is.answerInquiry(vo);
+//		return "inquiry.do";
+//	}
+
+	@RequestMapping("/deleteInquiry.do")
 	public String deleteInquiry(InquiryVO vo) {
 		is.deleteInquiry(vo);
-		return "redirect:inquiry";
+		return "inquiry.do";
 	}
+
+//	@RequestMapping(value="/getInquiry.do", method=RequestMethod.GET)
+//	public String getInquiry(InquiryVO vo, Model model) {
+//		model.addAttribute("inquiry", is.getInquiry(vo));
+//		return "inquiry/getInquiry";
+//	}
 	
-	@GetMapping("/getInquiry")
+	@GetMapping("/getInquiry.do")
 	public String getInquiry(InquiryVO vo, Model model) {
-		System.out.println("여기서 멤버 넘버가 누군데요 : " + vo);
 		model.addAttribute("inquiry", is.getInquiry(vo));
-		System.out.println("들어갔니?");
-		return "getInquiry.inqu";
+		return "inquiry/getInquiry";
 	}
 	
-	@RequestMapping("/inquiry")
+	@RequestMapping("/inquiry.do")
 	public String getInquiryList(InquiryVO vo, Model model) {
 		model.addAttribute("inquiryList", is.getInquiryList(vo));
-		return "inquiry.inqu";
+		return "inquiry.mypage";
 	}
 	
-	/*
-	 * @RequestMapping("/inquiryPerson.do") public String
-	 * getInquiryPersonList(InquiryVO vo, Model model) {
-	 * model.addAttribute("inquiryPersonList", is.getInquiryPersonList(vo)); return
-	 * "inquiry"; }
-	 * 
-	 * @RequestMapping("/inquiryType.do") public String getInquiryTypeList(InquiryVO
-	 * vo, Model model) { model.addAttribute("inquiryTypeList",
-	 * is.getInquiryTypeList(vo)); return "inquiry"; }
-	 */
+	@RequestMapping("/inquiryPerson.do")
+	public String getInquiryPersonList(InquiryVO vo, Model model) {
+		model.addAttribute("inquiryPersonList", is.getInquiryPersonList(vo));
+		return "inquiry";
+	}
+
+	@RequestMapping("/inquiryType.do")
+	public String getInquiryTypeList(InquiryVO vo, Model model) {
+		model.addAttribute("inquiryTypeList", is.getInquiryTypeList(vo));
+		return "inquiry"; // 1:1문의 리스트에 뿌려주는 것은 똑같기 때문에 여기다 돌려주는거 맞겠지..?
+	}
 }
 
 

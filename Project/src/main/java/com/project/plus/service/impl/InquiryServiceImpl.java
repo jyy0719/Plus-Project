@@ -2,8 +2,6 @@ package com.project.plus.service.impl;
 
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,10 +26,6 @@ public class InquiryServiceImpl implements InquiryService {
 		mapper.editInquiry(vo);
 	}
 	
-	public InquiryVO editInquiryForm(InquiryVO vo) {
-		return mapper.editInquiryForm(vo);
-	}
-
 	@Override
 	public void answerInquiry(InquiryVO vo) {
 		mapper.answerInquiry(vo);
@@ -60,12 +54,6 @@ public class InquiryServiceImpl implements InquiryService {
 	@Override
 	public List<InquiryVO> getInquiryTypeList(InquiryVO vo) {
 		return mapper.getInquiryTypeList(vo);
-	}
-
-	@Override
-	public void inquiryForm(InquiryVO vo, HttpSession session) {
-		mapper.inquiryForm(vo, session);
-		
 	}
 
 }

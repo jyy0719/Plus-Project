@@ -13,10 +13,10 @@ public interface AdminService {
 
 	List<InquiryVO> getAdminInquiryList(InquiryVO vo);
 	
+//	void answerForm(InquiryVO vo);
+	
 	void answerInquiry(InquiryVO vo);
 	
 	int getAdminChart(MemberVO mvo);
-
-	InquiryVO answerInquiryForm(InquiryVO vo);
 	
 }
