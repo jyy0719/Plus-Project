@@ -37,7 +37,7 @@
      <put-attribute name="body" value="/WEB-INF/views/main/totalList.jsp" /> 
   </definition>
 
->>>>>>> 4d303b65531a9cab687b76c654b8bd435aa0fc1e
+
 	<!--  마이페이지  -->
   <definition name="mypage.*" template="/WEB-INF/views/mypage/inc/layout.jsp">
     <put-attribute name="title" value="마이 페이지" />
@@ -80,7 +80,7 @@
 =======
  
 
->>>>>>> 4d303b65531a9cab687b76c654b8bd435aa0fc1e
+
   <definition name="*.club" extends="base"> 
   	<put-attribute name="body" value="/WEB-INF/views/club/{1}.jsp" /> 
   </definition>
