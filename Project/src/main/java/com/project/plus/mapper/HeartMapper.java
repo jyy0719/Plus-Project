@@ -12,6 +12,7 @@ public interface HeartMapper {
 	public void deleteHeart(HeartVO vo);
 	public void insertHeart(HeartVO vo);
 	public int selectHeartNum(HeartVO vo);
+	public int getHeartCount(int clubNum);
 //	public void applyFreeClub(ApplyVO vo);
 //	public ApplyVO checkApplyClub(ApplyVO vo);
 }

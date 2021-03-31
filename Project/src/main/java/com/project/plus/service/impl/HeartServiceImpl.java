@@ -42,6 +42,8 @@ public class HeartServiceImpl implements HeartService {
 		return heartMapper.selectHeartNum(vo);
 	}
 
-
+	public int getHeartCount(int clubNum) {
+		return heartMapper.getHeartCount(clubNum);
+	}
 
 }
