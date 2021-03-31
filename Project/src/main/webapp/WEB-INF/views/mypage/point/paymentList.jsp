@@ -20,7 +20,7 @@
 	    window.onload = function () {
 	        var showPopup = document.getElementById('showPopup');
 	        showPopup.onclick = function showPopup() {
-	            window.open("chargePointPopup.do",
+	            window.open("chargePointPopup",
 	                "포인트충전", "width=700, height=600, left=400, top=100");
 	        }
 	    }; 

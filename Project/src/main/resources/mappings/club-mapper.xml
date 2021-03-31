@@ -34,21 +34,6 @@
 		<result property="applyDate" column="apply_date" />
 	</resultMap>
 	
-	<resultMap id="chatResult" type="chat">
-		<id property="messageNum" column="message_num" />
-		<result property="clubNum" column="club_num" />
-		<result property="chatSendTime" column="chat_sendtime" />
-		<result property="chatStringSendtime" column="chat_string_sendtime" />
-		<result property="chatMessage" column="chat_message" />
-		<association property="members" resultMap="memberResult" />
-	</resultMap> 
-	
-	<resultMap id="memberResult" type="user">
-		<id property="memberNum" column="member_num"/>
-		<result property="memberName" column="member_name"/>
-		<result property="memberNickname" column="member_nickname"/>
-	</resultMap> 
-	
 
 	<select id="getClub" resultMap="clubResult">
 		SELECT * FROM club WHERE
@@ -100,7 +85,7 @@
 		DELETE FROM club WHERE club_num = #{clubNum}
 	</delete>
 	
-		<!-- 신청내역 insert  -->
+	<!-- 신청내역 insert  -->
 	<insert id="apply">
 		INSERT INTO apply(club_num, member_num, apply_date) VALUES (#{clubNum}, #{memberNum}, NOW())
 	</insert>
@@ -110,23 +95,15 @@
 		SELECT count(*) FROM apply WHERE club_num = #{clubNum} AND member_num = #{memberNum}
 	</select>
 	
-	<!--  신청한 모임이 진행중이면 가져온다  -->
-	<select id="getChatList" resultMap="clubResult">
-	<![CDATA[
-		SELECT club_num, club_name, club_leader FROM club WHERE club_enddate > curDate() AND club_startdate <= curDate()
-		AND club_num in (select club_num from apply where member_num = #{memberNum});
-	]]>
-	</select>
+	<!-- 참가인원 update하기  -->
+	<update id="plusCurnum">
+		UPDATE club SET club_curnum = club_curnum+1 WHERE club_num = #{clubNum}
+	</update>
 	
-	<insert id="insertMessage">
-		INSERT INTO chat(club_num, member_num, chat_sendtime, chat_message) VALUES(#{clubNum}, #{memberNum}, NOW(), #{chatMessage})
-	</insert>
+	<!-- <select id="countCurnum" resultType="Integer">
+		SELECT club_curnum FROM club WHERE club_num = #{clubNum}
+	</select> -->
 	
-	<!-- 채팅내역 불러오기 -->
-	<select id="getMessages" resultMap="chatResult">
-		SELECT c.club_num, date_format(chat_sendtime,'%Y.%m.%d | %h:%i:%s %p') as chat_string_sendtime, chat_message, m.member_nickname 
-		FROM chat c, member m WHERE c.member_num = m.member_num AND c.club_num = #{clubNum}
-	</select> 
 	
 	
 	<!-- 방장 x , 참여중인 모임 목록 가져오기 -->

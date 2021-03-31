@@ -15,9 +15,8 @@
 <!-- 구글 아이콘 -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
-
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <!-- 나눔폰트 -->
     <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css">
 
@@ -26,14 +25,17 @@
 
 <body>
 	<!-- 배너너ㅓ -->
-	  <div id="mainbanner">
-	 
-        <img class="togetherbanner" 
+
+    
+	  <div class="mainbanner">
+        <img 
          src="${path}/resources/img/plus2.png"
          alt="First slide"> 
- <p>도움더하기는</p>
-<p>내 주변의 전문가와 함께하는 모임이에요.</p>
-
+         <div class="bannercontent">
+ <h1>도움더하기</h1>
+<h4>내 주변의 전문가와 함께하는 도움더하기</h4>
+<h4>나의 재능과 스펙을 많은 사람들과 공유해보세요.</h4>
+</div>
     </div>
 
 	<!--더하기 리스트-->
@@ -51,7 +53,7 @@
 					<div class="col-md-6 col-lg-4">
 						<div class="card border-0 transform-on-hover">
 
-							<a class="lightbox"
+							<a class="lightboxbest"
 									href='getClub.do?clubNum=<c:out value="${club.clubNum}" />'>
 								<img id="clubmainpic"
 								src="${path}/resources${club.clubMain_pic}"
@@ -187,8 +189,7 @@
 	crossorigin="anonymous"></script>
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-	crossorigin="anonymous"></script>
+	></script>
 
 <script>
 

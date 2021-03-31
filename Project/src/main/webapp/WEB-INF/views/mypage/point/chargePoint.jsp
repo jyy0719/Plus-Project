@@ -35,11 +35,11 @@
 	            //buyer_tel : '010-1234-5678',
 	            //buyer_addr : '서울특별시 마포구 신수동',
 	            //buyer_postcode : '123-456',
-	            m_redirect_url : '/chargePointPopup.do'
+	            m_redirect_url : '/chargePointPopup'
 	        }, function(rsp) {
 	            if ( rsp.success ) {
 	            	$.ajax({
-	            		url : 'chargePoint.do',
+	            		url : 'chargePoint',
 	            		type : 'post',
 	            		dataType : 'json',
 	            		data : {'payAmount' : rsp.paid_amount},

@@ -4,11 +4,14 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import com.project.plus.domain.CriteriaMem;
 import com.project.plus.domain.MemberVO;
+import com.project.plus.domain.SearchCriteriaMem;
 
 public interface MemberMapper {
 	public void joinMember(MemberVO vo);
 	public void updateMember(MemberVO vo);
+	public void deleteMember(int memberNum);
 	
 	public MemberVO login(MemberVO vo);
 	public Integer kakaologin(MemberVO vo);
@@ -21,8 +24,10 @@ public interface MemberMapper {
 	public void logout(HttpSession session);
 	
 	public MemberVO selectMember(MemberVO vo);
-	
-	List<MemberVO> memberList(MemberVO vo);
+
+	public List<MemberVO> memberList(SearchCriteriaMem scmem);
+	public int listCount(SearchCriteriaMem scmem);
+	public MemberVO viewMember(int memberNum);
 
 	
 	//정연 하단 추가 20210326
@@ -36,6 +41,7 @@ public interface MemberMapper {
 	public void deductMemberPoint(MemberVO vo);
 	
 	public void updateClubLeaderPoint(MemberVO vo);
+	
 
 
 

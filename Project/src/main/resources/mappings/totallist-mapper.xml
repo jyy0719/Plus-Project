@@ -2,7 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.project.plus.mapper.TotalListMapper">
-<resultMap id="clubResult" type="club">
+
+	<resultMap id="clubResult" type="club">
 		<id property="clubNum" column="club_num" />
 		<result property="clubName" column="club_name" />
 		<result property="clubLeader" column="club_leader" />
@@ -30,64 +31,58 @@
 
 	</resultMap>
 
-<!-- 검색 조건문 -->
-	<sql id="criteria">
-		<trim prefix="where (" suffix=")" prefixOverrides="OR">
-			<foreach collection="typeArr" item="type">
-				<trim prefix="OR">
-					<choose>
-						<when test="type == 'T'.toString()">
-							title like concat('%',#{keyword},'%') 
-						</when>
-						<when test="type == 'C'.toString()">
-							content like concat('%',#{keyword},'%') 
-						</when>
-						<when test="type == 'W'.toString()">
-							writer like concat('%',#{keyword},'%' )
-						</when>
-					</choose>
-				</trim>
-			</foreach>
-		</trim>
+
+<sql id="search">
+		<if test="searchType != null"> 
+			<if test="searchType == 't'.toString()">and (club_name like CONCAT('%',#{keyword},'%')
+				or club_leader like CONCAT('%',#{keyword},'%')
+				or club_content1 like CONCAT('%',#{keyword},'%')
+				or club_hashtag like CONCAT('%',#{keyword},'%'))</if>
+			<if test="searchType == 'n'.toString()">and club_name like CONCAT('%',#{keyword},'%')</if>
+			<if test="searchType == 'l'.toString()">and club_leader like CONCAT('%',#{keyword},'%')</if>
+			<if test="searchType == 'c'.toString()">and club_content1 like CONCAT('%',#{keyword},'%')</if>
+			<if test="searchType == 'h'.toString()">and club_hashtag like CONCAT('%',#{keyword},'%')</if>
+	</if>
 	</sql>
 
-<!-- 게시판 목록 -->
-	<select id="getList" resultMap="clubResult">
-	
-		select * from club
-		WHERE club_shutdate > NOW()
+
+	<!-- 게시물 목록(페이징) -->
+	<select id="getListPaging" resultMap="clubResult"
+		parameterType="com.project.plus.domain.SearchCriteria">
+		<!-- select * from club where club_num > 0 <include refid="search"></include> 
+			order by club_heart desc limit #{rowStart}, #{rowEnd} </select> -->
+		SELECT *
+		FROM (
+		SELECT *,
+		row_number() over (order by club_num) as rNum
+		FROM club
+		WHERE 1=1
+		<include refid="search"></include>
+		) memPage
+		WHERE rNum between #{rowStart} and #{rowEnd}
+		ORDER BY club_heart DESC
+	</select>
+
+
+
+	<!-- DB의 총 갯수 -->
+	<select id="getTotal" resultType="int"
+		parameterType="com.project.plus.domain.SearchCriteria">
+		<!-- select * from club where club_num > 0 <include refid="search"></include> 
+			</select> -->
+
+		SELECT COUNT(club_num)
+		FROM club
+		WHERE 1=1
+		<include refid="search"></include>
+		AND club_shutdate > NOW()
 		AND club_max > club_curnum
-        ORDER BY club_num DESC
-	
-	</select>
-	
-    <!-- 게시물 목록(페이징) -->
-    <select id="getListPaging" resultMap="clubResult">
-    
-        select *    from club
-                <if test="keyword != null">
-					<include refid="criteria"></include>
-				</if>
-                order by club_num DESC 
-                <!-- as T1 -->
-        limit #{skip},#{amount}
-   
-    </select>
-    
-    
- <!-- 게시물 총 개숫 -->
-	<select id="getTotal" resultType="int">
-		select count(*) from club
-		<if test="keyword != null">
-			<include refid="criteria"></include>
-		</if>	
-	
 	</select>
 
-
-	<!-- <![CDATA[ SELECT * (6371*acos(cos(radians(#{userLatitude}))*cos(radians(club_latitude))*cos(radians(club_longitude) 
+<!-- 
+	 <![CDATA[ SELECT * (6371*acos(cos(radians(#{userLatitude}))*cos(radians(club_latitude))*cos(radians(club_longitude) 
 		-radians(#{userLongitude}))+sin(radians(#{userLatitude}))*sin(radians(club_latitude))) 
 		AS distance FROM club HAVING distance <= 10 10km 반경의 데이터만 가져온다. ORDER BY 
-		distance]]> -->
+		distance]]>  -->
 
 </mapper>

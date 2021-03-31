@@ -38,7 +38,7 @@
 </head>
 <header></header>
 <section>
-<form action="updateClub.do" method="post" enctype="multipart/form-data" id="frm">
+<form action="updateClub" method="post" enctype="multipart/form-data" id="frm">
 
 		<div class="selection">
 	<!-- 		<div class="select-kind">

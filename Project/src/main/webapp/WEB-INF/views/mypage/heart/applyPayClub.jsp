@@ -24,7 +24,7 @@
 </head>
 <body>
     <div class="pointContainer">
-    	<form method="post" action="applyPayClubPayment.do" >
+    	<form method="post" action="applyPayClubPayment" >
     		<input type="hidden" name="clubNumArr" value="${clubNumArr }">
     		<input type="hidden" id="clubLeader" name="clubLeader" value="${clubLeader}">
     		
@@ -53,33 +53,7 @@
          alert('${msg}');
      }
      
-    	   /*  return true; */
-    /* alert('${msg}'); */
-    /*결제 하시겠습니까 ? -
-    	apply테이블에 insert / payment 테이블에 (포인트 사용내역)insert 
-    	/ member테이블의 update(point) - 이 때 club 모임장의포인트도 업뎃해주기 위해서 club테이블select  / 	
-    */ 
-    
-    
-	    /*function applyNotFreeClub() {
-                //배열 선언
-                var clubNumArray = [];
-                
-                $('input[name="fruit"]:checked').each(function(i){//체크된 리스트 저장
-                    fruitArray.push($(this).val());
-                });
-                
-	  		$.ajax({
-	  			url : 'applyNotFreeClub.do',
-	  			type : 'post',
-	  			traditional : true,
-	  			dataType : 'json',
-	  			data : {'totalPoint' : totalPoint},
-	  			success : function(result) {
-	  				alert(result.msg);
-	  			}
-	  		});
-	  	}*/
+
     </script>
 </body>
 </html>

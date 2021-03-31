@@ -18,7 +18,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.project.plus.domain.ClubVO;
 import com.project.plus.domain.Criteria;
+import com.project.plus.domain.MemberVO;
 import com.project.plus.domain.PageMakerDTO;
+import com.project.plus.domain.SearchCriteria;
 import com.project.plus.mapper.TotalListMapper;
 import com.project.plus.service.MainService;
 import com.project.plus.service.TotalListService;
@@ -27,28 +29,27 @@ import lombok.extern.log4j.Log4j;
 
 @Controller
 @Log4j
-
 public class TotalListController {
 
 	@Autowired
 	private TotalListService service;
 
 	/* 게시판 목록 페이지 접속(페이징 적용) */
-	@RequestMapping("totalList.do")
-	public String  boardListGET(Model model, Criteria cri) {
+	@RequestMapping(value = "/totalList", method = RequestMethod.GET)
+	public String totalList(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception {
+		log.info("totalListGET");
+	
 		
-		log.info("boardListGET");
-		log.info("cri : " + cri);
-		
-		model.addAttribute("list", service.getListPaging(cri));
-		
-		int total = service.getTotal(cri);
-		
-		PageMakerDTO pageMake = new PageMakerDTO(cri, total);
-		
-		model.addAttribute("pageMaker", pageMake);
-		return "totalList.main";
-	}	
+		List<ClubVO> list = service.getListPaging(scri);
+		model.addAttribute("list", list);
+
+		PageMakerDTO pageMaker = new PageMakerDTO();
+		pageMaker.setCriteria(scri);
+		pageMaker.setTotalCount(service.getTotal(scri));
+		model.addAttribute("pageMaker", pageMaker);
+		return "totalList";
+	}
+	
 
 }
 

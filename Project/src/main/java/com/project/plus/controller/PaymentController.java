@@ -25,7 +25,7 @@ public class PaymentController {
 	private MemberService memberService;	
 
 	
-	@RequestMapping("/getPaymentList.do")
+	@RequestMapping("/getPaymentList")
 	public String getPaymentList(PaymentVO vo, MemberVO membervo, Model model) {
 		
 		vo.setMemberNum(3);
@@ -38,12 +38,12 @@ public class PaymentController {
 		return "paymentList.point";
 	}
 	
-	@RequestMapping("/chargePointPopup.do")
+	@RequestMapping("/chargePointPopup")
 	public String chargePointPopup(PaymentVO vo, Model model) {
 		return "mypage/point/chargePoint";
 	}
 	
-	@RequestMapping("/chargePoint.do")
+	@RequestMapping("/chargePoint")
 	public void chargePoint(PaymentVO vo, MemberVO membervo) {
 		vo.setMemberNum(3);
 		membervo.setMemberNum(3);

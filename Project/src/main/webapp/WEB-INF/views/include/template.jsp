@@ -7,8 +7,7 @@
 <meta charset="UTF-8">
 <!--  공통으로 import하는 소스들  -->
     <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <!-- <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>  -->
+  <!--   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
 </head>
 	<tiles:insertAttribute name="header" />
 	<tiles:insertAttribute name="body"/>

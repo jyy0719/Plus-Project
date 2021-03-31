@@ -56,7 +56,14 @@
                         <span class="caret"></span></button>
                         <ul class="dropdown-menu">
                         <form>
-                        <li class="dropli"><a href="memberUpdate.do">My Page</a></li>
+	                        <c:choose>
+				                <c:when test = "${user.memberNum == 1 }">
+	                        <li class="dropli"><a href="memberList">회원관리</a></li>
+				               </c:when>
+				               <c:otherwise>
+	                        <li class="dropli"><a href="memberUpdate">My Page</a></li>
+				               </c:otherwise>
+			               </c:choose>
                         </form>
                       <form action="logout.do" method="get">
                       <!--  onclick="kakaoLogout()" -->
@@ -65,7 +72,7 @@
                         </ul>
                     </div>
                 </li>
-                <li class="nav-right icon"><a href="chat.do?memberNum=${user.memberNum}" target="_blank"><img src="${path}/resources/img/images/chat.png" id="icon"></a></li>
+              	 <li class="nav-right icon"><a href="chat.do?memberNum=${user.memberNum}" target="_blank"><img src="${path}/resources/img/images/chat.png" id="icon"></a></li>
                 <li class="nav-right icon"><a href="#"><img src="${path}/resources/img/images/bell1.png" id="icon"></a></li>
              </c:when>
              <c:otherwise><!-- 로그인 정보가 없으면  -->

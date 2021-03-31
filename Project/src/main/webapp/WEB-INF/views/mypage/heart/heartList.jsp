@@ -213,7 +213,7 @@ div {
 				<!--fBoxes end-->
 			</section>
 			<section id="heartContent2" style="margin-bottom: 20px;">
-				<form action="applyPayClub.do" method="post" id="applyPayClubForm">
+				<form action="applyPayClub" method="post" id="applyPayClubForm">
 					<input type="hidden" id="clubNumArr" name="clubNumArr" />
 					<%-- <input type="hidden" id="clubLeader" name="clubLeader" value="${clubLeader}"/> --%>
 				</form>
@@ -308,7 +308,7 @@ div {
     	console.log(param);
     	
   		$.ajax({
-  			url : 'applyFreeClub.do',
+  			url : 'applyFreeClub',
   			type : 'post',
   			traditional : true,
   			/* contentType: 'application/json' // 보내는 데이터 json 일때 필수 옵션 */
@@ -349,7 +349,7 @@ div {
     	});
     	
   		$.ajax({
-  			url : 'deleteHeart.do',
+  			url : 'deleteHeart',
   			type : 'post',
   			traditional : true,
   			/* contentType: 'application/json' // 보내는 데이터 json 일때 필수 옵션 */

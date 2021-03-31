@@ -9,7 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -31,7 +31,7 @@ public class LoginController {
 	private MemberService memberService;
 
     //로그인 페이지 접속했을 때 연결
-	@RequestMapping(value="login.do", method=RequestMethod.GET) 
+	@RequestMapping(value="login", method=RequestMethod.GET) 
 	public String loginpage(MemberVO vo, HttpSession session, HttpServletResponse response) throws Exception {
 	
 		return "login.login";
@@ -41,19 +41,20 @@ public class LoginController {
 
 	//로그인 버튼 클릭했을 때 실행되는 컨트롤러
 
-	@RequestMapping(value="login.do", method=RequestMethod.POST) 
-	public String login(MemberVO vo, HttpSession session, HttpServletResponse response) throws Exception {
+	@RequestMapping(value="login", method=RequestMethod.POST) 
+	public String login(MemberVO vo, HttpSession session, Model model, HttpServletResponse response) throws Exception {
 	System.out.println("로그인 컨트롤러 접속");
 		try {
 			//로그인 성공했을 때
 			MemberVO user = memberService.login(vo);
 			session.setAttribute("user", user);
+			model.addAttribute("userInfo", user);
 			System.out.println(user.getMemberEmail());
 			System.out.println(user.getMemberPassword());
 			System.out.println(user.getMemberNum());
 			System.out.println(user.getMemberNum());
 			System.out.println(user + "일반로그인 유저정보 획득");
-			return "redirect:main.do";
+			return "redirect:main";
 			
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -66,7 +67,7 @@ public class LoginController {
 //	            out.println("<script>alert('로그인 정보를 확인해주세요.');location.href = '/login.jsp';</script>");
 
 	            
-	            out.println("<script>alert('기본 로그인 정보를 확인해주세요.'); history.go(-1);</script>");
+	            out.println("<script>alert('로그인 정보를 확인해주세요.'); history.go(-1);</script>");
 //	            out.flush();
 	            out.close();
 
@@ -76,7 +77,7 @@ public class LoginController {
 	}
 	
 	@ResponseBody 
-	@RequestMapping(value="kakaologin.do", method=RequestMethod.POST) 
+	@RequestMapping(value="kakaologin", method=RequestMethod.POST) 
 	public String kakaologin(MemberVO vo, HttpSession session) throws Exception {
 	System.out.println("카카오 로그인 컨트롤러 접속");
 		try {
@@ -103,33 +104,33 @@ public class LoginController {
 			
 			log.info(vo.getMemberNum());
 			
-			if(result!=0) {
+			if(result!=0) { 
 				session.setAttribute("user", user);
 				System.out.println("해봐라user " + user);
 				System.out.println("해봐라"+vo);
-				return "main.do";
+				return "redirect:main";
 			}else if(result==0) {
 				session.setAttribute("user", user);
 				System.out.println("이상한디?user" + user);
-				return "memberJoin.do";
+				return "memberJoin";
 			}
 			
 //			session.setAttribute("user", vo);
 //			System.out.println("카카오" + vo);
 //			
-			return "redirect:main.do";
+			return "redirect:main";
 			
 		} catch(Exception e) {
 			e.printStackTrace();
 			System.out.println("카카오 로그인 실패");
-			return "login.do";
+			return "login";
 		}
 	}
 	
 	
 	
 	
-	@RequestMapping(value="naverlogin.do", method=RequestMethod.GET) 
+	@RequestMapping(value="naverlogin", method=RequestMethod.GET) 
 	public String naverlogin(MemberVO vo, HttpSession session, HttpServletResponse response) throws Exception {
 	System.out.println("naver로그인 컨트롤러 접속");
 	System.out.println(session+"1");
@@ -145,7 +146,7 @@ public class LoginController {
 //			System.out.println(user.getMemberNum());
 //			System.out.println(user.getMemberNum());
 			System.out.println(user+" 세션에 넣은 유저");
-			return "main";
+			return "redirect:main";
 			
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -168,7 +169,7 @@ public class LoginController {
 	
 	
 	//로그아웃 컨트롤러(로그아웃은 jsp에서 실행)
-	@RequestMapping("logout.do")
+	@RequestMapping("logout")
 	public String logout(HttpSession session) {
 		MemberServiceImpl memberServiceImpl = new MemberServiceImpl();
 		memberServiceImpl.logout(session);

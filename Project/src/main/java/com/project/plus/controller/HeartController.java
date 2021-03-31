@@ -38,7 +38,7 @@ public class HeartController {
 	@Autowired
 	private ClubService clubService;
 
-	@RequestMapping("/getHeartList.do")
+	@RequestMapping("/getHeartList")//.do뺌
 	public String getHeartList(ApplyVO avo, HeartVO vo, Model model) {
 		vo.setMemberNum(5);
 		avo.setMemberNum(5);
@@ -49,7 +49,7 @@ public class HeartController {
 		return "heartList.heart";
 	}
 
-	@RequestMapping(value = "/applyFreeClub.do", produces = "application/text;charset=UTF-8")
+	@RequestMapping(value = "/applyFreeClub", produces = "application/text;charset=UTF-8")//.do뺌
 	@ResponseBody
 	public String applyFreeClub(ApplyVO vo, Model model, HttpServletRequest request) {
 		String msg = "Nooo";
@@ -77,7 +77,7 @@ public class HeartController {
 		return msg;
 	}
 
-	@RequestMapping("/applyPayClub.do")
+	@RequestMapping("/applyPayClub")//.do뺌
 	public String applyPayClub(ApplyVO vo, Model model, HttpServletRequest request) {
 		System.out.println("************************** applyPayClub.do ****************************");
 
@@ -93,7 +93,7 @@ public class HeartController {
 		return "applyPayClub.heart";
 	}
 
-	@RequestMapping("/applyPayClubPayment.do")
+	@RequestMapping("/applyPayClubPayment")//.do뺌
 	public String applyPayClubPayment(ApplyVO vo, MemberVO mvo, PaymentVO pvo, Model model, HttpServletRequest request) {
 		String msg ="";
 		System.out.println("************************** applyPayClubPayment.do ****************************");
@@ -153,23 +153,24 @@ public class HeartController {
 			}
 		}
 		model.addAttribute("msg", msg);
-		return "forward:/getHeartList.do";
+		return "forward:/getHeartList"; // .do 뺌
 	}
 	
-	@RequestMapping(value = "/insertHeart.do", produces = "application/text;charset=UTF-8")
+	@RequestMapping(value = "/insertHeart", produces = "application/text;charset=UTF-8")
 	@ResponseBody
 	public String insertHeart(HeartVO vo ,Model model , HttpServletRequest request) {
 		System.out.println("************************** insertHeart.do ****************************");
 		System.out.print(vo.getMemberNum()+ "  \"멤버 넘버\" ");
 		System.out.print(vo.getClubNum()+ "  \"클럽 넘버\" ");
 		System.out.print(vo.getClubName()+ "  \"클럽 이름\" ");
+		
 		heartService.insertHeart(vo);
 		System.out.println("찜목록추가완료.. view..");
 		return "찜하기 완료! 찜목록에서 확인해보세요❤";
 	}
 
 	//배열 찜목록 삭제 
-	@RequestMapping(value = "/deleteHeart.do", produces = "application/text;charset=UTF-8")
+	@RequestMapping(value = "/deleteHeart", produces = "application/text;charset=UTF-8") //.do뺌
 	@ResponseBody
 	public String deleteHeart(HeartVO vo ,Model model , HttpServletRequest request) {
 		System.out.println("************************** deleteHeart.do ****************************");
@@ -187,7 +188,7 @@ public class HeartController {
 	}
 	
 	//단일 찜목록 삭제 
-	@RequestMapping(value = "/deleteHeartOne.do", produces = "application/text;charset=UTF-8")
+	@RequestMapping(value = "/deleteHeartOne", produces = "application/text;charset=UTF-8")
 	@ResponseBody
 	public String deleteHeartOne(HeartVO vo ,Model model , HttpServletRequest request) {
 		System.out.println("************************** deleteHeartOne.do ****************************");

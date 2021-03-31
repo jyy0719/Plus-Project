@@ -111,8 +111,8 @@ chNickname = function(){
 
 	        var chk = $("#nickname").val().substring(i,i+1); 
 	
-	        if(chk.match(/([^가-힣a-zA-Z\x20])/i)){
-	        	alert("자음과 모음을 분리해 사용할 수 없습니다");
+	        if(chk.match(/([^가-힣a-zA-Z0-9ㄱ-ㅎㅏ-ㅣ\x20])/i)){
+	        	alert("특수문자는 사용할 수 없습니다");
 	            return;
 	       	}
 		    if ($("#nickname").val().length > 8) {
@@ -145,6 +145,39 @@ chNickname = function(){
 	  //      alert("사용 가능한 닉네임입니다")
 }
 
+$(document).ready(function(){
+	
+	var formObj = $("form[name='updateForm']");
+	
+	//관리자의 삭제버튼
+	$("#btnDel").on("click", function(){
+	formObj.attr("action", "memberDelete").submit();
+	formObj.attr("method", "post");
+	alert("삭제되었습니다");
+//	formObj.submit();
+	})
+
+	//관리자의 수정버튼 - CSS때문에 분리 
+	$("#btnUp").on("click", function(){
+		alert("수정되었습니다~~~");
+		formObj.attr("action", "memberUpdate").submit();
+		formObj.attr("method", "post");
+	//	formObj.submit();				
+	})
+	
+	//회원의 수정버튼 
+	$("#btnJoin").on("click", function(){
+		alert("수정되었습니다~~~");
+		formObj.attr("action", "memberUpdate").submit();
+		formObj.attr("method", "post");
+//		formObj.submit();				
+	})
+
+
+})
+
+
+
 </script>
 </head>
 
@@ -155,22 +188,22 @@ chNickname = function(){
         <!-- <img src="../images/logo.png" id="logo"> -->
     </div>
 
-  <form action="memberUpdate.do" method="POST" enctype="multipart/form-data">
+  <form name="updateForm" role="form" enctype="multipart/form-data">
 
     <!-- wrapper -->
     <div id="wrapper">
 
-<input type="hidden" name="memberNum"  value="${user.memberNum }"> 
+<input type="hidden" name="memberNum"  value="${memberInfo.memberNum }"> 
         <!-- content1-->
         <div class="content1">      
                 <!-- profile pic -->
                 <div class="pro_pic_area">
-                    <div id="image_container"><img src="${path}/resources${user.memberPic}" onerror="this.style.display='none';"/></div>
+                    <div id="image_container"><img src="${path}/resources${memberInfo.memberPic}" onerror="this.style.display='none';"/></div>
                 <div class="filebox"> 
                 </div>
                 	<button type="button" class="removePic" onclick="removePic();">삭제</button>
    	                <label class="picbutton" for="pic_upload_button"><div class="picbutton1">사진첨부하기</div></label>
-                    <input id="pic_upload_button" type="file" name="memberPhoto" accept="image/*" onchange="setThumbnail(event);" value="${user.memberPic}">
+                    <input id="pic_upload_button" type="file" name="memberPhoto" accept="image/*" onchange="setThumbnail(event);" value="${memberInfo.memberPic}">
                 </div>
 
                 <!-- ID(Email) -->
@@ -179,7 +212,7 @@ chNickname = function(){
                         <label for="email">이메일(ID)</label>
                     </h3>
                     <span class="box int_email">
-                        <input type="text" name="memberEmail" id="email" class="int1" maxlength="20" value="${user.memberEmail }" readonly>
+                        <input type="text" name="memberEmail" id="email" class="int1" maxlength="20" value="${memberInfo.memberEmail }" readonly>
                         <!-- <input type="button" class="check" value="중복체크"> -->
                     </span>
                     <span class="error_next_box"></span>
@@ -189,7 +222,7 @@ chNickname = function(){
             <div>
                 <h3 class="join_title"><label for="name">이름</label></h3>
                 <span class="box int_name">
-                    <input type="text" name="memberName" id="name" class="int1" maxlength="16" value="${user.memberName }" readonly>
+                    <input type="text" name="memberName" id="name" class="int1" maxlength="16" value="${memberInfo.memberName }" readonly>
                     <!-- <input type="button" class="check" value="중복체크하기"> -->
                 </span>
                 <span class="error_next_box"></span>
@@ -200,7 +233,7 @@ chNickname = function(){
                 <div>
                     <h3 class="join_title"><label for="name">닉네임</label></h3>
                     <span class="box int_name">
-                        <input type="text" name="memberNickname" id="nickname" class="int1" maxlength="16" value="${user.memberNickname }" placeholder="8자 이내의 닉네임을 지어주세요" >
+                        <input type="text" name="memberNickname" id="nickname" class="int1" maxlength="16" value="${memberInfo.memberNickname }" placeholder="8자 이내의 닉네임을 지어주세요" >
                         <input type="button" id="chkNickname" class="check" value="중복체크하기" onclick="chNickname()" >
                     </span>
                     <span class="error_next_box"></span>
@@ -210,7 +243,7 @@ chNickname = function(){
                 <div>
                     <h3 class="join_title"><label for="phoneNo">휴대전화</label></h3>
                     <span class="box int_mobile">
-                        <input type="tel" name="memberPhone" id="mobile" class="int1" maxlength="16" placeholder=" 하이픈'-'을 포함해 입력해주세요" value="${user.memberPhone }">
+                        <input type="tel" name="memberPhone" id="mobile" class="int1" maxlength="16" placeholder=" 하이픈'-'을 포함해 입력해주세요" value="${memberInfo.memberPhone }">
                         <input type="button" id="chkMobile" class="check" onclick="isMobile()" value="중복검사하기">
                     </span>
                     <span class="error_next_box"></span>
@@ -221,7 +254,7 @@ chNickname = function(){
                 <div>
                     <h3 class="join_title"><label for="pswd1">비밀번호</label></h3>
                     <span class="box int_pass">
-                        <input type="password" name="memberPassword" id="pswd1" onchange="isPw1()" class="int" maxlength="20" value="${user.memberPassword }">
+                        <input type="password" name="memberPassword" id="pswd1" onchange="isPw1()" class="int" maxlength="20" value="${memberInfo.memberPassword }">
                         <span id="alertTxt"></span>
 
                     </span>
@@ -232,7 +265,7 @@ chNickname = function(){
                 <div>
                     <h3 class="join_title"><label for="pswd2">비밀번호 재확인</label></h3>
                     <span class="box int_pass_check">
-                        <input type="password" id="pswd2" onchange="checkPw()" class="int" maxlength="20" value="${user.memberPassword }">
+                        <input type="password" id="pswd2" onchange="checkPw()" class="int" maxlength="20" value="${memberInfo.memberPassword }">
 		                    <span id="alertTxt1"></span>
                     </span>
                     <span class="error_next_box"></span>
@@ -242,16 +275,34 @@ chNickname = function(){
                 <div>
                     <h3 class="join_title"><label for="point">보유 포인트</label></h3>
                     <span class="box int_point">
-                        <input type="text" name="memberPoint" id="point" class="int" maxlength="20" value="${user.memberPoint }" readonly>
+                    
+        <c:if test="${user.memberNum ne 1}">
+             <input type="text" name="memberPoint" id="point" class="int" maxlength="20" value="${memberInfo.memberPoint }" readonly>
+        </c:if>
+ 		<c:if test="${user.memberNum eq 1}">
+             <input type="text" name="memberPoint" id="point" class="int" maxlength="20" value="${memberInfo.memberPoint }">
+        </c:if>
+                    
+                    
                     </span>
                     <span class="error_next_box"></span>
                 </div>
 
 
                 <div class="btn_area">
-                <button type="submit" id="btnJoin">
+                
+       	<c:if test="${user.memberNum ne 1}">
+			<!--  버튼명만 join이고 수정버튼! -->
+			<button id="btnJoin" type="submit"><span>수정하기</span></button> 
+        </c:if>
+ 		<c:if test="${user.memberNum eq 1}">
+			<button id="btnUp" type="submit"><span>수정하기</span></button>
+            <button id="btnDel" type="submit"><span>삭제하기</span></button>
+        </c:if>
+                
+<!--                 <button type="submit" id="btnJoin">
                     <span>수정하기</span>
-                </button>
+                </button> -->
             	</div>
         </div>
         <!--content1-->

@@ -90,7 +90,7 @@
                     <div id="tilde"> ~ </div>
                     <div class="fstyle" id="shutDate">${club.clubMakeDate}</div>
                     <div id="infoLabel">참가인원</div>
-                    <div class="fstyle" id="people"> ${club.clubCurnum}명 / ${club.clubMax}명 </div>
+                    <div class="fstyle" id="people"><div id="curNum">${club.clubCurnum}명</div> / ${club.clubMax}명 </div>
                     <div id="infoLabel">참가비</div>
                     <div class="fstyle" id="amount">${club.clubFee}P</div>
                     <button type="button" class="btn" id="applyBtn">신청하기</button>
@@ -117,37 +117,36 @@
           imageUrl:
             'https://postfiles.pstatic.net/MjAyMTAzMjFfMTYy/MDAxNjE2MzMxNjMzMTQy.AqxK620MPDQyOyUWo0DQaD2gX7k63f360KEStS_8LhUg.2HGpYONTIq7XJd6uKdSkvOCEsJu70nUTujm9HSGnXG8g.PNG.jk940816/logo.png?type=w966',
           link: {
-            mobileWebUrl: 'http://localhost:9999/plus/getClub.do',
-            webUrl: 'http://localhost:9999/plus/getClub.do',
+            mobileWebUrl: 'http://localhost:9999/plus/getClub',
+            webUrl: 'http://localhost:9999/plus/getClub',
           },
         },
         social: {
           likeCount: 286,
           commentCount: ${reviewCount},
         },
-        buttons:[ 
+        buttons: [ 
           {
             title: '웹으로 보기',
             link: {
-              mobileWebUrl: 'http://localhost:9999/plus/getClub.do',
-              webUrl: 'http://localhost:9999/plus/getClub.do',
+              mobileWebUrl: 'http://localhost:9999/plus/getClub',
+              webUrl: 'http://localhost:9999/plus/getClub',
             },
           },
           {
             title: '앱으로 보기',
             link: {
-              mobileWebUrl: 'http://localhost:9999/plus/getClub.do',
-              webUrl: 'http://localhost:9999/plus/getClub.do',
+              mobileWebUrl: 'http://localhost:9999/plus/getClub',
+              webUrl: 'http://localhost:9999/plus/getClub',
             },
           },
         ],
       })
     }
-    
   </script>
 <script>
 
-$(document).ready(function () {
+$(function(){
 	
 	/* 탭메뉴  */
     var $selectMenu = null;
@@ -190,7 +189,6 @@ $(document).ready(function () {
 		 $('#moreReviewBtn').css("display","none");
 	 }
 
-	 console.log(reviewCnt)
 				// limit으로 넣어줄 값 
 				let startIndex = 0;	
 	 			// 5개씩 로딩 
@@ -214,9 +212,8 @@ $(document).ready(function () {
 							startIndex:startIndex
 						}),
 						contentType: "application/json",
-						url: "/plus/getMoreReview.do",
+						url: "getMoreReview",
 			            success: function (data) {
-			            	console.log(data);
 			            	let reviewList = "";
 		                    for(i = 0; i < data.length; i++){
 		                        let  newList = '<div class="userReview">';
@@ -242,42 +239,119 @@ $(document).ready(function () {
 								}
 				            	$(reviewList).appendTo($(".newList")).slideDown();
 				            	
-				        		// 더보기 버튼 삭제
+				        		// 더이상의 리뷰가 없을시 더보기 버튼 삭제
 				            	if(startIndex + step > reviewCnt){
 				        			$('#moreReviewBtn').remove();
 				        		}
 			            	}
 						});
 					}
-			    
-			    $("#applyBtn").click(function(){
-			    	$.ajax({
+
+			    // 신청하기 버튼 클릭시 
+			    $("#applyBtn").on('click',function(){
+			    	console.log('${user.memberNum}');
+			    	
+			    	if(!'${user.memberNum}'){
+			    		alert("로그인해주세요!");
+			    		return;
+			    	}
+			    	
+			    	if(${club.clubCurnum} >= ${club.clubMax}){
+			    		alert("모집 인원이 마감되어 신청하실 수 없습니다");
+			    		return;
+			    	}
+			    	  
+			    // 모임신청 
+			    function apply(){
+			        return new Promise(function(resolve, reject){
+			          	$.ajax({
 						type: "post",
+						url: "apply",
 						data: {
 							clubNum:'${club.clubNum}',
-							memberNum:"3"
+							memberNum:'${user.memberNum}',
 						},
-						url: "/plus/apply.do",
-						
 			            success: function (data) {
 			            	console.log(data);
 				            	if(data==1){
 				            		alert("모임 신청이 완료되었습니다!");
+				            		//신청이 성공한 다음 인원 수를 update해야함 
+				            		resolve();
 				            	} else if(data==0){
 				            		alert("이미 신청한 모임입니다!");
-				            	}
-			            	},
-			            error: function() {
-			            	  alert("error");
-			            	}
-						});
-			    	
-			    })
-})
+					      		}
+				        }
+			        });
+			      });
+			}
+			
+			//참여인원수 증가 update 
+			function plusCurnum(){
+				   return new Promise(function(resolve, reject){
+			          	$.ajax({
+						type: "post",
+						url: "plusCurnum",
+						data: {
+							clubNum:'${club.clubNum}'
+						},
+			            success: function (data) {
+			            	console.log(data);
+				            	if(data==1){
+				            		console.log("update 성공");
+				            		$('#curNum').text('');
+				            		let curNum = '${club.clubCurnum}';
+				            		curNum++;
+				            		$('#curNum').text(curNum + "명");
+				            		resolve();
+				            	} else if(data==0){
+				            		console.log("update 실패");
+					      		}
+				        }
+			        });
+			      });
+			}
+			
+			function successFunc(){
+				console.log("promise 성공");
+			}
+			
+			  function errorFunc() {
+	            	 console.log("promise error");
+	           }
+			
+			apply().then(plusCurnum).then(successFunc).catch(errorFunc);
+ 	}); 
+ }); 
 </script>
 <script>
+ 
+$(function(){
+	 
+	$('#heartBtn').on('click',function(){
+		 // 로그인 검사 
+		if(!'${user.memberNum}'){
+			alert("로그인해주세요!");
+			return;
+		}
+	})
+	
 
+ 
+ 
+	console.log("하트확인 전 ")
+	if(${isThereHeart == 0}){
+		state=0;
+	}else{
+		state=1;
+	}
+	 console.log("하트확인 후 " + state);
+
+});
+ 
+ 
 function toggleImg(){
+
+	 
 	var state = document.getElementById("heartInput").value; 
 	console.log(state);
 	if(state==0){
@@ -287,10 +361,10 @@ function toggleImg(){
 		type: "post",
 		data: {	
 			clubNum:'${club.clubNum}',
-			memberNum:"3",
+			memberNum:'${user.memberNum}',
 			clubName: '${club.clubName}'
 		},
-		url: 'insertHeart.do',
+		url: 'insertHeart',
         success: function (result) {
         	console.log(result);
 				console.log(result)
@@ -311,9 +385,9 @@ function toggleImg(){
 				type: "post",
 				data: {
 					clubNum:'${club.clubNum}',
-					memberNum:"3"
+					memberNum:"${user.memberNum}"
 				},
-				url: 'deleteHeartOne.do',
+				url: 'deleteHeartOne',
 		        success: function (result) {
 		        	console.log(result);
 						console.log(result)

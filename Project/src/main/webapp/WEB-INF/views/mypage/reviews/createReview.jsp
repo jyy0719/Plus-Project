@@ -153,7 +153,7 @@
 					<h4>📆모임기간 : ${startDateFmt} ~ ${endDateFmt}</h4>
 				</div>
 			</div>
-			<form action="writeReview.do" method="get">
+			<form action="writeReview" method="get">
            		 <div class="rating-group">
 	               <label aria-label="1 star" class="rating__label" for="rating-1"><i class="rating__icon rating__icon--star fa fa-star"></i></label> 
 	                  <input class="rating__input" name="reviewRate" id="rating-1" value="1" type="radio">
@@ -187,7 +187,7 @@
 		</div>
 	</div>
 	<div >
-		<a href="getReviewList.do" id="backBtn" onclick="return confirm('리뷰가 저장되지 않습니다. 페이지를 나가시겠습니까?');">뒤로가기</a>
+		<a href="getReviewList" id="backBtn" onclick="return confirm('리뷰가 저장되지 않습니다. 페이지를 나가시겠습니까?');">뒤로가기</a>
 	</div>
 </body>
 </html>

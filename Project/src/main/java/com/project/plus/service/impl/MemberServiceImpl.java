@@ -2,14 +2,14 @@ package com.project.plus.service.impl;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 
+import com.project.plus.domain.CriteriaMem;
 import com.project.plus.domain.MemberVO;
+import com.project.plus.domain.SearchCriteriaMem;
 import com.project.plus.mapper.MemberMapper;
 import com.project.plus.service.MemberService;
 
@@ -39,10 +39,13 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 
-	@Override
 	public void updateMember(MemberVO vo) {
 		membermapper.updateMember(vo);
 //		session.update("member.updateMember", vo);
+	}
+	
+	public void deleteMember(int memberNum) {
+		membermapper.deleteMember(memberNum);
 	}
 
 	public void logout(HttpSession session) {
@@ -63,10 +66,19 @@ public class MemberServiceImpl implements MemberService {
 		return membermapper.memberNChk(memberNickname);
 	}
 
-	public List<MemberVO> memberList(MemberVO vo) {
-		return membermapper.memberList(vo);
+	public List<MemberVO> memberList(SearchCriteriaMem scmem) {
+		List<MemberVO> list = null;
+		list = membermapper.memberList(scmem);
+		return list;
+	}
+	
+	public int listCount(SearchCriteriaMem scmem) {
+		return membermapper.listCount(scmem);
 	}
 
+	public MemberVO viewMember(int memberNum) {
+		return membermapper.viewMember(memberNum);
+	}
 
 	@Override
 	   public void updateMemberPoint(MemberVO vo) {
@@ -93,6 +105,7 @@ public class MemberServiceImpl implements MemberService {
 	   public int selectMemberPointByNickname(MemberVO vo) {
 	      return membermapper.selectMemberPointByNickname(vo);
 	   }
+
 
 
 
