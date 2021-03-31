@@ -23,59 +23,48 @@ public class AdminController {
 	@Autowired
 	private AdminService ads;
 	
-	// 문의글 삭제
-	@RequestMapping("/deleteAdminInquiry.do")
-	public String deleteAdminInquiry(InquiryVO vo) {
-		ads.deleteAdminInquiry(vo);
-		return "redirect:adminInquiry.do";
-	}
-	
-	// 문의글 상세조회
-//	@RequestMapping(value = "/getAdminInquiry.do", method = RequestMethod.GET)
-//	public String getAdminInquiry(InquiryVO vo, Model model) {
-//		model.addAttribute("adminInquiry", ads.getAdminInquiry(vo));
-//		return "getAdminInquiry";
-//	}
-	@GetMapping("/getAdminInquiry.do")
+	// 글 상세 조회
+	@GetMapping("/getAdminInquiry")
 	public String getAdminInquiry(InquiryVO vo, Model model) {
 		model.addAttribute("adminInquiry", ads.getAdminInquiry(vo));
-		return "admin/getAdminInquiry";
+		return "getAdminInquiry.adinqu";
 	}
 	
 	// 관리자용 모든 글 보기 : 게시판 목록 조회
-	@RequestMapping("/adminInquiry.do")
+	@RequestMapping("/adminInquiry")
 	public String getAdminInquiryList(InquiryVO vo, Model model) {
 		model.addAttribute("adminInquiryList", ads.getAdminInquiryList(vo));
-		return "adminInquiry.admin";
+		return "adminInquiry.adinqu";
 	}
 	
+	// 문의글 삭제
+	@RequestMapping("/deleteAdminInquiry")
+	public String deleteAdminInquiry(InquiryVO vo) {
+		ads.deleteAdminInquiry(vo);
+		return "redirect:adminInquiry";
+	}
+		
+
 	
-	@RequestMapping("/adminChart.do")
+	@RequestMapping("/adminChart")
 	public String getAdminChart(MemberVO mvo, Model model) {
 		model.addAttribute("adminChart", ads.getAdminChart(mvo));
-		return "charttest.admin";
+		return "charttest.adch";
 	}
 	
-	// 답변
-	/*
-	 * @RequestMapping(value = "/answerInquiry.do", method = RequestMethod.POST)
-	 * public String answerInquiry(InquiryVO vo) {
-	 * 
-	 * 
-	 * return "adminInquiry"; }
-	 */
-	/*
-	 * @RequestMapping(value = "/answerForm.do", method = RequestMethod.POST) public
-	 * String answerForm(@ModelAttribute("inquiry") InquiryVO vo) {
-	 * vo.setMemberNum(1); is.addAnswer(vo); return "redirect:adminInquiry.do"; }
-	 */
+
+	@RequestMapping("/answerInquiryForm")
+	public String answerInquiryForm(InquiryVO vo, Model model) {
+		System.out.println("여기까진 오는거 맞죠?");
+		model.addAttribute("answerInquiryForm", ads.answerInquiryForm(vo));
+		System.out.println("controller의 vo" + vo);
+		return "inquiryAnswerForm.adinqu";
+	}
 
 	// 관리자용 : 답변 등록
-	@RequestMapping(value = "/answerInquiry.do", method = RequestMethod.POST)
-	public String answerInquiry(InquiryVO vo, Model model){
-	/*	vo.setMemberNum(1);
-		model.addAttribute("adminAnswer");*/
-//		return "admin/inquiryAnswerForm";
-		return "나중에!";
+	@RequestMapping("/answerInquiry")
+	public String answerInquiry(InquiryVO vo, Model model) {
+		ads.answerInquiry(vo);
+		return "redirect:getAdminInquiry";
 	}
 }

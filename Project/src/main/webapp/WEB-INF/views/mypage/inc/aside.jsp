@@ -38,7 +38,7 @@
                      <div class="bottom-border pb-3">
                          <img class="rounded-circle mr-3" src="${path}/resources/img/avatar-6.jpg" alt="" width="200px" height="200px">
                          <div class="user-name">이름(나중에 처리하실 곳)</div>
-                         <button>설정 🔑<button>
+                         <button type="text">설정 🔑<button>
                      </div>
                      <ul class="navbar-nav flex-column mt-4">
                         <!-- Mypage -->

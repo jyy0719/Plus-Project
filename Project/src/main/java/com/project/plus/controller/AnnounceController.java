@@ -1,14 +1,21 @@
 package com.project.plus.controller;
 
+import java.util.Objects;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.project.plus.domain.AnnounceVO;
+import com.project.plus.domain.MemberVO;
 import com.project.plus.service.AnnounceService;
+import com.project.plus.service.MemberService;
 
 @Controller
 @SessionAttributes("announce")
@@ -16,36 +23,58 @@ public class AnnounceController {
 	
 	@Autowired
 	private AnnounceService as;
+	private MemberService ms;
 	
-	@RequestMapping("/insertAnnounce.do")
+	@RequestMapping(value="/insertAnnounce", method = RequestMethod.POST)
 	public String insertAnnounce(AnnounceVO vo) throws Exception {
 		as.insertAnnounce(vo);	
-		return "getAnnounceList.do";
+	
+		return "getAnnounceList";
 	}
 	
-	@RequestMapping("/updateAnnounce.do")
+	@RequestMapping("/updateAnnounce")
 	public String updateAnnounce(@ModelAttribute("announce") AnnounceVO vo) {
 		System.out.println(vo);
 		as.updateAnnounce(vo);
-		return "getAnnounceList.do";
+		return "getAnnounceList";
 	}
 	
-	@RequestMapping("/deleteAnnounce.do")
+	@RequestMapping("/deleteAnnounce")
 	public String deleteAnnounce(AnnounceVO vo) {
 		as.deleteAnnounce(vo);
-		return "getAnnounceList.do";
+		return "announce";
 	}
 	
-	@RequestMapping("/getAnnounce.do")
+	@RequestMapping("/getAnnounce")
 	public String getAnnounce(AnnounceVO vo, Model model) {
 		model.addAttribute("announce", as.getAnnounce(vo));
 		return "getAnnounce";
 	}
 	
-	@RequestMapping("/announce.do")
-	public String getAnnounceList(AnnounceVO vo, Model model) {
+	@RequestMapping("/announce")
+	public String getAnnounceList(AnnounceVO vo, MemberVO mvo, Model model, HttpSession session) {
 		
-		model.addAttribute("announceList", as.getAnnounceList(vo));
-		return "announce";
+		MemberVO user = (MemberVO) session.getAttribute("user");
+		if(user.isEmpty()) {
+			System.out.println("로그인정보가 없는 비회원 입장");
+			return "redirect:/WEB-INF/test.jsp";
+		}
+		else {
+			model.addAttribute("announceList", as.getAnnounceList(vo));
+			return "announce.ann";
+		}
+		/*
+		 * if(user.getMemberNum()==1) { model.addAttribute("announceList",
+		 * as.getAnnounceList(vo)); return "announce.ann"; } else {
+		 * System.out.println("다른 회원인가봐요"); model.addAttribute("announceList",
+		 * as.getAnnounceList(vo)); return "announce.ann"; }
+		 */
+	
+		//MemberVO manager = (MemberVO) session.getAttribute("user");
+		
+		/*
+		 * model.addAttribute("announceList", as.getAnnounceList(vo)); return
+		 * "announce.ann";
+		 */
 	}
 }

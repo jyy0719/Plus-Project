@@ -7,9 +7,10 @@ import com.project.plus.domain.MemberVO;
 
 public interface AdminMapper {
 	public void deleteAdminInquiry(InquiryVO vo);
-//	public void answerForm(InquiryVO vo);
-	InquiryVO answerInquiry(InquiryVO vo);
+
 	public InquiryVO getAdminInquiry(InquiryVO vo);
 	List<InquiryVO> getAdminInquiryList(InquiryVO vo);
 	public int getAdminChart(MemberVO mvo);
+	public InquiryVO answerInquiryForm(InquiryVO vo);
+	public void answerInquiry(InquiryVO vo);
 }

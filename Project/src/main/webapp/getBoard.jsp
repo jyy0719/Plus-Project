@@ -26,7 +26,7 @@ body {
 </head>
 <body>
 	<div class="wrapper">
-		<h1>1:1문의</h1>
+		<h1>관리자 입장</h1>
 		<hr>
 		<form action="getInquiry.jsp" method="post">
 			<div class="form-group">
