@@ -11,7 +11,7 @@
 </definition>
 
 
-  <!-- totalList -->
+<!--    totalList 
 <definition name="base1" template="/WEB-INF/views/include/template2.jsp"> 
 	<put-attribute name="header" value="/WEB-INF/views/include/header.jsp" /> 
 	<put-attribute name="body" value="" /> 
@@ -20,6 +20,18 @@
 
 
     <definition name="totalList" extends="base1"> 
+     <put-attribute name="body" value="/WEB-INF/views/main/totalList.jsp" /> 
+  </definition>
+   -->
+   
+   <!--    totalList -->
+<definition name="total" template="/WEB-INF/views/include/totaltemplate.jsp"> 
+	<put-attribute name="header" value="/WEB-INF/views/include/header.jsp" /> 
+	<put-attribute name="body" value="" /> 
+	<put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" /> 
+</definition>
+
+    <definition name="totalList" extends="total"> 
      <put-attribute name="body" value="/WEB-INF/views/main/totalList.jsp" /> 
   </definition>
 

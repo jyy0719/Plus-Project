@@ -14,7 +14,6 @@
 	href="${path}/resources/css/totalList.css">
 
 
-
 <!-- 부트 스트랩 -->
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -33,57 +32,48 @@
 </head>
 
 <body>
-<header></header>
+
+<from role="form" method="get">
+
 	<!--------------상세검색 영역--------------->
 	<div class="jumbotron">
-		<div id="searchform">
+	<div class="search">
 			<h3>
 				<b>🔎 상세 검색 </b>
 			</h3>
 			<hr class="my-4">
 
-			<div id="favorite">
-				<label>관심 분야</label> <select>
-					<option>전체</option>
-					<option>운동</option>
-					<option>학습</option>
-					<option>취미</option>
-					<option>습관</option>
-				</select>
-			</div>
+				<select name="searchType">
+						<option value="t"
+							<c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>전체</option>
+						<option value="n"
+							<c:out value="${scri.searchType eq 'n' ? 'selected' : ''}"/>>모임명</option>
+						<option value="l"
+							<c:out value="${scri.searchType eq 'l' ? 'selected' : ''}"/>>리더명</option>
+						<option value="c"
+							<c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>내용</option>
+						<option value="h"
+							<c:out value="${scri.searchType eq 'h' ? 'selected' : ''}"/>>해시태그</option>
+					</select> <input type="text" name="keyword" id="keywordInput" size="40"
+						value="${scri.keyword}" />
+					<button id="searchBtn" type="button">검색</button>
+					<script>
+					
 
-			<div id="where">
-				<label>온/오프라인</label> <select>
-					<option>전체</option>
-					<option>온라인</option>
-					<option>오프라인</option>
-				</select>
-			</div>
+      $(function(){
+        $('#searchBtn').click(function() {
+          self.location = "totalList" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());
+        });
+      });   
+    </script>	
+    </div>
+</div>
 
-			<div class=search>
-
-				<form class="box" action="#" method="get" onsubmit="return #">
-					<input type="text" id="keyword" name="keyword" value='' size="40"
-						placeholder="관심있는 더하기를 검색해보세요."> <input type="submit"
-						value="  검색  ">
-				</form>
-			</div>
-
-		</div>
-	</div>
 	<%-- <input type="hidden" name="userLatitude"
 		value='<c:out value="${pageMaker.cri.userLatitude}"/>'>
 	<input type="hidden" name="userLongitude"
 		value='<c:out value="${pageMaker.cri.userLongitude}"/>'>
 	</form> --%>
-	<!----------------검색분류------------------>
-	<div id="sort">
-		<ul>
-			<li class="order_button"><a href="cbHeart desc" active":"">인기순</a></li>
-			<li class="order_button "><a href="cbNum desc">최신순</a></li>
-			<li class="order_button"><a href="cbAppperiod"> 마감일순</a></li>
-		</ul>
-	</div>
 
 
 
@@ -149,46 +139,17 @@
 							</div>
 						</c:forEach>
 			</section>
-			<%-- <div class="search_wrap">
-				<div class="search_area">
-					<select name="type">
-						<option value=""
-							<c:out value="${pageMaker.cri.type == null?'selected':'' }"/>>--</option>
-						<option value="T"
-							<c:out value="${pageMaker.cri.type eq 'T'?'selected':'' }"/>>제목</option>
-						<option value="C"
-							<c:out value="${pageMaker.cri.type eq 'C'?'selected':'' }"/>>내용</option>
-						<option value="W"
-							<c:out value="${pageMaker.cri.type eq 'W'?'selected':'' }"/>>작성자</option>
-						<option value="TC"
-							<c:out value="${pageMaker.cri.type eq 'TC'?'selected':'' }"/>>제목
-							+ 내용</option>
-						<option value="TW"
-							<c:out value="${pageMaker.cri.type eq 'TW'?'selected':'' }"/>>제목
-							+ 작성자</option>
-						<option value="TCW"
-							<c:out value="${pageMaker.cri.type eq 'TCW'?'selected':'' }"/>>제목
-							+ 내용 + 작성자</option>
-					</select> <input type="text" name="keyword"
-						value="${pageMaker.cri.keyword }">
-					<button>Search</button>
-				</div>
-			</div>
- --%>
-			  
+		
+			
 						 <div id="pageArea">
 						  <ul class="paging">
-						    <c:if test="${cri .prev}">
-						    	<li><a class="span" href="totalList${pageMaker.makeQuery(pageMaker.startPage - 1)}">👈🏼d</li>
-						    </c:if> 
+						    	<li ><a class="span" href="totalList${pageMaker.makeSearch(pageMaker.startPage - 1)}">◀</a></li>
 						
 						    <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
-						    	<li><a href="totalList${pageMaker.makeQuery(idx)}"><span class="span" >${idx}</span></a></li>
+						    	<li><a href="totalList${pageMaker.makeSearch(idx)}"><span class="span" >${idx}</span></a></li>
 						    </c:forEach>
 						
-						    <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-						    	<li><a class="span" href="totalList${pageMaker.makeQuery(pageMaker.endPage + 1)}">👉🏼</li>
-						    </c:if> 
+						    	<li><a class="span" href="totalList${pageMaker.makeSearch(pageMaker.endPage + 1)} ">▶</a></li>
 						  </ul>
 					 </div><!-- pageArea -->
 
@@ -238,7 +199,7 @@
 
 		<script src="https://kit.fontawesome.com/831a4ab0db.js"
 			crossorigin="anonymous"></script>
-		<script>
+<!-- 		<script>
 $(".pageInfo a").on("click", function(e){
 	e.preventDefault();
 	moveForm.find("input[name='pageNum']").val($(this).attr("href"));
@@ -268,7 +229,7 @@ $(".search_area button").on("click", function(e){
 	moveForm.find("input[name='keyword']").val(keyword);
 	moveForm.find("input[name='pageNum']").val(1);
 	moveForm.submit();
-});
-</script>
+}); -->
+
 </body>
 </html>

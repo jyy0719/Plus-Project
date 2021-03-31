@@ -5,8 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<!--  공통으로 import하는 소스들  -->
-  
+
 </head>
 	<tiles:insertAttribute name="header" />
 	<tiles:insertAttribute name="body"/>

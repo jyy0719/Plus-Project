@@ -321,6 +321,8 @@ add_circle
             var lng = position.coords.longitude;         // 경도
             var latlng = new google.maps.LatLng(lat, lng);
 			console.log(lat, lng);  //현재 위치 위도 경도
+			
+			
 	
              <!----위도, 경도 주소로 변환하기---->
             var geocoder = new google.maps.Geocoder();
