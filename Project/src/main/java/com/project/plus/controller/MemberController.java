@@ -69,7 +69,7 @@ public class MemberController {
         logger.info("클릭한 회원: "+memberNum);
         System.out.println("model 출력..?"+model);
         //번호는 갖고오는데 왜 정보를 못가져오니 ...
-        return "memberView";
+        return "memberViewPage";
     }
 
 	@RequestMapping(value="memberJoin", method=RequestMethod.GET)
@@ -118,7 +118,7 @@ public class MemberController {
 	}
 	
 	
-	
+	//로그인하고 내정보확인 페이지 들어가면 정보 뿌려주는 메서드
 	@RequestMapping(value="memberUpdate", method=RequestMethod.GET)
 	public String memberUpdatepage(MemberVO vo, HttpSession session, Model model) throws Exception {
 	return "memberUpdate.member";
@@ -126,20 +126,20 @@ public class MemberController {
 	
 
 
-	
+	//회원 정보 업데이트하는 메서드 
 	@RequestMapping(value="memberUpdate", method=RequestMethod.POST)
 	public String memberUpdate(MemberVO vo, HttpSession session, Model model, HttpServletResponse response, @RequestParam("memberPhoto") MultipartFile file, HttpServletRequest request) throws Exception {
 		
 		//MemberVO memberNum = vo; //밑에 return if문 쓰려고 만든 변수
-		System.out.println("기본"+vo);  //0 email에 36이담겨 ;;  //수정후 정보
+		System.out.println("기본"+vo);  //0 email에 36이담겨 ;;  //수정후 정보   //수정후 정보 
 		String uploadPath = request.getSession().getServletContext().getRealPath("/resources/uploadImg");
 		vo = ProfileUtils.profile(vo, uploadPath, file);
 		memberService.updateMember(vo);
-		MemberVO user = memberService.selectMember(vo);  
-		System.out.println(session.getAttribute("user")); //36   //수정전 정보 
+		MemberVO mInfo = memberService.selectMember(vo);  
+		System.out.println(session.getAttribute("user")); //36   //수정전 정보  //로그인한사람 정보
 
 		System.out.println("선택정보 vo user에 담음");
-		System.out.println(user); //null  //수정후 
+		System.out.println(mInfo); //null  //수정후 
 		
 
 		
@@ -155,7 +155,7 @@ public class MemberController {
 //		System.out.println(session.getAttribute("user")+""); //주석이었다    //null
 //		System.out.println("세션리무브확인");
 //		
-		model.addAttribute("userInfo", user); //정보 담았어 
+		model.addAttribute("memberInfo", mInfo); //정보 담았어 
 //		System.out.println(session.getAttribute("user")); //여기에만 정보가 담겨있어   //null인데 ?? 
 //		System.out.println(model.containsAttribute("user")); //   //ture가 나와..?
 //		System.out.println("모델에 뭐들었지"+model);
@@ -164,19 +164,19 @@ public class MemberController {
 //		System.out.println("업데이트 후 정보");
 //		session.setAttribute("user", user);
 //		System.out.println(session.getAttribute("user"));  //주석이었다    //수정후정보
-		MemberVO member = (MemberVO) session.getAttribute("user"); //로그인한 사람의 정보 (세션에서 가져옴)
-		System.out.println("member"+member);
+		MemberVO user = (MemberVO) session.getAttribute("user"); //로그인한 사람의 정보 (세션에서 가져옴)
+		System.out.println("member"+user);
 		
-		  if(member.getMemberNum()!=1) { 
-			  System.out.println(user);
-			  return "memberUpdate"; 
-		  }else { 
-			  System.out.println(user);
-			  return  "memberView"; 
-			 }
+//		  if(user.getMemberNum()!=1) { 
+//			  System.out.println(mInfo);
+//			  return "memberUpdate"; 
+//		  }else { 
+//			  System.out.println(mInfo);
+//			  return  "memberView"; 
+//			 }
 //		 접속한 사람이 관리자일때는 memberView로 보내고싶은데 ...		 
 		
-//		return "memberUpdate.member";
+		return "memberView";
 
 	}
 	

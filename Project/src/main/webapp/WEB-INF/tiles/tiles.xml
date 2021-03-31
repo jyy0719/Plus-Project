@@ -62,7 +62,7 @@
   </definition>
   
   <!-- 관리자-회원정보수정 특정 헤더 사용 -->
-    <definition name="memberView" extends="base"> 
+    <definition name="memberViewPage" extends="base"> 
      <put-attribute name="body" value="/WEB-INF/views/member/memberView.jsp" /> 
   </definition>
 
