@@ -25,6 +25,7 @@ public interface MemberService {
 	public void logout(HttpSession session);
 		
 	void updateMember(MemberVO vo);
+	void deleteMember(int memberNum);
 	
 	public MemberVO selectMember(MemberVO vo);
 	public MemberVO viewMember(int memberNum);

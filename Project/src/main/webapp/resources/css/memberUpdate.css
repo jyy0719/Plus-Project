@@ -285,3 +285,16 @@ h3 {
     /* transform: translate(30%);  */
     border-radius: 5px;
 }
+
+#btnUp, #btnDel {
+height:35px;
+width:90px;
+border:none;
+background-color:#001EFF;
+color:white;
+border-radius:5px;
+margin-left:20px;
+}
+#btnUp {
+margin-left:80px;
+}

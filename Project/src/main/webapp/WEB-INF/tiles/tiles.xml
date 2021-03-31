@@ -61,6 +61,11 @@
     <put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" />   
   </definition>
   
+  <!-- 관리자-회원정보수정 특정 헤더 사용 -->
+    <definition name="memberView" extends="base"> 
+     <put-attribute name="body" value="/WEB-INF/views/member/memberView.jsp" /> 
+  </definition>
+
   <definition name="*.club" extends="base"> 
   	<put-attribute name="body" value="/WEB-INF/views/club/{1}.jsp" /> 
   </definition>

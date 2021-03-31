@@ -145,7 +145,28 @@ chNickname = function(){
 	  //      alert("사용 가능한 닉네임입니다")
 }
 
+$(document).ready(function(){
+	
+	var formObj = $("form[name='updateForm']");
+	
+	$("#btnDel").on("click", function(){
+	formObj.attr("action", "memberDelete").submit();
+	formObj.attr("method", "post");
+	alert("삭제되었습니다");
+//	formObj.submit();
+})
+
+
+$("#btnUp").on("click", function(){
+	alert("수정되었습니다~~~");
+	formObj.attr("action", "memberUpdate").submit();
+	formObj.attr("method", "post");
+//	formObj.submit();				
+})
+
+})
 </script>
+
 </head>
 
 <body>
@@ -155,12 +176,11 @@ chNickname = function(){
         <!-- <img src="../images/logo.png" id="logo"> -->
     </div>
 
-  <form action="memberUpdate" method="POST" enctype="multipart/form-data">
+  <form name="updateForm" role="form" enctype="multipart/form-data">
+<input type="hidden" id="memberNum" name="memberNum"  value="${result.memberNum }"/> 
 
     <!-- wrapper -->
     <div id="wrapper">
-
-<input type="hidden" name="memberNum"  value="${result.memberNum }"> 
         <!-- content1-->
         <div class="content1">      
                 <!-- profile pic -->
@@ -252,7 +272,7 @@ chNickname = function(){
                 <button type="submit" id="btnUp">
                     <span>수정하기</span>
                 </button>
-                 <button type="button" id="btnDel">
+                 <button type="submit" id="btnDel">
                     <span>삭제하기</span>
                 </button>
             	</div>

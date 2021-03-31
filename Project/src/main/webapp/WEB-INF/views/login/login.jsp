@@ -38,7 +38,7 @@ function kakaoLogin(){
                       var userPw = res.id;      //유저의 카카오톡 고유 id. 회원 insert 시 패스워드로 삽입하려고 변수명 pw로 줌
                       var userEmail = res.kakao_account.email; //유저의 이메일
                       var userNickName = res.properties.nickname; //유저가 등록한 별명
-                      var userPic = res.kakao_account.profile_image;
+                      var userPic = res.properties.profile_image_url;
                       
                       console.log(userEmail);
                       console.log(userNickName);
@@ -54,7 +54,7 @@ function kakaoLogin(){
                       }
 
                       $.ajax({
-                            url: 'kakaologin.do',
+                            url: 'kakaologin',
                             type: 'POST',
                             data: userdata,
                                 success: function(data){

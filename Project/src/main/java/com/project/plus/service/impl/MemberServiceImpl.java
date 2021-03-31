@@ -39,10 +39,13 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 
-	@Override
 	public void updateMember(MemberVO vo) {
 		membermapper.updateMember(vo);
 //		session.update("member.updateMember", vo);
+	}
+	
+	public void deleteMember(int memberNum) {
+		membermapper.deleteMember(memberNum);
 	}
 
 	public void logout(HttpSession session) {
