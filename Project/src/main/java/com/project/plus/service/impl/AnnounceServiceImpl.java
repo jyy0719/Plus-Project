@@ -8,7 +8,7 @@ import com.project.plus.domain.AnnounceVO;
 import com.project.plus.mapper.AnnounceMapper;
 import com.project.plus.service.AnnounceService;
 
-@Service("AnnounceService")
+@Service
 public class AnnounceServiceImpl implements AnnounceService {
 
 	@Autowired

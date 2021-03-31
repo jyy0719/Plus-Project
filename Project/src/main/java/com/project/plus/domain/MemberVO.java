@@ -103,6 +103,7 @@ public class MemberVO {
 				+ memberMarketing + ", memberLatitude=" + memberLatitude + ", memberLongitude=" + memberLongitude + "]";
 	}
 
+
 	
 	
 	
