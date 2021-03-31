@@ -145,6 +145,39 @@ chNickname = function(){
 	  //      alert("사용 가능한 닉네임입니다")
 }
 
+$(document).ready(function(){
+	
+	var formObj = $("form[name='updateForm']");
+	
+	//관리자의 삭제버튼
+	$("#btnDel").on("click", function(){
+	formObj.attr("action", "memberDelete").submit();
+	formObj.attr("method", "post");
+	alert("삭제되었습니다");
+//	formObj.submit();
+	})
+
+	//관리자의 수정버튼 - CSS때문에 분리 
+	$("#btnUp").on("click", function(){
+		alert("수정되었습니다~~~");
+		formObj.attr("action", "memberUpdate").submit();
+		formObj.attr("method", "post");
+	//	formObj.submit();				
+	})
+	
+	//회원의 수정버튼 
+	$("#btnJoin").on("click", function(){
+		alert("수정되었습니다~~~");
+		formObj.attr("action", "memberUpdate").submit();
+		formObj.attr("method", "post");
+//		formObj.submit();				
+	})
+
+
+})
+
+
+
 </script>
 </head>
 
@@ -155,7 +188,7 @@ chNickname = function(){
         <!-- <img src="../images/logo.png" id="logo"> -->
     </div>
 
-  <form action="memberUpdate" method="POST" enctype="multipart/form-data">
+  <form name="updateForm" role="form" enctype="multipart/form-data">
 
     <!-- wrapper -->
     <div id="wrapper">
@@ -242,16 +275,34 @@ chNickname = function(){
                 <div>
                     <h3 class="join_title"><label for="point">보유 포인트</label></h3>
                     <span class="box int_point">
-                        <input type="text" name="memberPoint" id="point" class="int" maxlength="20" value="${memberInfo.memberPoint }" readonly>
+                    
+        <c:if test="${user.memberNum ne 1}">
+             <input type="text" name="memberPoint" id="point" class="int" maxlength="20" value="${memberInfo.memberPoint }" readonly>
+        </c:if>
+ 		<c:if test="${user.memberNum eq 1}">
+             <input type="text" name="memberPoint" id="point" class="int" maxlength="20" value="${memberInfo.memberPoint }">
+        </c:if>
+                    
+                    
                     </span>
                     <span class="error_next_box"></span>
                 </div>
 
 
                 <div class="btn_area">
-                <button type="submit" id="btnJoin">
+                
+       	<c:if test="${user.memberNum ne 1}">
+			<!--  버튼명만 join이고 수정버튼! -->
+			<button id="btnJoin" type="submit"><span>수정하기</span></button> 
+        </c:if>
+ 		<c:if test="${user.memberNum eq 1}">
+			<button id="btnUp" type="submit"><span>수정하기</span></button>
+            <button id="btnDel" type="submit"><span>삭제하기</span></button>
+        </c:if>
+                
+<!--                 <button type="submit" id="btnJoin">
                     <span>수정하기</span>
-                </button>
+                </button> -->
             	</div>
         </div>
         <!--content1-->
