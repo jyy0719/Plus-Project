@@ -13,6 +13,26 @@
 <script type="text/javascript" src="${path}/resources/js/jquery-1.12.4.min.js"></script>
 <script>
  
+ 
+/* //입력양식 전체 유효성 검사 후 제출 
+function goSubmit() {
+	//비밀번호 일치
+	if (checkPw()) {
+		//이메일코드 확인
+		if (emailcode()) {
+			//필수항목 동의 여부
+			if (chk_ess()) {
+				
+				document.getElementById('form').submit();
+				alert("더하기에 오신 것을 환영합니다 !")
+			}
+		}
+	}
+
+} */
+
+ 
+ 
 //휴대폰번호 유효성, 중복검사
     isMobile = function(){
         var phoneVal = $("#mobile").val();
@@ -150,7 +170,6 @@
                              });
             //    });
        //     };
-
         } else {
             alert('형식에 맞게 입력해주세요 ex)plus@plus.com')
       	  $('#email').focus();
@@ -272,8 +291,8 @@
 	
 		        var chk = $("#nickname").val().substring(i,i+1); 
 		
-		        if(chk.match(/([^가-힣a-zA-Z\x20])/i)){
-		        	alert("자음과 모음을 분리해 사용할 수 없습니다. 특수문자는 사용할 수 없습니다.");
+		        if(chk.match(/([^가-힣a-zA-Z0-9ㄱ-ㅎㅏ-ㅣ\x20])/i)){
+		        	alert("특수문자는 사용할 수 없습니다");
 		            return;
 		       	}
 			    if ($("#nickname").val().length > 8) {
@@ -319,7 +338,8 @@
        <%--  <img src="${path}/resources/img/images/logo.png" id="logo"> --%>
     </div>
 <!--onsubmit="return submitCheck();"  -->
-  <form action="memberJoin" method="POST" enctype="multipart/form-data" >
+  <form action="memberJoin" method="POST" enctype="multipart/form-data">
+<!--   <form action="memberJoin" method="POST" enctype="multipart/form-data" id="form"> -->
 
     <!-- wrapper -->
     <div id="wrapper">
@@ -416,7 +436,7 @@
 
             <!-- original_content -->
             <div class="pro_pic_area">
-                <div id="image_container">${user.memberPic}<img src="${user.memberPic}"/></div>
+                <div id="image_container">${user.memberPic}</div>
                 <div class="filebox"> 
                 </div>
                 <label class="picbutton" for="picFile"><span class="picbutton1">사진첨부하기</span></label>
