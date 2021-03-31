@@ -10,6 +10,8 @@
 	<put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" /> 
 </definition>
 
+<<<<<<< HEAD
+=======
 
 <!--    totalList 
 <definition name="base1" template="/WEB-INF/views/include/template2.jsp"> 
@@ -34,6 +36,7 @@
     <definition name="totalList" extends="total"> 
      <put-attribute name="body" value="/WEB-INF/views/main/totalList.jsp" /> 
   </definition>
+
 
 	<!--  마이페이지  -->
   <definition name="mypage.*" template="/WEB-INF/views/mypage/inc/layout.jsp">
@@ -72,7 +75,11 @@
      <put-attribute name="body" value="/WEB-INF/views/member/memberJoin.jsp" /> 
     <put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" />   
   </definition>
+<<<<<<< HEAD
+  
+=======
  
+
 
   <definition name="*.club" extends="base"> 
   	<put-attribute name="body" value="/WEB-INF/views/club/{1}.jsp" /> 
