@@ -57,7 +57,7 @@ public class AnnounceController {
 		MemberVO user = (MemberVO) session.getAttribute("user");
 		if(user.isEmpty()) {
 			System.out.println("로그인정보가 없는 비회원 입장");
-			return "redirect:/WEB-INF/test.jsp";
+			return "";
 		}
 		else {
 			model.addAttribute("announceList", as.getAnnounceList(vo));
