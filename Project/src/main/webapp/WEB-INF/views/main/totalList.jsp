@@ -139,7 +139,7 @@
 							</div>
 						</c:forEach>
 			</section>
-		
+		<!-- -페이징 버튼-  -->
 			
 						 <div id="pageArea">
 						  <ul class="paging">
@@ -151,85 +151,13 @@
 						
 						    	<li><a class="span" href="totalList${pageMaker.makeSearch(pageMaker.endPage + 1)} ">▶</a></li>
 						  </ul>
-					 </div><!-- pageArea -->
+					 </div>
 
-
-	<%-- 		<form id="moveForm" method="get">
-				<input type="hidden" name="pageNum"
-					value="${pageMaker.cri.pageNum }"> <input type="hidden"
-					name="amount" value="${pageMaker.cri.amount }"> <input
-					type="hidden" name="keyword" value="${pageMaker.cri.keyword }">
-				<input type="hidden" name="type" value="${pageMaker.cri.type }">
-			</form>
-		</div>
-
- --%>
-
-
-		<!------------------------페이징----------------------->
-
-		<%-- 	<table>
-				<tr>
-					<c:if test="${pageMaker.prev}">
-						<td><a
-							href='<c:url value="/totalList?page=${pageMaker.startPage-1}"/>'>&laquo;</a>
-						</td>
-					</c:if>
-					<c:forEach begin="${pageMaker.startPage}"
-						end="${pageMaker.endPage}" var="idx">
-						<td><a href='<c:url value="/totalList?page=${idx}"/>'>${idx}</a>
-						</td>
-					</c:forEach>
-					<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-						<td><a
-							href='<c:url value="/totalList?page=${pageMaker.endPage+1}"/>'>&raquo;</a>
-						</td>
-					</c:if>
-				</tr>
-			</table>  --%>
-
-
-		<%-- 	<!--   URL의 이동을 처리하도록 데이터를 전송한다.-->
-			<form id='actionForm' action="totallist.do" method='get'>
-				<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum }'> 
-				<input type='hidden' name='amount' value='${pageMaker.cri.amount }'> 
-
-			</form> --%>
 		</div>
 
 		<script src="https://kit.fontawesome.com/831a4ab0db.js"
 			crossorigin="anonymous"></script>
-<!-- 		<script>
-$(".pageInfo a").on("click", function(e){
-	e.preventDefault();
-	moveForm.find("input[name='pageNum']").val($(this).attr("href"));
-	moveForm.attr("action", "/board/list");
-	moveForm.submit();
-	
-});	
 
-
-$(".search_area button").on("click", function(e){
-	e.preventDefault();
-	
-	let type = $(".search_area select").val();
-	let keyword = $(".search_area input[name='keyword']").val();
-	
-	if(!type){
-		alert("검색 종류를 선택하세요.");
-		return false;
-	}
-	
-	if(!keyword){
-		alert("키워드를 입력하세요.");
-		return false;
-	}		
-	
-	moveForm.find("input[name='type']").val(type);
-	moveForm.find("input[name='keyword']").val(keyword);
-	moveForm.find("input[name='pageNum']").val(1);
-	moveForm.submit();
-}); -->
 
 </body>
 </html>
