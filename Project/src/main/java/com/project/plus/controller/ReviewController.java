@@ -22,7 +22,7 @@ public class ReviewController {
 	private ClubService clubService;	 
 
 	
-	@RequestMapping("/getReviewList.do")
+	@RequestMapping("/getReviewList")
 	public String getReviewList(ReviewVO vo, Model model) {
 		vo.setMemberNum(5);
 		model.addAttribute("selectNotReview", reviewService.selectNotReview(vo)); 
@@ -31,7 +31,7 @@ public class ReviewController {
 		return "reviewList.reviews";
 	}
 	
-	@RequestMapping("/showReviewForm.do") 
+	@RequestMapping("/showReviewForm") 
 	public String showReviewForm(ClubVO cvo,ReviewVO vo, Model model) {
 		System.out.println("******showReviewForm.do ReviewVO 넘버확인 ******" + vo.getMemberNum() + "**임시 회원번호에필요한 vo**");
 		System.out.println("******showReviewForm.do ClubVO넘버확인 ******" + cvo.getClubNum());
@@ -50,10 +50,10 @@ public class ReviewController {
 		System.out.println("vo.setClubNum(14) 넘버 확인 ***** " + vo.getClubNum());
 		reviewService.insertReview(vo);
 
-		return "redirect:getReviewList.do";
+		return "redirect:getReviewList";
 	}
 	
-	@RequestMapping("/readReview.do") 
+	@RequestMapping("/readReview") 
 	public String readReview(ClubVO cvo,ReviewVO vo, Model model) {
 		System.out.println("******showReviewForm.do ReviewVO 넘버확인 ******"+vo.getClubNum()+"/" + vo.getMemberNum() + "**임시 회원번호에필요한 vo**");
 		System.out.println("******showReviewForm.do ClubVO넘버확인 ******" + cvo.getClubNum());
@@ -65,7 +65,7 @@ public class ReviewController {
 		
 		return "updateReview.reviews"; // .jsp는 미리 설정해둠. 
 	}
-	@RequestMapping("/updateReview.do")
+	@RequestMapping("/updateReview")
 	public String updateReview(ReviewVO rvo , ClubVO cvo ,Model model) {
 		System.out.println("******showReviewForm.do ReviewVO 넘버확인 ******"+rvo.getClubNum()+"/" + rvo.getMemberNum() + "**임시 회원번호에필요한 vo**");
 		System.out.println("******showReviewForm.do ClubVO넘버확인 ******" + cvo.getClubNum());
@@ -73,10 +73,10 @@ public class ReviewController {
 		System.out.println("리뷰 업뎃완료!! .. 목록 view로 이동..");
 		model.addAttribute("msg", "리뷰가 수정되었습니다!"); 
 
-		return "redirect:getReviewList.do";
+		return "redirect:getReviewList";
 	}
 	
-	@RequestMapping("/deleteReview.do")
+	@RequestMapping("/deleteReview")
 	public String deleteReview(ReviewVO rvo , ClubVO cvo ,Model model) {
 		System.out.println("******showReviewForm.do ReviewVO 넘버확인 ******"+rvo.getClubNum()+"/" + rvo.getMemberNum() + "**임시 회원번호에필요한 vo**");
 		System.out.println("******showReviewForm.do ClubVO넘버확인 ******" + cvo.getClubNum());
@@ -84,7 +84,7 @@ public class ReviewController {
 		System.out.println("리뷰 삭제완료!! .. 목록 view로 이동..");
 		model.addAttribute("msg", "리뷰가 삭제되었습니다!"); 
 
-		return "redirect:getReviewList.do";
+		return "redirect:getReviewList";
 	}
 }
 

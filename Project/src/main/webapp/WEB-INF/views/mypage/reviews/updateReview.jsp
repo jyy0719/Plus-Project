@@ -153,7 +153,7 @@
 					<h4>📆모임기간 : ${startDateFmt} ~ ${endDateFmt}</h4>
 				</div>
 			</div>
-			<form action="updateReview.do" method="get">
+			<form action="updateReview" method="get">
            		 <div class="rating-group">
 	               <label aria-label="1 star" class="rating__label" for="rating-1"><i class="rating__icon rating__icon--star fa fa-star"></i></label> 
 	                  <input class="rating__input" name="reviewRate" id="rating-1" value="1" type="radio">
@@ -184,7 +184,7 @@
 					<br> <input type="submit" id="addBtn" value="수정하기">
 				</div>
 			</form>
-			<form action="deleteReview.do" method="get">
+			<form action="deleteReview" method="get">
 				<input type="hidden" name="clubNum" value="${readReview.clubNum}"/>
 				<input type="hidden" name="memberNum" value="${readReview.memberNum}"/>
 				<input type="submit" id="deleteBtn" value="삭제하기">
