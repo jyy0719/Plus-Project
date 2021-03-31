@@ -60,17 +60,6 @@ public class MemberController {
 		return "memberList.member";
 	}
 	
-	//회원별 상세 페이지 (관리자단 조회)
-	@RequestMapping(value="memberView")
-    public String memberView(MemberVO memberNum, Model model){
-		System.out.println("memberView진입");
-        // 회원 정보를 model에 저장
-        model.addAttribute("result", memberService.viewMember(memberNum.getMemberNum()));
-        logger.info("클릭한 회원: "+memberNum);
-        System.out.println("model 출력..?"+model);
-        //번호는 갖고오는데 왜 정보를 못가져오니 ...
-        return "memberViewPage";
-    }
 
 	@RequestMapping(value="memberJoin", method=RequestMethod.GET)
 	public String memberjoinpage(MemberVO vo, HttpSession session, Model model) throws Exception {
@@ -121,6 +110,15 @@ public class MemberController {
 	//로그인하고 내정보확인 페이지 들어가면 정보 뿌려주는 메서드
 	@RequestMapping(value="memberUpdate", method=RequestMethod.GET)
 	public String memberUpdatepage(MemberVO vo, HttpSession session, Model model) throws Exception {
+	System.out.println("memberUpdate get method");
+	
+	//MemberVO mInfo = memberService.selectMember(vo);  
+    model.addAttribute("memberInfo", memberService.viewMember(vo.getMemberNum()));
+
+	//model.addAttribute("memberInfo", vo);
+	System.out.println(vo);
+	MemberVO user = (MemberVO) session.getAttribute("user"); //로그인한 사람의 정보 (세션에서 가져옴)
+
 	return "memberUpdate.member";
 	}
 	
@@ -148,35 +146,11 @@ public class MemberController {
         PrintWriter out = response.getWriter();
         out.println("<script>alert('정보 수정이 완료되었습니다.');</script>");
         out.flush();
-		// 카카오 로그인 유저도 정보 수정은 되는데, 꼭 로그아웃 했다가 다시 로그인해야지만 수정된 정보가 반영됨. 이거 모델로 해결할 수 있을것 같은데 ..
-		// 는 세션 리무브시키고 모델에 세션 담고 (??이게 가능한가??) 그다음에 세션에 setAtt user 해줬어 .. 그러니깐 수정되고 화면출력도됨
-//		
-//		session.removeAttribute("user");
-//		System.out.println(session.getAttribute("user")+""); //주석이었다    //null
-//		System.out.println("세션리무브확인");
-//		
 		model.addAttribute("memberInfo", mInfo); //정보 담았어 
-//		System.out.println(session.getAttribute("user")); //여기에만 정보가 담겨있어   //null인데 ?? 
-//		System.out.println(model.containsAttribute("user")); //   //ture가 나와..?
-//		System.out.println("모델에 뭐들었지"+model);
-//		System.out.println(user+"모델에put한유저"+vo); //user=null , vo=0    //수정후정보 
-//		
-//		System.out.println("업데이트 후 정보");
-//		session.setAttribute("user", user);
-//		System.out.println(session.getAttribute("user"));  //주석이었다    //수정후정보
 		MemberVO user = (MemberVO) session.getAttribute("user"); //로그인한 사람의 정보 (세션에서 가져옴)
 		System.out.println("member"+user);
 		
-//		  if(user.getMemberNum()!=1) { 
-//			  System.out.println(mInfo);
-//			  return "memberUpdate"; 
-//		  }else { 
-//			  System.out.println(mInfo);
-//			  return  "memberView"; 
-//			 }
-//		 접속한 사람이 관리자일때는 memberView로 보내고싶은데 ...		 
-		
-		return "memberView";
+		return "memberUpdate.member";
 
 	}
 	

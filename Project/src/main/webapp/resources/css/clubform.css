@@ -38,7 +38,7 @@ aside{
 position: absolute;
 width:400px;
 left: 900px;
-top:410px;
+top:50px;
 
 }
 
@@ -71,17 +71,21 @@ flex-direction: row;
 #club-title{
     width:713px;
 }
-.location{
+/* .location{
 margin-left: 30px;
 }
-
+ */
 .location img{
 width:15px;
 height: 15px;
 
 }
-
-
+.location{
+	padding-bottom:10px;
+}
+.clubinfo-form{
+	padding-top:30px;
+}
 article{
 position:absolute;
 }
