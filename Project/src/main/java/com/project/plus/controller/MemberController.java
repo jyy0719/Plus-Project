@@ -182,7 +182,7 @@ public class MemberController {
 	
 	@RequestMapping(value="memberDelete", method=RequestMethod.POST)
 	public String delete(MemberVO vo) throws Exception{
-		memberService.deleteMember(vo.getMemberNum());
+		//memberService.deleteMember(vo.getMemberNum());
 		return "redirect:memberList";
 	}
 	

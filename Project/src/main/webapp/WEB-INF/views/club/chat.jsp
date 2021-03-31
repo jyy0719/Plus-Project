@@ -34,8 +34,8 @@
 						<div class="clubName">
 							<img class="group-img" src="${path}/resources/img/chat.png" />${club.clubName}</div>
 						<input type="button" value="입장" id="enterBtn" class="btns"
-							onclick="enterRoom(${club.clubNum});" /> <input type="hidden"
-							name="hiddenName" value="${club.clubName}" />
+							onclick="enterRoom(${club.clubNum});" /> 
+							<input type="hidden" name="hiddenName" value="${club.clubName}" />
 							
 					</div>
 				</c:forEach>
