@@ -2,6 +2,8 @@ package com.project.plus.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -12,6 +14,8 @@ public interface InquiryService {
 	void writeInquiry(InquiryVO vo);
 
 	void editInquiry(InquiryVO vo);
+	
+	InquiryVO editInquiryForm(InquiryVO vo);
 	
 	void answerInquiry(InquiryVO vo);
 
@@ -24,5 +28,7 @@ public interface InquiryService {
 	List<InquiryVO> getInquiryPersonList(InquiryVO vo);
 	
 	List<InquiryVO> getInquiryTypeList(InquiryVO vo);
+
+	void inquiryForm(InquiryVO vo, HttpSession session);
 	
 }

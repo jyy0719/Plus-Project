@@ -23,6 +23,7 @@ body {
 	font-family: 'NanumSquare', sans-serif;
 	margin-left:40px;
 }
+
 a {
 color:inherit;
 }
@@ -48,32 +49,27 @@ vertical-align: middle;
                 <div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
                     <div class="row">
                         <div class="col-12">
-                            <h3 class="text-muted text-center mb-3">1:1 문의 관리</h3>
+                            <h3 class="text-muted text-center mb-3">1:1 문의 내역</h3>
                             <table class="table bg-light">
                                 <thead>
                                     <tr class="text-muted">
-                                    	<th>문의번호</th>
                                         <th>카테고리</th>
                                         <th>제목</th>
-                                        <th>닉네임</th>
                                         <th>문의날짜</th>
                                         <th>답변상태</th>
                                     </tr>
                                 </thead>
-                                    <c:forEach var="inquiry" items="${adminInquiryList}">
+                                    <c:forEach var="inquiry" items="${inquiryList}">
                                     
                                 <tbody>
                                     <!-- table row -->
                                     <tr>
-                                    	<th>${inquiry.inquiryNum}</th>
-                                        <td>${inquiry.inquiryType}</td>
-                                        <td><a href="${path}/getAdminInquiry.do?inquiryNum=${inquiry.inquiryNum}" class="inquiry-title">${inquiry.inquiryTitle}</a></td>
-                                        <td>${inquiry.memberNickname}</td>
+                                        <th>${inquiry.inquiryType}</th>
+                                        <td><a href="${path}/getInquiry?inquiryNum=${inquiry.inquiryNum}" class="inquiry-title">${inquiry.inquiryTitle}</a></td>
                                         <fmt:parseDate var="parseRegDate" value="${inquiry.inquiryRegDate}" pattern="yyyy-MM-dd" />
 										<fmt:formatDate var="resultRegDt" value="${parseRegDate}" pattern="yyyy-MM-dd" />
                                         <td class="text-center">${resultRegDt}</td>
                                         <td class="text-center"><button type="button" class="btn btn-primary btn-sm" style="width:70px">${inquiry.inquiryState}</button></td>
-                                   
                                     </tr>
                                 </tbody>
                                 </c:forEach>
@@ -110,6 +106,10 @@ vertical-align: middle;
                                 </ul>
                             </nav>
                             <!-- end of pagination -->
+                        </div>          
+                        <div class="col-12"> 
+                        	<input type="hidden" name="memberNum" value="${inquiry.memberNum}">
+                        	<button class="btn btn-primary pull-right"><a href="inquiryForm">문의</a></button>
                         </div>
                     </div>
                 </div>

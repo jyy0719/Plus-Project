@@ -21,10 +21,6 @@ public class AdminServiceImpl implements AdminService {
 		mapper.deleteAdminInquiry(vo);
 	}
 	
-//	@Override
-//	public void answerForm(InquiryVO vo) {
-//		mapper.answerForm(vo);
-//	}
 
 	@Override
 	public void answerInquiry(InquiryVO vo) {
@@ -45,6 +41,13 @@ public class AdminServiceImpl implements AdminService {
 	public int getAdminChart(MemberVO mvo) {
 		return mapper.getAdminChart(mvo);
 		
+	}
+
+	@Override
+	public InquiryVO answerInquiryForm(InquiryVO vo) {
+		InquiryVO a = mapper.answerInquiryForm(vo);
+		System.out.println("serviceImpl의 vo" + a);
+		return mapper.answerInquiryForm(vo);
 	}
 
 

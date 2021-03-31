@@ -35,8 +35,8 @@
 
         // Set chart options
         var options = {'title':'우리 회원들이 무슨 모임을 만들었는지 살펴봅시다',
-                       'width':500,
-                       'height':350};
+                       'width':900,
+                       'height':700};
 
         // Instantiate and draw our chart, passing in some options.
         var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
@@ -59,8 +59,8 @@
             title: '더하기 가입자수 및 방문자수 추이',
             curveType: 'function',
             legend: { position: 'bottom' },
-            'width':1000,
-            'height':750
+            'width':900,
+            'height':700
           };
 
           var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
@@ -72,7 +72,9 @@
 
   <body>
   
- 	총 회원 수 : ${adminChart}<br/>
+ 	<h2>더하기 현재 총 회원 수 : ${adminChart}</h2><br/>
+ 	날짜별 회원수 변화 추이, 방문자수 추이 (이거는 구현하는데 시간이 좀..)
+ 	모임별 통계 
     <div id="curve_chart"></div>
     <div id="chart_div"></div>
   </body>

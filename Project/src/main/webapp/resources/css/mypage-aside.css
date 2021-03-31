@@ -1,12 +1,13 @@
 /* index.html 새로 만드는 부분 */
 /* navbar */
 .sidebar {
+	/* position:relative; */
     width: 300px;
     height: 100vh;
     background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)); /*, url(images/img1.jpeg) */
-    background-position: center;
+    background-position: relative;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: 300px;
     box-shadow: 5px 7px 25px #999;
 }
 .rounded-circle .mr-3 {

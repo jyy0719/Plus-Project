@@ -64,7 +64,7 @@ float:right;
 </style>
 </head>
 <body>
-	<form action="editInquiry.do" method="post">
+	<form action="editInquiry" method="post">
 		<div class="inquiry-wrap">
 			<h1>1:1문의 수정</h1>
 			<hr>
@@ -78,14 +78,16 @@ float:right;
 				</select>
 			</div>
 			<input type="hidden" value="${inquiry.inquiryNum}" name="inquiryNum">
+			<input type="hidden" value="${inquiry.memberNum}" name="memberNum">
 			<input type="text" class="form-control" id="inquiry-title"
 				name="inquiryTitle" value="${inquiry.inquiryTitle}">
 			<textarea name="inquiryContent" style="white-space:pre;">${inquiry.inquiryContent}</textarea>
 			<button type="submit" id="inquiryBtn">수정하기</button><br/>
-	  
-			<div class="submit"><a href="inquiry.do">글 목록 가기</a></div>
-		<hr></div>
-	</form>
+	  </div>
+	  </form>
+			<div class="submit"><a href="inquiry">글 목록 가기</a></div>
+		<hr>
+	
 	
 <script>
 
@@ -94,6 +96,7 @@ float:right;
 			$("#inquiryBtn").on("click", function(){
 				alert("문의가 정상적으로 수정 되었습니다");
 			});
+		});
 			
 </script>
 </body>

@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
+<c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title><tiles:getAsString name="title"></tiles:getAsString></title>
-<!-- <link href="/css/mypage/layout.css" type="text/css" rel="stylesheet">  -->
+<link href="${path}/css/mypage/layout.css" type="text/css" rel="stylesheet">
+
 </head>
 <body>
 	<!--  header 부분 -->

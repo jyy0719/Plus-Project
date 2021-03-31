@@ -65,6 +65,9 @@
 				               </c:otherwise>
 			               </c:choose>
                         </form>
+                        <form>
+                        <li class="dropli"><a href="inquiry">실례합니다</a></li>
+                        </form>
                       <form action="logout.do" method="get">
                       <!--  onclick="kakaoLogout()" -->
                         <li class="dropli api-btn"><a href="logout.do">LogOut</a></li>

@@ -102,6 +102,10 @@ public class MemberVO {
 				+ ", memberPoint=" + memberPoint + ", memberJoindate=" + memberJoindate + ", memberMarketing="
 				+ memberMarketing + ", memberLatitude=" + memberLatitude + ", memberLongitude=" + memberLongitude + "]";
 	}
+	public boolean isEmpty() {
+		// TODO Auto-generated method stub
+		return true;
+	}
 
 	
 	
